@@ -20,7 +20,6 @@ export const SPRITES = {
   buku_teisi_2: { file: 'sprites/buku_teisi_2.png', w: 96, h: 96, bbox: [32, 17, 32, 64] },
   buku_teisi_3: { file: 'sprites/buku_teisi_3.png', w: 96, h: 96, bbox: [32, 17, 32, 64] },
   buku_teisi_4: { file: 'sprites/buku_teisi_4.png', w: 96, h: 96, bbox: [32, 17, 32, 64] },
-  cat_run: { file: 'sprites/cat_run.png', w: 35, h: 32, bbox: [0, 0, 34, 29] },
   dapur_bumbu_dapur_1: { file: 'sprites/dapur_bumbu_dapur_1.png', w: 16, h: 16, bbox: [0, 0, 16, 16] },
   dapur_bumbu_dapur_2: { file: 'sprites/dapur_bumbu_dapur_2.png', w: 16, h: 16, bbox: [2, 0, 13, 16] },
   dapur_bumbu_dapur_3: { file: 'sprites/dapur_bumbu_dapur_3.png', w: 16, h: 16, bbox: [1, 2, 14, 13] },

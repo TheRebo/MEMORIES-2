@@ -9,6 +9,7 @@ export default defineConfig({
   },
   build: {
     target: 'es2022',
+    assetsDir: 'bundle',
     assetsInlineLimit: 0,
     chunkSizeWarningLimit: 1600,
     rollupOptions: {

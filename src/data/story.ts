@@ -1,3 +1,4 @@
+import type { SfxKey } from './audio';
 import type { TutorialPage } from './types';
 
 /** Full-screen illustrations in public/assets/cutscene/. */
@@ -23,11 +24,13 @@ export interface Slide {
   readonly speaker: string;
   readonly text: string;
   /** SFX key played when the slide appears. */
-  readonly sfx?: string;
+  readonly sfx?: SfxKey;
   /** Seconds before auto-advance; absent = wait for the player. */
   readonly hold?: number;
   /** Darken the art (0..1) to keep text readable or set mood. */
   readonly dim?: number;
+  /** Where the text box sits, so it does not cover the subject of the art. */
+  readonly box?: 'center' | 'right';
 }
 
 /** Prolog, from the Godot intro scene (matches Lore.txt "INTRO - baru"). */
@@ -50,9 +53,9 @@ export const INTRO: readonly Slide[] = [
 
 /** Epilog, from the Godot ending scene (matches "revisi ending.docx"). */
 export const ENDING: readonly Slide[] = [
-  { art: 'grave_dark', speaker: 'MC', text: 'Maaf ya nek... aku jadi jarang jengukin nenek...' },
-  { art: 'grave_day', speaker: 'MC', text: 'Mulai sekarang aku bakal lebih sering kok.' },
-  { art: 'grave_flowers', speaker: 'Narator', sfx: 'ending_chime',
+  { art: 'grave_dark', box: 'right', speaker: 'MC', text: 'Maaf ya nek... aku jadi jarang jengukin nenek...' },
+  { art: 'grave_day', box: 'right', speaker: 'MC', text: 'Mulai sekarang aku bakal lebih sering kok.' },
+  { art: 'grave_flowers', box: 'right', speaker: 'Narator', sfx: 'ending_chime',
     text: 'Kemudian aku meletakkan bunga di atas makam Nenek, lalu membersihkan sekitarnya.' },
 ];
 
