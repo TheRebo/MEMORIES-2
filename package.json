@@ -1,0 +1,26 @@
+{
+  "name": "memories",
+  "private": true,
+  "version": "0.1.0",
+  "description": "MEMORIES: game naratif pixel-art bersih-bersih rumah Nenek.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "zip": "node scripts/zip-itch.mjs"
+  },
+  "dependencies": {
+    "phaser": "3.90.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.7",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.8"
+  },
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20"
+  }
+}
