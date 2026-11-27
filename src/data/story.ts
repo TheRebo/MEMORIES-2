@@ -1,3 +1,4 @@
+import type { SfxKey } from './audio';
 import type { TutorialPage } from './types';
 
 /** Full-screen illustrations in public/assets/cutscene/. */
@@ -23,7 +24,7 @@ export interface Slide {
   readonly speaker: string;
   readonly text: string;
   /** SFX key played when the slide appears. */
-  readonly sfx?: string;
+  readonly sfx?: SfxKey;
   /** Seconds before auto-advance; absent = wait for the player. */
   readonly hold?: number;
   /** Darken the art (0..1) to keep text readable or set mood. */

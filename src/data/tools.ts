@@ -1,3 +1,4 @@
+import type { SfxKey } from './audio';
 import { SPRITE, type SpriteKey } from './sprites';
 import type { ToolId } from './types';
 
@@ -8,7 +9,7 @@ export interface ToolInfo {
   readonly code: string;
   readonly keyLabel: string;
   readonly icon: SpriteKey;
-  readonly sfx: string;
+  readonly sfx: SfxKey;
   /** Particle colour while scrubbing. */
   readonly tint: number;
 }
