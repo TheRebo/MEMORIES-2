@@ -6,7 +6,7 @@ import { SPRITES } from '@/data/sprites';
 import { CANDLE_KEY, TOOLS } from '@/data/tools';
 import type { RoomId, ToolId } from '@/data/types';
 import type { GroupStatus } from '@/systems/TaskTracker';
-import { h } from './dom';
+import { h, reducedMotion } from './dom';
 import { Typewriter } from './Typewriter';
 
 export interface HudCallbacks {
@@ -347,6 +347,10 @@ export class Hud {
     }, 30);
   }
 
+  private get still(): boolean {
+    return reducedMotion();
+  }
+
   // ---------- Pointers to event locations ----------
   setPointer(id: string, get: PointerGetter): void {
     this.clearPointer(id);
@@ -372,7 +376,7 @@ export class Hud {
       const inner = { x0: usable.x + 24, y0: usable.y + 24, x1: usable.x + usable.w - 24, y1: usable.y + usable.h - 24 };
       const inside = s.x >= inner.x0 && s.x <= inner.x1 && s.y >= inner.y0 && s.y <= inner.y1;
       if (inside) {
-        const bob = Math.sin(t * 6) * 4;
+        const bob = this.still ? 0 : Math.sin(t * 6) * 4;
         p.el.style.transform = `translate(${s.x - 14}px, ${s.y - 34 + bob}px)`;
         p.el.classList.remove('edge');
       } else {

@@ -51,7 +51,7 @@ export class StoryBox {
       handlers.onSkip();
     });
     layer.classList.add('interactive');
-    layer.append(this.box, this.skip);
+    layer.append(h('h1', { class: 'sr-only' }, 'Memories: cerita'), this.box, this.skip);
     this.tw = new Typewriter(this.text);
     window.addEventListener('keydown', this.onKey);
     layer.addEventListener('pointerdown', this.onPointer);

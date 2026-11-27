@@ -31,7 +31,7 @@ export class SettingsDialog extends Modal {
     const shake = h('input', { type: 'checkbox', id: 'opt-shake' });
     shake.checked = Settings.value.screenShake;
     shake.addEventListener('change', () => Settings.set('screenShake', shake.checked));
-    form.append(h('label', { class: 'check', for: 'opt-shake' }, shake, 'Guncangan layar & kilatan'));
+    form.append(h('label', { class: 'check', for: 'opt-shake' }, shake, 'Efek gerak (guncangan, kilatan, latar bergerak)'));
 
     const speeds: [SettingsData['textSpeed'], string][] = [['slow', 'Lambat'], ['normal', 'Normal'], ['fast', 'Cepat']];
     const seg = h('div', { class: 'seg', role: 'group', 'aria-labelledby': 'lbl-speed' });

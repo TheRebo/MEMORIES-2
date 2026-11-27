@@ -6,7 +6,10 @@ export interface SettingsData {
   master: number;
   music: number;
   sfx: number;
-  /** Camera shake and big flashes. Off when the OS asks for reduced motion. */
+  /**
+   * Screen motion: camera shake, flashes, drifting menu background, ambient dust, bobbing arrows.
+   * Off by default when the OS asks for reduced motion; this is also the pause control for looping motion.
+   */
   screenShake: boolean;
   /** Seconds a new dialog line stays locked, preventing accidental skips. */
   textSpeed: 'slow' | 'normal' | 'fast';
