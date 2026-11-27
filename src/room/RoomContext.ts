@@ -16,6 +16,8 @@ export type RoomEvents = {
   eventBar: { label: string; value: number } | null;
   hint: { x: number; y: number; text: string };
   shake: { strength: number; duration: number };
+  /** Ask the camera to briefly frame a world point. */
+  attend: { x: number; y: number };
   pointer: { id: string; target: { x: number; y: number } | (() => { x: number; y: number } | null) };
   pointerClear: string;
   tutorial: { id: string; pages: readonly import('@/data/types').TutorialPage[] };

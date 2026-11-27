@@ -63,7 +63,7 @@ export class StoryScene extends Phaser.Scene {
     this.time.delayedCall(old ? 450 : 700, () => {
       this.transitioning = false;
       if (slide.sfx) Audio.sfx(slide.sfx);
-      this.box.show(slide.speaker, slide.text, slide.hold);
+      this.box.show(slide.speaker, slide.text, slide.hold, slide.box);
     });
   }
 

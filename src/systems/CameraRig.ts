@@ -19,6 +19,8 @@ export class CameraRig {
   private shakeTotal = 0.1;
   private shakeStrength = 0;
   private pulse = 0;
+  private attendUntil = 0;
+  private attendTarget = { x: 0, y: 0 };
   enabled = true;
 
   constructor(private readonly scene: Phaser.Scene, private readonly world: { w: number; h: number }) {
@@ -61,6 +63,12 @@ export class CameraRig {
     });
   }
 
+  /** Briefly frame a spot that needs the player (window, cockroach), then hand control back. */
+  attend(x: number, y: number, seconds = 2.2): void {
+    this.attendTarget = { x, y };
+    this.attendUntil = this.scene.time.now + seconds * 1000;
+  }
+
   beginCinematic(): void {
     this.cinematic = true;
     this.cinTarget = { x: this.world.w / 2, y: this.world.h / 2 };
@@ -91,7 +99,13 @@ export class CameraRig {
         y: Phaser.Math.Clamp(this.cinTarget.y, Math.min(hh, this.world.h / 2), Math.max(hh, this.world.h - hh)),
       };
     } else {
-      if (this.enabled && usable.contains(pointer.x, pointer.y)) {
+      const maxPanNow = { x: Math.max(1, (this.world.w - view.w) / 2), y: Math.max(1, (this.world.h - view.h) / 2) };
+      if (this.scene.time.now < this.attendUntil) {
+        this.pan = {
+          x: Phaser.Math.Clamp((this.attendTarget.x - this.world.w / 2) / maxPanNow.x, -1, 1),
+          y: Phaser.Math.Clamp((this.attendTarget.y - this.world.h / 2) / maxPanNow.y, -1, 1),
+        };
+      } else if (this.enabled && usable.contains(pointer.x, pointer.y)) {
         const nx = Phaser.Math.Clamp((pointer.x - usable.centerX) / (usable.width / 2), -1, 1);
         const ny = Phaser.Math.Clamp((pointer.y - usable.centerY) / (usable.height / 2), -1, 1);
         this.pan = { x: dead(nx), y: dead(ny) };

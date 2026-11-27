@@ -30,6 +30,10 @@
   --cream-dim: #d3bf9b;
   --amber: #f2b84b;
   --amber-deep: #c8862a;
+  /* Amber text on the plank texture: lighter tint keeps 4.5:1 against the wood. */
+  --amber-on-wood: #ffe08f;
+  /* Pixel outline: text stays legible over speckled wood. */
+  --outline: 2px 0 0 var(--ink), -2px 0 0 var(--ink), 0 2px 0 var(--ink), 0 -2px 0 var(--ink), 2px 2px 0 var(--ink);
   --sage: #a8d48f;
   --warn: #f08a72;
   --ink: #120b07;
@@ -122,13 +126,13 @@ button:disabled { cursor: not-allowed; }
   font-family: var(--font-display);
   font-size: 24px;
   color: var(--cream);
-  text-shadow: 2px 2px 0 var(--ink);
+  text-shadow: var(--outline);
   transition: transform var(--dur) steps(3), filter var(--dur);
 }
 .btn:hover { filter: brightness(1.15); transform: translateY(-2px); }
 .btn:active { transform: translateY(2px); filter: brightness(0.92); }
 .btn:disabled { filter: grayscale(0.7) brightness(0.7); transform: none; }
-.btn.primary { color: var(--amber); }
+.btn.primary { color: var(--amber-on-wood); }
 .btn.small {
   min-height: 44px;
   min-width: 0;

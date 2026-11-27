@@ -71,6 +71,7 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
     this.loop = Audio.loop('wind_strong', 0.6, 1);
     const w = this.win;
     this.pointAt('window', () => ({ x: w.x, y: w.bounds().y - 4 }));
+    this.room.ctx.bus.emit('attend', w.center());
     this.room.ctx.bus.emit('objective', 'Klik jendela berkali-kali untuk menutupnya!');
     this.emitBar();
     this.releaseClick = this.room.addClickInterceptor((x, y) => this.onClick(x, y));

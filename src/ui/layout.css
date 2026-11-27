@@ -42,13 +42,14 @@
   left: 140px;
   right: 140px;
   bottom: 40px;
-  min-height: 150px;
-  padding: 20px 28px 16px;
+  min-height: 132px;
+  padding: 18px 28px 14px;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 220ms ease-out, transform 220ms steps(4);
 }
 .story-box.on { opacity: 1; transform: none; }
+.story-box.right { left: 560px; right: 48px; }
 .story-speaker { margin: 0 0 8px; font-size: 24px; color: var(--amber); text-shadow: 2px 2px 0 var(--ink); }
 .story-text { margin: 0; font-size: 27px; line-height: 1.45; min-height: 78px; }
 .story-hint { margin: 10px 0 0; text-align: right; font-size: 18px; opacity: 0; transition: opacity 300ms; }
@@ -57,10 +58,11 @@
 .story-skip { position: absolute; top: 24px; right: 24px; }
 
 /* ---------- Title card ---------- */
-.titlecard { display: grid; place-items: center; background: #0d0907; }
+/* Olive from the team's 'JUDUL GAME WITH BACKGROUND': the dark-brown vine logo needs a light ground. */
+.titlecard { display: grid; place-items: center; background: #5f6a3c; }
 .titlecard-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; animation: fade-in 1600ms ease-out; }
 .titlecard-inner img { width: 640px; height: auto; image-rendering: pixelated; }
-.titlecard-thanks { margin: -40px 0 30px; font-size: 26px; color: var(--cream); }
+.titlecard-thanks { margin: -40px 0 30px; font-size: 28px; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); }
 
 /* ---------- HUD ---------- */
 .room { inset: 0; }
@@ -318,6 +320,10 @@
 .cinematic .todo { transform: translateX(-340px); opacity: 0; }
 .cinematic .objective, .cinematic .eventbar, .cinematic .hud-pointers, .cinematic .tool-cursor { display: none; }
 .cinematic .dialog { bottom: 76px; }
+
+/* With the task list open, centre messages over the free part of the room instead. */
+.room:has(.todo:not(.closed)):not(.cinematic) :is(.dialog, .toast, .objective, .eventbar) { left: 808px; }
+.room:has(.todo:not(.closed)):not(.cinematic) .dialog { width: 700px; }
 
 /* ---------- Tutorial ---------- */
 .tutorial { width: 640px; }

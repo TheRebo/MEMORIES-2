@@ -207,6 +207,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     on('eventBar', (b) => this.hud.eventBar(b));
     on('hint', (h) => this.hud.hint(h.x, h.y, h.text));
     on('shake', (s) => this.camera.shake(s.strength, s.duration));
+    on('attend', (a) => this.camera.attend(a.x, a.y));
     on('pointer', (p) => this.hud.setPointer(p.id, typeof p.target === 'function' ? p.target : () => p.target as { x: number; y: number }));
     on('pointerClear', (id) => this.hud.clearPointer(id));
     on('toolChanged', (t) => this.hud.setTool(t.tool));

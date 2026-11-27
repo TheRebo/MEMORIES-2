@@ -32,6 +32,7 @@ export class CockroachEvent extends RoomEvent<typeof DEFAULTS> {
       this.roaches.push(r);
       this.pointAt(`roach${i}`, () => (r.dead ? null : { x: r.sprite.x, y: r.sprite.y - 6 }));
     }
+    ctx.bus.emit('attend', { x: this.cfg.spawnPoint.x, y: this.cfg.spawnPoint.y });
     ctx.setBlocked('roach', true, 'Ada kecoa! Klik kecoa itu dulu.');
     ctx.bus.emit('objective', 'Ada kecoa! Klik kecoanya agar bisa lanjut membersihkan.');
     scene.events.on('update', this.onUpdate);

@@ -39,7 +39,9 @@ export class BlackoutEvent extends RoomEvent<typeof DEFAULTS> {
     const { ctx, lighting, candles, phaser: scene } = this.room;
     ctx.blackout = true;
     ctx.bus.emit('blackout', true);
-    lighting.addTint('blackout', this.cfg.darkColor);
+    // The darkness layer carries the black; the tint only cools what the candles light.
+    const [r, g, bl] = this.cfg.darkColor;
+    lighting.addTint('blackout', [0.55 + r, 0.55 + g, 0.55 + bl, 1]);
     lighting.setBlackout(true);
     Audio.sfx('blackout_on', { volume: 0.9 });
     if (GameState.count('candle') <= 0) this.grantEmergency('Kamu menemukan sebatang lilin di laci dapur.');
@@ -53,6 +55,7 @@ export class BlackoutEvent extends RoomEvent<typeof DEFAULTS> {
     this.given = 0;
     this.wasLit = false;
     this.pointAt('candle', () => (this.wasLit ? null : this.cfg.hintPosition));
+    ctx.bus.emit('attend', this.cfg.hintPosition);
     ctx.bus.emit('objective', `Gelap! Tahan tombol ${CANDLE_KEY.label} (atau tahan slot Lilin) lalu lepas di lantai untuk memasang lilin.`);
     if (!this.ticking) {
       scene.events.on('update', this.onUpdate);
