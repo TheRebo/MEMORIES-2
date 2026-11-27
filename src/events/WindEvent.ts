@@ -72,7 +72,7 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
     const w = this.win;
     this.pointAt('window', () => ({ x: w.x, y: w.bounds().y - 4 }));
     this.room.ctx.bus.emit('attend', w.center());
-    this.room.ctx.bus.emit('objective', 'Klik jendela berkali-kali untuk menutupnya!');
+    this.setObjective('Klik jendela berkali-kali untuk menutupnya!');
     this.emitBar();
     this.releaseClick = this.room.addClickInterceptor((x, y) => this.onClick(x, y));
     this.room.phaser.events.on('update', this.onUpdate);
@@ -86,7 +86,8 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
   }
 
   private emitBar(): void {
-    this.room.ctx.bus.emit('eventBar', { label: 'Tutup jendela!', value: this.progress });
+    if (!this.running) return;
+    this.setBar({ label: 'Jendela', value: this.progress });
   }
 
   private tick(dt: number): void {
@@ -149,7 +150,10 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
       this.setState(1);
       this.room.ctx.bus.emit('toast', 'Jendela setengah tertutup! Terus klik!');
     }
-    if (this.progress >= 1) this.close();
+    if (this.progress >= 1) {
+      this.close();
+      return true;
+    }
     this.emitBar();
     return true;
   }
@@ -163,8 +167,7 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
     this.loop?.stop(0.6);
     this.loop = null;
     this.clearPoint('window');
-    this.room.ctx.bus.emit('objective', '');
-    this.room.ctx.bus.emit('eventBar', null);
+    this.setObjective('');
     this.room.ctx.bus.emit('dialog', { speaker: 'MC', text: 'Fiuh... jendelanya akhirnya tertutup.', duration: 3 });
     this.finish();
   }
@@ -172,6 +175,7 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
   protected override onDestroy(): void {
     this.room.phaser.events.off('update', this.onUpdate);
     this.releaseClick?.();
+    this.releaseClick = null;
     this.loop?.stop(0.2);
   }
 }

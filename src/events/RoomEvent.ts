@@ -65,6 +65,7 @@ export abstract class RoomEvent<C extends object = object> {
   private started = false;
   private repeats = 0;
   private readonly unsub: () => void;
+  private destroyed = false;
 
   constructor(protected readonly room: RoomApi, def: EventDef, defaults: C) {
     this.id = `${def.kind}`;
@@ -83,6 +84,11 @@ export abstract class RoomEvent<C extends object = object> {
   private onProgress(pct: number): void {
     if (!this.cfg.enabled || this.started || pct < this.cfg.triggerProgress || !this.canStart(pct)) return;
     this.started = true;
+    // Never stack two events: wait for the running one (or a cutscene) to end first.
+    if (this.room.ctx.eventsActive || this.room.ctx.cinematic) {
+      this.room.phaser.time.delayedCall(6000, () => this.tryStart(false));
+      return;
+    }
     this.launch();
   }
 
@@ -115,6 +121,8 @@ export abstract class RoomEvent<C extends object = object> {
   protected finish(): void {
     if (!this.running) return;
     this.running = false;
+    // An ended event never leaves its card or bar on screen, whatever its subclass forgot.
+    this.setObjective('');
     this.room.ctx.endEvent(this.id);
     this.scheduleRepeat();
   }
@@ -128,16 +136,29 @@ export abstract class RoomEvent<C extends object = object> {
   }
 
   private tryRepeat(): void {
-    if (this.room.finished) return;
+    this.tryStart(true);
+  }
+
+  private tryStart(repeat: boolean): void {
+    if (this.room.finished || this.destroyed) return;
     if (this.room.ctx.eventsActive || this.room.ctx.cinematic || !this.canStart(this.room.percent())) {
-      this.room.phaser.time.delayedCall(8000, () => this.tryRepeat());
+      this.room.phaser.time.delayedCall(repeat ? 8000 : 6000, () => this.tryStart(repeat));
       return;
     }
-    this.repeats += 1;
+    if (repeat) this.repeats += 1;
     this.launch();
   }
 
   // ---------- Helpers ----------
+  /** Instruction card for this event; '' removes it (and its bar). */
+  protected setObjective(text: string): void {
+    this.room.ctx.bus.emit('objective', { id: this.id, text });
+  }
+
+  protected setBar(bar: { label: string; value: number } | null): void {
+    this.room.ctx.bus.emit('eventBar', { id: this.id, bar });
+  }
+
   protected pointAt(id: string, get: () => { x: number; y: number } | null): void {
     this.room.ctx.bus.emit('pointer', { id: `${this.id}:${id}`, target: get });
   }
@@ -183,6 +204,7 @@ export abstract class RoomEvent<C extends object = object> {
   }
 
   destroy(): void {
+    this.destroyed = true;
     this.unsub();
     this.onDestroy();
   }

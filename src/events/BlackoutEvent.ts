@@ -56,7 +56,7 @@ export class BlackoutEvent extends RoomEvent<typeof DEFAULTS> {
     this.wasLit = false;
     this.pointAt('candle', () => (this.wasLit ? null : this.cfg.hintPosition));
     ctx.bus.emit('attend', this.cfg.hintPosition);
-    ctx.bus.emit('objective', `Gelap! Tahan tombol ${CANDLE_KEY.label} (atau tahan slot Lilin) lalu lepas di lantai untuk memasang lilin.`);
+    this.setObjective(`Gelap! Tahan tombol ${CANDLE_KEY.label} (atau tahan slot Lilin) lalu lepas di lantai untuk memasang lilin.`);
     if (!this.ticking) {
       scene.events.on('update', this.onUpdate);
       this.ticking = true;
@@ -73,16 +73,16 @@ export class BlackoutEvent extends RoomEvent<typeof DEFAULTS> {
 
   private tick(dt: number): void {
     if (!this.running) return;
-    const { ctx, candles } = this.room;
+    const { candles } = this.room;
     this.elapsed += dt;
     const lit = candles.activeCount() > 0;
     if (lit !== this.wasLit) {
       this.wasLit = lit;
       if (lit) {
-        ctx.bus.emit('objective', '');
+        this.setObjective('');
       } else {
         this.pointAt('candle', () => (this.wasLit ? null : this.cfg.hintPosition));
-        ctx.bus.emit('objective', `Lilin padam! Pasang lilin lagi (tombol ${CANDLE_KEY.label}) sebelum sarang laba-laba bertambah.`);
+        this.setObjective(`Lilin padam! Pasang lilin lagi (tombol ${CANDLE_KEY.label}) sebelum sarang laba-laba bertambah.`);
       }
     }
     if (lit) {
@@ -124,7 +124,7 @@ export class BlackoutEvent extends RoomEvent<typeof DEFAULTS> {
     lighting.removeTint('blackout');
     lighting.setBlackout(false);
     Audio.sfx('blackout_off', { volume: 0.9 });
-    ctx.bus.emit('objective', '');
+    this.setObjective('');
     ctx.bus.emit('dialog', { speaker: 'MC', text: 'Listriknya menyala lagi. Syukurlah!', duration: 3.5 });
     this.finish();
   }

@@ -3,7 +3,7 @@ import type { RoomDef } from '../types';
 
 export const bedroom: RoomDef = {
   id: 'bedroom',
-  name: 'Kamar Nenek & MC',
+  name: 'Kamar Nenek dan MC',
   short: 'Kamar',
   size: { w: 448, h: 320 },
   wallHeight: 64,

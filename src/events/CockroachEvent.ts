@@ -34,7 +34,7 @@ export class CockroachEvent extends RoomEvent<typeof DEFAULTS> {
     }
     ctx.bus.emit('attend', { x: this.cfg.spawnPoint.x, y: this.cfg.spawnPoint.y });
     ctx.setBlocked('roach', true, 'Ada kecoa! Klik kecoa itu dulu.');
-    ctx.bus.emit('objective', 'Ada kecoa! Klik kecoanya agar bisa lanjut membersihkan.');
+    this.setObjective('Ada kecoa! Klik kecoanya agar bisa lanjut membersihkan.');
     scene.events.on('update', this.onUpdate);
     this.releaseClick = this.room.addClickInterceptor((x, y) => this.onClick(x, y));
   }
@@ -55,7 +55,7 @@ export class CockroachEvent extends RoomEvent<typeof DEFAULTS> {
     this.releaseClick?.();
     this.releaseClick = null;
     ctx.setBlocked('roach', false);
-    ctx.bus.emit('objective', '');
+    this.setObjective('');
     ctx.bus.emit('dialog', { speaker: 'MC', text: 'Hih... kecoanya sudah pergi. Lanjut bersih-bersih!', duration: 3 });
     this.finish();
   }

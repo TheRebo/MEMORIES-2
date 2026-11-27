@@ -12,8 +12,10 @@ export type RoomEvents = {
   dialog: { speaker: string; text: string; duration: number };
   dialogHide: void;
   dialogHint: boolean;
-  objective: string;
-  eventBar: { label: string; value: number } | null;
+  /** Instruction card for one running event. Empty text removes the card. */
+  objective: { id: string; text: string };
+  /** Progress bar inside that event's card. null removes it. */
+  eventBar: { id: string; bar: { label: string; value: number } | null };
   hint: { x: number; y: number; text: string };
   shake: { strength: number; duration: number };
   /** Ask the camera to briefly frame a world point. */

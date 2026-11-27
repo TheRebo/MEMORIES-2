@@ -205,8 +205,8 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
       Audio.sfx('pause_open', { volume: 0.35, minGap: 400 });
     });
     on('dialogHide', () => this.hud.hideDialog());
-    on('objective', (t) => this.hud.objective(t));
-    on('eventBar', (b) => this.hud.eventBar(b));
+    on('objective', (o) => this.hud.objective(o.id, o.text));
+    on('eventBar', (b) => this.hud.eventBar(b.id, b.bar));
     on('hint', (h) => this.hud.hint(h.x, h.y, h.text));
     on('shake', (s) => this.camera.shake(s.strength, s.duration));
     on('attend', (a) => this.camera.attend(a.x, a.y));
@@ -247,6 +247,13 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
         this.hud.toggleTodo();
       }
     };
+    // Switching windows while holding 1-5 never delivers the keyup: put the tool down.
+    const onBlur = (): void => {
+      if (this.ctx.heldSource === 'key' || this.ctx.heldSource === 'slot') this.tools.release();
+      this.candles.cancelHold();
+      this.hands.cancel();
+    };
+    window.addEventListener('blur', onBlur);
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerdown', onMove);
     window.addEventListener('keydown', onKey);
@@ -254,6 +261,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerdown', onMove);
       window.removeEventListener('keydown', onKey);
+      window.removeEventListener('blur', onBlur);
     });
 
     this.input.on(Phaser.Input.Events.POINTER_DOWN, (p: Phaser.Input.Pointer) => {
@@ -288,7 +296,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     const r = this.layer.getBoundingClientRect();
     const scale = r.width / 1280;
     const el = document.elementFromPoint(r.left + this.screenPointer.x * scale, r.top + this.screenPointer.y * scale);
-    return !!el?.closest('.hud-top, .hud-bottom, .todo:not(.closed), .modal-backdrop');
+    return !!el?.closest('.hud-top, .hud-bottom, .todo:not(.closed), .modal-backdrop, .alert');
   }
 
   // ================== Progress ==================
@@ -377,7 +385,12 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
 
   // ================== Overlays ==================
   showTutorial(pages: readonly TutorialPage[], title: string): void {
-    if (this.ctx.cinematic) return;
+    // Busy (cutscene or another dialog): try again shortly instead of losing the lesson.
+    if (this.ctx.cinematic || modalOpen()) {
+      this.time.delayedCall(1500, () => this.showTutorial(pages, title));
+      return;
+    }
+    this.candles.cancelHold();
     this.tools.release();
     this.hands.cancel();
     this.scene.pause();
@@ -390,9 +403,12 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     if (modalOpen() || this.ctx.cinematic) return;
     this.tools.release();
     this.hands.cancel();
+    this.candles.cancelHold();
     Audio.sfx('pause_open', { volume: 0.6 });
     this.scene.pause();
     const d = new PauseDialog(this.layer, {
+      roomName: this.def.name,
+      percent: Math.round(this.percent()),
       roomSaved: GameState.isCompleted(this.def.id),
       onTutorial: () => this.time.delayedCall(10, () => this.showTutorial(START_TUTORIAL, 'Cara bermain')),
       onMainMenu: () => this.leave(() => App.go('Menu')),
