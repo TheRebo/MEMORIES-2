@@ -86,6 +86,7 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
   }
 
   private emitBar(): void {
+    if (!this.running) return;
     this.room.ctx.bus.emit('eventBar', { label: 'Tutup jendela!', value: this.progress });
   }
 
@@ -149,7 +150,10 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
       this.setState(1);
       this.room.ctx.bus.emit('toast', 'Jendela setengah tertutup! Terus klik!');
     }
-    if (this.progress >= 1) this.close();
+    if (this.progress >= 1) {
+      this.close();
+      return true;
+    }
     this.emitBar();
     return true;
   }
@@ -172,6 +176,7 @@ export class WindEvent extends RoomEvent<typeof DEFAULTS> {
   protected override onDestroy(): void {
     this.room.phaser.events.off('update', this.onUpdate);
     this.releaseClick?.();
+    this.releaseClick = null;
     this.loop?.stop(0.2);
   }
 }
