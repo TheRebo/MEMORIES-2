@@ -22,6 +22,7 @@ export class ToolSystem {
   private working = false;
   private lastDarkNotice = -Infinity;
   private lastWrongAt = -Infinity;
+  private freshStroke = false;
 
   private readonly onKeyDown = (e: KeyboardEvent): void => {
     if (e.repeat || modalOpen() || this.room.ctx.cinematic) return;
@@ -43,6 +44,10 @@ export class ToolSystem {
       this.release();
     }
   };
+  /** A new press starts a fresh stroke: jumping to another spot must not count as scrubbing. */
+  private readonly onPointerDown = (): void => {
+    this.freshStroke = true;
+  };
   private readonly onContext = (e: MouseEvent): void => {
     if (this.room.ctx.heldSource === 'toggle') {
       e.preventDefault();
@@ -54,7 +59,9 @@ export class ToolSystem {
     window.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('keyup', this.onKeyUp);
     window.addEventListener('pointerup', this.onPointerUp);
+    window.addEventListener('pointercancel', this.onPointerUp);
     window.addEventListener('contextmenu', this.onContext);
+    window.addEventListener('pointerdown', this.onPointerDown);
   }
 
   /** Slot pressed with the pointer. */
@@ -86,7 +93,8 @@ export class ToolSystem {
 
   pick(tool: ToolId, source: HeldSource): void {
     const ctx = this.room.ctx;
-    if (ctx.holdingCandle) return;
+    // One thing in hand at a time: not while carrying an item or a candle.
+    if (ctx.holdingCandle || ctx.dragging) return;
     ctx.heldTool = tool;
     ctx.heldSource = source;
     this.last = this.pointerScreen();
@@ -120,7 +128,8 @@ export class ToolSystem {
     const ctx = this.room.ctx;
     const tool = ctx.heldTool;
     const p = this.pointerScreen();
-    const moved = Math.hypot(p.x - this.last.x, p.y - this.last.y);
+    const moved = this.freshStroke ? 0 : Math.hypot(p.x - this.last.x, p.y - this.last.y);
+    this.freshStroke = false;
     this.last = p;
     this.working = false;
     if (tool === null || ctx.cinematic || modalOpen() || moved < 1) return;
@@ -179,6 +188,8 @@ export class ToolSystem {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('keyup', this.onKeyUp);
     window.removeEventListener('pointerup', this.onPointerUp);
+    window.removeEventListener('pointercancel', this.onPointerUp);
     window.removeEventListener('contextmenu', this.onContext);
+    window.removeEventListener('pointerdown', this.onPointerDown);
   }
 }

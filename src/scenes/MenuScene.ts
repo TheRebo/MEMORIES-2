@@ -32,6 +32,8 @@ export class MenuScene extends Phaser.Scene {
     shade.fillGradientStyle(0x120b07, 0x120b07, 0x120b07, 0x120b07, 0.7, 0, 0.7, 0);
     shade.fillRect(0, 0, 640, VIEW_H);
 
+    // Drop anything from a room that was left unfinished; the save is the source of truth.
+    GameState.load();
     Audio.playMusic('menu');
     this.buildUi();
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.layer.remove());
@@ -39,7 +41,8 @@ export class MenuScene extends Phaser.Scene {
 
   private buildUi(): void {
     this.layer = App.layer('menu');
-    const canContinue = GameState.hasProgress() && !GameState.allCompleted();
+    // Any finished room means there is something to lose, so a new game always asks first.
+    const canContinue = GameState.hasProgress();
     const nav = h('nav', { class: 'menu-buttons', 'aria-label': 'Menu utama' });
     const add = (label: string, fn: () => void, primary = false): HTMLButtonElement => {
       const b = h('button', { class: `btn interactive${primary ? ' primary' : ''}`, type: 'button' }, label);
@@ -53,7 +56,7 @@ export class MenuScene extends Phaser.Scene {
     };
 
     if (canContinue) {
-      add('Lanjutkan', () => this.continueGame(), true);
+      add(GameState.allCompleted() ? 'Kunjungi lagi' : 'Lanjutkan', () => this.continueGame(), true);
       add('Mulai Baru', () => this.confirmNewGame());
     } else {
       add('Mulai', () => this.newGame(), true);
@@ -78,8 +81,8 @@ export class MenuScene extends Phaser.Scene {
   }
 
   private continueGame(): void {
-    const room = GameState.firstIncomplete();
-    if (room) void App.go('Room', { room });
+    // After the ending, the whole (clean) house can still be revisited.
+    void App.go('Room', { room: GameState.firstIncomplete() ?? 'living_room' });
   }
 
   private confirmNewGame(): void {

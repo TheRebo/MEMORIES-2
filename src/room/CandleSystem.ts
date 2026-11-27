@@ -43,6 +43,7 @@ export class CandleSystem {
     window.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('keyup', this.onKeyUp);
     window.addEventListener('pointerup', this.onPointerUp);
+    window.addEventListener('pointercancel', this.onPointerUp);
   }
 
   slotDown(e: PointerEvent): void {
@@ -51,7 +52,7 @@ export class CandleSystem {
   }
 
   private hold(source: 'key' | 'slot'): void {
-    if (GameState.count('candle') <= 0 || this.ctx.heldTool !== null) return;
+    if (GameState.count('candle') <= 0 || this.ctx.heldTool !== null || this.ctx.dragging) return;
     this.source = source;
     this.ctx.holdingCandle = true;
     Audio.sfx('pickup', { volume: 0.6 });
@@ -74,7 +75,9 @@ export class CandleSystem {
     }
     if (!GameState.takeItem('candle')) return;
     const p = this.pointerWorld();
-    const c = new Candle(this.scene, p.x, Math.max(p.y, this.config.minY), this.config.burnTime, this.config.radius);
+    const x = Math.min(Math.max(p.x, 12), this.ctx.def.size.w - 12);
+    const y = Math.min(Math.max(p.y, this.config.minY), this.ctx.def.size.h - 8);
+    const c = new Candle(this.scene, x, y, this.config.burnTime, this.config.radius);
     this.list.push(c);
   }
 
@@ -109,6 +112,7 @@ export class CandleSystem {
     window.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('keyup', this.onKeyUp);
     window.removeEventListener('pointerup', this.onPointerUp);
+    window.removeEventListener('pointercancel', this.onPointerUp);
   }
 }
 

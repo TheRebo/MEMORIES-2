@@ -153,8 +153,9 @@ export class Hud {
     this.fadeEl = h('div', { class: 'hud-fade', 'aria-hidden': 'true' });
     this.live = h('div', { class: 'sr-only', 'aria-live': 'assertive' });
 
-    this.root.append(this.vignette, this.glow, this.pointerLayer, this.letterbox, top, this.todo, bottom,
-      this.objectiveEl, this.eventBarEl, this.toastEl, this.dialogEl, this.bannerEl, this.hintEl, this.cursorEl, this.fadeEl, this.live);
+    // The fade sits under the dialog: a cutscene line shown over black must stay readable.
+    this.root.append(this.vignette, this.glow, this.pointerLayer, top, this.todo, bottom, this.fadeEl, this.letterbox,
+      this.objectiveEl, this.eventBarEl, this.toastEl, this.dialogEl, this.bannerEl, this.hintEl, this.cursorEl, this.live);
   }
 
   // ---------- Progress & tasks ----------
@@ -323,21 +324,34 @@ export class Hud {
   /** Small tip near the pointer, e.g. "Butuh: Kain Lap". */
   hint(x: number, y: number, text: string): void {
     this.hintEl.textContent = text;
-    this.hintEl.style.transform = `translate(${Math.round(x + 18)}px, ${Math.round(y - 34)}px)`;
+    this.placeHint(x, y);
     this.hintEl.classList.add('on');
     window.clearTimeout(this.hintTimer);
-    this.hintTimer = window.setTimeout(() => this.hintEl.classList.remove('on'), 1100);
+    this.hintTimer = window.setTimeout(() => {
+      this.hintTimer = 0;
+      this.hintEl.classList.remove('on');
+    }, 1100);
   }
 
   /** Persistent hover label (e.g. "Klik 2x"). Pass null to hide. */
   hoverLabel(x: number, y: number, text: string | null): void {
+    // A timed hint (wrong tool) has priority until it expires.
+    if (this.hintTimer) return;
     if (text === null) {
-      if (!this.hintTimer) this.hintEl.classList.remove('on');
+      this.hintEl.classList.remove('on');
       return;
     }
     this.hintEl.textContent = text;
-    this.hintEl.style.transform = `translate(${Math.round(x + 18)}px, ${Math.round(y - 34)}px)`;
+    this.placeHint(x, y);
     this.hintEl.classList.add('on');
+  }
+
+  /** Next to the pointer, kept inside the 1280x720 stage. */
+  private placeHint(x: number, y: number): void {
+    const w = this.hintEl.offsetWidth || 160;
+    const px = x + 18 + w > 1272 ? x - 18 - w : x + 18;
+    const py = Math.max(8, y - 34);
+    this.hintEl.style.transform = `translate(${Math.round(px)}px, ${Math.round(py)}px)`;
   }
 
   announce(text: string): void {

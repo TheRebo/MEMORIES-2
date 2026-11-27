@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { DEPTH } from '@/config';
 import type { Rgba } from '@/data/types';
+import { reducedMotion } from '@/ui/dom';
 import { Candle } from '@/world/Candle';
 
 type Rgb = { r: number; g: number; b: number };
@@ -56,6 +57,8 @@ export class Lighting {
   }
 
   pulseFlash(peak: number, seconds: number): void {
+    // Big flashes follow the motion setting; keep only a soft hint when it is off.
+    if (reducedMotion()) peak *= 0.25;
     this.scene.tweens.addCounter({
       from: 0, to: 1, duration: seconds * 1000,
       onUpdate: (tw) => {
