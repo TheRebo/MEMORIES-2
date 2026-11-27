@@ -4,6 +4,10 @@ Game naratif pixel-art: setelah tiga belas tahun, MC pulang ke rumah Nenek dan m
 
 Port dari proyek Godot 4 ke **Vite + TypeScript (strict) + Phaser 3**, dikelola dengan **pnpm**.
 
+## Main langsung
+
+**https://therebo.github.io/MEMORIES-2/** (dibangun otomatis oleh `.github/workflows/pages.yml` setiap push ke `main` atau `develop`).
+
 ## Menjalankan
 
 ```bash
