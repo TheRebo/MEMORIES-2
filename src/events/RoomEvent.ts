@@ -115,6 +115,8 @@ export abstract class RoomEvent<C extends object = object> {
   protected finish(): void {
     if (!this.running) return;
     this.running = false;
+    // Safety net: an ended event never leaves its progress bar or pointer on screen.
+    this.room.ctx.bus.emit('eventBar', null);
     this.room.ctx.endEvent(this.id);
     this.scheduleRepeat();
   }
