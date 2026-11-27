@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { App } from '@/app';
 import { Audio } from '@/core/audio';
 import { GameState } from '@/core/gameState';
+import { Settings } from '@/core/settings';
 import { VIEW_H, VIEW_W } from '@/config';
 import { CreditsDialog } from '@/ui/CreditsDialog';
 import { ConfirmDialog } from '@/ui/ConfirmDialog';
@@ -20,10 +21,11 @@ export class MenuScene extends Phaser.Scene {
     const bg = this.add.image(VIEW_W / 2, VIEW_H / 2, 'cs_lobby');
     const cover = Math.max(VIEW_W / bg.width, VIEW_H / bg.height);
     bg.setScale(cover * 1.06);
-    if (!reducedMotion()) {
-      // Slow drift keeps the title alive without pulling focus from the buttons.
-      this.tweens.add({ targets: bg, x: VIEW_W / 2 - 24, y: VIEW_H / 2 - 8, duration: 14000, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
-    }
+    // Slow drift keeps the title alive without pulling focus from the buttons.
+    // It follows the motion setting, which doubles as its pause control.
+    const drift = this.tweens.add({ targets: bg, x: VIEW_W / 2 - 24, y: VIEW_H / 2 - 8, duration: 14000, yoyo: true, repeat: -1, ease: 'Sine.easeInOut', paused: reducedMotion() });
+    const offMotion = Settings.events.on('changed', () => (reducedMotion() ? drift.pause() : drift.resume()));
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, offMotion);
     this.add.rectangle(0, 0, VIEW_W, VIEW_H, 0x120b07, 0.18).setOrigin(0);
     // Left-side shade so the logo and buttons sit on a calm area of the painting.
     const shade = this.add.graphics();
@@ -63,7 +65,7 @@ export class MenuScene extends Phaser.Scene {
     });
     add('Kredit', () => new CreditsDialog(this.layer).open());
 
-    const logo = h('img', { class: 'menu-logo', src: 'assets/ui/title_logo.png', alt: 'Memories', width: 640, height: 360 });
+    const logo = h('img', { class: 'menu-logo', src: 'assets/ui/title_logo.png', alt: 'Memories', width: 640, height: 360, fetchpriority: 'high' });
     const hint = h('p', { class: 'menu-hint muted' }, 'Pulang ke rumah Nenek, bersihkan ruangan demi ruangan.');
     this.layer.append(h('header', { class: 'menu-head' }, h('h1', { class: 'sr-only' }, 'Memories'), logo, hint), nav);
     queueMicrotask(() => nav.querySelector('button')?.focus());

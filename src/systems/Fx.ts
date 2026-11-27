@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { DEPTH } from '@/config';
+import { Settings } from '@/core/settings';
 import { reducedMotion } from '@/ui/dom';
 
 /** Particle effects. Every emitter here is one-shot or ambient; none blocks input. */
@@ -8,7 +9,9 @@ export class Fx {
   private readonly sparkle: Phaser.GameObjects.Particles.ParticleEmitter;
   private readonly puff: Phaser.GameObjects.Particles.ParticleEmitter;
   private readonly motes: Phaser.GameObjects.Particles.ParticleEmitter;
-  private readonly calm = reducedMotion();
+  private get calm(): boolean {
+    return reducedMotion();
+  }
 
   constructor(private readonly scene: Phaser.Scene, w: number, h: number) {
     Fx.ensureTextures(scene);
@@ -25,11 +28,14 @@ export class Fx {
       scale: { start: 2, end: 0 }, alpha: { start: 0.5, end: 0 }, tint: 0xd8cbb4,
     }).setDepth(DEPTH.weather - 11);
     this.motes = scene.add.particles(0, 0, 'fx_px', {
-      x: { min: 0, max: w }, y: { min: 0, max: h }, lifespan: 6000, frequency: this.calm ? -1 : 180,
+      x: { min: 0, max: w }, y: { min: 0, max: h }, lifespan: 6000, frequency: 180,
       speedX: { min: -3, max: 3 }, speedY: { min: -2, max: 2 }, scale: { min: 0.5, max: 1 },
       alpha: { start: 0, end: 0, ease: (t: number) => Math.sin(t * Math.PI) }, tint: 0xd9d0c0, quantity: 1,
     }).setDepth(DEPTH.weather - 20);
     this.setMotes(0.5, 0xd9d0c0);
+    if (this.calm) this.motes.stop();
+    const off = Settings.events.on('changed', () => (this.calm ? this.motes.stop() : this.motes.start()));
+    scene.events.once('shutdown', off);
   }
 
   static ensureTextures(scene: Phaser.Scene): void {

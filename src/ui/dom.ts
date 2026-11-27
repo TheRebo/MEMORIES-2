@@ -1,3 +1,5 @@
+import { Settings } from '@/core/settings';
+
 type Attrs = Record<string, string | number | boolean | undefined | null | EventListener>;
 type Child = Node | string | number | false | null | undefined;
 
@@ -61,5 +63,6 @@ export function trapFocus(root: HTMLElement): () => void {
 }
 
 export function reducedMotion(): boolean {
-  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true) return true;
+  return !Settings.value.screenShake;
 }
