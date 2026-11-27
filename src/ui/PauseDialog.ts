@@ -4,6 +4,8 @@ import { Modal } from './Modal';
 import { SettingsDialog } from './SettingsDialog';
 
 export interface PauseActions {
+  roomName: string;
+  percent: number;
   onTutorial: () => void;
   onMainMenu: () => void;
   /** Room already finished: leaving loses nothing. */
@@ -16,6 +18,8 @@ export class PauseDialog extends Modal {
   }
 
   protected build(): void {
+    this.box.classList.add('pause');
+    this.box.append(h('p', { class: 'pause-room' }, h('span', {}, this.actions.roomName), h('span', { class: 'display' }, `${this.actions.percent}% bersih`)));
     const list = h('div', { class: 'pause-menu' });
     list.append(
       this.button('Lanjutkan', () => this.close(), 'btn primary'),
