@@ -3,6 +3,7 @@ import { App } from '@/app';
 import { Audio } from '@/core/audio';
 import { GameState } from '@/core/gameState';
 import { Settings } from '@/core/settings';
+import { ROOMS, ROOM_ORDER } from '@/data/rooms';
 import { VIEW_H, VIEW_W } from '@/config';
 import { CreditsDialog } from '@/ui/CreditsDialog';
 import { ConfirmDialog } from '@/ui/ConfirmDialog';
@@ -69,9 +70,36 @@ export class MenuScene extends Phaser.Scene {
     add('Kredit', () => new CreditsDialog(this.layer).open());
 
     const logo = h('img', { class: 'menu-logo', src: 'assets/ui/title_logo.png', alt: 'Memories', width: 640, height: 360, fetchpriority: 'high' });
-    const hint = h('p', { class: 'menu-hint muted' }, 'Pulang ke rumah Nenek, bersihkan ruangan demi ruangan.');
-    this.layer.append(h('header', { class: 'menu-head' }, h('h1', { class: 'sr-only' }, 'Memories'), logo, hint), nav);
+    const hint = h('p', { class: 'menu-hint' }, 'Pulang ke rumah Nenek, bersihkan ruangan demi ruangan.');
+    // Touch screens get touch instructions: key names mean nothing without a keyboard.
+    const touch = window.matchMedia('(pointer: coarse)').matches;
+    const foot = touch
+      ? h('p', { class: 'menu-foot', 'aria-label': 'Kontrol' },
+        h('span', {}, 'Ketuk slot alat, lalu gosok kotoran'),
+        h('span', {}, 'Seret barang ke tempatnya'),
+        h('span', {}, 'Ketuk dua kali untuk merapikan'))
+      : h('p', { class: 'menu-foot', 'aria-label': 'Kontrol' },
+        h('span', {}, h('kbd', {}, '1-4'), 'tahan alat'),
+        h('span', {}, 'Seret barang ke tempatnya'),
+        h('span', {}, h('kbd', {}, 'T'), 'catatan'),
+        h('span', {}, h('kbd', {}, 'Esc'), 'jeda'));
+    this.layer.append(h('div', { class: 'menu-main' }, h('h1', { class: 'sr-only' }, 'Memories'), logo, hint, nav));
+    if (canContinue) this.layer.append(this.saveNote());
+    this.layer.append(foot);
     queueMicrotask(() => nav.querySelector('button')?.focus());
+  }
+
+  /** Where the player left off: one line per room, the next one marked. */
+  private saveNote(): HTMLElement {
+    const next = GameState.firstIncomplete();
+    const list = h('ol', {});
+    for (const id of ROOM_ORDER) {
+      const done = GameState.isCompleted(id);
+      list.append(h('li', { class: done ? 'done' : id === next ? 'next' : '' },
+        h('span', {}, ROOMS[id].name),
+        h('span', {}, done ? 'bersih' : id === next ? 'berikutnya' : 'belum')));
+    }
+    return h('section', { class: 'menu-save paper', 'aria-label': 'Progres tersimpan' }, h('h2', {}, 'Catatan terakhir'), list);
   }
 
   /** Rebuild after settings: deleting the save changes Lanjutkan/Mulai. */

@@ -59,6 +59,14 @@ export class CandleSystem {
     this.ctx.bus.emit('candleHeld', true);
   }
 
+  /** Put the candle back without placing it (dialog opened, window lost focus). */
+  cancelHold(): void {
+    if (!this.source) return;
+    this.source = null;
+    this.ctx.holdingCandle = false;
+    this.ctx.bus.emit('candleHeld', false);
+  }
+
   private release(): void {
     if (!this.source) return;
     this.source = null;

@@ -6,10 +6,10 @@ import { Modal } from './Modal';
 /** Paged tutorial. Left/Right arrow keys flip pages; Escape closes. */
 export class TutorialDialog extends Modal {
   private index = 0;
-  private readonly title = h('p', { class: 'display', style: 'margin:0 0 10px;font-size:22px;color:var(--cream)' });
+  private readonly title = h('p', { class: 'tutorial-title display' });
   private readonly shot = h('div', { class: 'tutorial-shot', 'aria-hidden': 'true' });
   private readonly text = h('p', { class: 'tutorial-text' });
-  private readonly page = h('span', { class: 'tutorial-page' });
+  private readonly page = h('span', { class: 'tutorial-page', role: 'img' });
   private prev!: HTMLButtonElement;
   private next!: HTMLButtonElement;
   private readonly onArrow = (e: KeyboardEvent): void => {
@@ -25,8 +25,11 @@ export class TutorialDialog extends Modal {
   protected build(): void {
     this.prev = this.button('Kembali', () => this.go(-1));
     this.next = this.button('Lanjut', () => this.go(1), 'btn small primary');
-    const skip = this.button('Tutup', () => this.close());
-    this.box.append(this.title, this.shot, this.text, h('div', { class: 'tutorial-foot' }, this.page, skip, this.prev, this.next));
+    const foot = h('div', { class: 'tutorial-foot' }, this.page);
+    // A single page needs no paging: one clear button to close it.
+    if (this.pages.length > 1) foot.append(this.button('Tutup', () => this.close()), this.prev, this.next);
+    else foot.append(this.button('Mengerti', () => this.close(), 'btn small primary'));
+    this.box.append(this.title, this.shot, this.text, foot);
     this.box.addEventListener('keydown', this.onArrow);
     this.render();
   }
@@ -46,7 +49,9 @@ export class TutorialDialog extends Modal {
     if (!p) return;
     this.title.textContent = p.title;
     this.text.textContent = p.text;
-    this.page.textContent = `${this.index + 1} / ${this.pages.length}`;
+    this.page.replaceChildren(...this.pages.map((_, i) => h('span', { class: i === this.index ? 'on' : '' })));
+    this.page.hidden = this.pages.length < 2;
+    this.page.setAttribute('aria-label', `Halaman ${this.index + 1} dari ${this.pages.length}`);
     this.prev.disabled = this.index === 0;
     this.next.textContent = this.index === this.pages.length - 1 ? 'Mulai' : 'Lanjut';
     this.shot.replaceChildren();

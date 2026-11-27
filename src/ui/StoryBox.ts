@@ -44,7 +44,7 @@ export class StoryBox {
     this.speaker = h('p', { class: 'story-speaker display' });
     this.text = h('p', { class: 'story-text' });
     this.hint = h('p', { class: 'story-hint muted', 'aria-hidden': 'true' }, 'Klik atau tekan Enter untuk lanjut');
-    this.box = h('div', { class: 'story-box panel', role: 'region', 'aria-live': 'polite', 'aria-label': 'Dialog' }, this.speaker, this.text, this.hint);
+    this.box = h('div', { class: 'story-box paper', role: 'region', 'aria-live': 'polite', 'aria-label': 'Dialog' }, this.speaker, this.text, this.hint);
     this.skip = h('button', { class: 'btn small story-skip interactive', type: 'button' }, 'Lewati');
     this.skip.addEventListener('click', () => {
       Audio.uiClick();
