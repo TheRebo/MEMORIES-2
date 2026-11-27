@@ -152,8 +152,9 @@ export abstract class RoomEvent<C extends object = object> {
 
   protected spawnDirt(spec: Omit<DirtSpec, 'id'>): Dirt {
     const d = this.room.spawnDirt({ ...spec, id: `${this.id}-${Phaser.Math.RND.uuid().slice(0, 8)}` });
-    d.sprite.setAlpha(0);
-    this.room.phaser.tweens.add({ targets: d.sprite, alpha: 1, duration: 600 });
+    // Pop in with scale: alpha is reserved for showing how clean a spot is.
+    d.sprite.setScale(0.3);
+    this.room.phaser.tweens.add({ targets: d.sprite, scale: 1, duration: 260, ease: 'Back.easeOut' });
     return d;
   }
 

@@ -1,9 +1,9 @@
 import { Audio } from '@/core/audio';
 import { h, trapFocus } from './dom';
 
-let openCount = 0;
+const stack: Modal[] = [];
 /** True while any modal dialog is open (gameplay input ignores the world then). */
-export const modalOpen = (): boolean => openCount > 0;
+export const modalOpen = (): boolean => stack.length > 0;
 
 /** Base dialog: backdrop, focus trap, Escape closes, focus returns to the opener. */
 export abstract class Modal {
@@ -11,7 +11,8 @@ export abstract class Modal {
   protected readonly box: HTMLDivElement;
   private release: (() => void) | null = null;
   private readonly onKey = (e: KeyboardEvent): void => {
-    if (e.key === 'Escape' && this.closable) {
+    // Nested dialogs (confirm over settings): only the top-most one handles Escape.
+    if (e.key === 'Escape' && this.closable && stack[stack.length - 1] === this) {
       e.preventDefault();
       e.stopPropagation();
       this.close();
@@ -35,7 +36,7 @@ export abstract class Modal {
   open(): this {
     this.build();
     this.parent.append(this.backdrop);
-    openCount += 1;
+    stack.push(this);
     this.release = trapFocus(this.box);
     window.addEventListener('keydown', this.onKey, true);
     return this;
@@ -46,7 +47,8 @@ export abstract class Modal {
     Audio.uiClick();
     window.removeEventListener('keydown', this.onKey, true);
     this.backdrop.remove();
-    openCount = Math.max(0, openCount - 1);
+    const i = stack.indexOf(this);
+    if (i >= 0) stack.splice(i, 1);
     this.release?.();
     this.onClose?.();
   }
