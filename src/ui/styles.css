@@ -8,6 +8,9 @@
   - Plank 9-slice (team asset) for buttons; flat dark-wood panels with a 2px pixel bevel so
     large surfaces stay crisp instead of stretching the noisy plank texture.
   - Sage and soft red are functional states (done / event warning), never decoration.
+  - Paper (cream card, dark ink) is used only for what MC writes or says: the task note, speech,
+    the story box and tutorials. Wood is the game's own chrome (bars, dialogs, buttons). The two
+    materials tell the player at a glance which text is story and which is interface.
 */
 @font-face {
   font-family: 'Yoster';
@@ -37,6 +40,14 @@
   --sage: #a8d48f;
   --warn: #f08a72;
   --ink: #120b07;
+  /* Paper material. Ink colours checked against --paper: ink 12.9:1, ink-soft 5.8:1, done 4.9:1, red 5.6:1. */
+  --paper: #efe2c3;
+  --paper-shade: #ddc9a0;
+  --paper-edge: #b89c6c;
+  --paper-ink: #2a1b11;
+  --paper-ink-soft: #6a5038;
+  --paper-done: #3d6a31;
+  --paper-red: #9a3622;
   --plank: url('/assets/ui/btn_long_blank.png');
   --font-display: 'Yoster', 'Cairopixel', monospace;
   --font-body: 'Cairopixel', 'Yoster', monospace;
@@ -69,7 +80,8 @@ html, body {
   transform-origin: 0 0;
   pointer-events: none;
   font-size: 21px;
-  line-height: 1.35;
+  /* Cairopixel carries tall built-in line gaps, so a low line-height still reads as airy. */
+  line-height: 1.2;
   image-rendering: pixelated;
 }
 #ui > * { pointer-events: none; }
@@ -95,9 +107,13 @@ kbd {
   display: inline-block;
   min-width: 1.6em;
   padding: 0 0.35em;
-  font-family: var(--font-display);
+  /* Body font: Yoster turns single letters like T into ornaments at this size. */
+  font-family: var(--font-body);
   font-size: 0.85em;
+  line-height: 1.25;
   color: var(--ink);
+  /* Parents outline their light text in ink; on an amber key that turns letters into blobs. */
+  text-shadow: none;
   background: var(--amber);
   box-shadow: inset 0 -2px 0 var(--amber-deep);
   text-align: center;
@@ -168,6 +184,12 @@ button:disabled { cursor: not-allowed; }
   box-shadow: inset 0 0 0 2px var(--wood-500), inset 0 -4px 0 2px var(--wood-700), 4px 4px 0 rgba(0, 0, 0, 0.45);
   padding: 18px 22px;
 }
+.modal > .panel-title {
+  margin: -18px -22px 16px;
+  padding: 10px 22px 12px;
+  background: var(--wood-700);
+  box-shadow: inset 0 -2px 0 var(--ink), inset 0 -4px 0 var(--wood-500);
+}
 .panel-title {
   margin: 0 0 12px;
   font-family: var(--font-display);
@@ -176,6 +198,15 @@ button:disabled { cursor: not-allowed; }
   color: var(--amber);
   text-shadow: 2px 2px 0 var(--ink);
 }
+
+/* Paper card: cream sheet, dark ink, a deeper bottom edge and a hard drop shadow. */
+.paper {
+  background: var(--paper);
+  color: var(--paper-ink);
+  border: 2px solid var(--ink);
+  box-shadow: inset 0 0 0 2px #f8efd9, inset 0 -5px 0 2px var(--paper-shade), 4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+.paper .muted { color: var(--paper-ink-soft); }
 
 /* ---------- Modal layer ---------- */
 .modal-backdrop {

@@ -45,7 +45,7 @@ const TOOL_NAMES: Record<ToolId, string> = { broom: 'Sapu', mop: 'Pel', cloth: '
  * Layout (1280x720 stage):
  * - top bar: which room this is, how clean it is, the notes toggle and pause;
  * - left: the task note, written on paper because these are MC's own notes;
- * - centre top: one card per running event, then toasts, so they stack and never overlap;
+ * - top right: one card per running event (stacked); top centre: toasts;
  * - bottom: trash total, the tool belt in the middle, room navigation once the room is done.
  */
 export class Hud {
@@ -90,7 +90,8 @@ export class Hud {
   private hintTimer = 0;
   private bannerTimer = 0;
   private dialogSeq = 0;
-  private todoOpen = true;
+  // Short screens (phones in landscape) start with the note folded so the room stays visible.
+  private todoOpen = window.innerHeight >= 500;
   private heldTool: ToolId | null = null;
   private candleHeld = false;
   private lastGroups = new Map<string, GroupStatus>();
@@ -179,7 +180,7 @@ export class Hud {
     // ---------- Messages ----------
     this.alertsEl = h('div', { class: 'alerts' });
     this.toastEl = h('div', { class: 'toast', role: 'status', 'aria-live': 'polite' });
-    this.msgs = h('div', { class: 'hud-msgs' }, this.alertsEl, this.toastEl);
+    this.msgs = h('div', { class: 'hud-msgs' }, this.toastEl);
     this.dialogSpeaker = h('p', { class: 'dialog-speaker display' });
     this.dialogText = h('p', { class: 'dialog-text' });
     this.dialogHintEl = h('p', { class: 'dialog-hint' }, 'Klik atau Enter untuk lanjut, Esc untuk lewati');
@@ -194,7 +195,9 @@ export class Hud {
 
     // The fade sits under the dialog: a cutscene line shown over black must stay readable.
     this.root.append(this.vignette, this.glow, this.pointerLayer, top, this.todo, bottom, this.fadeEl, this.letterbox,
-      this.msgs, this.dialogEl, this.bannerEl, this.hintEl, this.cursorEl, this.live);
+      this.msgs, this.alertsEl, this.dialogEl, this.bannerEl, this.hintEl, this.cursorEl, this.live);
+    this.todo.classList.toggle('closed', !this.todoOpen);
+    this.todoBtn.setAttribute('aria-expanded', String(this.todoOpen));
     this.applyInset();
   }
 
