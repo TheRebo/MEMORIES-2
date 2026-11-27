@@ -5,7 +5,7 @@ import { Candle } from '@/world/Candle';
 
 type Rgb = { r: number; g: number; b: number };
 
-const DIM: Rgb = { r: 0.6, g: 0.56, b: 0.54 };
+const DIM: Rgb = { r: 0.8, g: 0.76, b: 0.73 };
 const CLEAN: Rgb = { r: 1.0, g: 0.97, b: 0.92 };
 const WARM: Rgb = { r: 1.0, g: 0.9, b: 0.74 };
 

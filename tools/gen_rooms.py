@@ -59,6 +59,9 @@ def sprite(path, crop=False):
     """
     if path.startswith('res://'):
         path = os.path.join(GODOT, path[len('res://'):])
+    if path.endswith('.gif'):
+        # Animated GIFs become spritesheets loaded separately (see PreloadScene).
+        return slug(path)
     key = slug(path)
     if crop:
         im = Image.open(path).convert('RGBA')

@@ -86,14 +86,14 @@ export class StoryScene extends Phaser.Scene {
 
     switch (still ? 'none' : (slide.motion ?? 'none')) {
       case 'busArrive': {
-        const bus = this.add.image(-360, 548, 'cs_bus').setScale(0.36).setOrigin(0.5, 1);
+        const bus = this.add.image(-360, 470, 'cs_bus').setScale(0.3).setOrigin(0.5, 1);
         c.add(bus);
-        this.tweens.add({ targets: bus, x: 470, duration: 2600, ease: 'Cubic.easeOut' });
-        this.tweens.add({ targets: bus, y: 546, duration: 180, yoyo: true, repeat: 12 });
+        this.tweens.add({ targets: bus, x: 440, duration: 2600, ease: 'Cubic.easeOut' });
+        this.tweens.add({ targets: bus, y: 468, duration: 180, yoyo: true, repeat: 12 });
         break;
       }
       case 'busLeave': {
-        const bus = this.add.image(470, 548, 'cs_bus').setScale(0.36).setOrigin(0.5, 1);
+        const bus = this.add.image(440, 470, 'cs_bus').setScale(0.3).setOrigin(0.5, 1);
         c.add(bus);
         this.tweens.add({ targets: bus, x: VIEW_W + 380, duration: 3200, ease: 'Cubic.easeIn', delay: 900 });
         break;

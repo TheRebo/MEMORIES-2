@@ -129,6 +129,23 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     }
 
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => this.cleanup());
+    // Test hook for automated play-throughs: only with ?debug in the URL.
+    if (new URLSearchParams(window.location.search).has('debug')) (window as unknown as { __room?: RoomScene }).__room = this;
+  }
+
+  /** Debug helper (see ?debug): finish every task except `leave` of them. */
+  debugFinish(leave = 0): void {
+    const todo = [...this.dirt.filter((d) => !d.done), ...this.interacts.filter((i) => !i.done)];
+    for (const d of todo.slice(leave)) {
+      if (d instanceof Dirt) d.scrub(d.tool, d.effort);
+      else d.interact();
+    }
+    for (const it of this.items) {
+      if (it.done) continue;
+      const z = this.zones.find((zz) => zz.canAccept(it));
+      if (z) z.receive(it);
+    }
+    this.ctx.bus.emit('tasksChanged');
   }
 
   // ================== World ==================
@@ -283,7 +300,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     const t = pct / 100;
     this.lighting.setCleanliness(t);
     this.fx.setMotes(0.55 - 0.45 * t, 0xd9d0c0);
-    this.hud.setVignette(1 - 0.7 * t);
+    this.hud.setVignette(0.6 - 0.45 * t);
     this.ctx.bus.emit('progress', pct);
     if (this.tracker.allDone() && !this.ctx.eventsActive) {
       this.finished = true;

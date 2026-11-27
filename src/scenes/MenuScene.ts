@@ -24,8 +24,11 @@ export class MenuScene extends Phaser.Scene {
       // Slow drift keeps the title alive without pulling focus from the buttons.
       this.tweens.add({ targets: bg, x: VIEW_W / 2 - 24, y: VIEW_H / 2 - 8, duration: 14000, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
     }
-    this.add.rectangle(0, 0, VIEW_W, VIEW_H, 0x120b07, 0.35).setOrigin(0);
-    this.add.rectangle(0, 0, 520, VIEW_H, 0x120b07, 0.55).setOrigin(0);
+    this.add.rectangle(0, 0, VIEW_W, VIEW_H, 0x120b07, 0.18).setOrigin(0);
+    // Left-side shade so the logo and buttons sit on a calm area of the painting.
+    const shade = this.add.graphics();
+    shade.fillGradientStyle(0x120b07, 0x120b07, 0x120b07, 0x120b07, 0.7, 0, 0.7, 0);
+    shade.fillRect(0, 0, 640, VIEW_H);
 
     Audio.playMusic('menu');
     this.buildUi();
