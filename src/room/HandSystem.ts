@@ -27,6 +27,7 @@ export class HandSystem {
     private readonly room: RoomApi,
     private readonly interacts: readonly Interactable[],
     private readonly onHoverLabel: (text: string | null) => void,
+    private readonly pointerInWorld: () => boolean,
   ) {
     window.addEventListener('pointerup', this.onUp);
     window.addEventListener('pointercancel', this.onUp);
@@ -77,9 +78,9 @@ export class HandSystem {
       App.stage.setCursor('drag');
       return;
     }
-    if (ctx.handsBusy || ctx.cinematic || modalOpen()) {
+    if (ctx.handsBusy || ctx.cinematic || modalOpen() || !this.pointerInWorld()) {
       this.setHover(null, null);
-      App.stage.setCursor(ctx.handsBusy && !ctx.cinematic ? 'none' : 'default');
+      App.stage.setCursor(ctx.handsBusy && !ctx.cinematic && this.pointerInWorld() ? 'none' : 'default');
       this.onHoverLabel(null);
       return;
     }
@@ -118,7 +119,8 @@ export class HandSystem {
     this.dragging = null;
     this.room.ctx.dragging = false;
     const p = this.room.pointerWorld();
-    const zone = this.findZone(p.x, p.y, item);
+    // Released over a HUD panel: the room under it is hidden, so it is not a drop.
+    const zone = this.pointerInWorld() ? this.findZone(p.x, p.y, item) : null;
     for (const z of this.room.zones) z.setTargetState('off');
     this.hoverZone = null;
     if (zone) {

@@ -1,5 +1,6 @@
 import type Phaser from 'phaser';
 import { DEPTH } from '@/config';
+import { GameState } from '@/core/gameState';
 import type { ItemDef } from '@/data/types';
 import { Thing } from './Thing';
 import type { Zone } from './Zone';
@@ -33,6 +34,8 @@ export class Item extends Thing {
   }
 
   beginDrag(px: number, py: number): void {
+    // Stop the hover scale tween so it cannot fight the pick-up squash.
+    this.scene.tweens.killTweensOf(this.sprite);
     this.hovered = false;
     this.sprite.setTint(0xffffff);
     this.grab = { x: this.x - px, y: this.y - py };
@@ -75,10 +78,13 @@ export class Item extends Thing {
   /** Knocked out of its zone (cat, wind) and lands at (x, y). */
   scatterTo(x: number, y: number): void {
     const from = this.zone ? this.zone.center() : { x: this.x, y: this.y };
+    // Trash knocked out of the bin no longer counts as collected (it is counted again when re-binned).
+    if (this.trash && this.zone) GameState.addTrash(-1);
     this.zone?.release(this);
     this.zone = null;
     this.done = false;
     this.home = { x, y };
+    this.scene.tweens.killTweensOf(this.sprite);
     this.sprite.setVisible(true).setAlpha(1).setScale(0.5).setPosition(from.x, from.y).setTint(0xffffff);
     this.shadow?.setVisible(true).setScale(1).setAlpha(1).setPosition(x, y - 1);
     this.sprite.setDepth(DEPTH.dragged);

@@ -7,6 +7,7 @@ import { VIEW_H, VIEW_W } from '@/config';
 export class UiStage {
   readonly root: HTMLElement;
   private scale = 1;
+  private cursor = 'default';
 
   constructor(root: HTMLElement, private readonly canvasHost: HTMLElement) {
     this.root = root;
@@ -35,7 +36,8 @@ export class UiStage {
   /** Swap the cursor style on the app root. */
   setCursor(kind: 'default' | 'hand' | 'grab' | 'drag' | 'none'): void {
     const app = this.root.parentElement;
-    if (!app) return;
+    if (!app || kind === this.cursor) return;
+    this.cursor = kind;
     app.classList.remove('cur-hand', 'cur-grab', 'cur-drag', 'cur-none');
     if (kind !== 'default') app.classList.add(`cur-${kind}`);
   }

@@ -37,8 +37,9 @@ class AppContext {
     this.busy = true;
     this.fadeEl.classList.add('block');
     await this.fade(true, ms / 2);
-    for (const s of this.game.scene.getScenes(true)) {
-      if (s.scene.key !== key) this.game.scene.stop(s.scene.key);
+    // Stop every other live scene, including paused ones (a paused room would keep its HUD on screen).
+    for (const s of this.game.scene.getScenes(false)) {
+      if (s.scene.key !== key && (s.sys.isActive() || s.sys.isPaused() || s.sys.isSleeping())) this.game.scene.stop(s.scene.key);
     }
     this.game.scene.start(key, data);
     await new Promise((r) => window.setTimeout(r, 60));

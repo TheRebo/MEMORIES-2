@@ -84,6 +84,8 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
 
   create(): void {
     const def = this.def;
+    // Back to the last save: a room abandoned halfway must not keep its rewards, trash or tool XP.
+    GameState.load();
     this.ctx = new RoomContext(def);
     this.tracker = new TaskTracker();
     this.completedVisit = GameState.isCompleted(def.id);
@@ -109,7 +111,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
 
     this.candles = new CandleSystem(this, this.ctx, () => this.pointerWorld(), () => this.pointerOverUi());
     this.tools = new ToolSystem(this, () => this.screenPointer);
-    this.hands = new HandSystem(this, this.interacts, (text) => this.hud.hoverLabel(this.screenPointer.x, this.screenPointer.y, text));
+    this.hands = new HandSystem(this, this.interacts, (text) => this.hud.hoverLabel(this.screenPointer.x, this.screenPointer.y, text), () => this.pointerInWorld());
 
     this.wireBus();
     this.wireInput();
@@ -258,7 +260,8 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
       if (modalOpen() || this.ctx.cinematic) return;
       this.screenPointer = { x: p.x, y: p.y };
       const w = this.pointerWorld();
-      if (p.button === 0 && !this.ctx.handsBusy) {
+      // Event clicks (cockroach, window) work even with a tool in hand.
+      if (p.button === 0) {
         for (const fn of [...this.interceptors]) if (fn(w.x, w.y)) return;
       }
       this.hands.pointerDown(w.x, w.y, p.button);
@@ -274,6 +277,11 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
 
   pointerWorld(): { x: number; y: number } {
     return this.camera.screenToWorld(this.screenPointer.x, this.screenPointer.y);
+  }
+
+  /** Pointer over the visible room, not over a HUD panel. */
+  pointerInWorld(): boolean {
+    return this.camera.usable().contains(this.screenPointer.x, this.screenPointer.y);
   }
 
   private pointerOverUi(): boolean {
@@ -312,8 +320,9 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
   // ================== Completion ==================
   private async runCompletion(): Promise<void> {
     this.tools.release();
-    await this.wait(1200);
+    // Save at once: leaving during the celebration or flashback must not lose the room.
     GameState.completeRoom(this.def.id);
+    await this.wait(1200);
     this.hud.setProgress(100);
     Audio.sfx('room_complete', { volume: 0.9 });
     this.hud.banner(`${this.def.name} bersih!`, 2.2);

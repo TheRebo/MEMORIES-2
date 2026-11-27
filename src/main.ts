@@ -8,12 +8,14 @@ import { PreloadScene } from './scenes/PreloadScene';
 import { RoomScene } from './scenes/RoomScene';
 import { StoryScene } from './scenes/StoryScene';
 import { TitleCardScene } from './scenes/TitleCardScene';
+import { initOrientationNotice } from './ui/orientation';
 import { UiStage } from './ui/stage';
 import './ui/styles.css';
 import './ui/layout.css';
 
 Settings.load();
 GameState.load();
+initOrientationNotice();
 
 const gameHost = document.getElementById('game')!;
 const uiRoot = document.getElementById('ui')!;
