@@ -57,9 +57,10 @@ export class StoryBox {
     layer.addEventListener('pointerdown', this.onPointer);
   }
 
-  show(speaker: string, text: string, hold?: number, place: 'center' | 'right' = 'center'): void {
+  show(speaker: string, text: string, hold?: number, place: 'center' | 'right' | 'top' = 'center'): void {
     this.visible = true;
     this.box.classList.toggle('right', place === 'right');
+    this.box.classList.toggle('top', place === 'top');
     this.speaker.textContent = speaker;
     this.speaker.hidden = speaker === '';
     this.box.classList.add('on');

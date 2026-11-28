@@ -103,6 +103,8 @@
 }
 .story-box.on { opacity: 1; transform: none; }
 .story-box.right { left: 600px; right: 48px; }
+/* Above the scene when the subject sits on the ground line (the bus on the road). */
+.story-box.top { top: 44px; bottom: auto; }
 .story-speaker {
   position: absolute;
   top: -20px;
