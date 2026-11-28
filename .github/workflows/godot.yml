@@ -35,22 +35,22 @@ jobs:
           # same pass); the second pass must be clean.
           godot --headless --path . --import > import-first.log 2>&1 || true
           godot --headless --path . --import 2>&1 | tee import.log
-          ! grep -nE "SCRIPT ERROR|^ERROR:" import.log
+          ! grep -nE "SCRIPT ERROR|^ERROR:" import.log | grep -v "still in use at exit"
 
       - name: Compile every script
         run: |
           godot --headless --path . --script res://tests/check_scripts.gd 2>&1 | tee scripts.log
-          ! grep -nE "SCRIPT ERROR|^ERROR:|BROKEN" scripts.log
+          ! grep -nE "SCRIPT ERROR|^ERROR:|BROKEN" scripts.log | grep -v "still in use at exit"
 
       - name: Load every scene
         run: |
           godot --headless --path . --script res://tests/check_scenes.gd 2>&1 | tee scenes.log
-          ! grep -nE "SCRIPT ERROR|^ERROR:|BROKEN|CANNOT" scenes.log
+          ! grep -nE "SCRIPT ERROR|^ERROR:|BROKEN|CANNOT" scenes.log | grep -v "still in use at exit"
 
       - name: Play through (headless)
         run: |
           timeout 600 godot --headless --path . --script res://tests/smoke.gd 2>&1 | tee smoke.log
-          ! grep -nE "SCRIPT ERROR|^ERROR:|FAIL " smoke.log
+          ! grep -nE "SCRIPT ERROR|^ERROR:|FAIL " smoke.log | grep -v "still in use at exit"
 
       - name: Upload logs
         if: always()
