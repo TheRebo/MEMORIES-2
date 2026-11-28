@@ -18,6 +18,7 @@ skrip di sebelahnya, dan tampilannya diatur oleh satu Theme.
 | `autoload/` | `Db` (data), `GameState` (simpanan), `Settings`, `Sfx` |
 | `scenes/main/` | `main.tscn`: pengganti layar dengan transisi iris |
 | `scenes/menu/`, `scenes/story/`, `scenes/title_card/` | menu utama, prolog/ending, kartu penutup |
+| `scenes/rooms/` | **tata letak tiap ruangan** (`living_room.tscn`, `kitchen.tscn`, `bedroom.tscn`): latar, perabot, kotoran, barang, tempat simpan, aktor flashback dan kejadian, semuanya node yang bisa digeser dan diatur di Inspector |
 | `scenes/room/` | `room.tscn` (dunia, kamera, cahaya, efek, HUD, kejadian) dan sistem ruangan: alat, tangan, lilin, cutscene |
 | `scenes/room/hud/` | `hud.tscn` dan bagiannya: slot alat, baris tugas, kartu kejadian, kartu hasil, panah penunjuk |
 | `scenes/world/` | objek ruangan: perabot, kotoran, barang, tempat simpan, benda klik 2x, aktor, lilin, kecoa |
@@ -31,6 +32,22 @@ skrip di sebelahnya, dan tampilannya diatur oleh satu Theme.
 
 Gaya panel diatur lewat `theme_type_variation`, misalnya `WoodFrame`, `PaperNote`, `ToastFrame`,
 `AlertFrame`, `ToolSlotActive`, `PrimarySmallButton`. Ubah di Theme, semua layar ikut berubah.
+
+## Mengedit ruangan
+
+Buka `scenes/rooms/<ruangan>.tscn`:
+
+- **Props / Zones**: perabot dan tempat simpan. Kotoran di atas perabot adalah anak node
+  perabot itu, jadi ikut bergeser bersamanya. Urutan depan-belakang mengikuti posisi y, juga
+  di editor.
+- **FloorDirt**: kotoran lantai (`Tool`, `Effort`, `Group` = nama tugas di catatan).
+- **Items**: barang yang diseret; `Type` harus sama dengan `Accepts` milik sebuah Zone.
+- **Interacts**: benda klik 2x (`Needed`, `After Texture`, `Hide After`).
+- **Actors**: tokoh flashback; dialog flashback ada di properti `Flashback` milik node akar.
+- **Events**: kejadian ruangan; pengaturannya di `Config` dan halaman tutorialnya di `Tutorial`.
+
+Nama ruangan dan urutannya (untuk menu dan tombol pindah ruangan) masih dibaca dari
+`data/rooms.json`.
 
 ## Pemeriksaan otomatis (CI)
 
