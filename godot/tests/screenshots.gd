@@ -36,6 +36,17 @@ func _shot(name: String) -> void:
 	print("SHOT-END ", name)
 
 
+## Close any open dialogs (tutorials can queue up).
+func _close(room: Node) -> void:
+	for i in 6:
+		if not room.call("modal_open"):
+			await _wait(0.8)
+			if not room.call("modal_open"):
+				return
+		await _press("ui_cancel")
+		await _wait(0.4)
+
+
 func _screen() -> Node:
 	return main.get("current")
 
@@ -103,7 +114,7 @@ func _run() -> void:
 	await _wait(0.5)
 	room.call("debug_start_event", "blackout")
 	await _wait(2.5)
-	await _press("ui_cancel")
+	await _close(room)
 	room.call("debug_place_candle", Vector2(200, 220))
 	await _wait(2.0)
 	await _shot("kitchen_blackout_candle")
@@ -114,7 +125,7 @@ func _run() -> void:
 	room = _screen()
 	room.call("debug_start_event", "wind")
 	await _wait(2.5)
-	await _press("ui_cancel")
+	await _close(room)
 	await _wait(8.0)
 	await _shot("bedroom_wind")
 	room.call("debug_end_events")
