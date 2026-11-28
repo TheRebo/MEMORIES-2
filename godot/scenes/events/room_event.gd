@@ -11,7 +11,7 @@ const BASE := {
 	"repeatInterval": 90.0,
 	"repeatJitter": 20.0,
 	"maxRepeats": 2,
-	"introSpeaker": "Kejadian!",
+	"introSpeaker": "Event!",
 	"introText": "",
 	"introDuration": 4.5,
 	"startSfx": "warning",
@@ -85,7 +85,7 @@ func _show_tutorial() -> void:
 		return
 	GameState.mark_seen(key)
 	# Let the event's first beat land before pausing for the explanation.
-	later(0.9, func() -> void: room.show_tutorial(tutorial, "Kejadian"))
+	later(0.9, func() -> void: room.show_tutorial(tutorial, "Event"))
 
 
 ## Tests: end the event now the way it would end on its own.

@@ -19,12 +19,22 @@ var _busy := false
 func _ready() -> void:
 	# The router keeps running while the game is paused, for the iris.
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_set_cursors()
 	_set_radius(0.0)
 	_show("Menu", {})
 	_open(0.5)
 
 
 ## Close the iris, swap the screen, open it again. Ignores re-entry while a switch is running.
+## The game's own cursors (same art as the web build): leaf pointer, vine hand on things you
+## can press, an open glove over things you can pick up and a closed one while dragging.
+func _set_cursors() -> void:
+	Input.set_custom_mouse_cursor(preload("res://assets/ui/cursor_default.png"), Input.CURSOR_ARROW, Vector2(5, 5))
+	Input.set_custom_mouse_cursor(preload("res://assets/ui/cursor_sulur.png"), Input.CURSOR_POINTING_HAND, Vector2(4, 6))
+	Input.set_custom_mouse_cursor(preload("res://assets/sprites/glove_open.png"), Input.CURSOR_CAN_DROP, Vector2(16, 16))
+	Input.set_custom_mouse_cursor(preload("res://assets/sprites/glove_close.png"), Input.CURSOR_DRAG, Vector2(16, 16))
+
+
 func go(screen: String, args: Dictionary = {}, seconds: float = 0.6) -> void:
 	if _busy:
 		return

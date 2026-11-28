@@ -31,6 +31,11 @@ func _load(path: String) -> Dictionary:
 	return parsed if parsed is Dictionary else {}
 
 
+## Story text with {mc} replaced by the main character's name (story.json "mcName").
+func say(text: String) -> String:
+	return text.replace("{mc}", String(story.get("mcName", "aku")))
+
+
 func room(id: String) -> Dictionary:
 	return rooms.get(id, {})
 

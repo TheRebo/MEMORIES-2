@@ -35,8 +35,6 @@ func _run() -> void:
 	_cat.position = point("catEntry")
 	_cat.show()
 	_cat.play("run")
-	var cat := _cat
-	point_at("cat", func() -> Variant: return cat.position + Vector2(0, -24) if cat.visible else null)
 	var left := int(cfg["scatterCount"])
 	var total := 0
 	var floor_area := rect("floorArea")
@@ -55,7 +53,6 @@ func _run() -> void:
 	await _run_to(point("catExit"))
 	if _abort:
 		return
-	clear_point("cat")
 	_cat.stop()
 	_cat.hide()
 	if total > 0:
@@ -82,7 +79,6 @@ func debug_end() -> void:
 	if not running:
 		return
 	_abort = true
-	clear_point("cat")
 	_cat.stop()
 	_cat.hide()
 	finish()

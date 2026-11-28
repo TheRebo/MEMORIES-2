@@ -55,7 +55,7 @@ func _show_text(slide: Dictionary) -> void:
 	_visible = true
 	create_tween().tween_property(_box, "modulate:a", 1.0, 0.22)
 	_locked_until = Time.get_ticks_msec() + 450
-	_text.start(String(slide.get("text", "")), Settings.chars_per_second())
+	_text.start(Db.say(String(slide.get("text", ""))), Settings.chars_per_second())
 	if slide.has("hold"):
 		_auto_timer = get_tree().create_timer(float(slide["hold"]))
 		var idx := _index
@@ -107,7 +107,7 @@ func _next() -> void:
 	%Art.add_child(fresh)
 	var old := _art
 	_art = fresh
-	create_tween().tween_property(fresh, "modulate:a", 1.0, 0.5 if old else 0.9)
+	create_tween().tween_property(fresh, "modulate:a", 1.0, float(slide.get("fadeIn", 0.5 if old else 0.9)))
 	if old:
 		var t := create_tween()
 		t.tween_property(old, "modulate:a", 0.0, 0.4)
@@ -118,6 +118,13 @@ func _next() -> void:
 		return
 	if slide.has("sfx"):
 		Sfx.play(String(slide["sfx"]))
+	if String(slide.get("text", "")) == "":
+		# A picture alone (the last grave shot): no text box, it moves on by itself.
+		var idx := _index
+		get_tree().create_timer(float(slide.get("hold", 3.0))).timeout.connect(func() -> void:
+			if idx == _index and not _finished:
+				_next())
+		return
 	_show_text(slide)
 
 
@@ -129,6 +136,12 @@ func _build_art(slide: Dictionary) -> Node2D:
 	var c := Node2D.new()
 	var art := String(slide.get("art", ""))
 	var still := Settings.reduced_motion()
+	if art == "black" or art == "":
+		var black := ColorRect.new()
+		black.color = Color.BLACK
+		black.size = Vector2(1280, 720)
+		c.add_child(black)
+		return c
 	if art == "hand_cut_fix":
 		var bg := ColorRect.new()
 		bg.color = Color("2e2118")

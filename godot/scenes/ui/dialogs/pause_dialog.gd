@@ -27,7 +27,7 @@ static func make(name_text: String, pct: int, saved: bool, tutorial_fn: Callable
 
 func build() -> void:
 	_room_name.text = room_name
-	_percent.text = "%d%% bersih" % percent
+	_percent.text = "%d%% clean" % percent
 	_note.visible = not room_saved
 	(%Continue as BaseButton).pressed.connect(close)
 	(%Settings as BaseButton).pressed.connect(func() -> void: get_parent().add_child(SettingsDialog.make(false)))
@@ -42,8 +42,8 @@ func _leave() -> void:
 		close()
 		on_main_menu.call()
 		return
-	get_parent().add_child(ConfirmDialog.make("Kembali ke menu?",
-		"Ruangan ini belum selesai, jadi progresnya di ruangan ini akan diulang.", "Ke menu",
+	get_parent().add_child(ConfirmDialog.make("Back to the menu?",
+		"This room is not finished, so its progress will start over.", "To menu",
 		func() -> void:
 			close()
 			on_main_menu.call()))

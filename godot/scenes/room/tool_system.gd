@@ -144,7 +144,7 @@ func update() -> void:
 		if c.blackout and not room.candles.is_lit(w):
 			if now - _last_dark > 2500:
 				_last_dark = now
-				c.toast.emit("Terlalu gelap! Pasang lilin dulu.")
+				c.toast.emit("Too dark! Place a candle first.")
 			continue
 		# Work order: the dust on top goes first (sweep before mopping, dust before wiping).
 		if d.tool == tool:
@@ -171,13 +171,13 @@ func update() -> void:
 		_last_wrong = now
 		order.nudge()
 		Sfx.play("wrong_tool", 0.5)
-		c.hint.emit(p, "Sapu dulu debunya!" if order.tool == "broom" else "Kemoceng dulu debunya!")
+		c.hint.emit(p, "Sweep the dust first!" if order.tool == "broom" else "Dust it with the Duster first!")
 	elif wrong and now - _last_wrong > 1400:
 		_last_wrong = now
 		wrong.nudge()
 		Sfx.play("wrong_tool", 0.6)
-		var spread := " Kotorannya malah menyebar!" if _smeared else ""
-		c.hint.emit(p, "Butuh: %s.%s" % [Db.tool_info(wrong.tool).get("name", ""), spread])
+		var spread := " The grime spread!" if _smeared else ""
+		c.hint.emit(p, "Needs: %s.%s" % [Db.tool_info(wrong.tool).get("name", ""), spread])
 		_smeared = false
 
 
@@ -189,5 +189,5 @@ func _on_cleaned(d: Dirt) -> void:
 		GameState.add_item(String(d.reward["item"]), int(d.reward.get("amount", 1)))
 		Sfx.play("reward", 0.8)
 		var msg := String(d.reward.get("message", ""))
-		ctx().toast.emit(msg if msg != "" else "Kamu menemukan %s!" % d.reward["item"])
+		ctx().toast.emit(msg if msg != "" else "You found %s!" % d.reward["item"])
 	ctx().tasks_changed.emit()

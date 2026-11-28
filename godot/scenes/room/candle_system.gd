@@ -10,7 +10,8 @@ var room: RoomScreen
 var list: Array[Candle] = []
 var max_active := 3
 var burn_time := 45.0
-var radius := 200.0
+## Lit radius in room pixels (the room is 512 wide).
+var radius := 110.0
 var min_y := 70.0
 var _source := ""
 
@@ -56,10 +57,10 @@ func release() -> void:
 	if not room.pointer_in_world():
 		return
 	if not c.blackout:
-		c.toast.emit("Belum waktunya memasang lilin.")
+		c.toast.emit("No need for a candle right now.")
 		return
 	if active_count() >= max_active:
-		c.toast.emit("Lilinnya sudah cukup banyak!")
+		c.toast.emit("That is enough candles!")
 		return
 	if not GameState.take_item("candle"):
 		return

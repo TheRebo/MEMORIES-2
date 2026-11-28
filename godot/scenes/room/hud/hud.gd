@@ -2,7 +2,7 @@ class_name Hud
 extends CanvasLayer
 ## Room HUD (hud.tscn), laid out like the web build: wooden plaque with progress at the top
 ## left, timer and buttons at the top right, the paper task note pinned on the left, the tool
-## belt at the bottom centre, trash on the left and room navigation on the right. Messages
+## belt at the bottom centre and room navigation on the right. Messages
 ## centre on the part of the room that is still visible. The room drives it through calls.
 
 signal menu_pressed
@@ -71,8 +71,6 @@ var _clock := 0.0
 @onready var _done_toggle: Button = %DoneToggle
 @onready var _done_list: VBoxContainer = %DoneList
 @onready var _candle_slot: ToolSlot = %CandleSlot
-@onready var _trash: Control = %Trash
-@onready var _trash_count: Label = %TrashCount
 @onready var _nav: HBoxContainer = %Nav
 @onready var _fade: ColorRect = %Fade
 @onready var _letter_top: Control = %LetterTop
@@ -99,8 +97,8 @@ func setup(def: Dictionary) -> void:
 	_step_text.text = "%d/%d" % [step, order.size()]
 	(_step_text.get_parent() as Control).tooltip_text = "Ruangan %d dari %d" % [step, order.size()]
 	_room_name.text = String(def["name"])
-	# Short windows start with the note folded so the room stays visible.
-	todo_open = DisplayServer.window_get_size().y >= 500
+	# The note stays as the player left it, from room to room.
+	todo_open = Settings.notes_open
 	(%MenuButton as BaseButton).pressed.connect(func() -> void: menu_pressed.emit())
 	(%NotesButton as BaseButton).pressed.connect(toggle_todo)
 	_done_toggle.pressed.connect(func() -> void:
@@ -118,7 +116,6 @@ func setup(def: Dictionary) -> void:
 		slot.slot_down.connect(func() -> void: tool_slot_down.emit(id))
 		slot.slot_activate.connect(func() -> void: tool_slot_activate.emit(id))
 		slot.set_level(GameState.tool_level(id), max_lv)
-	_trash_count.text = str(GameState.trash_total())
 	_vignette.modulate.a = 0.6
 	_apply_note(true)
 	_refresh_slots()
@@ -196,10 +193,10 @@ func set_groups(groups: Array, kinds: Dictionary) -> void:
 		if (prev == null and not _last_groups.is_empty()) or (prev is Dictionary and int(prev["total"]) < int(g["total"])):
 			row.flash(&"TaskRowGrew")
 	if open_n == 0:
-		var empty := UI.label("Semua beres!" if not groups.is_empty() else "Tidak ada tugas.", "PaperDoneLabel", 19)
+		var empty := UI.label("All done!" if not groups.is_empty() else "No tasks.", "PaperDoneLabel", 19)
 		_task_list.add_child(empty)
 	_task_count.text = "%d/%d" % [done_n, total_n]
-	_task_count.tooltip_text = "%d bagian lagi" % (total_n - done_n)
+	_task_count.tooltip_text = "%d parts left" % (total_n - done_n)
 	_done_box.visible = _done_count > 0
 	_render_done_toggle()
 	_last_groups.clear()
@@ -209,7 +206,7 @@ func set_groups(groups: Array, kinds: Dictionary) -> void:
 
 
 func _render_done_toggle() -> void:
-	_done_toggle.text = "%s Sudah selesai (%d)" % ["-" if _show_done else "+", _done_count]
+	_done_toggle.text = "%s Done (%d)" % ["-" if _show_done else "+", _done_count]
 
 
 ## The note grows with its list up to 500px, then the list scrolls.
@@ -224,11 +221,12 @@ func _fit_note() -> void:
 
 
 func flash_group(name_text: String) -> void:
-	toast("Selesai: %s" % name_text)
+	toast("Done: %s" % name_text)
 
 
 func toggle_todo() -> void:
 	todo_open = not todo_open
+	Settings.set_value("notesOpen", todo_open)
 	_apply_note(false)
 	Sfx.ui_click()
 	todo_toggled.emit()
@@ -284,7 +282,7 @@ func set_time(seconds: float, par: float) -> void:
 		t.tween_callback(func() -> void: lost.color = UI.WOOD_600)
 		_timer.theme_type_variation = &"AlertFrame"
 		get_tree().create_timer(1.2, false).timeout.connect(func() -> void: _timer.theme_type_variation = &"WoodDarkFrame")
-		toast("Bintang ketiga lepas. Masih bisa dapat dua!" if stars == 2 else "Tinggal satu bintang. Ayo selesaikan!")
+		toast("Third star lost. Two are still yours!" if stars == 2 else "One star left. Finish up!")
 	# The last 30 s before the next star is lost: the timer warms up as a nudge.
 	var nxt := par if stars == 3 else (par * 1.5 if stars == 2 else INF)
 	_hurry = nxt - seconds < 30.0
@@ -379,14 +377,6 @@ func move_cursor(p: Vector2, working: bool) -> void:
 func set_candles(n: int) -> void:
 	_candle_slot.set_count(n)
 	_candle_slot.visible = n > 0 or _candle_held
-
-
-func set_trash(n: int) -> void:
-	_trash_count.text = str(n)
-	_trash.pivot_offset = _trash.size / 2.0
-	var t := _trash.create_tween()
-	t.tween_property(_trash, "scale", Vector2(1.12, 1.12), 0.15)
-	t.tween_property(_trash, "scale", Vector2.ONE, 0.15)
 
 
 # ================= Messages =================
@@ -585,7 +575,7 @@ func show_nav() -> void:
 	var nxt := Db.next_room(room_id)
 	var first: Button = null
 	if GameState.all_completed():
-		first = _nav_button("Pulang", func() -> void: go_home.emit(), true)
+		first = _nav_button("Go home", func() -> void: go_home.emit(), true)
 	for id: String in Db.room_order:
 		if id == room_id:
 			continue
@@ -593,9 +583,9 @@ func show_nav() -> void:
 		if not done and id != nxt:
 			continue
 		var r := Db.room(id)
-		var text := String(r["short"]) if done else "Lanjut: %s" % r["short"]
+		var text := String(r["short"]) if done else "Next: %s" % r["short"]
 		var b := _nav_button(text, func() -> void: go_room.emit(id), not done)
-		b.tooltip_text = ("Kunjungi lagi %s" if done else "Pergi ke %s") % r["name"]
+		b.tooltip_text = ("Revisit the %s" if done else "Go to the %s") % r["name"]
 		if not done:
 			first = b
 	# The main action sits first in the row.
@@ -666,7 +656,7 @@ func blocks_point(p: Vector2) -> bool:
 		return true
 	if cinematic:
 		return false
-	var panels: Array = [_trash, %Plaque, _timer, %NotesButton, %MenuButton, %Belt]
+	var panels: Array = [%Plaque, _timer, %NotesButton, %MenuButton, %Belt]
 	if _nav.visible:
 		panels.append_array(_nav.get_children())
 	for c: Control in panels:

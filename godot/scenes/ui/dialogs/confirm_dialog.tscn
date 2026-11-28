@@ -10,7 +10,7 @@ anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ae7c4")
-title = "Yakin?"
+title = "Are you sure?"
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -40,7 +40,8 @@ theme_type_variation = &"TitleStrip"
 unique_name_in_owner = true
 theme_type_variation = &"AmberLabel"
 theme_override_font_sizes/font_size = 26
-text = "Yakin?"
+text = "Are you sure?"
+horizontal_alignment = 1
 
 [node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
 unique_name_in_owner = true
@@ -60,11 +61,11 @@ alignment = 2
 [node name="Cancel" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Batal"
+text = "Cancel"
 script = ExtResource("2_880f0")
 
 [node name="Confirm" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"PrimarySmallButton"
-text = "Ya"
+text = "Yes"
 script = ExtResource("2_880f0")

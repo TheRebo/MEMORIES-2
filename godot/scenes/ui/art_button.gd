@@ -6,6 +6,7 @@ extends TextureButton
 
 func _ready() -> void:
 	focus_mode = Control.FOCUS_ALL
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	mouse_entered.connect(_on_hover.bind(true))
 	mouse_exited.connect(_on_hover.bind(false))
 	focus_entered.connect(func() -> void: modulate = Color(1.2, 1.1, 0.9))

@@ -11,6 +11,8 @@ var sfx := 0.9
 ## Camera shake, flashes, drifting backgrounds and ambient dust. Also the pause control for looping motion.
 var screen_shake := true
 var text_speed := "normal"
+## Whether the task note is open, kept from room to room and between sessions.
+var notes_open := true
 
 
 func _ready() -> void:
@@ -23,6 +25,7 @@ func _ready() -> void:
 			music = clampf(float(d.get("music", music)), 0.0, 1.0)
 			sfx = clampf(float(d.get("sfx", sfx)), 0.0, 1.0)
 			screen_shake = bool(d.get("screenShake", screen_shake))
+			notes_open = bool(d.get("notesOpen", notes_open))
 			var ts := String(d.get("textSpeed", text_speed))
 			if ts in ["slow", "normal", "fast"]:
 				text_speed = ts
@@ -35,10 +38,11 @@ func set_value(key: String, value: Variant) -> void:
 		"sfx": sfx = float(value)
 		"screenShake": screen_shake = bool(value)
 		"textSpeed": text_speed = String(value)
+		"notesOpen": notes_open = bool(value)
 	var f := FileAccess.open(PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"master": master, "music": music, "sfx": sfx,
-			"screenShake": screen_shake, "textSpeed": text_speed}))
+			"screenShake": screen_shake, "textSpeed": text_speed, "notesOpen": notes_open}))
 	changed.emit()
 
 

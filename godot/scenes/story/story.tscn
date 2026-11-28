@@ -47,13 +47,13 @@ script = ExtResource("2_d2cda")
 unique_name_in_owner = true
 theme_type_variation = &"PaperSoftLabel"
 theme_override_font_sizes/font_size = 18
-text = "Klik atau tekan Enter untuk lanjut"
+text = "Click or press Enter to continue"
 horizontal_alignment = 2
 
 [node name="Skip" type="Button" parent="UI"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Lewati"
+text = "Skip"
 anchors_preset = 1
 anchor_left = 1
 anchor_right = 1

@@ -94,7 +94,7 @@ func _ready() -> void:
 		_refresh()
 		if not GameState.tutorial_seen():
 			GameState.mark_tutorial_seen()
-			_later(1.7, func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "Cara bermain"))
+			_later(1.7, func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "How to play"))
 
 
 func _exit_tree() -> void:
@@ -140,6 +140,23 @@ func debug_events() -> void:
 		ev.cfg["repeatEnabled"] = false
 		ev.cfg["enabled"] = true
 	ctx.progress.emit(percent())
+
+
+## Start one event of this room now (screenshots).
+func debug_start_event(kind: String) -> void:
+	for ev in _events:
+		if ev.id == kind and not ev.running:
+			ev.cfg["enabled"] = true
+			ev.call("_launch")
+
+
+## Place a candle at a room point without holding it (screenshots).
+func debug_place_candle(at: Vector2) -> void:
+	GameState.add_item("candle", 1)
+	var cd: Candle = CandleSystem.CANDLE.instantiate()
+	things.add_child(cd)
+	cd.setup(at, candles.burn_time, candles.radius)
+	candles.list.append(cd)
 
 
 func debug_end_events() -> void:
@@ -208,7 +225,6 @@ func _wire() -> void:
 		camera.inset_left = hud.todo_inset())
 
 	GameState.inventory_changed.connect(_on_inventory)
-	GameState.trash_changed.connect(hud.set_trash)
 	GameState.tool_level_changed.connect(_on_tool_level)
 	hud.set_candles(GameState.count("candle"))
 
@@ -230,7 +246,7 @@ func _on_tool_level(tool: String, level: int, leveled_up: bool) -> void:
 	hud.set_tool_level(tool, level, leveled_up)
 	if leveled_up:
 		Sfx.play("patch_done", 0.8)
-		hud.toast("Alat naik level! %s Lv.%d: membersihkan lebih cepat." % [Db.tool_info(tool).get("name", tool), level])
+		hud.toast("Tool level up! %s Lv.%d: cleans faster." % [Db.tool_info(tool).get("name", tool), level])
 
 
 func add_click_interceptor(fn: Callable) -> void:
@@ -439,9 +455,9 @@ func _run_completion() -> void:
 	Sfx.play_music("present", 1.6)
 	hud.show_nav()
 	if GameState.all_completed():
-		hud.toast("Semua ruangan bersih. Saatnya pulang.")
+		hud.toast("Every room is clean. Time to go home.")
 	else:
-		hud.toast("Ruangan selesai! Pilih ruangan berikutnya di bar bawah.")
+		hud.toast("Room done! Pick the next room at the bottom right.")
 
 
 func _celebrate(instant: bool) -> void:
@@ -504,7 +520,7 @@ func _open_pause() -> void:
 	Sfx.play("pause_open", 0.6)
 	get_tree().paused = true
 	var d := PauseDialog.make(String(def["name"]), roundi(percent()), GameState.is_completed(String(def["id"])),
-		func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "Cara bermain"),
+		func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "How to play"),
 		func() -> void: _leave("Menu", {}, 0.6))
 	d.closed.connect(func() -> void:
 		Sfx.play("pause_close", 0.6)
@@ -571,9 +587,9 @@ func _dust_drift(dt: float) -> void:
 	var p := Vector2(randf_range(48, w - 48), randf_range(float(def["wallHeight"]) + 60, h - 30))
 	_drifts += 1
 	spawn_dirt({"id": "drift-%d" % _drifts, "x": p.x, "y": p.y, "w": 28, "h": 14, "tool": "broom", "effort": 190,
-		"group": "Sapu lantai", "tex": "debu_ulahan_daus"}, null)
+		"group": "Sweep the floor", "tex": "debu_ulahan_daus"}, null)
 	fx.ping(p)
-	ctx.toast.emit("Debu kembali menumpuk di lantai!")
+	ctx.toast.emit("Dust has settled on the floor again!")
 	ctx.tasks_changed.emit()
 
 

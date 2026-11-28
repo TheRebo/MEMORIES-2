@@ -42,7 +42,8 @@ func tick(dt: float) -> bool:
 	var fade := clampf(remaining / (burn_time * 0.2), 0.0, 1.0)
 	var flicker := 1.0 + randf_range(-0.04, 0.04)
 	radius = base_radius * (0.55 + 0.45 * fade) * flicker
-	_light.texture_scale = radius * 2.4 / 256.0
+	# The texture is 256px across and fades out at its edge: its radius is the lit radius.
+	_light.texture_scale = radius * 2.0 / 256.0
 	_light.energy = 1.2 * (0.4 + 0.6 * fade)
 	_time.text = "%ds" % maxi(0, ceili(remaining))
 	_time.add_theme_color_override("font_color", UI.WARN if remaining < 8.0 else UI.CREAM)

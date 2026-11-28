@@ -63,9 +63,9 @@ func _render() -> void:
 			dot.color = UI.PAPER_INK if i == index else UI.PAPER_SHADE
 			_dots.add_child(dot)
 		_prev.disabled = index == 0
-		_next.text = "Selesai" if index == pages.size() - 1 else "Lanjut"
+		_next.text = "Done" if index == pages.size() - 1 else "Next"
 	else:
-		_next.text = "Mengerti"
+		_next.text = "Got it"
 
 
 func _unhandled_input(event: InputEvent) -> void:

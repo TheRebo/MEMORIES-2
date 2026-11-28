@@ -24,9 +24,9 @@ var key_label := ""
 func _ready() -> void:
 	if is_candle:
 		key_label = String(Db.game["candle_key"]["label"])
-		tool_name = "Lilin"
+		tool_name = "Candle"
 		_icon.texture = Db.tex(String(Db.named.get("candle", "lilin")))
-		_button.tooltip_text = "Lilin: tahan %s lalu lepas di lantai" % key_label
+		_button.tooltip_text = "Candle: hold %s, then release on the floor" % key_label
 		_button.theme_type_variation = &"CandleSlot"
 	else:
 		var info := Db.tool_info(tool_id)
@@ -43,6 +43,7 @@ func _ready() -> void:
 		custom_minimum_size.x = 84
 		_button.position.x = 8
 		_marker.position.x += 8
+	_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	_button.mouse_entered.connect(Sfx.ui_hover)
 	_button.gui_input.connect(_on_input)
 
@@ -82,7 +83,7 @@ func set_level(level: int, max_level: int) -> void:
 		p.visible = i < max_level
 		p.color = UI.AMBER if i < level else UI.WOOD_900
 		i += 1
-	_button.tooltip_text = "%s - level %d/%d. Tahan tombol %s atau tahan slot ini." % [tool_name, level, max_level, key_label]
+	_button.tooltip_text = "%s - level %d/%d. Hold %s or hold this slot." % [tool_name, level, max_level, key_label]
 
 
 func flash_level_up() -> void:

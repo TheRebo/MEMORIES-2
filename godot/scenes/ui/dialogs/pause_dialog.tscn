@@ -14,7 +14,7 @@ anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f8c0e")
-title = "Jeda"
+title = "Paused"
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -44,7 +44,8 @@ theme_type_variation = &"TitleStrip"
 unique_name_in_owner = true
 theme_type_variation = &"AmberLabel"
 theme_override_font_sizes/font_size = 26
-text = "Jeda"
+text = "Paused"
+horizontal_alignment = 1
 
 [node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
 unique_name_in_owner = true
@@ -74,7 +75,7 @@ theme_override_constants/separation = 10
 [node name="Continue" type="TextureButton" parent="Center/Frame/Layout/Body/List"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(330, 64)
-tooltip_text = "Lanjutkan"
+tooltip_text = "Continue"
 texture_normal = ExtResource("2_14cd6")
 ignore_texture_size = true
 stretch_mode = 0
@@ -84,7 +85,7 @@ script = ExtResource("3_db3a8")
 [node name="Settings" type="TextureButton" parent="Center/Frame/Layout/Body/List"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(330, 64)
-tooltip_text = "Pengaturan"
+tooltip_text = "Settings"
 texture_normal = ExtResource("4_a9778")
 ignore_texture_size = true
 stretch_mode = 0
@@ -101,7 +102,7 @@ script = ExtResource("5_55bbb")
 [node name="Quit" type="TextureButton" parent="Center/Frame/Layout/Body/List"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(384, 64)
-tooltip_text = "Menu utama"
+tooltip_text = "Main menu"
 texture_normal = ExtResource("6_a5996")
 ignore_texture_size = true
 stretch_mode = 0
@@ -112,7 +113,7 @@ script = ExtResource("3_db3a8")
 unique_name_in_owner = true
 theme_type_variation = &"DimLabel"
 theme_override_font_sizes/font_size = 18
-text = "Progres tersimpan otomatis setiap kali satu ruangan selesai."
+text = "Progress saves automatically each time you finish a room."
 custom_minimum_size = Vector2(360, 0)
 autowrap_mode = 3
 

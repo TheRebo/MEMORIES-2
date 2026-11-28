@@ -121,6 +121,22 @@ func smear(amount: float) -> bool:
 	return true
 
 
+## Undo a cleaned spot (wind blew dust back): `amount` of the effort comes back.
+func dirty_again(amount: float) -> void:
+	if not done:
+		remaining = minf(effort, remaining + effort * amount)
+		modulate.a = 0.18 + 0.82 * (remaining / effort)
+		return
+	done = false
+	remaining = effort * clampf(amount, 0.1, 1.0)
+	scale = base_scale * 0.4
+	modulate.a = 0.0
+	show()
+	var t := create_tween().set_parallel(true)
+	t.tween_property(self, "scale", base_scale, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(self, "modulate:a", 0.18 + 0.82 * (remaining / effort), 0.3)
+
+
 func restore_done() -> void:
 	done = true
 	remaining = 0.0

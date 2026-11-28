@@ -12,7 +12,7 @@ const DEFAULTS := {
 	"maxExtraCobwebs": 8,
 	"cobwebArea": {"x": 10, "y": 8, "w": 428, "h": 44},
 	"cobwebSize": {"x": 20, "y": 16},
-	"cobwebTaskGroup": "Kemoceng jaring laba-laba baru",
+	"cobwebTaskGroup": "Dust off the new cobwebs",
 	"cobwebEffort": 200.0,
 }
 
@@ -37,7 +37,7 @@ func on_start() -> void:
 	room.lighting.set_blackout(true)
 	Sfx.play("blackout_on", 0.9)
 	if GameState.count("candle") <= 0:
-		_grant("Kamu menemukan sebatang lilin di laci dapur.")
+		_grant("You found a candle in the kitchen drawer.")
 	if not room.candles.burnt_out.is_connected(_on_burnt):
 		room.candles.burnt_out.connect(_on_burnt)
 	_elapsed = 0.0
@@ -49,12 +49,12 @@ func on_start() -> void:
 	var hint_pos := point("hintPosition")
 	point_at("candle", func() -> Variant: return null if _was_lit else hint_pos)
 	c.attend.emit(hint_pos)
-	set_objective("Gelap! Tahan tombol %s (atau tahan slot Lilin) lalu lepas di lantai untuk memasang lilin." % _key_label())
+	set_objective("It is dark! Hold %s (or hold the Candle slot) and release on the floor to place a candle." % _key_label())
 
 
 func _on_burnt() -> void:
 	if running and GameState.count("candle") <= 0:
-		_grant("Kamu menemukan lilin cadangan!")
+		_grant("You found a spare candle!")
 
 
 func _grant(msg: String) -> void:
@@ -78,7 +78,7 @@ func _process(dt: float) -> void:
 		else:
 			var hint_pos := point("hintPosition")
 			point_at("candle", func() -> Variant: return null if _was_lit else hint_pos)
-			set_objective("Lilin padam! Pasang lilin lagi (tombol %s) sebelum sarang laba-laba bertambah." % _key_label())
+			set_objective("The candle went out! Place another one (%s) before more cobwebs grow." % _key_label())
 	if lit:
 		_dark_time = 0.0
 		_since_web = 0.0
@@ -103,7 +103,7 @@ func _spawn_cobweb() -> void:
 		"x": p.x, "y": p.y, "w": size["x"], "h": size["y"], "tool": "duster", "effort": cfg["cobwebEffort"],
 		"group": cfg["cobwebTaskGroup"], "tex": Db.named.get("web_a" if _extra % 2 == 1 else "web_b", ""),
 	})
-	room.ctx.toast.emit("Sarang laba-laba bertambah!")
+	room.ctx.toast.emit("More cobwebs!")
 	room.ctx.tasks_changed.emit()
 
 

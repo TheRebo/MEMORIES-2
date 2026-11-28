@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/lilin.png" id="2_d028f"]
 
 [sub_resource type="Gradient" id="Gradient_975e1"]
-offsets = PackedFloat32Array(0.0, 0.45, 1.0)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.55, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.0, 0.6, 1.0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.8, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_911b8"]
 gradient = SubResource("Gradient_975e1")
@@ -29,8 +29,10 @@ unique_name_in_owner = true
 position = Vector2(0, -10)
 color = Color(1, 0.82, 0.58, 1)
 energy = 1.2
+range_z_min = -4096
+range_z_max = 4096
 texture = SubResource("GradientTexture2D_911b8")
-texture_scale = 1.875
+texture_scale = 0.86
 
 [node name="Time" type="Label" parent="."]
 unique_name_in_owner = true

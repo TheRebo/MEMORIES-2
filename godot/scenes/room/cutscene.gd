@@ -27,18 +27,20 @@ func play(lines: Array) -> void:
 		if _skip:
 			break
 		await _run_line(line)
-	room.hud.hide_dialog()
 	room.hud.dialog_hint(false)
+	room.hud.hide_dialog()
+	# Outro: the memory fades out to black, the present comes back behind it, then fades in.
+	room.hud.fade(true, 1100)
+	await _wait(1.2)
+	room.hud.set_memory(false)
 	for a: Actor in room.actors:
-		if a.visible:
-			a.vanish()
-	if _faded:
-		room.hud.fade(false, 800)
-		await _wait(0.9)
-	await _wait(0.6)
+		a.hide()
 	room.lighting.remove_tint("cutscene")
 	room.camera.end_cinematic()
+	await _wait(0.6)
 	c.set_cinematic(false)
+	room.hud.fade(false, 1000)
+	await _wait(1.0)
 	queue_free()
 
 
@@ -73,7 +75,7 @@ func _run_line(line: Dictionary) -> void:
 		room.camera.focus(Vector2(float(focus[0]), float(focus[1])), float(line.get("zoom", cam.get("cinematicZoom", 3.5))))
 	var text := String(line.get("text", ""))
 	if text != "":
-		room.hud.dialog(String(line.get("speaker", "")), text, 0.0)
+		room.hud.dialog(String(line.get("speaker", "")), Db.say(text), 0.0)
 	else:
 		room.hud.hide_dialog()
 	room.hud.dialog_hint(false)
