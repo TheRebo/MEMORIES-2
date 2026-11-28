@@ -81,9 +81,16 @@ func _run() -> void:
 		room.call("debug_end_events")
 		await _wait(1.0)
 		await _close_dialogs()
-		room.call("debug_finish")
+		# Finishing can wake an event (the cat comes at 85%), which undoes some work: repeat.
+		for attempt in 4:
+			room.call("debug_end_events")
+			room.call("debug_finish")
+			await _wait(3.0)
+			await _close_dialogs()
+			if room.get("finished"):
+				break
 		# Celebration, then the result card (closes by itself after 6 s).
-		await _wait(4.0)
+		await _wait(2.0)
 		await _press("ui_accept")
 		await _wait(2.0)
 		# Flashback: Esc skips it.
