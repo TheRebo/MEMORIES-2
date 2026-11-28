@@ -54,9 +54,13 @@ func _build_ui() -> void:
 	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	v.add_child(_hint)
 	var skip := UI.text_button("Lewati", true)
-	skip.position = Vector2(1150, 24)
 	skip.pressed.connect(_finish)
 	_ui.add_child(skip)
+	# Pinned to the top-right corner, growing left, so it never runs off screen.
+	skip.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	skip.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	skip.offset_right = -24
+	skip.offset_top = 24
 
 
 func _place(where: String) -> void:

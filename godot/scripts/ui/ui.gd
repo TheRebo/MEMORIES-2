@@ -165,3 +165,86 @@ static func layer() -> Control:
 	c.set_anchors_preset(Control.PRESET_FULL_RECT)
 	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return c
+
+
+## Pixel frame like the web build's panels: ink outline, an inner ring, an optional darker
+## bottom lip and a hard drop shadow. Returns [outer, inner]; put content in inner.
+static func framed(bg: Color, ring: Color, pad: int = 10, lip: Color = Color.TRANSPARENT, shadow: bool = true) -> Array:
+	var outer := PanelContainer.new()
+	var os := StyleBoxFlat.new()
+	os.bg_color = INK
+	os.set_content_margin_all(2)
+	if shadow:
+		os.shadow_color = Color(0, 0, 0, 0.45)
+		os.shadow_size = 1
+		os.shadow_offset = Vector2(4, 4)
+	outer.add_theme_stylebox_override("panel", os)
+	var holder: PanelContainer = outer
+	if lip.a > 0.0:
+		var mid := PanelContainer.new()
+		var ms := StyleBoxFlat.new()
+		ms.bg_color = lip
+		ms.content_margin_bottom = 4
+		mid.add_theme_stylebox_override("panel", ms)
+		outer.add_child(mid)
+		holder = mid
+	var inner := PanelContainer.new()
+	var s := StyleBoxFlat.new()
+	s.bg_color = bg
+	s.border_color = ring
+	s.set_border_width_all(2)
+	s.set_content_margin_all(pad)
+	inner.add_theme_stylebox_override("panel", s)
+	holder.add_child(inner)
+	outer.mouse_filter = Control.MOUSE_FILTER_STOP
+	return [outer, inner]
+
+
+## Check box in the game's look: pixel font, cream text, amber when ticked.
+static func style_check(c: CheckBox) -> void:
+	c.add_theme_font_override("font", body_font())
+	c.add_theme_font_size_override("font_size", 20)
+	for state: String in ["font_color", "font_hover_color", "font_focus_color", "font_pressed_color", "font_hover_pressed_color"]:
+		c.add_theme_color_override(state, CREAM)
+	c.add_theme_icon_override("checked", _box_icon(true))
+	c.add_theme_icon_override("unchecked", _box_icon(false))
+	c.add_theme_stylebox_override("focus", focus_ring())
+	c.mouse_entered.connect(Sfx.ui_hover)
+	c.toggled.connect(func(_on: bool) -> void: Sfx.ui_click())
+
+
+static func _box_icon(on: bool) -> Texture2D:
+	var img := Image.create(20, 20, false, Image.FORMAT_RGBA8)
+	img.fill(INK)
+	img.fill_rect(Rect2i(2, 2, 16, 16), WOOD_600)
+	img.fill_rect(Rect2i(4, 4, 12, 12), AMBER if on else WOOD_900)
+	if on:
+		img.fill_rect(Rect2i(4, 13, 12, 3), AMBER_DEEP)
+	return ImageTexture.create_from_image(img)
+
+
+## Slider as a wooden groove with an amber fill and a square grabber.
+static func style_slider(s: HSlider) -> void:
+	var groove := StyleBoxFlat.new()
+	groove.bg_color = WOOD_900
+	groove.border_color = INK
+	groove.set_border_width_all(2)
+	groove.content_margin_top = 5
+	groove.content_margin_bottom = 5
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = AMBER
+	fill.border_color = INK
+	fill.set_border_width_all(2)
+	fill.content_margin_top = 5
+	fill.content_margin_bottom = 5
+	s.add_theme_stylebox_override("slider", groove)
+	s.add_theme_stylebox_override("grabber_area", fill)
+	s.add_theme_stylebox_override("grabber_area_highlight", fill)
+	s.add_theme_stylebox_override("focus", focus_ring())
+	var img := Image.create(16, 22, false, Image.FORMAT_RGBA8)
+	img.fill(INK)
+	img.fill_rect(Rect2i(2, 2, 12, 18), CREAM)
+	img.fill_rect(Rect2i(2, 16, 12, 4), CREAM_DIM)
+	var g := ImageTexture.create_from_image(img)
+	s.add_theme_icon_override("grabber", g)
+	s.add_theme_icon_override("grabber_highlight", g)

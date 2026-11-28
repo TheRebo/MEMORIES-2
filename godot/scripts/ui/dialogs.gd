@@ -42,7 +42,7 @@ class SettingsDlg extends Modal:
 		var shake := CheckBox.new()
 		shake.text = "Efek gerak (guncangan, kilatan, latar bergerak)"
 		shake.button_pressed = Settings.screen_shake
-		shake.add_theme_color_override("font_color", UI.CREAM)
+		UI.style_check(shake)
 		shake.toggled.connect(func(on: bool) -> void: Settings.set_value("screenShake", on))
 		box.add_child(shake)
 		var speed := HBoxContainer.new()
@@ -60,7 +60,7 @@ class SettingsDlg extends Modal:
 		box.add_child(speed)
 		var fs := CheckBox.new()
 		fs.text = "Layar penuh"
-		fs.add_theme_color_override("font_color", UI.CREAM)
+		UI.style_check(fs)
 		fs.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 		fs.toggled.connect(func(on: bool) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if on else DisplayServer.WINDOW_MODE_WINDOWED))
@@ -93,6 +93,7 @@ class SettingsDlg extends Modal:
 		s.step = 5
 		s.value = roundf(float(Settings.get(key)) * 100.0)
 		s.custom_minimum_size = Vector2(300, 28)
+		UI.style_slider(s)
 		var out := UI.label(str(int(s.value)), 20, UI.AMBER_ON_WOOD, true, false)
 		out.custom_minimum_size = Vector2(48, 0)
 		s.value_changed.connect(func(v: float) -> void:
@@ -149,8 +150,10 @@ class Tutorial extends Modal:
 		_title_l = UI.label("", 23, UI.PAPER_INK, true, false)
 		box.add_child(_title_l)
 		_img = TextureRect.new()
-		_img.custom_minimum_size = Vector2(620, 140)
-		_img.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+		_img.custom_minimum_size = Vector2(620, 120)
+		# Tutorial pictures are small sprites: scale them up, pixel-sharp.
+		_img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		_img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		box.add_child(_img)
 		_text_l = UI.label("", 23, UI.PAPER_INK, false, false)
 		_text_l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
