@@ -2,13 +2,14 @@ class_name RoomScreen
 extends Node2D
 ## One room of the house: cleaning, events, completion, flashback, navigation.
 
-## Scene for each event kind in the room data.
+## Scene for each event kind in the room data. Loaded on demand: event scripts refer back to
+## RoomScreen, so preloading them here would be a cyclic load.
 const EVENT_SCENES := {
-	"cat": preload("res://scenes/events/cat_event.tscn"),
-	"rain": preload("res://scenes/events/rain_event.tscn"),
-	"blackout": preload("res://scenes/events/blackout_event.tscn"),
-	"wind": preload("res://scenes/events/wind_event.tscn"),
-	"cockroach": preload("res://scenes/events/cockroach_event.tscn"),
+	"cat": "res://scenes/events/cat_event.tscn",
+	"rain": "res://scenes/events/rain_event.tscn",
+	"blackout": "res://scenes/events/blackout_event.tscn",
+	"wind": "res://scenes/events/wind_event.tscn",
+	"cockroach": "res://scenes/events/cockroach_event.tscn",
 }
 const THING := preload("res://scenes/world/thing.tscn")
 const ZONE := preload("res://scenes/world/zone.tscn")
@@ -84,7 +85,8 @@ func _ready() -> void:
 	camera.inset_left = hud.todo_inset()
 
 	for e: Dictionary in def.get("events", []):
-		var packed: PackedScene = EVENT_SCENES.get(String(e.get("kind", "")))
+		var path := String(EVENT_SCENES.get(String(e.get("kind", "")), ""))
+		var packed: PackedScene = load(path) if path != "" else null
 		if packed == null:
 			push_warning("Unknown event kind %s" % e.get("kind"))
 			continue
