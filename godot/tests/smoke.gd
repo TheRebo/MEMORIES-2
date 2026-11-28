@@ -31,7 +31,8 @@ func _press(action: String) -> void:
 
 func _close_dialogs() -> void:
 	for i in 6:
-		if not Modal.is_open():
+		# Runs before autoloads exist at compile time, so game classes are reached through nodes.
+		if not _screen().call("modal_open"):
 			return
 		await _press("ui_cancel")
 		await _wait(0.3)

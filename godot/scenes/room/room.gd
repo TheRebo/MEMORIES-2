@@ -115,6 +115,10 @@ func _exit_tree() -> void:
 
 # ================== Debug (tests/smoke.gd) ==================
 
+func modal_open() -> bool:
+	return Modal.is_open()
+
+
 ## Finish every task except `leave` of them.
 func debug_finish(leave: int = 0) -> void:
 	var todo: Array = []

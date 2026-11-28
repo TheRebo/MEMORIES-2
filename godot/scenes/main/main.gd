@@ -53,6 +53,8 @@ func _set_radius(r: float) -> void:
 
 func _show(screen: String, args: Dictionary) -> void:
 	if current:
+		# Out of the tree at once, so the next screen can take the same name.
+		_holder.remove_child(current)
 		current.queue_free()
 	var packed: PackedScene = SCREENS[screen]
 	current = packed.instantiate()
