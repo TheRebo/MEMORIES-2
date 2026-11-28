@@ -74,8 +74,19 @@ web(1, 12, 12); web(2, 500, 12, rotation=1.5708); web(3, 340, 14, 'jaring_laba_l
 # events sized for the bigger room
 for e in R.d['events']:
     if e['kind'] == 'rain':
-        e['spawnArea'] = {'x': 40, 'y': 130, 'w': 430, 'h': 190}
+        e.update({'spawnArea': {'x': 40, 'y': 130, 'w': 430, 'h': 190}, 'triggerProgress': 20, 'puddleCount': 6, 'maxRepeats': 2, 'repeatInterval': 75})
+    if e['kind'] == 'blackout':
+        e.update({'triggerProgress': 60, 'blackoutDuration': 75, 'emergencyCandles': 3,
+                  'hintPosition': {'x': 256, 'y': 220}, 'cobwebArea': {'x': 10, 'y': 8, 'w': 492, 'h': 44}})
+# Cockroaches in the kitchen too (the bedroom tutorial explains them).
+roach = json.load(open(os.path.join(os.path.dirname(__file__), 'base_bedroom.json')))['events'][1]
+R.d['events'].append({**roach, 'triggerProgress': 42, 'roachCount': 2, 'roachSpeed': 50, 'maxRepeats': 2, 'repeatInterval': 40,
+                      'repeatJitter': 8, 'walkArea': {'x': 40, 'y': 130, 'w': 430, 'h': 190}, 'spawnPoint': {'x': 300, 'y': 300}})
 for i, ch in {0: {'focus': [90, 120]}, 1: {'moves': [{'actor': 'mc_kecil', 'x': 100, 'y': 136}]},
               3: {'moves': [{'actor': 'mc_kecil', 'x': 236, 'y': 300}], 'focus': [256, 250]}, 4: {'focus': [256, 270]}}.items():
     R.d['flashback'][i].update(ch)
+# Dust lying on some stains: these have to be swept before they can be mopped.
+_n = len([d for d in R.d['floorDirt'] if d['tool'] == 'broom'])
+for k, st in enumerate([d for d in R.d['floorDirt'] if d['tool'] == 'mop' and int(d['id'][-1]) in [2, 4, 6, 8]], 1):
+    R.floor(f'SapuLantai{_n + k}', st['x'], st['y'], 'broom', 'Sapu lantai', 'debu_ulahan_daus', 32, 16)
 R.save(os.path.join(os.path.dirname(__file__), 'out_kitchen.json'))

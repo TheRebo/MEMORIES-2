@@ -166,6 +166,10 @@ export const kitchen: RoomDef = {
       tex: 'jaringlabalaba_sudut',
       layer: 'ground',
     },
+    { id: 'SapuLantai11', x: 160, y: 128, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai12', x: 320, y: 196, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai13', x: 100, y: 270, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai14', x: 360, y: 136, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
   ],
   props: [
     {
@@ -674,7 +678,7 @@ export const kitchen: RoomDef = {
   events: [
     {
       kind: 'rain',
-      triggerProgress: 25,
+      triggerProgress: 20,
       introText: 'Hujan deras tiba-tiba turun! Air merembes masuk dan menggenangi lantai.',
       tutorial: [
         {
@@ -683,12 +687,15 @@ export const kitchen: RoomDef = {
         },
       ],
       spawnArea: { x: 40, y: 130, w: 430, h: 190 },
+      puddleCount: 6,
+      maxRepeats: 2,
+      repeatInterval: 75,
     },
     {
       kind: 'blackout',
-      blackoutDuration: 60,
-      emergencyCandles: 4,
-      triggerProgress: 65,
+      blackoutDuration: 75,
+      emergencyCandles: 3,
+      triggerProgress: 60,
       introText: 'Listrik padam! Pasang lilin (tahan tombol 5, lepas di lantai) agar bisa melihat.',
       introDuration: 6,
       tutorial: [
@@ -697,6 +704,26 @@ export const kitchen: RoomDef = {
           text: 'Layar menjadi gelap dan kamu hanya bisa membersihkan di area yang terang. Tahan tombol 5 (atau seret lilin dari slot lilin) lalu lepas di lantai untuk memasang lilin. Kamu boleh memasang lebih dari satu lilin. Lilin akan habis, jadi pasang lagi. Terlalu lama gelap membuat sarang laba-laba bertambah.',
         },
       ],
+      hintPosition: { x: 256, y: 220 },
+      cobwebArea: { x: 10, y: 8, w: 492, h: 44 },
+    },
+    {
+      kind: 'cockroach',
+      triggerProgress: 42,
+      repeatInterval: 40,
+      repeatJitter: 8,
+      maxRepeats: 2,
+      introText: 'Ada kecoa! Klik kecoa itu agar bisa lanjut membersihkan.',
+      tutorial: [
+        {
+          title: 'Event: Kecoa',
+          text: 'Seekor kecoa muncul dan menghalangi pembersihan. Ikuti panah dan klik kecoa yang berjalan untuk menangkapnya.',
+        },
+      ],
+      roachCount: 2,
+      roachSpeed: 50,
+      walkArea: { x: 40, y: 130, w: 430, h: 190 },
+      spawnPoint: { x: 300, y: 300 },
     },
   ],
 };

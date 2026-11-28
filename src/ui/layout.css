@@ -133,26 +133,35 @@
 
 /* =====================================================================
    ROOM HUD
-   Bands: top 56px, bottom 96px (config.ts HUD_TOP / HUD_BOTTOM). The open task note takes
+   The HUD floats; config.ts HUD_TOP (92) and HUD_BOTTOM (108) keep the camera's focus clear of it. The open note takes
    HUD_TODO_W from the left; --inset carries that width so messages centre on the visible room.
    ===================================================================== */
 .room { inset: 0; --inset: 0px; }
 
-/* ---------- Top bar ---------- */
+/* ---------- Top: floating plaque (room + cleanliness) and an action cluster ----------
+   No full-width bars: the room fills the screen and the HUD floats over it as objects. */
 .hud-top {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 56px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 20px;
-  padding: 0 12px 4px 16px;
-  background: var(--wood-800);
-  box-shadow: inset 0 -4px 0 var(--wood-900), inset 0 -6px 0 var(--wood-600);
+  left: 12px;
+  right: 12px;
+  top: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
   transition: transform 300ms steps(5);
+}
+.hud-top > * { pointer-events: auto; }
+.plaque {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 360px;
+  padding: 8px 14px 10px 10px;
+  background: var(--wood-800);
+  border: 2px solid var(--ink);
+  box-shadow: inset 0 0 0 2px var(--wood-600), inset 0 -5px 0 2px var(--wood-900), 4px 4px 0 rgba(0, 0, 0, 0.45);
 }
 .room-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .room-step {
@@ -164,18 +173,15 @@
   box-shadow: inset 0 -3px 0 #a8916b;
 }
 .room-name { margin: 0; font-size: 23px; font-weight: normal; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-.progress-wrap { display: flex; align-items: center; gap: 12px; }
-.progress-label { font-size: 18px; color: var(--cream-dim); }
-.progress-text { min-width: 54px; font-size: 18px; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); }
+.progress-wrap { display: flex; align-items: center; gap: 10px; }
+.progress-text { min-width: 50px; font-size: 17px; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); }
 .progress {
   position: relative;
-  width: 340px;
-  height: 20px;
+  flex: 1;
+  height: 16px;
   background: var(--wood-900);
   box-shadow: inset 0 0 0 2px var(--wood-600), 0 0 0 2px var(--ink);
 }
-/* Quarter ticks: progress reads in steps, like a measuring tape. */
 .progress::after {
   content: '';
   position: absolute;
@@ -189,23 +195,51 @@
   width: 0;
   max-width: calc(100% - 4px);
   background: var(--amber);
-  box-shadow: inset 0 -5px 0 var(--amber-deep), inset 0 3px 0 #ffd88a;
+  box-shadow: inset 0 -4px 0 var(--amber-deep), inset 0 3px 0 #ffd88a;
   transition: width 400ms ease-out;
 }
-.room-clean .progress-fill { background: var(--sage); box-shadow: inset 0 -5px 0 #6f9e5a, inset 0 3px 0 #cdeab8; }
+/* A glint runs across the bar each time progress grows. */
+.progress-fill::after { content: ''; position: absolute; top: 0; bottom: 0; width: 12px; left: -12px; background: rgba(255, 246, 220, 0.7); animation: glint 2.8s steps(14) infinite; }
+@keyframes glint { 70%, 100% { left: 100%; } }
+.room-clean .progress-fill { background: var(--sage); box-shadow: inset 0 -4px 0 #6f9e5a, inset 0 3px 0 #cdeab8; }
 .room-clean .progress-text { color: var(--sage); }
 
-.hud-top-actions { justify-self: end; display: flex; align-items: center; gap: 8px; }
-.hud-top-actions .btn.small { min-height: 42px; gap: 8px; }
-.hud-top-actions .icon-btn { width: 44px; height: 44px; background-size: 44px 44px; }
+.hud-top-actions { display: flex; align-items: center; gap: 8px; }
+.hud-top-actions .btn.small { min-height: 44px; gap: 8px; }
+.hud-top-actions .icon-btn { width: 46px; height: 46px; background-size: 46px 46px; }
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 14px 0 10px;
+  background: var(--wood-900);
+  border: 2px solid var(--ink);
+  box-shadow: inset 0 0 0 2px var(--wood-600), 3px 3px 0 rgba(0, 0, 0, 0.45);
+}
+.timer-text { min-width: 52px; font-size: 20px; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); }
+.timer-stars { display: flex; gap: 3px; }
+.star, .big-star {
+  width: 16px;
+  height: 16px;
+  background: var(--wood-600);
+  clip-path: polygon(50% 0, 62% 35%, 100% 38%, 70% 60%, 80% 100%, 50% 76%, 20% 100%, 30% 60%, 0 38%, 38% 35%);
+}
+.star.on { background: var(--amber); }
+.star.lost { animation: star-lost 700ms steps(6); }
+@keyframes star-lost { 0% { transform: scale(1.6); background: var(--warn); } 100% { transform: translateY(6px); } }
+.timer.hurry .timer-text { color: var(--amber); animation: pulse-text 1s steps(2) infinite; }
+.timer.warn { box-shadow: inset 0 0 0 2px var(--warn), 3px 3px 0 rgba(0, 0, 0, 0.45); }
+@keyframes pulse-text { 50% { color: var(--warn); } }
 
 /* ---------- Task note (paper) ---------- */
 .todo {
   position: absolute;
   left: 12px;
-  top: 68px;
+  top: 104px;
   width: 272px;
-  max-height: 544px;
+  max-height: 500px;
   display: flex;
   flex-direction: column;
   padding: 12px 14px 12px;
@@ -234,12 +268,19 @@
 .note-count { font-size: 17px; color: var(--paper-ink-soft); }
 .todo-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
 .todo > .todo-list { overflow-y: auto; min-height: 0; scrollbar-width: thin; scrollbar-color: var(--paper-edge) transparent; }
-.todo-item { display: grid; grid-template-columns: 16px 1fr auto; gap: 8px; align-items: start; font-size: 19px; line-height: 1.1; padding: 4px 4px; }
+.todo-item { display: grid; grid-template-columns: 14px 18px 1fr auto; gap: 6px; align-items: start; font-size: 19px; line-height: 1.1; padding: 4px 4px; }
 .todo-check { width: 14px; height: 14px; margin-top: 3px; background: #fbf5e6; box-shadow: inset 0 0 0 2px var(--paper-ink-soft); }
 .todo-count { font-family: var(--font-display); font-size: 16px; color: var(--paper-ink-soft); padding-top: 1px; }
 .todo-item.done { color: var(--paper-done); }
 .todo-item.done .todo-check { background: var(--paper-done); box-shadow: inset 0 -3px 0 #2a4a22; }
 .todo-item.done .todo-name { text-decoration: line-through; text-decoration-thickness: 2px; }
+.todo-item.interactive:hover { background: rgba(42, 27, 17, 0.08); }
+.todo-item.pinged { animation: just-done 700ms steps(4); }
+.todo-kind { width: 16px; height: 16px; margin-top: 1px; image-rendering: pixelated; }
+span.todo-kind { display: grid; place-items: center; font-family: var(--font-display); font-size: 11px; color: var(--paper-ink-soft); box-shadow: inset 0 0 0 2px var(--paper-edge); }
+span.todo-kind.hand::before { content: ''; width: 8px; height: 9px; background: var(--paper-ink-soft); clip-path: polygon(20% 100%, 0 45%, 20% 40%, 30% 60%, 30% 0, 45% 0, 45% 40%, 60% 5%, 72% 8%, 62% 45%, 85% 25%, 100% 30%, 80% 100%); }
+span.todo-kind.none { box-shadow: none; }
+.todo-item.done .todo-kind { opacity: 0.5; }
 .todo-item.grew { animation: grew 1100ms steps(6); }
 .todo-item.just-done { animation: just-done 1100ms steps(6); }
 .todo-empty { padding: 4px; font-size: 19px; color: var(--paper-done); }
@@ -255,31 +296,31 @@
 .todo-done .todo-list { max-height: 150px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--paper-edge) transparent; }
 .todo :focus-visible { outline-color: var(--paper-ink); }
 
-/* ---------- Bottom bar: trash | tool belt | room navigation ---------- */
+/* ---------- Bottom: trash chip | floating tool belt | room navigation ---------- */
 .hud-bottom {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 96px;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  align-items: end;
   gap: 16px;
-  padding: 6px 16px 6px;
-  background: var(--wood-800);
-  box-shadow: inset 0 4px 0 var(--wood-900), inset 0 6px 0 var(--wood-600);
+  pointer-events: none;
   transition: transform 300ms steps(5);
 }
-.hud-bottom-side { display: flex; align-items: center; min-width: 0; }
+.hud-bottom > * { pointer-events: auto; }
+.hud-bottom-side { display: flex; align-items: center; min-width: 0; pointer-events: none; }
+.hud-bottom-side > * { pointer-events: auto; }
 .hud-bottom-side.right { justify-content: flex-end; }
 
 .toolbar {
   display: flex;
   gap: 6px;
-  padding: 5px 6px 6px;
-  background: var(--wood-900);
-  box-shadow: inset 0 0 0 2px var(--wood-700), 0 0 0 2px var(--ink);
+  padding: 8px 10px 10px;
+  background: var(--wood-800);
+  border: 2px solid var(--ink);
+  box-shadow: inset 0 0 0 2px var(--wood-600), inset 0 -5px 0 2px var(--wood-900), 4px 4px 0 rgba(0, 0, 0, 0.45);
 }
 .slot {
   position: relative;
@@ -307,6 +348,20 @@
 .slot.active { background: var(--wood-500); box-shadow: inset 0 0 0 3px var(--amber), inset 0 -5px 0 0 var(--wood-800); transform: translateY(-8px); }
 .slot.active img { opacity: 0.3; }
 .slot.dim { opacity: 0.5; }
+/* Needed tool: a gentle marker while hovering grime, a pulse after locating a task. */
+.slot.hint::after, .slot.suggest::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: var(--amber);
+  animation: bob 700ms steps(2) infinite;
+}
+.slot.suggest { box-shadow: inset 0 0 0 3px var(--amber), inset 0 -5px 0 0 var(--wood-800); animation: slot-pulse 600ms steps(2) infinite; }
+@keyframes slot-pulse { 50% { filter: brightness(1.25); } }
+@keyframes bob { 50% { transform: translateY(-3px); } }
 .slot.level-up { animation: level-up 1200ms steps(8); }
 @keyframes level-up { 0%, 30% { box-shadow: inset 0 0 0 3px var(--amber), 0 0 0 3px var(--amber); } }
 .slot-candle { margin-left: 8px; background: #3b2a16; }
@@ -318,7 +373,8 @@
   gap: 8px;
   padding: 4px 14px 4px 8px;
   background: var(--wood-900);
-  box-shadow: inset 0 0 0 2px var(--wood-700);
+  border: 2px solid var(--ink);
+  box-shadow: inset 0 0 0 2px var(--wood-700), 3px 3px 0 rgba(0, 0, 0, 0.45);
   color: var(--cream);
 }
 .trash-counter img { image-rendering: pixelated; }
@@ -336,7 +392,7 @@
    event's target (window, cockroach), so a centred card would cover the very thing to click. */
 .hud-msgs {
   position: absolute;
-  top: 68px;
+  top: 16px;
   left: var(--inset);
   right: 0;
   display: flex;
@@ -346,7 +402,7 @@
   padding: 0 24px;
   transition: left 260ms steps(6);
 }
-.alerts { position: absolute; top: 68px; right: 12px; width: 420px; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+.alerts { position: absolute; top: 66px; right: 12px; width: 420px; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
 .alert {
   display: flex;
   align-items: flex-start;
@@ -397,7 +453,7 @@
 .dialog {
   position: absolute;
   left: calc(var(--inset) + (1280px - var(--inset)) / 2);
-  bottom: 112px;
+  bottom: 118px;
   width: min(720px, calc(1280px - var(--inset) - 48px));
   padding: 20px 24px 12px;
   background: var(--paper);
@@ -508,6 +564,33 @@
 .cinematic .todo { transform: translateX(-300px); opacity: 0; }
 .cinematic .alerts, .cinematic .hud-pointers, .cinematic .tool-cursor { display: none; }
 .cinematic .dialog { bottom: 76px; }
+
+/* ---------- Result card ---------- */
+.result {
+  position: absolute;
+  left: calc(var(--inset) + (1280px - var(--inset)) / 2);
+  top: 50%;
+  width: 380px;
+  padding: 22px 26px 16px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  animation: result-in 420ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  pointer-events: auto;
+}
+.result::before { content: ''; position: absolute; top: -10px; left: 50%; width: 78px; height: 20px; margin-left: -39px; background: rgba(214, 196, 150, 0.88); box-shadow: inset 0 0 0 2px rgba(120, 96, 60, 0.35); transform: rotate(-2deg); }
+.result.out { animation: result-out 260ms ease-in forwards; }
+@keyframes result-in { from { opacity: 0; transform: translate(-50%, -40%) scale(0.85) rotate(-3deg); } }
+@keyframes result-out { to { opacity: 0; transform: translate(-50%, -60%) scale(0.95); } }
+.result-title { margin: 0 0 10px; font-size: 32px; color: var(--paper-ink); }
+.result-stars { display: flex; justify-content: center; gap: 12px; margin-bottom: 14px; }
+.big-star { width: 54px; height: 54px; background: var(--paper-shade); }
+.big-star.on { background: var(--amber-deep); animation: star-pop 420ms cubic-bezier(0.2, 0.9, 0.3, 1.6) var(--d) both; }
+@keyframes star-pop { from { transform: scale(0) rotate(-90deg); background: var(--paper-shade); } }
+.result-stats { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin: 0 auto 8px; max-width: 260px; text-align: left; font-size: 19px; }
+.result-stats dd { margin: 0; text-align: right; font-size: 18px; color: var(--paper-ink); }
+.result-stats dt { color: var(--paper-ink-soft); }
+.result-record { margin: 6px 0 0; font-size: 20px; color: var(--paper-red); animation: pulse-text 1s steps(2) 4; }
+.result-hint { margin: 10px 0 0; font-size: 16px; color: var(--paper-ink-soft); }
 
 /* ---------- Tutorial (paper: MC's grandmother's how-to notes) ---------- */
 .modal.tutorial {

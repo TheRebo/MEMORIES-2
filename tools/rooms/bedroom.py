@@ -67,8 +67,14 @@ web(1, 12, 12); web(2, 500, 12, rotation=1.5708); web(3, 170, 14, 'jaring_laba_l
 
 for e in R.d['events']:
     if e['kind'] == 'wind':
-        e['floorArea'] = {'x': 40, 'y': 130, 'w': 430, 'h': 190}
+        # The window fights back harder and the gust comes twice.
+        e.update({'floorArea': {'x': 40, 'y': 130, 'w': 430, 'h': 190}, 'triggerProgress': 35, 'scatterBase': 3, 'clickGain': 0.06,
+                  'decayPerSecond': 0.15, 'maxRepeats': 1, 'repeatInterval': 90})
     if e['kind'] == 'cockroach':
-        e['walkArea'] = {'x': 40, 'y': 120, 'w': 430, 'h': 200}
-        e['spawnPoint'] = {'x': 250, 'y': 300}
+        e.update({'walkArea': {'x': 40, 'y': 120, 'w': 430, 'h': 200}, 'spawnPoint': {'x': 250, 'y': 300},
+                  'roachCount': 2, 'roachSpeed': 50, 'maxRepeats': 4, 'repeatInterval': 26})
+# Dust lying on some stains: these have to be swept before they can be mopped.
+_n = len([d for d in R.d['floorDirt'] if d['tool'] == 'broom'])
+for k, st in enumerate([d for d in R.d['floorDirt'] if d['tool'] == 'mop' and int(d['id'][-1]) in [1, 3, 5]], 1):
+    R.floor(f'SapuLantai{_n + k}', st['x'], st['y'], 'broom', 'Sapu lantai', 'debu_ulahan_daus', 32, 16)
 R.save(os.path.join(os.path.dirname(__file__), 'out_bedroom.json'))

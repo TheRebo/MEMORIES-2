@@ -87,6 +87,14 @@ export class Dirt extends Thing {
     return 'progress';
   }
 
+  /** Wrong tool: the grime spreads back by `amount`. Returns true if it actually got worse. */
+  smear(amount: number): boolean {
+    if (this.done || this.remaining >= this.effort) return false;
+    this.remaining = Math.min(this.effort, this.remaining + amount);
+    this.sprite.setAlpha(0.18 + 0.82 * (this.remaining / this.effort));
+    return true;
+  }
+
   /** Mark as already clean (revisiting a finished room). */
   restoreDone(): void {
     this.done = true;

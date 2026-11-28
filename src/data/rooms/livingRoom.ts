@@ -192,6 +192,9 @@ export const livingRoom: RoomDef = {
       tex: 'jaringlabalaba_sudut',
       layer: 'ground',
     },
+    { id: 'SapuLantai13', x: 130, y: 230, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai14', x: 460, y: 296, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai15', x: 380, y: 112, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
   ],
   props: [
     {
@@ -771,9 +774,9 @@ export const livingRoom: RoomDef = {
     {
       kind: 'cat',
       catTexture: 'cat_run',
-      scatterCount: 7,
+      scatterCount: 9,
       minItemsNeeded: 4,
-      triggerProgress: 45,
+      triggerProgress: 35,
       introText: 'Meong! Seekor kucing tiba-tiba masuk dan mengacak-acak barang!',
       tutorial: [
         {
@@ -781,6 +784,11 @@ export const livingRoom: RoomDef = {
           text: 'Seekor kucing tiba-tiba masuk dan menjatuhkan barang yang sudah kamu rapikan. Ikuti panah untuk melihat kucingnya, lalu rapikan lagi barang yang berserakan (drag ke tempatnya). Event ini bisa muncul lagi.',
         },
       ],
+      maxRepeats: 2,
+      repeatInterval: 80,
+      catEntry: { x: 560, y: 220 },
+      catExit: { x: -40, y: 280 },
+      floorArea: { x: 40, y: 130, w: 430, h: 190 },
     },
   ],
 };

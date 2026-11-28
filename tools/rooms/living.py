@@ -94,4 +94,13 @@ web(1, 12, 12); web(2, 500, 12, rotation=1.5708); web(3, 160, 14, 'jaring_laba_l
 for i, ch in {0: {'moves': [{'actor': 'mc', 'x': 372, 'y': 84}], 'focus': [360, 80]}, 1: {'focus': [378, 36]},
               2: {'focus': [256, 214]}, 5: {'moves': [{'actor': 'mc_kecil', 'x': 292, 'y': 246}]}}.items():
     R.d['flashback'][i].update(ch)
+for e in R.d['events']:
+    if e['kind'] == 'cat':
+        # Earlier, messier, and it comes back once more.
+        e.update({'triggerProgress': 35, 'scatterCount': 9, 'minItemsNeeded': 4, 'maxRepeats': 2, 'repeatInterval': 80,
+                  'catEntry': {'x': 560, 'y': 220}, 'catExit': {'x': -40, 'y': 280}, 'floorArea': {'x': 40, 'y': 130, 'w': 430, 'h': 190}})
+# Dust lying on some stains: these have to be swept before they can be mopped.
+_n = len([d for d in R.d['floorDirt'] if d['tool'] == 'broom'])
+for k, st in enumerate([d for d in R.d['floorDirt'] if d['tool'] == 'mop' and int(d['id'][-1]) in [1, 3, 5]], 1):
+    R.floor(f'SapuLantai{_n + k}', st['x'], st['y'], 'broom', 'Sapu lantai', 'debu_ulahan_daus', 32, 16)
 R.save(os.path.join(os.path.dirname(__file__), 'out_living_room.json'))

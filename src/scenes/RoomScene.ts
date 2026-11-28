@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { App } from '@/app';
 import { Audio } from '@/core/audio';
 import { GameState } from '@/core/gameState';
-import { DEPTH } from '@/config';
+import { DEPTH, STAR_PAR, starsFor } from '@/config';
 import { ROOMS } from '@/data/rooms';
 import { START_TUTORIAL } from '@/data/story';
 import type { RoomDef, RoomId, TutorialPage } from '@/data/types';
@@ -18,7 +18,7 @@ import { CameraRig } from '@/systems/CameraRig';
 import { Fx } from '@/systems/Fx';
 import { Lighting } from '@/systems/Lighting';
 import { TaskTracker } from '@/systems/TaskTracker';
-import { Hud } from '@/ui/Hud';
+import { Hud, type TaskKind } from '@/ui/Hud';
 import { modalOpen } from '@/ui/Modal';
 import { PauseDialog } from '@/ui/PauseDialog';
 import { TutorialDialog } from '@/ui/TutorialDialog';
@@ -45,6 +45,10 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
   zones: Zone[] = [];
   furniture: Thing[] = [];
   dirt: Dirt[] = [];
+  /** Play time in this visit (scene clock: stops while paused, in dialogs and cutscenes). */
+  private elapsed = 0;
+  private driftTimer = 0;
+  private drifts = 0
   finished = false;
 
   private interacts: Interactable[] = [];
@@ -106,6 +110,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
       onGoRoom: (r) => this.leave(() => App.go('Room', { room: r })),
       onGoHome: () => this.leave(() => App.go('Story', { which: 'ending' }, 1600)),
       onTodoToggle: () => this.camera.setInsetLeft(this.hud.todoInset()),
+      onTaskClick: (group) => this.locateTask(group),
     });
     this.camera.setInsetLeft(this.hud.todoInset());
 
@@ -306,7 +311,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
 
   private refresh(): void {
     const pct = this.percent();
-    this.hud.setGroups(this.tracker.groups());
+    this.hud.setGroups(this.tracker.groups(), this.groupKinds());
     for (const g of this.tracker.newlyFinished()) {
       this.hud.flashGroup(g);
       Audio.sfx('group_done', { volume: 0.7 });
@@ -325,17 +330,67 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     }
   }
 
+  /** What each task group asks for: a tool, dragging by hand, or a double click. */
+  private groupKinds(): Map<string, TaskKind> {
+    const m = new Map<string, TaskKind>();
+    for (const d of this.dirt) if (!m.has(d.group)) m.set(d.group, d.tool);
+    for (const i of this.items) if (!m.has(i.group)) m.set(i.group, 'hand');
+    for (const i of this.interacts) if (!m.has(i.group)) m.set(i.group, 'click');
+    return m;
+  }
+
+  /** Note row clicked: swing the camera to the nearest unfinished part of that task and mark it. */
+  private locateTask(group: string): void {
+    if (this.ctx.cinematic) return;
+    const c = this.camera.worldCenter();
+    let best: { x: number; y: number } | null = null;
+    let bestD = Infinity;
+    const consider = (p: { x: number; y: number }): void => {
+      const dd = (p.x - c.x) ** 2 + (p.y - c.y) ** 2;
+      if (dd < bestD) {
+        bestD = dd;
+        best = p;
+      }
+    };
+    for (const d of this.dirt) if (d.group === group && !d.done && d.sprite.visible) consider(d.center());
+    for (const i of this.items) if (i.group === group && !i.done) consider({ x: i.x, y: i.y - 6 });
+    for (const i of this.interacts) if (i.group === group && !i.done) consider({ x: i.x, y: i.y - 6 });
+    const target = best as { x: number; y: number } | null;
+    if (!target) return;
+    this.camera.attend(target.x, target.y, 1.6);
+    this.fx.ping(target.x, target.y);
+    const kind = this.groupKinds().get(group);
+    if (kind && kind !== 'hand' && kind !== 'click') this.hud.suggestTool(kind, 2.2);
+    Audio.sfx('slide_in', { volume: 0.4 });
+  }
+
+  /** Work order: sweep dust before mopping the stain under it; dust furniture before wiping it. */
+  blockerOf(d: Dirt): Dirt | null {
+    for (const o of this.dirt) {
+      if (o === d || o.done || !o.sprite.visible) continue;
+      if (d.tool === 'mop' && !d.parent && o.tool === 'broom' && !o.parent
+        && Math.abs(o.x - d.x) < (o.w + d.w) / 2 - 4 && Math.abs(o.y - d.y) < (o.h + d.h) / 2 - 2) return o;
+      if (d.tool === 'cloth' && d.parent && o.parent === d.parent && o.tool === 'duster') return o;
+    }
+    return null;
+  }
+
   // ================== Completion ==================
   private async runCompletion(): Promise<void> {
     this.tools.release();
     // Save at once: leaving during the celebration or flashback must not lose the room.
     GameState.completeRoom(this.def.id);
+    const seconds = this.elapsed;
+    const prevBest = GameState.bestTime(this.def.id);
+    const record = GameState.recordTime(this.def.id, seconds);
     await this.wait(1200);
     this.hud.setProgress(100);
     Audio.sfx('room_complete', { volume: 0.9 });
     this.hud.banner(`${this.def.name} bersih!`, 2.2);
     this.celebrate(false);
-    await this.wait(2600);
+    await this.wait(1400);
+    const par = STAR_PAR[this.def.id];
+    await this.hud.showResult({ stars: starsFor(par, seconds), seconds, par, best: prevBest, record });
     this.hands.cancel();
     await new RoomCutscene(this, this.actors, {
       dialog: (s, t) => this.hud.dialog(s, t, 0),
@@ -429,6 +484,12 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
   // ================== Loop ==================
   override update(_time: number, delta: number): void {
     const dt = Math.min(0.05, delta / 1000);
+    if (!this.finished && !this.completedVisit && !this.ctx.cinematic) {
+      this.elapsed += delta / 1000;
+      this.hud.setTime(this.elapsed, STAR_PAR[this.def.id]);
+      this.dustDrift(delta / 1000);
+    }
+    this.suggestFromHover();
     this.camera.update(dt, this.screenPointer);
     this.tools.update();
     this.hands.update();
@@ -437,6 +498,34 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     this.hud.moveCursor(this.screenPointer.x, this.screenPointer.y, this.tools.isWorking);
     const u = this.camera.usable();
     this.hud.updatePointers((x, y) => this.camera.worldToScreen(x, y), { x: u.x, y: u.y, w: u.width, h: u.height });
+  }
+
+  /** A few times per room, dust settles again on swept floor: the house does not wait for you. */
+  private dustDrift(dt: number): void {
+    if (this.drifts >= 3 || this.ctx.eventsActive || this.ctx.blackout) return;
+    this.driftTimer += dt;
+    if (this.driftTimer < 55) return;
+    this.driftTimer = 0;
+    if (this.percent() > 92) return;
+    const { w, h } = this.def.size;
+    const x = Phaser.Math.Between(48, w - 48);
+    const y = Phaser.Math.Between(this.def.wallHeight + 60, h - 30);
+    this.drifts += 1;
+    this.spawnDirt({ id: `drift-${this.drifts}`, x, y, w: 28, h: 14, tool: 'broom', effort: 190, group: 'Sapu lantai', tex: 'debu_ulahan_daus' });
+    this.fx.ping(x, y);
+    this.ctx.bus.emit('toast', 'Debu kembali menumpuk di lantai!');
+    this.ctx.bus.emit('tasksChanged');
+  }
+
+  /** Empty hand over grime: light up the tool it needs. */
+  private suggestFromHover(): void {
+    if (this.ctx.heldTool || this.ctx.cinematic || !this.pointerInWorld()) {
+      this.hud.hoverTool(null);
+      return;
+    }
+    const w = this.pointerWorld();
+    const d = this.dirt.find((x) => !x.done && x.sprite.visible && x.contains(w.x, w.y, 2));
+    this.hud.hoverTool(d ? d.tool : null);
   }
 
   private wait(ms: number): Promise<void> {
