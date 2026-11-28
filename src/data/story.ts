@@ -30,14 +30,14 @@ export interface Slide {
   /** Darken the art (0..1) to keep text readable or set mood. */
   readonly dim?: number;
   /** Where the text box sits, so it does not cover the subject of the art. */
-  readonly box?: 'center' | 'right';
+  readonly box?: 'center' | 'right' | 'top';
 }
 
 /** Prolog, from the Godot intro scene (matches Lore.txt "INTRO - baru"). */
 export const INTRO: readonly Slide[] = [
-  { art: 'bus_stop', motion: 'busArrive', speaker: 'Narator', sfx: 'room_enter',
+  { art: 'bus_stop', motion: 'busArrive', box: 'top', speaker: 'Narator', sfx: 'room_enter',
     text: 'Sebuah bus berhenti di pemberhentian terakhirnya, di pelosok yang jauh dari hiruk-pikuknya kota.' },
-  { art: 'bus_stop', motion: 'busLeave', speaker: 'MC',
+  { art: 'bus_stop', motion: 'busLeave', box: 'top', speaker: 'MC',
     text: 'Huh... Akhirnya sampai juga ya. Sudah lama sekali aku tidak ke sini...' },
   { art: 'trees', motion: 'panRight', speaker: 'MC (batin)',
     text: 'Aku berjalan menuju sebuah rumah, tempat yang sejak awal memang sudah menjadi tujuanku sampai ke pelosok seperti ini.' },

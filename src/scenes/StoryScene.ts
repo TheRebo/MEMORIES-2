@@ -11,6 +11,9 @@ interface StoryData {
 }
 
 /** Full-screen illustrated slides for the prolog and epilog. */
+/** Where the bus wheels touch the road (screen px). */
+const ROAD_Y = 676;
+
 export class StoryScene extends Phaser.Scene {
   private slides: readonly Slide[] = [];
   private which: StoryData['which'] = 'intro';
@@ -85,18 +88,34 @@ export class StoryScene extends Phaser.Scene {
     c.add(img);
     if (slide.dim) c.add(this.add.rectangle(0, 0, VIEW_W, VIEW_H, 0x000000, slide.dim).setOrigin(0));
 
-    switch (still ? 'none' : (slide.motion ?? 'none')) {
+    // The prolog painting has no ground (the trunks run off the bottom edge), so the bus slides
+    // get a strip of grass and a village dirt road for the wheels to sit on.
+    const busSlide = slide.motion === 'busArrive' || slide.motion === 'busLeave';
+    if (busSlide) c.add(this.ground());
+    const busAt = (x: number): Phaser.GameObjects.Image => {
+      const bus = this.add.image(x, ROAD_Y, 'cs_bus').setScale(0.36).setOrigin(0.5, 0.985);
+      c.add([this.add.ellipse(x, ROAD_Y - 2, 470, 22, 0x000000, 0.28), bus]);
+      return bus;
+    };
+
+    switch (still ? (busSlide ? 'busStill' : 'none') : (slide.motion ?? 'none')) {
+      case 'busStill':
+        busAt(520);
+        break;
       case 'busArrive': {
-        const bus = this.add.image(-360, 470, 'cs_bus').setScale(0.3).setOrigin(0.5, 1);
-        c.add(bus);
-        this.tweens.add({ targets: bus, x: 440, duration: 2600, ease: 'Cubic.easeOut' });
-        this.tweens.add({ targets: bus, y: 468, duration: 180, yoyo: true, repeat: 12 });
+        const bus = busAt(-360);
+        const shadow = c.list[c.list.length - 2] as Phaser.GameObjects.Ellipse;
+        this.tweens.add({ targets: [bus, shadow], x: 520, duration: 2600, ease: 'Cubic.easeOut' });
+        // Engine idle: a small body bounce while it rolls, settling as it stops.
+        this.tweens.add({ targets: bus, y: ROAD_Y - 3, duration: 160, yoyo: true, repeat: 12, ease: 'Sine.easeInOut' });
+        this.dust(c, 520, 2600);
         break;
       }
       case 'busLeave': {
-        const bus = this.add.image(440, 470, 'cs_bus').setScale(0.3).setOrigin(0.5, 1);
-        c.add(bus);
-        this.tweens.add({ targets: bus, x: VIEW_W + 380, duration: 3200, ease: 'Cubic.easeIn', delay: 900 });
+        const bus = busAt(520);
+        const shadow = c.list[c.list.length - 2] as Phaser.GameObjects.Ellipse;
+        this.tweens.add({ targets: [bus, shadow], x: VIEW_W + 420, duration: 3200, ease: 'Cubic.easeIn', delay: 900 });
+        this.tweens.add({ targets: bus, y: ROAD_Y - 3, duration: 150, yoyo: true, repeat: 20, delay: 900 });
         break;
       }
       case 'panRight':
@@ -110,6 +129,43 @@ export class StoryScene extends Phaser.Scene {
         break;
     }
     return c;
+  }
+
+  /** Grass bank and a rutted dirt road, drawn in the painting's 8px pixel grid and palette. */
+  private ground(): Phaser.GameObjects.Graphics {
+    const g = this.add.graphics();
+    const P = 8;
+    const grassTop = 600;
+    g.fillStyle(0x1f5a3a).fillRect(0, grassTop, VIEW_W, VIEW_H - grassTop);
+    // Ragged grass edge so it reads as a bank, not a ruler line.
+    g.fillStyle(0x2f7d3b);
+    for (let x = 0; x < VIEW_W; x += P) {
+      const bump = ((x * 7919) % 23) % 3;
+      g.fillRect(x, grassTop - bump * P, P, P * (2 + bump));
+    }
+    g.fillStyle(0x3d9446);
+    for (let x = 0; x < VIEW_W; x += P * 3) g.fillRect(x + ((x / P) % 2) * P, grassTop + P, P, P);
+    // Road: packed earth, two darker wheel ruts and a lighter crown.
+    g.fillStyle(0x7a5a48).fillRect(0, ROAD_Y - 34, VIEW_W, VIEW_H - (ROAD_Y - 34));
+    g.fillStyle(0x8c6a52).fillRect(0, ROAD_Y - 26, VIEW_W, 12);
+    g.fillStyle(0x5f4436).fillRect(0, ROAD_Y - 6, VIEW_W, P).fillRect(0, ROAD_Y + 26, VIEW_W, P);
+    g.fillStyle(0x2f7d3b);
+    for (let x = 0; x < VIEW_W; x += P) if (((x * 31) % 17) % 4 === 0) g.fillRect(x, ROAD_Y - 34, P, P);
+    // Pebbles.
+    g.fillStyle(0xb89a7a);
+    for (let x = 12; x < VIEW_W; x += 72) g.fillRect(x, ROAD_Y + 10 + ((x * 13) % 3) * P, P, P / 2);
+    return g;
+  }
+
+  /** Puffs of road dust behind the wheels while the bus brakes. */
+  private dust(c: Phaser.GameObjects.Container, stopX: number, ms: number): void {
+    for (let i = 0; i < 10; i++) {
+      this.time.delayedCall(ms * 0.35 + i * 120, () => {
+        const puff = this.add.circle(stopX - 200 + Math.random() * 30, ROAD_Y - 6, 6 + Math.random() * 6, 0xc8b49a, 0.7);
+        c.add(puff);
+        this.tweens.add({ targets: puff, x: puff.x - 40 - Math.random() * 40, y: puff.y - 18, scale: 2.2, alpha: 0, duration: 900, onComplete: () => puff.destroy() });
+      });
+    }
   }
 
   private finish(): void {
