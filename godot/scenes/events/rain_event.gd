@@ -55,7 +55,7 @@ func _end() -> void:
 	Sfx.stop_loop(_loop, 1.2)
 	_loop = null
 	room.lighting.remove_tint("rain")
-	room.ctx.dialog.emit("MC", "Hujannya reda... tapi lantainya jadi becek. Harus dipel!", 4.0)
+	room.ctx.dialog.emit("Aku", "Hujannya reda... tapi lantainya jadi becek. Harus dipel!", 4.0)
 	finish()
 
 

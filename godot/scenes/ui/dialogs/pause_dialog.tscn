@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://dcim3d06o0cu1"]
 
 [ext_resource type="Script" uid="uid://bk6oyjujex5kb" path="res://scenes/ui/dialogs/pause_dialog.gd" id="1_f8c0e"]
-[ext_resource type="Texture2D" uid="uid://dqxx0g3rm52g1" path="res://assets/ui/btn_continue_long.png" id="2_14cd6"]
+[ext_resource type="Texture2D" path="res://assets/ui/btn_continue_wide.png" id="2_14cd6"]
 [ext_resource type="Script" uid="uid://cdsyk4wrb02g4" path="res://scenes/ui/art_button.gd" id="3_db3a8"]
-[ext_resource type="Texture2D" uid="uid://cur66ylhsmpxc" path="res://assets/ui/btn_setting_long.png" id="4_a9778"]
-[ext_resource type="Script" uid="uid://b2a4epeaxoykh" path="res://scenes/ui/sfx_button.gd" id="5_55bbb"]
-[ext_resource type="Texture2D" uid="uid://tayrrf7wivb3" path="res://assets/Tutorial_Button_Long (1).png" id="5_mjgwe"]
+[ext_resource type="Texture2D" path="res://assets/ui/btn_setting_wide.png" id="4_a9778"]
+[ext_resource type="Texture2D" path="res://assets/Tutorial_Button_Long.png" id="5_mjgwe"]
 [ext_resource type="Texture2D" uid="uid://b63mlkog3olkw" path="res://assets/ui/btn_quit_long.png" id="6_a5996"]
 
 [node name="PauseDialog" type="Control" unique_id=1404705286]
@@ -79,12 +78,12 @@ theme_override_font_sizes/font_size = 18
 
 [node name="List" type="VBoxContainer" parent="Center/Frame/Layout/Body" unique_id=1850105733]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Continue" type="TextureButton" parent="Center/Frame/Layout/Body/List" unique_id=906548030]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(330, 64)
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "Lanjutkan"
@@ -95,7 +94,7 @@ script = ExtResource("3_db3a8")
 
 [node name="Settings" type="TextureButton" parent="Center/Frame/Layout/Body/List" unique_id=1860023816]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(330, 64)
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "Pengaturan"
@@ -104,20 +103,20 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_db3a8")
 
-[node name="Tutorial" type="Button" parent="Center/Frame/Layout/Body/List" unique_id=1176413022]
+[node name="Tutorial" type="TextureButton" parent="Center/Frame/Layout/Body/List" unique_id=1176413022]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(330, 64)
-propagate_maximum_size = true
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
-icon = ExtResource("5_mjgwe")
-flat = true
-autowrap_trim_flags = 0
-icon_alignment = 1
-script = ExtResource("5_55bbb")
+size_flags_horizontal = 4
+tooltip_text = "Cara bermain"
+texture_normal = ExtResource("5_mjgwe")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_db3a8")
 
 [node name="Quit" type="TextureButton" parent="Center/Frame/Layout/Body/List" unique_id=774697794]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 64)
+custom_minimum_size = Vector2(384, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "Menu utama"
@@ -128,15 +127,18 @@ script = ExtResource("3_db3a8")
 
 [node name="Note" type="Label" parent="Center/Frame/Layout/Body" unique_id=1536789526]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_type_variation = &"DimLabel"
 theme_override_font_sizes/font_size = 18
 text = "Progres tersimpan otomatis setiap kali satu ruangan selesai."
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Buttons" type="HBoxContainer" parent="Center/Frame/Layout" unique_id=986261553]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 2

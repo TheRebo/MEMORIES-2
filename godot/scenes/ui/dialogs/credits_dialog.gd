@@ -1,11 +1,10 @@
 class_name CreditsDialog
 extends Modal
-## The team, third-party assets and thanks (from data/story.json).
+## The team and a thank-you line (from data/story.json).
 
 const SCENE_PATH := "res://scenes/ui/dialogs/credits_dialog.tscn"
 
-@onready var _roles: GridContainer = %Roles
-@onready var _third_party: VBoxContainer = %ThirdParty
+@onready var _team: VBoxContainer = %Team
 @onready var _thanks: Label = %Thanks
 
 
@@ -15,10 +14,9 @@ static func make() -> CreditsDialog:
 
 func build() -> void:
 	var c: Dictionary = Db.story.get("credits", {})
-	for r: Dictionary in c.get("roles", []):
-		_roles.add_child(UI.label(String(r["role"]), "DimLabel"))
-		_roles.add_child(UI.label(String(r["name"]), "AmberLabel"))
-	for t: String in c.get("thirdParty", []):
-		_third_party.add_child(UI.label("- " + t, "DimLabel", 18))
+	for n: String in c.get("team", []):
+		var l := UI.label(n, "AmberLabel", 22)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_team.add_child(l)
 	_thanks.text = String(c.get("thanks", ""))
 	(%Back as Button).pressed.connect(close)

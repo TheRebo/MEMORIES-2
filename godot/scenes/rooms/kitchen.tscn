@@ -64,6 +64,7 @@
 [ext_resource type="PackedScene" path="res://scenes/events/rain_event.tscn" id="65_b02cf"]
 [ext_resource type="PackedScene" path="res://scenes/events/blackout_event.tscn" id="66_a22d7"]
 [ext_resource type="PackedScene" path="res://scenes/events/cockroach_event.tscn" id="67_c93a6"]
+[ext_resource type="Texture2D" path="res://assets/sprites/aku_sekarang.png" id="90_akunow"]
 
 [sub_resource type="Image" id="Image_a07jl"]
 data = {
@@ -322,13 +323,13 @@ flashback = Array[Dictionary]([{
 "x": 100,
 "y": 136
 }],
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Nenek! Aku tadi- wihh wangi banget! Nenek masak apa?"
 }, {
 "speaker": "Nenek",
 "text": "Ayam goreng, kamu mau?"
 }, {
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Pastinya mau dong nek! Aku bantu nenek siapin alat makannya ya?"
 }, {
 "focus": [256, 250],
@@ -343,11 +344,11 @@ flashback = Array[Dictionary]([{
 "focus": [256, 270],
 "hide": ["nenek", "mc_kecil"],
 "show": ["mc"],
-"speaker": "MC",
+"speaker": "Aku",
 "text": "...",
 "tint": [1, 1, 1, 1]
 }, {
-"speaker": "MC",
+"speaker": "Aku",
 "text": "Nenek..."
 }])
 
@@ -1469,18 +1470,18 @@ texture = ExtResource("64_e8436")
 offset = Vector2(0, -16)
 actor = "mc_kecil"
 object_id = "MCKecil"
-label_text = "MC kecil"
+label_text = "Aku kecil"
 has_shadow = true
 
 [node name="MCDewasa" parent="Actors" unique_id=1923884591 instance=ExtResource("6_a48e7")]
 z_index = 312
 z_as_relative = false
 position = Vector2(256, 312)
-texture = ExtResource("64_e8436")
+texture = ExtResource("90_akunow")
 offset = Vector2(0, -16)
 actor = "mc"
 object_id = "MCDewasa"
-label_text = "MC"
+label_text = "Aku"
 has_shadow = true
 
 [node name="Events" type="Node" parent="." unique_id=877216218]

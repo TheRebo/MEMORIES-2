@@ -1390,7 +1390,7 @@
      "y": 242,
      "w": 32,
      "h": 32,
-     "label": "MC kecil",
+     "label": "Aku kecil",
      "tex": "actor_doc",
      "actor": "mc_kecil",
      "cutscene": "flashback"
@@ -1401,15 +1401,15 @@
      "y": 92,
      "w": 32,
      "h": 32,
-     "label": "MC",
-     "tex": "actor_doc",
+     "label": "Aku",
+     "tex": "aku_sekarang",
      "actor": "mc",
      "cutscene": "flashback"
     }
    ],
    "flashback": [
     {
-     "speaker": "MC",
+     "speaker": "Aku",
      "text": "Tunggu, bukannya ini..?",
      "show": [
       "mc"
@@ -1437,7 +1437,7 @@
      "hold": 1.6
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Nenek lagi ngapain?",
      "show": [
       "nenek",
@@ -1462,7 +1462,7 @@
      "text": "Nenek lagi duduk-duduk aja, kamu mau dengar cerita?"
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Mau nek!",
      "moves": [
       {
@@ -2703,7 +2703,7 @@
      "y": 214,
      "w": 32,
      "h": 32,
-     "label": "MC kecil",
+     "label": "Aku kecil",
      "tex": "actor_doc",
      "actor": "mc_kecil",
      "cutscene": "flashback"
@@ -2714,8 +2714,8 @@
      "y": 312,
      "w": 32,
      "h": 32,
-     "label": "MC",
-     "tex": "actor_doc",
+     "label": "Aku",
+     "tex": "aku_sekarang",
      "actor": "mc",
      "cutscene": "flashback"
     }
@@ -2740,7 +2740,7 @@
      ]
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Nenek! Aku tadi- wihh wangi banget! Nenek masak apa?",
      "moves": [
       {
@@ -2755,7 +2755,7 @@
      "text": "Ayam goreng, kamu mau?"
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Pastinya mau dong nek! Aku bantu nenek siapin alat makannya ya?"
     },
     {
@@ -2774,7 +2774,7 @@
      ]
     },
     {
-     "speaker": "MC",
+     "speaker": "Aku",
      "text": "...",
      "show": [
       "mc"
@@ -2795,7 +2795,7 @@
      ]
     },
     {
-     "speaker": "MC",
+     "speaker": "Aku",
      "text": "Nenek..."
     }
    ],
@@ -4014,7 +4014,7 @@
      "y": 178,
      "w": 32,
      "h": 32,
-     "label": "MC kecil",
+     "label": "Aku kecil",
      "tex": "actor_doc",
      "actor": "mc_kecil",
      "cutscene": "flashback"
@@ -4040,7 +4040,7 @@
      ]
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Nenek? Nenek kenapa?"
     },
     {
@@ -4048,7 +4048,7 @@
      "text": "Nenek baik-baik aja- uhuk uhuk!"
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Nek..."
     },
     {
@@ -4060,7 +4060,7 @@
      "text": "Sini tiduran, udah malam loh."
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Iya nek.",
      "moves": [
       {
@@ -4071,11 +4071,11 @@
      ]
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Kalau {mc} udah besar, nanti aku mau kerja."
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Terus uangnya bisa beli obat biar nenek bisa sembuh."
     },
     {
@@ -4083,7 +4083,7 @@
      "text": "(terkekeh) Iya iya, kalau udah kerja jangan lupa jenguk nenek ya."
     },
     {
-     "speaker": "MC kecil",
+     "speaker": "Aku kecil",
      "text": "Aku ga bakal lupa kok! Aku janji nek!"
     }
    ],

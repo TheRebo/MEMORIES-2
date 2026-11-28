@@ -1,6 +1,6 @@
 class_name PauseDialog
 extends Modal
-## Pause: lettered CONTINUE / SETTING / QUIT art plus a plank button for the tutorial.
+## Pause: four lettered planks (CONTINUE, SETTING, TUTORIAL, QUIT) of equal size.
 
 const SCENE_PATH := "res://scenes/ui/dialogs/pause_dialog.tscn"
 

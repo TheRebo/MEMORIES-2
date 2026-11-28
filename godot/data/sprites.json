@@ -1858,6 +1858,17 @@
     16,
     21
    ]
+  },
+  "aku_sekarang": {
+   "file": "sprites/aku_sekarang.png",
+   "w": 32,
+   "h": 32,
+   "bbox": [
+    6,
+    0,
+    20,
+    32
+   ]
   }
  },
  "named": {

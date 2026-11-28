@@ -56,7 +56,7 @@ func _run() -> void:
 	_cat.stop()
 	_cat.hide()
 	if total > 0:
-		room.ctx.dialog.emit("MC", "Aduh... barang-barangnya berantakan lagi!", 3.5)
+		room.ctx.dialog.emit("Aku", "Aduh... barang-barangnya berantakan lagi!", 3.5)
 	finish()
 
 

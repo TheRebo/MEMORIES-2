@@ -117,7 +117,7 @@ func _end() -> void:
 	room.candles.extinguish_all()
 	Sfx.play("blackout_off", 0.9)
 	set_objective("")
-	c.dialog.emit("MC", "Listriknya menyala lagi. Syukurlah!", 3.5)
+	c.dialog.emit("Aku", "Listriknya menyala lagi. Syukurlah!", 3.5)
 	finish()
 
 

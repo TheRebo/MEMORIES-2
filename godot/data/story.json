@@ -12,42 +12,42 @@
    "art": "bus_stop",
    "motion": "busLeave",
    "box": "top",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Huh... Akhirnya sampai juga. Berjam-jam duduk di dalam bis tua itu membuatku mual..."
   },
   {
    "art": "lobby",
    "motion": "slowZoom",
-   "speaker": "MC (batin)",
+   "speaker": "Aku (batin)",
    "text": "Tempat ini masih sama. Tidak ada yang berubah sejak aku pergi tiga belas tahun yang lalu."
   },
   {
    "art": "door_wall",
    "motion": "slowZoom",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Pintu ini... ternyata masih utuh."
   },
   {
    "art": "door_wall",
-   "speaker": "MC (batin)",
+   "speaker": "Aku (batin)",
    "text": "Pintu rumah nenek, entah bisa dibuka atau tidak."
   },
   {
    "art": "hand_key",
-   "speaker": "MC",
+   "speaker": "Aku",
    "sfx": "rattle",
    "text": "Ini kuncinya, kira-kira bisa digunakan gak ya?... Ohh, bisa!"
   },
   {
    "art": "door_wall_window",
-   "speaker": "MC (batin)",
+   "speaker": "Aku (batin)",
    "sfx": "unjam",
    "text": "Dulu, saat pintu ini terbuka, nenek menyambutku. Namun sekarang, hanya ada ruangan berdebu dan kotor."
   },
   {
    "art": "hand_cut_fix",
    "motion": "handRise",
-   "speaker": "MC",
+   "speaker": "Aku",
    "sfx": "slide_in",
    "text": "Huh... oke, kita bersihkan dulu!"
   }
@@ -55,35 +55,35 @@
  "ending": [
   {
    "art": "black",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Nenek, {mc} sekarang udah kerja. Udah punya uang buat beli obat nenek."
   },
   {
    "art": "black",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Tapi... aku lupa pulang."
   },
   {
    "art": "black",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Maafin {mc} nek..."
   },
   {
    "art": "grave_dark",
    "box": "right",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Sekarang aku di sini, maaf udah buat nenek nunggu."
   },
   {
    "art": "grave_dark",
    "box": "right",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Nenek..."
   },
   {
    "art": "grave_dark",
    "box": "right",
-   "speaker": "MC",
+   "speaker": "Aku",
    "text": "Aku janji, sekarang aku bakalan pulang kok."
   },
   {
@@ -122,23 +122,12 @@
  ],
  "credits": {
   "title": "MEMORIES",
-  "roles": [
-   {
-    "role": "Desain Game & Pemrograman",
-    "name": "[NAMA]"
-   },
-   {
-    "role": "Seni",
-    "name": "[NAMA]"
-   },
-   {
-    "role": "Musik & Efek Suara",
-    "name": "[NAMA]"
-   }
-  ],
-  "thirdParty": [
-   "Font \"Yoster Island\" oleh codeman38 (zone38.net)",
-   "Font \"Cairopixel\" oleh GGBotNet, SIL Open Font License 1.1"
+  "team": [
+   "Faris Ramadhan",
+   "Muhammad Firdaus Ilmi",
+   "Muhammad Rizky Fitriadi",
+   "Na'im Annafi Santosa",
+   "Zulfa Rahma Ayu"
   ],
   "thanks": "Terima kasih sudah bermain."
  },

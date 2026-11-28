@@ -319,13 +319,13 @@ flashback = Array[Dictionary]([{
 "text": "Uhuk uhuk...",
 "tint": [1, 0.82, 0.55, 1]
 }, {
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Nenek? Nenek kenapa?"
 }, {
 "speaker": "Nenek",
 "text": "Nenek baik-baik aja- uhuk uhuk!"
 }, {
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Nek..."
 }, {
 "speaker": "Nenek",
@@ -339,19 +339,19 @@ flashback = Array[Dictionary]([{
 "x": 112,
 "y": 160
 }],
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Iya nek."
 }, {
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Kalau {mc} udah besar, nanti aku mau kerja."
 }, {
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Terus uangnya bisa beli obat biar nenek bisa sembuh."
 }, {
 "speaker": "Nenek",
 "text": "(terkekeh) Iya iya, kalau udah kerja jangan lupa jenguk nenek ya."
 }, {
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Aku ga bakal lupa kok! Aku janji nek!"
 }])
 
@@ -1400,7 +1400,7 @@ texture = ExtResource("60_3d92c")
 offset = Vector2(0, -16)
 actor = "mc_kecil"
 object_id = "MCKecil"
-label_text = "MC kecil"
+label_text = "Aku kecil"
 has_shadow = true
 
 [node name="Events" type="Node" parent="." unique_id=1530809005]

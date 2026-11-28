@@ -47,17 +47,16 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 theme_override_constants/separation = 10
 
-[node name="Roles" type="GridContainer" parent="Center/Frame/Layout/Body"]
+[node name="Team" type="VBoxContainer" parent="Center/Frame/Layout/Body"]
 unique_name_in_owner = true
-columns = 2
-theme_override_constants/h_separation = 20
-
-[node name="ThirdParty" type="VBoxContainer" parent="Center/Frame/Layout/Body"]
-unique_name_in_owner = true
+custom_minimum_size = Vector2(380, 0)
+theme_override_constants/separation = 6
 
 [node name="Thanks" type="Label" parent="Center/Frame/Layout/Body"]
 unique_name_in_owner = true
+theme_type_variation = &"DimLabel"
 text = ""
+horizontal_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="Center/Frame/Layout"]
 unique_name_in_owner = true

@@ -232,7 +232,7 @@ func _close() -> void:
 	clear_point("window")
 	set_bar("", -1.0)
 	set_objective("")
-	room.ctx.dialog.emit("MC", "Fiuh... jendelanya akhirnya tertutup.", 3.0)
+	room.ctx.dialog.emit("Aku", "Fiuh... jendelanya akhirnya tertutup.", 3.0)
 	finish()
 
 

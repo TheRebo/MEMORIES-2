@@ -70,6 +70,7 @@
 [ext_resource type="Texture2D" uid="uid://dfr16fbcthlnu" path="res://assets/sprites/actor_doc_1.png" id="68_424a7"]
 [ext_resource type="Texture2D" uid="uid://dotm17ploy1oj" path="res://assets/sprites/actor_doc.png" id="69_01e11"]
 [ext_resource type="PackedScene" path="res://scenes/events/cat_event.tscn" id="70_985ab"]
+[ext_resource type="Texture2D" path="res://assets/sprites/aku_sekarang.png" id="90_akunow"]
 
 [sub_resource type="Image" id="Image_8q376"]
 data = {
@@ -444,7 +445,7 @@ flashback = Array[Dictionary]([{
 "y": 84
 }],
 "show": ["mc"],
-"speaker": "MC",
+"speaker": "Aku",
 "text": "Tunggu, bukannya ini..?"
 }, {
 "focus": [378, 36],
@@ -456,7 +457,7 @@ flashback = Array[Dictionary]([{
 "focus": [256, 214],
 "hide": ["mc"],
 "show": ["nenek", "mc_kecil"],
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Nenek lagi ngapain?",
 "tint": [1, 0.82, 0.55, 1]
 }, {
@@ -468,7 +469,7 @@ flashback = Array[Dictionary]([{
 "x": 256,
 "y": 244
 }],
-"speaker": "MC kecil",
+"speaker": "Aku kecil",
 "text": "Mau nek!"
 }, {
 "speaker": "Nenek",
@@ -1702,18 +1703,18 @@ texture = ExtResource("69_01e11")
 offset = Vector2(0, -16)
 actor = "mc_kecil"
 object_id = "MCKecil"
-label_text = "MC kecil"
+label_text = "Aku kecil"
 has_shadow = true
 
 [node name="MCDewasa" parent="Actors" unique_id=573873418 instance=ExtResource("6_ebadb")]
 z_index = 92
 z_as_relative = false
 position = Vector2(323, 92)
-texture = ExtResource("69_01e11")
+texture = ExtResource("90_akunow")
 offset = Vector2(0, -16)
 actor = "mc"
 object_id = "MCDewasa"
-label_text = "MC"
+label_text = "Aku"
 has_shadow = true
 
 [node name="Events" type="Node" parent="." unique_id=592073094]

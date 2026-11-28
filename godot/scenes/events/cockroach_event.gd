@@ -47,7 +47,7 @@ func _cleared() -> void:
 	room.remove_click_interceptor(_intercept)
 	room.ctx.set_blocked("roach", false)
 	set_objective("")
-	room.ctx.dialog.emit("MC", "Hih... kecoanya sudah pergi. Lanjut bersih-bersih!", 3.0)
+	room.ctx.dialog.emit("Aku", "Hih... kecoanya sudah pergi. Lanjut bersih-bersih!", 3.0)
 	finish()
 
 
