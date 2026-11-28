@@ -66,3 +66,14 @@ export function reducedMotion(): boolean {
   if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true) return true;
   return !Settings.value.screenShake;
 }
+
+/**
+ * Button drawn by the team's lettered art (PLAY, SETTING, ...). The picture carries the visible
+ * word, so the accessible name comes from `label` in the player's language.
+ * `scale` keeps whole-pixel scaling so the pixel letters stay crisp.
+ */
+export function imgButton(file: string, label: string, scale: number, w: number, hgt: number, extraClass = ''): HTMLButtonElement {
+  return h('button', { class: `img-btn interactive ${extraClass}`.trim(), type: 'button', 'aria-label': label, title: label,
+    style: `--w:${w * scale}px;--h:${hgt * scale}px` },
+  h('img', { src: `assets/ui/${file}.png`, alt: '', width: w * scale, height: hgt * scale, draggable: 'false' }));
+}

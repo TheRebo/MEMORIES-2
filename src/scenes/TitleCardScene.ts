@@ -20,7 +20,7 @@ export class TitleCardScene extends Phaser.Scene {
     back.addEventListener('click', () => this.leave());
     layer.append(
       h('div', { class: 'titlecard-inner' },
-        h('img', { src: 'assets/ui/title_logo.png', alt: 'Memories', width: 640, height: 360 }),
+        h('img', { src: 'assets/ui/title_logo_trim.png', alt: 'Memories', width: 640, height: 165 }),
         h('p', { class: 'titlecard-thanks display' }, CREDITS.thanks),
         back),
     );
