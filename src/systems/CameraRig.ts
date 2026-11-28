@@ -40,6 +40,14 @@ export class CameraRig {
     this.insetLeft = px;
   }
 
+  /** World point at the middle of the visible area. */
+  worldCenter(): { x: number; y: number } {
+    const cam = this.scene.cameras.main;
+    const u = this.usable();
+    const p = cam.getWorldPoint(u.centerX, u.centerY);
+    return { x: p.x, y: p.y };
+  }
+
   /** Screen rectangle not covered by HUD panels. */
   usable(): Phaser.Geom.Rectangle {
     if (this.cinematic) return new Phaser.Geom.Rectangle(0, 0, VIEW_W, VIEW_H);

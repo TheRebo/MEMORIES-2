@@ -10,6 +10,19 @@ import type { GroupStatus } from '@/systems/TaskTracker';
 import { h, reducedMotion } from './dom';
 import { Typewriter } from './Typewriter';
 
+/** What a task asks for: one of the tools, dragging by hand, or a double click. */
+export type TaskKind = ToolId | 'hand' | 'click';
+
+export interface ResultInfo {
+  stars: 1 | 2 | 3;
+  seconds: number;
+  par: number;
+  best: number | null;
+  record: boolean;
+}
+
+const clock = (s: number): string => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
 export interface HudCallbacks {
   onMenu: () => void;
   onToolPointerDown: (tool: ToolId, e: PointerEvent) => void;
@@ -18,6 +31,7 @@ export interface HudCallbacks {
   onGoRoom: (room: RoomId) => void;
   onGoHome: () => void;
   onTodoToggle: (open: boolean) => void;
+  onTaskClick: (group: string) => void;
 }
 
 type PointerGetter = () => { x: number; y: number } | null;
@@ -95,6 +109,13 @@ export class Hud {
   private heldTool: ToolId | null = null;
   private candleHeld = false;
   private lastGroups = new Map<string, GroupStatus>();
+  private readonly timerEl: HTMLDivElement;
+  private readonly timerText: HTMLSpanElement;
+  private readonly timerStars: HTMLSpanElement[];
+  private lastSecond = -1;
+  private lastStars = 3;
+  private suggestTimer = 0;
+  private hovered: ToolId | null = null;
 
   constructor(layer: HTMLDivElement, private readonly roomId: RoomId, private readonly cb: HudCallbacks) {
     this.root = layer;
@@ -121,12 +142,17 @@ export class Hud {
       Audio.uiClick();
       cb.onMenu();
     });
+    this.timerStars = [0, 1, 2].map(() => h('span', { class: 'star on', 'aria-hidden': 'true' }));
+    this.timerText = h('span', { class: 'timer-text display' }, '0:00');
+    this.timerEl = h('div', { class: 'timer', role: 'timer', title: 'Waktu di ruangan ini. Bersihkan lebih cepat untuk bintang lebih banyak.' },
+      h('span', { class: 'timer-stars' }, ...this.timerStars), this.timerText);
     const top = h('header', { class: 'hud-top' },
-      h('div', { class: 'room-id' },
-        h('span', { class: 'room-step display', title: `Ruangan ${step} dari ${ROOM_ORDER.length}` }, `${step}/${ROOM_ORDER.length}`),
-        h('h1', { class: 'room-name display' }, room.name)),
-      h('div', { class: 'progress-wrap' }, h('span', { class: 'progress-label' }, 'Kebersihan'), this.progressBar, this.progressText),
-      h('div', { class: 'hud-top-actions' }, this.todoBtn, menuBtn));
+      h('div', { class: 'plaque' },
+        h('div', { class: 'room-id' },
+          h('span', { class: 'room-step display', title: `Ruangan ${step} dari ${ROOM_ORDER.length}` }, `${step}/${ROOM_ORDER.length}`),
+          h('h1', { class: 'room-name display' }, room.name)),
+        h('div', { class: 'progress-wrap' }, this.progressBar, this.progressText)),
+      h('div', { class: 'hud-top-actions' }, this.timerEl, this.todoBtn, menuBtn));
 
     // ---------- Task note ----------
     this.todoCount = h('span', { class: 'note-count display' });
@@ -192,9 +218,10 @@ export class Hud {
     this.cursorEl = h('img', { class: 'tool-cursor', alt: '', width: 64, height: 64, hidden: true, draggable: 'false' });
     this.fadeEl = h('div', { class: 'hud-fade', 'aria-hidden': 'true' });
     this.live = h('div', { class: 'sr-only', 'aria-live': 'assertive' });
+    const grain = h('div', { class: 'hud-grain', 'aria-hidden': 'true' });
 
     // The fade sits under the dialog: a cutscene line shown over black must stay readable.
-    this.root.append(this.vignette, this.glow, this.pointerLayer, top, this.todo, bottom, this.fadeEl, this.letterbox,
+    this.root.append(this.vignette, this.glow, grain, this.pointerLayer, top, this.todo, bottom, this.fadeEl, this.letterbox,
       this.msgs, this.alertsEl, this.dialogEl, this.bannerEl, this.hintEl, this.cursorEl, this.live);
     this.todo.classList.toggle('closed', !this.todoOpen);
     this.todoBtn.setAttribute('aria-expanded', String(this.todoOpen));
@@ -210,7 +237,7 @@ export class Hud {
     this.root.classList.toggle('room-clean', v >= 100);
   }
 
-  setGroups(groups: GroupStatus[]): void {
+  setGroups(groups: GroupStatus[], kinds: Map<string, TaskKind> = new Map()): void {
     const open: HTMLLIElement[] = [];
     const done: HTMLLIElement[] = [];
     let tasksDone = 0;
@@ -220,11 +247,31 @@ export class Hud {
       tasksTotal += g.total;
       const fin = g.done >= g.total;
       const prev = this.lastGroups.get(g.name);
-      const li = h('li', { class: `todo-item${fin ? ' done' : ''}` },
+      const kind = kinds.get(g.name);
+      const li = h('li', { class: `todo-item${fin ? ' done' : ' interactive'}` },
         h('span', { class: 'todo-check', 'aria-hidden': 'true' }),
+        this.kindIcon(kind),
         h('span', { class: 'todo-name' }, g.name),
         h('span', { class: 'todo-count' }, fin ? '' : `${g.done}/${g.total}`));
-      li.setAttribute('aria-label', `${g.name}: ${g.done} dari ${g.total}${fin ? ', selesai' : ''}`);
+      li.setAttribute('aria-label', `${g.name}: ${g.done} dari ${g.total}${fin ? ', selesai' : '. Tekan untuk menunjukkan lokasinya'}`);
+      if (!fin) {
+        li.tabIndex = 0;
+        li.setAttribute('role', 'button');
+        li.title = 'Tunjukkan di ruangan';
+        const go = (): void => {
+          li.classList.remove('pinged');
+          void li.offsetWidth;
+          li.classList.add('pinged');
+          this.cb.onTaskClick(g.name);
+        };
+        li.addEventListener('click', go);
+        li.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            go();
+          }
+        });
+      }
       li.dataset['group'] = g.name;
       // An event added work to a list item (new puddles): flash it so the change is noticed.
       if (prev && prev.total < g.total) li.classList.add('grew');
@@ -239,6 +286,81 @@ export class Hud {
     this.todoCount.textContent = `${tasksDone}/${tasksTotal}`;
     this.todoCount.title = `${tasksTotal - tasksDone} bagian lagi`;
     this.lastGroups = new Map(groups.map((g) => [g.name, g]));
+  }
+
+  /** Small picture of what a task needs: the tool, a hand (drag) or a double-click mark. */
+  private kindIcon(kind: TaskKind | undefined): HTMLElement {
+    if (kind === 'hand' || kind === 'click' || kind === undefined) {
+      return h('span', { class: `todo-kind ${kind ?? 'none'}`, 'aria-hidden': 'true' }, kind === 'click' ? '2x' : kind === 'hand' ? '' : '');
+    }
+    const t = TOOLS.find((x) => x.id === kind);
+    return h('img', { class: 'todo-kind', src: t ? sprite(t.icon) : '', alt: '', width: 16, height: 16 });
+  }
+
+  // ---------- Timer ----------
+  setTime(seconds: number, par: number): void {
+    const s = Math.floor(seconds);
+    if (s === this.lastSecond) return;
+    this.lastSecond = s;
+    this.timerText.textContent = clock(s);
+    const stars = seconds <= par ? 3 : seconds <= par * 1.5 ? 2 : 1;
+    if (stars !== this.lastStars) {
+      this.lastStars = stars;
+      this.timerStars.forEach((el, i) => el.classList.toggle('on', i < stars));
+      const lost = this.timerStars[stars];
+      lost?.classList.add('lost');
+      this.timerEl.classList.add('warn');
+      window.setTimeout(() => this.timerEl.classList.remove('warn'), 1200);
+      this.toast(stars === 2 ? 'Bintang ketiga lepas. Masih bisa dapat dua!' : 'Tinggal satu bintang. Ayo selesaikan!');
+    }
+    // Last 30 s before the next star is lost: the timer warms up as a nudge.
+    const next = stars === 3 ? par : stars === 2 ? par * 1.5 : Infinity;
+    this.timerEl.classList.toggle('hurry', next - seconds < 30);
+    this.timerEl.setAttribute('aria-label', `Waktu ${clock(s)}, ${stars} bintang`);
+  }
+
+  /** Room finished: stars, time and best time on a paper card. Resolves when dismissed. */
+  showResult(r: ResultInfo): Promise<void> {
+    return new Promise((resolve) => {
+      const stars = [0, 1, 2].map((i) => h('span', { class: `big-star${i < r.stars ? ' on' : ''}`, style: `--d:${300 + i * 260}ms` }));
+      const best = r.best === null || r.record ? r.seconds : Math.min(r.best, r.seconds);
+      const card = h('div', { class: 'result paper', role: 'dialog', 'aria-label': `Hasil: ${r.stars} bintang, waktu ${clock(r.seconds)}` },
+        h('p', { class: 'result-title display' }, r.stars === 3 ? 'Sempurna!' : r.stars === 2 ? 'Bagus!' : 'Selesai!'),
+        h('div', { class: 'result-stars' }, ...stars),
+        h('dl', { class: 'result-stats' },
+          h('dt', {}, 'Waktu'), h('dd', { class: 'display' }, clock(r.seconds)),
+          h('dt', {}, 'Target 3 bintang'), h('dd', { class: 'display' }, clock(r.par)),
+          h('dt', {}, 'Rekor'), h('dd', { class: 'display' }, clock(best))),
+        r.record && r.best !== null ? h('p', { class: 'result-record display' }, 'Rekor baru!') : h('span', {}),
+        h('p', { class: 'result-hint' }, 'Klik atau Enter untuk lanjut'));
+      this.root.append(card);
+      stars.forEach((_el, i) => {
+        if (i < r.stars) window.setTimeout(() => Audio.sfx('reward', { volume: 0.6, detune: i * 200 }), 300 + i * 260);
+      });
+      let closed = false;
+      // Keyboard players close it with Enter, Space or Esc (Esc must not also skip the flashback).
+      const onKey = (e: KeyboardEvent): void => {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Escape') return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        close();
+      };
+      const close = (): void => {
+        if (closed) return;
+        closed = true;
+        window.removeEventListener('keydown', onKey, true);
+        card.classList.add('out');
+        window.setTimeout(() => {
+          card.remove();
+          resolve();
+        }, 260);
+      };
+      window.setTimeout(() => {
+        card.addEventListener('pointerdown', close);
+        if (!closed) window.addEventListener('keydown', onKey, true);
+      }, 900);
+      window.setTimeout(close, 6000);
+    });
   }
 
   flashGroup(name: string): void {
@@ -281,6 +403,22 @@ export class Hud {
       s.el.setAttribute('aria-pressed', String(on));
     }
     this.updateCursor();
+  }
+
+  /** Glow on the slot of the tool a located task needs. */
+  suggestTool(tool: ToolId, seconds: number): void {
+    window.clearTimeout(this.suggestTimer);
+    for (const [id, s] of this.slots) s.el.classList.toggle('suggest', id === tool);
+    this.suggestTimer = window.setTimeout(() => {
+      for (const s of this.slots.values()) s.el.classList.remove('suggest');
+    }, seconds * 1000);
+  }
+
+  /** Empty hand over grime: the slot of the tool it needs is marked. */
+  hoverTool(tool: ToolId | null): void {
+    if (tool === this.hovered) return;
+    this.hovered = tool;
+    for (const [id, s] of this.slots) s.el.classList.toggle('hint', id === tool);
   }
 
   setCandleHeld(on: boolean): void {
@@ -542,6 +680,11 @@ export class Hud {
     this.applyInset();
   }
 
+  /** Flashback look (grain, flicker) while a memory plays. */
+  setMemory(on: boolean): void {
+    this.root.classList.toggle('memory', on);
+  }
+
   fade(toBlack: boolean, ms: number): void {
     this.fadeEl.style.transitionDuration = `${ms}ms`;
     this.fadeEl.classList.toggle('on', toBlack);
@@ -562,6 +705,7 @@ export class Hud {
     window.clearTimeout(this.dialogTimer);
     window.clearTimeout(this.hintTimer);
     window.clearTimeout(this.bannerTimer);
+    window.clearTimeout(this.suggestTimer);
     this.root.remove();
   }
 }

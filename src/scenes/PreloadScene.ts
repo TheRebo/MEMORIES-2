@@ -26,7 +26,7 @@ export class PreloadScene extends Phaser.Scene {
     const label = h('p', { class: 'loading-label display', role: 'status', 'aria-live': 'polite' }, 'Memuat... 0%');
     this.layer.append(
       h('div', { class: 'loading-box' },
-        h('p', { class: 'loading-title display' }, 'MEMORIES'),
+        h('h1', { class: 'loading-title' }, h('img', { src: 'assets/ui/title_logo_trim.png', alt: 'Memories', width: 460, height: 118 })),
         h('div', { class: 'loading-track', role: 'progressbar', 'aria-label': 'Memuat aset', 'aria-valuemin': 0, 'aria-valuemax': 100 }, bar),
         label),
     );
