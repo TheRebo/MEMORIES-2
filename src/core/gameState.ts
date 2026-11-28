@@ -10,6 +10,8 @@ interface SaveData {
   progress: Partial<Record<RoomId, number>>;
   inventory: Record<string, number>;
   toolCounts: Partial<Record<ToolId, number>>;
+  /** Fastest clean per room, in seconds. */
+  bestTimes?: Partial<Record<RoomId, number>>;
   trashTotal: number;
   tutorialSeen: boolean;
   seenTutorials: string[];
@@ -38,6 +40,10 @@ function parse(raw: unknown): SaveData | null {
   }
   if (isRecord(raw['inventory'])) {
     for (const [k, v] of Object.entries(raw['inventory'])) out.inventory[k] = Math.max(0, Math.floor(num(v, 0)));
+  }
+  if (isRecord(raw['bestTimes'])) {
+    out.bestTimes = {};
+    for (const [k, v] of Object.entries(raw['bestTimes'])) if (isRoomId(k) && num(v, 0) > 0) out.bestTimes[k] = num(v, 0);
   }
   if (isRecord(raw['toolCounts'])) {
     for (const [k, v] of Object.entries(raw['toolCounts'])) {
@@ -92,6 +98,19 @@ class GameStateStore {
     this.data.progress[room] = 100;
     this.save();
     this.events.emit('roomCompleted', room);
+  }
+
+  bestTime(room: RoomId): number | null {
+    return this.data.bestTimes?.[room] ?? null;
+  }
+
+  /** Records a finish time; true if it beats the previous best. */
+  recordTime(room: RoomId, seconds: number): boolean {
+    const prev = this.bestTime(room);
+    if (prev !== null && prev <= seconds) return false;
+    this.data.bestTimes = { ...this.data.bestTimes, [room]: Math.round(seconds) };
+    this.save();
+    return true;
   }
 
   /** True once any room has been finished: the menu then offers "Lanjutkan". */

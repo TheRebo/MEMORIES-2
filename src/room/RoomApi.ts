@@ -28,6 +28,8 @@ export interface RoomApi {
   percent(): number;
   spawnDirt(spec: DirtSpec): Dirt;
   findThing(id: string): Thing | undefined;
+  /** Grime that has to be cleaned before `d` (dust over a stain). */
+  blockerOf(d: Dirt): Dirt | null;
   /** Opens a tutorial (pauses the room while it is open). */
   showTutorial(pages: readonly TutorialPage[], title: string): void;
   /** Pointer position in world space. */

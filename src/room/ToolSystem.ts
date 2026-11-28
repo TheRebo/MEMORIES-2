@@ -22,6 +22,7 @@ export class ToolSystem {
   private working = false;
   private lastDarkNotice = -Infinity;
   private lastWrongAt = -Infinity;
+  private smeared = false;
   private freshStroke = false;
 
   private readonly onKeyDown = (e: KeyboardEvent): void => {
@@ -142,6 +143,7 @@ export class ToolSystem {
     const radius = 3 + (level - 1) * 0.6;
     const amount = Math.min(moved, 60) * this.speedOf(tool);
     let wrong: Dirt | null = null;
+    let order: { dirt: Dirt; text: string } | null = null;
     for (const d of this.room.dirt) {
       if (d.done || !d.sprite.visible || !d.contains(w.x, w.y, radius)) continue;
       if (ctx.blackout && !this.room.candles.isLit(w.x, w.y)) {
@@ -151,9 +153,19 @@ export class ToolSystem {
         }
         continue;
       }
+      // Work order: dust on top has to go first (sweep before mopping, dust before wiping).
+      if (d.tool === tool) {
+        const blocker = this.room.blockerOf(d);
+        if (blocker) {
+          order = { dirt: blocker, text: blocker.tool === 'broom' ? 'Sapu dulu debunya!' : 'Kemoceng dulu debunya!' };
+          continue;
+        }
+      }
       const r = d.scrub(tool, amount);
       if (r === 'wrong-tool') {
         wrong = d;
+        // Rubbing with the wrong tool spreads the grime a little.
+        if (d.smear(amount * 0.35)) this.smeared = true;
         continue;
       }
       if (r === 'none') continue;
@@ -163,11 +175,18 @@ export class ToolSystem {
     if (this.working) {
       this.room.fx.scrubAt(w.x, w.y, toolInfo(tool).tint);
       Audio.sfx(toolInfo(tool).sfx, { volume: 0.55, minGap: 170, detune: 120 });
+    } else if (order && performance.now() - this.lastWrongAt > 1400) {
+      this.lastWrongAt = performance.now();
+      order.dirt.nudge();
+      Audio.sfx('wrong_tool', { volume: 0.5 });
+      ctx.bus.emit('hint', { x: p.x, y: p.y, text: order.text });
     } else if (wrong && performance.now() - this.lastWrongAt > 1400) {
       this.lastWrongAt = performance.now();
       wrong.nudge();
       Audio.sfx('wrong_tool', { volume: 0.6 });
-      ctx.bus.emit('hint', { x: p.x, y: p.y, text: `Butuh: ${toolInfo(wrong.tool).name}` });
+      const spread = this.smeared ? ' Kotorannya malah menyebar!' : '';
+      ctx.bus.emit('hint', { x: p.x, y: p.y, text: `Butuh: ${toolInfo(wrong.tool).name}.${spread}` });
+      this.smeared = false;
     }
   }
 

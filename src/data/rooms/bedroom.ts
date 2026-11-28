@@ -154,6 +154,9 @@ export const bedroom: RoomDef = {
       tex: 'jaringlabalaba_sudut',
       layer: 'ground',
     },
+    { id: 'SapuLantai11', x: 200, y: 236, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai12', x: 100, y: 296, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
+    { id: 'SapuLantai13', x: 240, y: 120, w: 32, h: 16, tool: 'broom', effort: 252, group: 'Sapu lantai', tex: 'debu_ulahan_daus', layer: 'ground' },
   ],
   props: [
     {
@@ -681,8 +684,8 @@ export const bedroom: RoomDef = {
       windowOpenTexture: 'dapur_jendela_dapur_terbukadua',
       windowHalfTexture: 'dapur_jendela_dapur_terbuka',
       windowClosedTexture: 'dapur_jendela_dapur',
-      scatterBase: 2,
-      triggerProgress: 40,
+      scatterBase: 3,
+      triggerProgress: 35,
       introText: 'Angin kencang! Jendela terbuka! Klik jendelanya berkali-kali untuk menutupnya!',
       tutorial: [
         {
@@ -691,13 +694,17 @@ export const bedroom: RoomDef = {
         },
       ],
       floorArea: { x: 40, y: 130, w: 430, h: 190 },
+      clickGain: 0.06,
+      decayPerSecond: 0.15,
+      maxRepeats: 1,
+      repeatInterval: 90,
     },
     {
       kind: 'cockroach',
       triggerProgress: 5,
-      repeatInterval: 30,
+      repeatInterval: 26,
       repeatJitter: 0,
-      maxRepeats: 3,
+      maxRepeats: 4,
       introText: 'Ada kecoa! Klik kecoa itu agar bisa lanjut membersihkan.',
       tutorial: [
         {
@@ -707,6 +714,8 @@ export const bedroom: RoomDef = {
       ],
       walkArea: { x: 40, y: 120, w: 430, h: 200 },
       spawnPoint: { x: 250, y: 300 },
+      roachCount: 2,
+      roachSpeed: 50,
     },
   ],
 };

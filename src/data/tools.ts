@@ -31,7 +31,8 @@ export function toolInfo(id: ToolId): ToolInfo {
 
 /** Tool upgrades (Godot ToolController defaults). */
 export const TOOL_LEVELS = {
-  cleansPerLevel: 6,
+  // 9 spots per step (was 6): upgrades are earned across the house, not in the first room.
+  cleansPerLevel: 9,
   maxLevel: 5,
   speedBonusPerLevel: 0.25,
 } as const;

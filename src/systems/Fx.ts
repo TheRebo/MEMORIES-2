@@ -57,6 +57,14 @@ export class Fx {
     this.puff.explode(this.calm ? 2 : 6, x, y);
   }
 
+  /** Expanding rings that say 'here': used when a task is located from the note. */
+  ping(x: number, y: number): void {
+    for (let i = 0; i < 2; i += 1) {
+      const ring = this.scene.add.circle(x, y, 6, 0xf2b84b, 0).setStrokeStyle(1.5, 0xf2b84b, 1).setDepth(DEPTH.raised + 9999);
+      this.scene.tweens.add({ targets: ring, radius: 22, alpha: 0, duration: 750, delay: i * 260, ease: 'Quad.easeOut', onComplete: () => ring.destroy() });
+    }
+  }
+
   puffAt(x: number, y: number, n = 6): void {
     this.puff.explode(this.calm ? 2 : n, x, y);
   }
