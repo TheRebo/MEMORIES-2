@@ -6,3 +6,6 @@ release/
 .vite/
 coverage/
 .cache/
+
+# Godot
+godot/.godot/

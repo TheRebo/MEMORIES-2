@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scenes/events/wind_event.gd" id="1_888b9"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/streak.png" id="2_f1c6f"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/leaf.png" id="3_3371c"]
+
+[sub_resource type="Gradient" id="Gradient_c8b99"]
+offsets = PackedFloat32Array(0.0, 0.15, 0.7, 1.0)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.8, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_2fd52"]
+offsets = PackedFloat32Array(0.0, 0.5, 1.0)
+colors = PackedColorArray(0.788, 0.522, 0.184, 1, 0.561, 0.682, 0.29, 1, 0.45, 0.36, 0.2, 1)
+
+[node name="WindEvent" type="Node"]
+script = ExtResource("1_888b9")
+
+[node name="Gust" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+z_index = 3700
+z_as_relative = false
+emitting = false
+amount = 60
+lifetime = 1.4
+texture = ExtResource("2_f1c6f")
+emission_shape = 3
+emission_rect_extents = Vector2(24, 4)
+direction = Vector2(0.15, 1)
+spread = 28
+gravity = Vector2(10, 20)
+initial_velocity_min = 140
+initial_velocity_max = 240
+particle_flag_align_y = true
+scale_amount_min = 0.6
+scale_amount_max = 1.2
+color = Color(0.92, 0.95, 1, 0.55)
+color_ramp = SubResource("Gradient_c8b99")
+
+[node name="Leaves" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+z_index = 3700
+z_as_relative = false
+emitting = false
+amount = 14
+lifetime = 2.6
+texture = ExtResource("3_3371c")
+emission_shape = 3
+emission_rect_extents = Vector2(24, 4)
+direction = Vector2(0.2, 1)
+spread = 40
+gravity = Vector2(14, 30)
+initial_velocity_min = 50
+initial_velocity_max = 110
+angular_velocity_min = -360
+angular_velocity_max = 360
+color_initial_ramp = SubResource("Gradient_2fd52")
+color_ramp = SubResource("Gradient_c8b99")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_5ee85"]
+[ext_resource type="Shader" path="res://resources/shaders/iris.gdshader" id="2_222fa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27504"]
+shader = ExtResource("2_222fa")
+shader_parameter/radius = 0
+
+[node name="Main" type="Node"]
+script = ExtResource("1_5ee85")
+
+[node name="Screen" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Transition" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Iris" type="ColorRect" parent="Transition"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+material = SubResource("ShaderMaterial_27504")

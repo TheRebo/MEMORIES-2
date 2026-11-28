@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/room/hud/alert_card.gd" id="1_1cf61"]
+[ext_resource type="FontFile" path="res://assets/fonts/yoster.ttf" id="2_72b26"]
+
+[node name="AlertCard" type="PanelContainer"]
+mouse_filter = 2
+theme_type_variation = &"AlertFrame"
+script = ExtResource("1_1cf61")
+
+[node name="Row" type="HBoxContainer" parent="."]
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Mark" type="PanelContainer" parent="Row"]
+unique_name_in_owner = true
+theme_type_variation = &"AlertMark"
+custom_minimum_size = Vector2(32, 32)
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Bang" type="Label" parent="Row/Mark"]
+theme_type_variation = &"InkDisplayLabel"
+theme_override_font_sizes/font_size = 22
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Body" type="VBoxContainer" parent="Row"]
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Text" type="Label" parent="Row/Body"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 21
+text = ""
+custom_minimum_size = Vector2(340, 0)
+autowrap_mode = 3
+
+[node name="Bar" type="HBoxContainer" parent="Row/Body"]
+unique_name_in_owner = true
+visible = false
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="BarLabel" type="Label" parent="Row/Body/Bar"]
+unique_name_in_owner = true
+theme_type_variation = &"DimLabel"
+theme_override_font_sizes/font_size = 16
+text = ""
+theme_override_fonts/font = ExtResource("2_72b26")
+
+[node name="Track" type="PanelContainer" parent="Row/Body/Bar"]
+theme_type_variation = &"TrackDarkFrame"
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Area" type="Control" parent="Row/Body/Bar/Track"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(0, 10)
+mouse_filter = 2
+
+[node name="Fill" type="ColorRect" parent="Row/Body/Bar/Track/Area"]
+unique_name_in_owner = true
+offset_bottom = 10
+mouse_filter = 2
+color = Color(0.9412, 0.5412, 0.4471, 1)
+
+[node name="Value" type="Label" parent="Row/Body/Bar"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 16
+text = "0%"
+custom_minimum_size = Vector2(44, 0)
+horizontal_alignment = 2

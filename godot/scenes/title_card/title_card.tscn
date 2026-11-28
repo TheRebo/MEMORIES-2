@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://hpucg3mgyw36"]
+
+[ext_resource type="Script" uid="uid://djx2n3xc2f1rd" path="res://scenes/title_card/title_card.gd" id="1_75372"]
+[ext_resource type="Texture2D" uid="uid://8v14s023gltn" path="res://assets/ui/title_logo_trim.png" id="2_5fd0c"]
+
+[node name="TitleCard" type="Control" unique_id=514286361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75372")
+
+[node name="Background" type="ColorRect" parent="." unique_id=984464012]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.99462336, 0.9469289, 0.8464172, 1)
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=1996118991]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="Content" unique_id=1494656805]
+custom_minimum_size = Vector2(640, 165)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_5fd0c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Thanks" type="Label" parent="Content" unique_id=93240466]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1

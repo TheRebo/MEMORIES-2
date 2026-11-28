@@ -1,0 +1,135 @@
+{
+ "intro": [
+  {
+   "art": "bus_stop",
+   "motion": "busArrive",
+   "box": "top",
+   "speaker": "Narator",
+   "sfx": "room_enter",
+   "text": "Sebuah bus berhenti di pemberhentian terakhirnya, di pelosok yang tak mengenal hiruk-pikuknya kota."
+  },
+  {
+   "art": "bus_stop",
+   "motion": "busLeave",
+   "box": "top",
+   "speaker": "Aku",
+   "text": "Huh... Akhirnya sampai juga. Berjam-jam duduk di dalam bis tua itu membuatku mual..."
+  },
+  {
+   "art": "lobby",
+   "motion": "slowZoom",
+   "speaker": "Aku (batin)",
+   "text": "Tempat ini masih sama. Tidak ada yang berubah sejak aku pergi tiga belas tahun yang lalu."
+  },
+  {
+   "art": "door_wall",
+   "motion": "slowZoom",
+   "speaker": "Aku",
+   "text": "Pintu ini... ternyata masih utuh."
+  },
+  {
+   "art": "door_wall",
+   "speaker": "Aku (batin)",
+   "text": "Pintu rumah nenek, entah bisa dibuka atau tidak."
+  },
+  {
+   "art": "hand_key",
+   "speaker": "Aku",
+   "sfx": "rattle",
+   "text": "Ini kuncinya, kira-kira bisa digunakan gak ya?... Ohh, bisa!"
+  },
+  {
+   "art": "door_wall_window",
+   "speaker": "Aku (batin)",
+   "sfx": "unjam",
+   "text": "Dulu, saat pintu ini terbuka, nenek menyambutku. Namun sekarang, hanya ada ruangan berdebu dan kotor."
+  },
+  {
+   "art": "hand_cut_fix",
+   "motion": "handRise",
+   "speaker": "Aku",
+   "sfx": "slide_in",
+   "text": "Huh... oke, kita bersihkan dulu!"
+  }
+ ],
+ "ending": [
+  {
+   "art": "black",
+   "speaker": "Aku",
+   "text": "Nenek, {mc} sekarang udah kerja. Udah punya uang buat beli obat nenek."
+  },
+  {
+   "art": "black",
+   "speaker": "Aku",
+   "text": "Tapi... aku lupa pulang."
+  },
+  {
+   "art": "black",
+   "speaker": "Aku",
+   "text": "Maafin {mc} nek..."
+  },
+  {
+   "art": "grave_dark",
+   "box": "right",
+   "speaker": "Aku",
+   "text": "Sekarang aku di sini, maaf udah buat nenek nunggu."
+  },
+  {
+   "art": "grave_dark",
+   "box": "right",
+   "speaker": "Aku",
+   "text": "Nenek..."
+  },
+  {
+   "art": "grave_dark",
+   "box": "right",
+   "speaker": "Aku",
+   "text": "Aku janji, sekarang aku bakalan pulang kok."
+  },
+  {
+   "art": "grave_flowers",
+   "fadeIn": 2.4,
+   "sfx": "ending_chime",
+   "hold": 4.0
+  }
+ ],
+ "start_tutorial": [
+  {
+   "title": "Sapu",
+   "image": "item_sapu",
+   "text": "Tahan 1 (atau tahan slot Sapu) untuk memegang sapu. Gosokkan mouse di atas debu lantai sampai bersih, lalu lepas tombolnya untuk menaruh sapu."
+  },
+  {
+   "title": "Pel",
+   "image": "item_pel",
+   "text": "Tahan 2 untuk memegang pel. Gosok noda, lantai yang lengket, dan genangan air sampai hilang."
+  },
+  {
+   "title": "Kain Lap",
+   "image": "item_kain_lap",
+   "text": "Tahan 3 untuk memegang kain lap. Lap perabot, jendela, cermin, dan benda lain yang berdebu."
+  },
+  {
+   "title": "Kemoceng",
+   "image": "kemoceng_daus",
+   "text": "Tahan 4 untuk memegang kemoceng. Bersihkan sarang laba-laba dan debu di tempat tinggi, seperti sudut atas ruangan dan atas lemari."
+  },
+  {
+   "title": "Merapikan barang",
+   "image": "buku_biru",
+   "text": "Seret barang kecil di lantai ke rak, lemari, wastafel, atau tempat sampah. Benda bertanda \"klik 2x\" (vas layu, bantal, guling, selimut) cukup diklik dua kali dengan cepat."
+  }
+ ],
+ "credits": {
+  "title": "MEMORIES",
+  "team": [
+   "Faris Ramadhan",
+   "Muhammad Firdaus Ilmi",
+   "Muhammad Rizky Fitriadi",
+   "Na'im Annafi Santosa",
+   "Zulfa Rahma Ayu"
+  ],
+  "thanks": "Terima kasih sudah bermain."
+ },
+ "mcName": "aku"
+}

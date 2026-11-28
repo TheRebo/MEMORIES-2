@@ -1,0 +1,573 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://scenes/room/hud/hud.gd" id="1_ebe18"]
+[ext_resource type="Shader" path="res://resources/shaders/film_grain.gdshader" id="2_51ca0"]
+[ext_resource type="Script" path="res://scenes/ui/star.gd" id="3_a9a1e"]
+[ext_resource type="Script" path="res://scenes/ui/sfx_button.gd" id="4_7b53c"]
+[ext_resource type="Texture2D" path="res://assets/ui/btn_menu.png" id="5_a5473"]
+[ext_resource type="Script" path="res://scenes/ui/art_button.gd" id="6_c0b18"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/dash.png" id="7_c62c8"]
+[ext_resource type="PackedScene" path="res://scenes/room/hud/tool_slot.tscn" id="8_84267"]
+[ext_resource type="Script" path="res://scenes/ui/typer.gd" id="9_8cffe"]
+
+[sub_resource type="Gradient" id="Gradient_3cde8"]
+offsets = PackedFloat32Array(0.0, 0.45, 1.0)
+colors = PackedColorArray(0.04, 0.024, 0.016, 0, 0.04, 0.024, 0.016, 0, 0.04, 0.024, 0.016, 0.75)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_84c27"]
+gradient = SubResource("Gradient_3cde8")
+width = 256
+height = 144
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_66e47"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_6b5f8"]
+offsets = PackedFloat32Array(0.0, 0.55, 1.0)
+colors = PackedColorArray(0.949, 0.722, 0.294, 0, 0.949, 0.722, 0.294, 0, 0.949, 0.722, 0.294, 0.22)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1c28c"]
+gradient = SubResource("Gradient_6b5f8")
+width = 256
+height = 144
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8411d"]
+shader = ExtResource("2_51ca0")
+
+[node name="Hud" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_ebe18")
+
+[node name="Root" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vignette" type="TextureRect" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_84c27")
+expand_mode = 1
+
+[node name="Glow" type="TextureRect" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_66e47")
+texture = SubResource("GradientTexture2D_1c28c")
+expand_mode = 1
+
+[node name="Grain" type="ColorRect" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_8411d")
+
+[node name="Pointers" type="Control" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Top" type="Control" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Plaque" type="PanelContainer" parent="Root/Top"]
+unique_name_in_owner = true
+theme_type_variation = &"WoodFrame"
+offset_left = 12
+offset_top = 10
+offset_right = 376
+offset_bottom = 82
+custom_minimum_size = Vector2(364, 0)
+
+[node name="Content" type="VBoxContainer" parent="Root/Top/Plaque"]
+theme_override_constants/separation = 6
+
+[node name="Heading" type="HBoxContainer" parent="Root/Top/Plaque/Content"]
+theme_override_constants/separation = 10
+
+[node name="Step" type="PanelContainer" parent="Root/Top/Plaque/Content/Heading"]
+theme_type_variation = &"StepBadge"
+size_flags_vertical = 4
+
+[node name="StepText" type="Label" parent="Root/Top/Plaque/Content/Heading/Step"]
+unique_name_in_owner = true
+theme_type_variation = &"InkDisplayLabel"
+theme_override_font_sizes/font_size = 15
+text = "1/3"
+
+[node name="RoomName" type="Label" parent="Root/Top/Plaque/Content/Heading"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 23
+text = "Ruangan"
+
+[node name="ProgressRow" type="HBoxContainer" parent="Root/Top/Plaque/Content"]
+theme_override_constants/separation = 10
+
+[node name="Track" type="PanelContainer" parent="Root/Top/Plaque/Content/ProgressRow"]
+theme_type_variation = &"TrackFrame"
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ProgressBar" type="Control" parent="Root/Top/Plaque/Content/ProgressRow/Track"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(0, 12)
+mouse_filter = 2
+
+[node name="ProgressFill" type="ColorRect" parent="Root/Top/Plaque/Content/ProgressRow/Track/ProgressBar"]
+unique_name_in_owner = true
+offset_bottom = 12
+mouse_filter = 2
+color = Color(0.949, 0.7216, 0.2941, 1)
+
+[node name="ProgressLip" type="ColorRect" parent="Root/Top/Plaque/Content/ProgressRow/Track/ProgressBar/ProgressFill"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_top = -4
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.7882, 0.5412, 0.1686, 1)
+
+[node name="ProgressShine" type="ColorRect" parent="Root/Top/Plaque/Content/ProgressRow/Track/ProgressBar"]
+unique_name_in_owner = true
+offset_right = 12
+offset_bottom = 12
+mouse_filter = 2
+color = Color(1, 0.96, 0.86, 0.7)
+
+[node name="Tick1" type="ColorRect" parent="Root/Top/Plaque/Content/ProgressRow/Track/ProgressBar"]
+anchor_left = 0.25
+anchor_right = 0.25
+anchor_bottom = 1
+offset_left = -1
+mouse_filter = 2
+color = Color(0.07, 0.043, 0.027, 0.55)
+
+[node name="Tick2" type="ColorRect" parent="Root/Top/Plaque/Content/ProgressRow/Track/ProgressBar"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -1
+mouse_filter = 2
+color = Color(0.07, 0.043, 0.027, 0.55)
+
+[node name="Tick3" type="ColorRect" parent="Root/Top/Plaque/Content/ProgressRow/Track/ProgressBar"]
+anchor_left = 0.75
+anchor_right = 0.75
+anchor_bottom = 1
+offset_left = -1
+mouse_filter = 2
+color = Color(0.07, 0.043, 0.027, 0.55)
+
+[node name="ProgressText" type="Label" parent="Root/Top/Plaque/Content/ProgressRow"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 17
+text = "0%"
+custom_minimum_size = Vector2(50, 0)
+
+[node name="Actions" type="HBoxContainer" parent="Root/Top"]
+offset_left = 748
+offset_top = 10
+offset_right = 1268
+offset_bottom = 60
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Timer" type="PanelContainer" parent="Root/Top/Actions"]
+unique_name_in_owner = true
+theme_type_variation = &"WoodDarkFrame"
+size_flags_vertical = 4
+tooltip_text = "Waktu di ruangan ini. Makin cepat bersih, makin banyak bintang."
+
+[node name="Row" type="HBoxContainer" parent="Root/Top/Actions/Timer"]
+custom_minimum_size = Vector2(0, 40)
+theme_override_constants/separation = 10
+
+[node name="Stars" type="HBoxContainer" parent="Root/Top/Actions/Timer/Row"]
+alignment = 1
+theme_override_constants/separation = 3
+
+[node name="TimerStar1" type="Control" parent="Root/Top/Actions/Timer/Row/Stars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+size_flags_vertical = 4
+script = ExtResource("3_a9a1e")
+color = Color(0.949, 0.7216, 0.2941, 1)
+
+[node name="TimerStar2" type="Control" parent="Root/Top/Actions/Timer/Row/Stars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+size_flags_vertical = 4
+script = ExtResource("3_a9a1e")
+color = Color(0.949, 0.7216, 0.2941, 1)
+
+[node name="TimerStar3" type="Control" parent="Root/Top/Actions/Timer/Row/Stars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+size_flags_vertical = 4
+script = ExtResource("3_a9a1e")
+color = Color(0.949, 0.7216, 0.2941, 1)
+
+[node name="TimeText" type="Label" parent="Root/Top/Actions/Timer/Row"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 20
+text = "0:00"
+custom_minimum_size = Vector2(52, 0)
+vertical_alignment = 1
+
+[node name="NotesButton" type="Button" parent="Root/Top/Actions"]
+unique_name_in_owner = true
+theme_type_variation = &"SmallButton"
+text = "Catatan  T"
+custom_minimum_size = Vector2(0, 46)
+size_flags_vertical = 4
+tooltip_text = "Tampilkan atau sembunyikan catatan (T)"
+script = ExtResource("4_7b53c")
+
+[node name="MenuButton" type="TextureButton" parent="Root/Top/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 46)
+tooltip_text = "Jeda (Esc)"
+texture_normal = ExtResource("5_a5473")
+ignore_texture_size = true
+stretch_mode = 0
+size_flags_vertical = 4
+script = ExtResource("6_c0b18")
+
+[node name="Note" type="Control" parent="Root"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 104
+offset_right = 284
+offset_bottom = 604
+mouse_filter = 2
+
+[node name="NotePaper" type="PanelContainer" parent="Root/Note"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperNote"
+offset_right = 272
+offset_bottom = 120
+custom_minimum_size = Vector2(272, 0)
+
+[node name="Content" type="VBoxContainer" parent="Root/Note/NotePaper"]
+theme_override_constants/separation = 6
+
+[node name="Head" type="Control" parent="Root/Note/NotePaper/Content"]
+custom_minimum_size = Vector2(0, 28)
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Root/Note/NotePaper/Content/Head"]
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 22
+text = "Catatan"
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskCount" type="Label" parent="Root/Note/NotePaper/Content/Head"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 17
+text = "0/0"
+mouse_filter = 1
+anchors_preset = 6
+anchor_left = 1
+anchor_top = 0.5
+anchor_right = 1
+anchor_bottom = 0.5
+offset_left = -60
+offset_top = -12
+offset_bottom = 12
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.4157, 0.3137, 0.2196, 1)
+
+[node name="Rule" type="TextureRect" parent="Root/Note/NotePaper/Content"]
+custom_minimum_size = Vector2(0, 2)
+texture = ExtResource("7_c62c8")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TaskScroll" type="ScrollContainer" parent="Root/Note/NotePaper/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+horizontal_scroll_mode = 0
+
+[node name="TaskList" type="VBoxContainer" parent="Root/Note/NotePaper/Content/TaskScroll"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="DoneBox" type="VBoxContainer" parent="Root/Note/NotePaper/Content"]
+unique_name_in_owner = true
+visible = false
+theme_override_constants/separation = 2
+
+[node name="Rule" type="TextureRect" parent="Root/Note/NotePaper/Content/DoneBox"]
+custom_minimum_size = Vector2(0, 2)
+texture = ExtResource("7_c62c8")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="DoneToggle" type="Button" parent="Root/Note/NotePaper/Content/DoneBox"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperFlatButton"
+text = "+ Selesai (0)"
+alignment = 0
+script = ExtResource("4_7b53c")
+
+[node name="DoneList" type="VBoxContainer" parent="Root/Note/NotePaper/Content/DoneBox"]
+unique_name_in_owner = true
+visible = false
+theme_override_constants/separation = 2
+
+[node name="Tape" type="ColorRect" parent="Root/Note"]
+offset_left = 100
+offset_top = -9
+offset_right = 172
+offset_bottom = 9
+rotation = -0.0349
+mouse_filter = 2
+color = Color(0.84, 0.77, 0.59, 0.85)
+
+[node name="Bottom" type="Control" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BeltRow" type="HBoxContainer" parent="Root/Bottom"]
+offset_top = 610
+offset_right = 1280
+offset_bottom = 710
+mouse_filter = 2
+alignment = 1
+
+[node name="Belt" type="PanelContainer" parent="Root/Bottom/BeltRow"]
+unique_name_in_owner = true
+theme_type_variation = &"BeltFrame"
+size_flags_vertical = 8
+
+[node name="Slots" type="HBoxContainer" parent="Root/Bottom/BeltRow/Belt"]
+unique_name_in_owner = true
+theme_override_constants/separation = 6
+
+[node name="Broom" parent="Root/Bottom/BeltRow/Belt/Slots" instance=ExtResource("8_84267")]
+layout_mode = 2
+tool_id = "broom"
+
+[node name="Mop" parent="Root/Bottom/BeltRow/Belt/Slots" instance=ExtResource("8_84267")]
+layout_mode = 2
+tool_id = "mop"
+
+[node name="Cloth" parent="Root/Bottom/BeltRow/Belt/Slots" instance=ExtResource("8_84267")]
+layout_mode = 2
+tool_id = "cloth"
+
+[node name="Duster" parent="Root/Bottom/BeltRow/Belt/Slots" instance=ExtResource("8_84267")]
+layout_mode = 2
+tool_id = "duster"
+
+[node name="CandleSlot" parent="Root/Bottom/BeltRow/Belt/Slots" instance=ExtResource("8_84267")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+is_candle = true
+
+[node name="Nav" type="HBoxContainer" parent="Root/Bottom"]
+unique_name_in_owner = true
+visible = false
+offset_left = 868
+offset_top = 660
+offset_right = 1268
+offset_bottom = 710
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Fade" type="ColorRect" parent="Root"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="LetterTop" type="ColorRect" parent="Root"]
+unique_name_in_owner = true
+offset_top = -56
+offset_right = 1280
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LetterBottom" type="ColorRect" parent="Root"]
+unique_name_in_owner = true
+offset_top = 720
+offset_right = 1280
+offset_bottom = 776
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Alerts" type="VBoxContainer" parent="Root"]
+unique_name_in_owner = true
+offset_left = 848
+offset_top = 66
+offset_right = 1268
+offset_bottom = 66
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Toast" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+theme_type_variation = &"ToastFrame"
+modulate = Color(1, 1, 1, 0)
+offset_left = 560
+offset_top = 74
+offset_right = 720
+offset_bottom = 120
+mouse_filter = 2
+
+[node name="ToastText" type="Label" parent="Root/Toast"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 21
+text = ""
+horizontal_alignment = 1
+
+[node name="Dialog" type="Control" parent="Root"]
+unique_name_in_owner = true
+visible = false
+mouse_filter = 2
+
+[node name="DialogPanel" type="PanelContainer" parent="Root/Dialog"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperFrame"
+offset_right = 720
+offset_bottom = 80
+custom_minimum_size = Vector2(720, 0)
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="Root/Dialog/DialogPanel"]
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="DialogText" type="Label" parent="Root/Dialog/DialogPanel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(660, 30)
+theme_type_variation = &"PaperLabel"
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 3
+script = ExtResource("9_8cffe")
+
+[node name="DialogHint" type="Label" parent="Root/Dialog/DialogPanel/Content"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperSoftLabel"
+theme_override_font_sizes/font_size = 17
+text = "Klik atau Enter untuk lanjut, Esc untuk melewati"
+modulate = Color(1, 1, 1, 0)
+horizontal_alignment = 2
+
+[node name="DialogTab" type="PanelContainer" parent="Root/Dialog"]
+unique_name_in_owner = true
+theme_type_variation = &"SpeakerTab"
+offset_left = 16
+offset_top = -18
+offset_right = 96
+offset_bottom = 12
+mouse_filter = 2
+
+[node name="DialogSpeaker" type="Label" parent="Root/Dialog/DialogTab"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 19
+text = ""
+
+[node name="Banner" type="Label" parent="Root"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 54
+text = ""
+modulate = Color(1, 1, 1, 0)
+offset_top = 250
+offset_right = 1280
+offset_bottom = 322
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0.0706, 0.0431, 0.0275, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+
+[node name="Chip" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+theme_type_variation = &"ChipFrame"
+visible = false
+mouse_filter = 2
+
+[node name="ChipText" type="Label" parent="Root/Chip"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 19
+text = ""
+
+[node name="Cursor" type="TextureRect" parent="Root"]
+unique_name_in_owner = true
+visible = false
+offset_right = 64
+offset_bottom = 64
+pivot_offset = Vector2(18, 50)
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5

@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scenes/room/fx.gd" id="1_00c37"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/px.png" id="2_7704e"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/star.png" id="3_66d86"]
+
+[sub_resource type="Gradient" id="Gradient_a2fcc"]
+offsets = PackedFloat32Array(0.0, 0.5, 1.0)
+colors = PackedColorArray(0.85, 0.82, 0.75, 0, 0.85, 0.82, 0.75, 1, 0.85, 0.82, 0.75, 0)
+
+[sub_resource type="Curve" id="Curve_449ac"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0b78f"]
+offsets = PackedFloat32Array(0.0, 1.0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Fx" type="Node2D"]
+z_index = 3600
+z_as_relative = false
+script = ExtResource("1_00c37")
+
+[node name="Motes" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 34
+lifetime = 6
+preprocess = 6
+texture = ExtResource("2_7704e")
+emission_shape = 3
+emission_rect_extents = Vector2(256, 176)
+direction = Vector2(1, 0)
+spread = 180
+gravity = Vector2(0, 0)
+initial_velocity_min = 1
+initial_velocity_max = 4
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_a2fcc")
+
+[node name="Templates" type="Node2D" parent="."]
+visible = false
+
+[node name="Scrub" type="CPUParticles2D" parent="Templates"]
+unique_name_in_owner = true
+emitting = false
+one_shot = true
+explosiveness = 1
+scale_amount_curve = SubResource("Curve_449ac")
+color_ramp = SubResource("Gradient_0b78f")
+amount = 3
+lifetime = 0.45
+texture = ExtResource("2_7704e")
+direction = Vector2(0, -1)
+spread = 70
+gravity = Vector2(0, 60)
+initial_velocity_min = 12
+initial_velocity_max = 40
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+
+[node name="Sparkle" type="CPUParticles2D" parent="Templates"]
+unique_name_in_owner = true
+emitting = false
+one_shot = true
+explosiveness = 1
+scale_amount_curve = SubResource("Curve_449ac")
+color_ramp = SubResource("Gradient_0b78f")
+amount = 12
+lifetime = 0.6
+texture = ExtResource("3_66d86")
+direction = Vector2(0, -1)
+spread = 180
+gravity = Vector2(0, 0)
+initial_velocity_min = 18
+initial_velocity_max = 55
+color = Color(1, 0.949, 0.6902, 1)
+
+[node name="Puff" type="CPUParticles2D" parent="Templates"]
+unique_name_in_owner = true
+emitting = false
+one_shot = true
+explosiveness = 1
+scale_amount_curve = SubResource("Curve_449ac")
+color_ramp = SubResource("Gradient_0b78f")
+amount = 6
+lifetime = 0.38
+texture = ExtResource("2_7704e")
+direction = Vector2(0, -1)
+spread = 90
+gravity = Vector2(0, 0)
+initial_velocity_min = 8
+initial_velocity_max = 26
+scale_amount_min = 0.6
+color = Color(0.85, 0.8, 0.7, 0.6)
