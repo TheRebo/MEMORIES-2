@@ -1,5 +1,6 @@
 import { ConfirmDialog } from './ConfirmDialog';
-import { h } from './dom';
+import { h, imgButton } from './dom';
+import { Audio } from '@/core/audio';
 import { Modal } from './Modal';
 import { SettingsDialog } from './SettingsDialog';
 
@@ -21,14 +22,23 @@ export class PauseDialog extends Modal {
     this.box.classList.add('pause');
     this.box.append(h('p', { class: 'pause-room' }, h('span', {}, this.actions.roomName), h('span', { class: 'display' }, `${this.actions.percent}% bersih`)));
     const list = h('div', { class: 'pause-menu' });
+    const art = (file: string, label: string, w: number, fn: () => void): HTMLButtonElement => {
+      const b = imgButton(file, label, 2, w, 32);
+      b.addEventListener('click', () => {
+        Audio.uiClick();
+        fn();
+      });
+      b.addEventListener('pointerenter', () => Audio.uiHover());
+      return b;
+    };
     list.append(
-      this.button('Lanjutkan', () => this.close(), 'btn primary'),
+      art('btn_continue_long', 'Lanjutkan', 165, () => this.close()),
+      art('btn_setting_long', 'Pengaturan', 165, () => new SettingsDialog(this.parent3, { allowDelete: false }).open()),
       this.button('Tutorial', () => {
         this.close();
         this.actions.onTutorial();
       }, 'btn'),
-      this.button('Pengaturan', () => new SettingsDialog(this.parent3, { allowDelete: false }).open(), 'btn'),
-      this.button('Menu utama', () => this.leave(), 'btn'),
+      art('btn_quit_long', 'Menu utama', 192, () => this.leave()),
     );
     this.box.append(list);
     if (!this.actions.roomSaved) {

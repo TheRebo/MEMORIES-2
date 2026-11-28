@@ -16,31 +16,64 @@
 /* ---------- Loading ---------- */
 .loading { display: grid; place-items: center; background: #0d0907; }
 .loading-box { width: 460px; text-align: center; }
-.loading-title { font-size: 48px; color: var(--amber); margin: 0 0 24px; text-shadow: 3px 3px 0 var(--ink); }
+.loading-title { margin: 0 0 28px; }
+.loading-title img { width: 460px; height: auto; image-rendering: pixelated; filter: drop-shadow(0 0 12px rgba(255, 236, 200, 0.35)); animation: logo-sway 5s ease-in-out infinite; }
+.loading-box { background: radial-gradient(ellipse at center, #e9dcc0 0 40%, transparent 72%); padding: 40px 0 10px; }
 .loading-track { height: 16px; background: var(--wood-900); box-shadow: inset 0 0 0 2px var(--wood-600); }
 .loading-fill { height: 100%; width: 0; background: var(--amber); box-shadow: inset 0 -4px 0 var(--amber-deep); transition: width 120ms linear; }
 .loading-label { margin-top: 14px; font-size: 21px; color: var(--cream-dim); }
 
 /* ---------- Menu ----------
-   Left column on the calm, shaded side of the painting: logo, the promise, actions.
-   A returning player also gets a note of where they left off, so "Lanjutkan" is not a guess. */
-.menu { display: grid; grid-template-columns: 560px 1fr; grid-template-rows: 1fr auto; }
-.menu-main { grid-column: 1; align-self: center; padding: 0 0 0 64px; margin-top: -24px; }
-.menu-logo { display: block; width: 420px; height: auto; margin-left: -18px; image-rendering: pixelated; filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.55)); }
-.menu-hint { margin: -22px 0 22px; font-size: 22px; line-height: 1.15; max-width: 470px; color: var(--cream); text-shadow: var(--outline); }
-.menu-buttons { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; pointer-events: auto; }
-.menu-buttons .btn { min-width: 320px; justify-content: flex-start; }
-.menu-buttons .btn.primary { min-width: 360px; font-size: 27px; }
+   The painting is the menu: the logo hangs over the roof of the house, the lettered buttons sit
+   in one row on the dirt path, and a returning player's last note is taped to the sky on the left. */
+.menu { display: block; }
+.menu-title { position: absolute; left: 470px; top: 26px; width: 680px; margin: 0; text-align: center; }
+.menu-logo {
+  width: 680px;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 0 rgba(18, 11, 7, 0.45)) drop-shadow(0 0 14px rgba(255, 236, 200, 0.55));
+  transform-origin: 50% 0;
+  animation: logo-in 900ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both, logo-sway 7s ease-in-out 900ms infinite;
+}
+@keyframes logo-in { from { opacity: 0; transform: translateY(-40px) scale(0.9); } }
+@keyframes logo-sway { 50% { transform: rotate(-0.8deg) translateY(3px); } }
+.menu-buttons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  pointer-events: auto;
+}
+.menu-buttons .img-btn { animation: rise-in 420ms steps(6) both; }
+.menu-buttons .img-btn:nth-child(2) { animation-delay: 70ms; }
+.menu-buttons .img-btn:nth-child(3) { animation-delay: 140ms; }
+.menu-buttons .img-btn:nth-child(4) { animation-delay: 210ms; }
 
 .menu-save {
-  grid-column: 2;
-  align-self: end;
-  justify-self: end;
+  position: absolute;
+  left: 44px;
+  top: 52px;
   width: 300px;
-  margin: 0 48px 92px 0;
-  padding: 14px 18px 16px;
-  transform: rotate(1.2deg);
-  animation: rise-in 320ms steps(5);
+  padding: 18px 18px 16px;
+  transform: rotate(-1.6deg);
+  animation: rise-in 360ms steps(5) 200ms both;
+}
+/* Same tape as the task note, so the two read as pages of one notebook. */
+.menu-save::before, .tape::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 78px;
+  height: 20px;
+  margin-left: -39px;
+  background: rgba(214, 196, 150, 0.88);
+  box-shadow: inset 0 0 0 2px rgba(120, 96, 60, 0.35);
+  transform: rotate(3deg);
 }
 .menu-save h2 { margin: 0 0 8px; font-family: var(--font-display); font-weight: normal; font-size: 22px; }
 .menu-save ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 20px; }
@@ -48,17 +81,6 @@
 .menu-save li span:last-child { font-family: var(--font-display); font-size: 17px; color: var(--paper-ink-soft); }
 .menu-save li.done span:last-child { color: var(--paper-done); }
 .menu-save li.next span:first-child::before { content: '> '; }
-
-.menu-foot {
-  grid-column: 1 / -1;
-  display: flex;
-  gap: 22px;
-  padding: 0 64px 22px;
-  font-size: 18px;
-  color: var(--cream-dim);
-  text-shadow: var(--outline);
-}
-.menu-foot kbd { margin-right: 4px; }
 
 .dialog-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
 .settings { display: flex; flex-direction: column; gap: 6px; min-width: 560px; }
@@ -105,7 +127,7 @@
 .titlecard { display: grid; place-items: center; background: #5f6a3c; }
 .titlecard-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; animation: fade-in 1600ms ease-out; }
 .titlecard-inner img { width: 640px; height: auto; image-rendering: pixelated; }
-.titlecard-thanks { margin: -40px 0 30px; font-size: 28px; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); }
+.titlecard-thanks { margin: 24px 0 30px; font-size: 28px; color: var(--cream); text-shadow: 2px 2px 0 var(--ink); }
 
 /* =====================================================================
    ROOM HUD
@@ -523,8 +545,8 @@
   font-size: 20px;
 }
 .pause-room .display { color: var(--amber-on-wood); font-size: 18px; }
-.pause-menu { display: flex; flex-direction: column; gap: 4px; align-items: stretch; }
-.pause-menu .btn { width: 100%; }
+.pause-menu { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.pause-menu .btn { width: 330px; min-height: 64px; }
 .pause-note { font-size: 18px; margin: 8px 0 0; max-width: 356px; }
 
 /* Touch: no keyboard, so key badges are noise. */

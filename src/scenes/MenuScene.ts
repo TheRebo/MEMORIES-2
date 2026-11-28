@@ -7,7 +7,7 @@ import { ROOMS, ROOM_ORDER } from '@/data/rooms';
 import { VIEW_H, VIEW_W } from '@/config';
 import { CreditsDialog } from '@/ui/CreditsDialog';
 import { ConfirmDialog } from '@/ui/ConfirmDialog';
-import { h, reducedMotion } from '@/ui/dom';
+import { h, imgButton, reducedMotion } from '@/ui/dom';
 import { SettingsDialog } from '@/ui/SettingsDialog';
 
 /** Title screen: the house from the prolog behind the team's logo. */
@@ -28,10 +28,10 @@ export class MenuScene extends Phaser.Scene {
     const offMotion = Settings.events.on('changed', () => (reducedMotion() ? drift.pause() : drift.resume()));
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, offMotion);
     this.add.rectangle(0, 0, VIEW_W, VIEW_H, 0x120b07, 0.18).setOrigin(0);
-    // Left-side shade so the logo and buttons sit on a calm area of the painting.
+    // Soft shade at the bottom so the button row reads against the grass.
     const shade = this.add.graphics();
-    shade.fillGradientStyle(0x120b07, 0x120b07, 0x120b07, 0x120b07, 0.7, 0, 0.7, 0);
-    shade.fillRect(0, 0, 640, VIEW_H);
+    shade.fillGradientStyle(0x120b07, 0x120b07, 0x120b07, 0x120b07, 0, 0, 0.55, 0.55);
+    shade.fillRect(0, VIEW_H - 240, VIEW_W, 240);
 
     // Drop anything from a room that was left unfinished; the save is the source of truth.
     GameState.load();
@@ -45,8 +45,9 @@ export class MenuScene extends Phaser.Scene {
     // Any finished room means there is something to lose, so a new game always asks first.
     const canContinue = GameState.hasProgress();
     const nav = h('nav', { class: 'menu-buttons', 'aria-label': 'Menu utama' });
-    const add = (label: string, fn: () => void, primary = false): HTMLButtonElement => {
-      const b = h('button', { class: `btn interactive${primary ? ' primary' : ''}`, type: 'button' }, label);
+    // The team's lettered buttons, all the 64x32 family so the row reads as one set.
+    const add = (file: string, label: string, fn: () => void): HTMLButtonElement => {
+      const b = imgButton(file, label, 3, 64, 32);
       b.addEventListener('click', () => {
         Audio.uiClick();
         fn();
@@ -57,35 +58,22 @@ export class MenuScene extends Phaser.Scene {
     };
 
     if (canContinue) {
-      add(GameState.allCompleted() ? 'Kunjungi lagi' : 'Lanjutkan', () => this.continueGame(), true);
-      add('Mulai Baru', () => this.confirmNewGame());
+      add('btn_load', GameState.allCompleted() ? 'Kunjungi lagi' : 'Lanjutkan', () => this.continueGame());
+      add('btn_new_game', 'Mulai baru', () => this.confirmNewGame());
     } else {
-      add('Mulai', () => this.newGame(), true);
+      add('btn_play', 'Mulai', () => this.newGame());
     }
-    add('Pengaturan', () => {
+    add('btn_setting', 'Pengaturan', () => {
       const d = new SettingsDialog(this.layer);
       d.onClose = () => this.rebuild();
       d.open();
     });
-    add('Kredit', () => new CreditsDialog(this.layer).open());
+    add('btn_credit', 'Kredit', () => new CreditsDialog(this.layer).open());
 
-    const logo = h('img', { class: 'menu-logo', src: 'assets/ui/title_logo.png', alt: 'Memories', width: 640, height: 360, fetchpriority: 'high' });
-    const hint = h('p', { class: 'menu-hint' }, 'Pulang ke rumah Nenek, bersihkan ruangan demi ruangan.');
-    // Touch screens get touch instructions: key names mean nothing without a keyboard.
-    const touch = window.matchMedia('(pointer: coarse)').matches;
-    const foot = touch
-      ? h('p', { class: 'menu-foot', 'aria-label': 'Kontrol' },
-        h('span', {}, 'Ketuk slot alat, lalu gosok kotoran'),
-        h('span', {}, 'Seret barang ke tempatnya'),
-        h('span', {}, 'Ketuk dua kali untuk merapikan'))
-      : h('p', { class: 'menu-foot', 'aria-label': 'Kontrol' },
-        h('span', {}, h('kbd', {}, '1-4'), 'tahan alat'),
-        h('span', {}, 'Seret barang ke tempatnya'),
-        h('span', {}, h('kbd', {}, 'T'), 'catatan'),
-        h('span', {}, h('kbd', {}, 'Esc'), 'jeda'));
-    this.layer.append(h('div', { class: 'menu-main' }, h('h1', { class: 'sr-only' }, 'Memories'), logo, hint, nav));
+    // The logo hangs over the roof of the house in the painting.
+    const logo = h('img', { class: 'menu-logo', src: 'assets/ui/title_logo_trim.png', alt: '', width: 307, height: 79, fetchpriority: 'high' });
+    this.layer.append(h('h1', { class: 'menu-title' }, h('span', { class: 'sr-only' }, 'Memories'), logo), nav);
     if (canContinue) this.layer.append(this.saveNote());
-    this.layer.append(foot);
     queueMicrotask(() => nav.querySelector('button')?.focus());
   }
 
