@@ -1,11 +1,14 @@
+@tool
 class_name Item
 extends Thing
 ## Something lying around that belongs somewhere: dragged into its zone (shelf, bin, sink).
 
-var type := ""
-var trash := false
-var group := ""
-var label_text := ""
+## Matches a Zone's `accepts` ("book", "dish", "trash", ...).
+@export var type := ""
+## Counts toward the trash total when put in a bin.
+@export var trash := false
+@export var group := ""
+
 var done := false
 var zone: Zone
 var home := Vector2.ZERO
@@ -13,18 +16,10 @@ var _grab := Vector2.ZERO
 var _hovered := false
 
 
-func setup_item(def: Dictionary) -> Item:
-	var s := def.duplicate()
-	s["originAtBase"] = true
-	s["layer"] = "ysort"
-	s["shadow"] = true
-	setup(s)
-	type = String(def.get("type", ""))
-	trash = bool(def.get("trash", false))
-	group = String(def.get("group", ""))
-	label_text = String(def.get("label", ""))
+func _ready() -> void:
+	has_shadow = true
+	super()
 	home = position
-	return self
 
 
 func set_hover(on: bool) -> void:

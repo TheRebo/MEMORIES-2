@@ -5,9 +5,6 @@ extends RoomEvent
 
 const DEFAULTS := {
 	"windowId": "Jendela",
-	"windowOpenTexture": "",
-	"windowHalfTexture": "",
-	"windowClosedTexture": "",
 	"clickGain": 0.07,
 	"decayPerSecond": 0.1,
 	"clickMargin": 6.0,
@@ -30,8 +27,13 @@ const DEFAULTS := {
 	"dustClothGroup": "Lap debu tertiup angin",
 }
 
+## Window pictures while it is blown open, half closed and closed (empty: its own picture).
+@export var open_texture: Texture2D
+@export var half_texture: Texture2D
+@export var closed_texture: Texture2D
+
 var _win: Thing
-var _original := ""
+var _original: Texture2D
 var _progress := 0.0
 var _floor := 0.0
 var _state := 0
@@ -48,8 +50,8 @@ func on_start() -> void:
 	if _win == null:
 		finish()
 		return
-	if _original == "":
-		_original = _win.tex_key
+	if _original == null:
+		_original = _win.texture
 	_progress = 0.0
 	_floor = 0.0
 	_elapsed = 0.0
@@ -71,12 +73,12 @@ func _set_state(s: int) -> void:
 	_state = s
 	if _win == null:
 		return
-	var keys := [String(cfg["windowOpenTexture"]), String(cfg["windowHalfTexture"]), String(cfg["windowClosedTexture"])]
-	var key: String = keys[clampi(s, 0, 2)]
-	if s == 2 and key == "":
-		key = _original
-	if key != "":
-		_win.set_tex(key)
+	var pics: Array[Texture2D] = [open_texture, half_texture, closed_texture]
+	var pic := pics[clampi(s, 0, 2)]
+	if s == 2 and pic == null:
+		pic = _original
+	if pic:
+		_win.set_tex(pic)
 
 
 func _emit_bar() -> void:

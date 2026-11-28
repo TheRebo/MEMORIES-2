@@ -1,6 +1,8 @@
+@tool
 class_name Dirt
 extends Thing
-## A dirty spot cleaned by scrubbing with the matching tool.
+## A dirty spot cleaned by scrubbing with the matching tool. On furniture it is a child of that
+## Thing (it moves with it in the editor); on the floor it lies in the layout's FloorDirt.
 
 const PALETTE := {
 	"broom": [Color("8d8170"), Color("a59a88"), Color("6f6455")],
@@ -9,44 +11,83 @@ const PALETTE := {
 	"duster": [Color("bfb8ad"), Color("d8d2c8"), Color("9d968b")],
 }
 
-var tool := ""
-var effort := 1.0
+@export_enum("broom", "mop", "cloth", "duster") var tool := "broom":
+	set(v):
+		tool = v
+		if is_inside_tree():
+			_regrime()
+## How much scrubbing it takes.
+@export var effort := 120.0
+## Task group on the note ("Lap jendela").
+@export var group := ""
+## Found while cleaning (a candle in a drawer): item id, amount and message.
+@export var reward_item := ""
+@export var reward_amount := 1
+@export var reward_message := ""
+
 var remaining := 1.0
-var group := ""
-var reward: Dictionary = {}
 var parent_thing: Thing
 var done := false
+var reward: Dictionary = {}
 var _wobble: Tween
+var _grimy := false
 
 
-func setup_dirt(spec: Dictionary, on: Thing) -> Dirt:
-	var s := spec.duplicate()
-	s["originAtBase"] = false
-	s["layer"] = on.layer_name if on else "ground"
-	s["z"] = on.z_level if on else 1
-	setup(s)
-	tool = String(spec["tool"])
-	effort = maxf(1.0, float(spec.get("effort", 120)))
-	remaining = effort
-	group = String(spec.get("group", ""))
-	var rw: Variant = spec.get("reward")
-	if rw is Dictionary:
-		reward = rw
-	parent_thing = on
-	if tex_key == "":
-		texture = _grime(id, tool, int(round(w)), int(round(h)))
-	apply_depth()
-	return self
-
-
-func apply_depth(extra: int = 0) -> void:
+func _ready() -> void:
+	origin_at_base = false
+	parent_thing = get_parent() as Thing
 	if parent_thing:
-		z_index = parent_thing.z_index + 1
+		layer_name = parent_thing.layer_name
+		z_level = parent_thing.z_level
+	else:
+		layer_name = "ground"
+	if texture == null:
+		_regrime()
+	super()
+	remaining = maxf(1.0, effort)
+	if reward_item != "":
+		reward = {"item": reward_item, "amount": reward_amount, "message": reward_message}
+
+
+## Dirt made at runtime (events, dust settling again). `on`: furniture it sits on, or null.
+static func spawn(scene: PackedScene, spec: Dictionary, on: Thing, floor_node: Node) -> Dirt:
+	var d: Dirt = scene.instantiate()
+	d.object_id = String(spec.get("id", ""))
+	d.tool = String(spec.get("tool", "broom"))
+	d.effort = float(spec.get("effort", 120))
+	d.group = String(spec.get("group", ""))
+	d.area_size = Vector2(float(spec.get("w", 16)), float(spec.get("h", 10)))
+	d.rotation = float(spec.get("rotation", 0.0))
+	var tex := String(spec.get("tex", ""))
+	if tex != "":
+		d.texture = Db.tex(tex)
+	var world := Vector2(float(spec["x"]), float(spec["y"]))
+	if on:
+		# Cancel the furniture's scale: grime keeps its own pixel size.
+		d.scale = Vector2.ONE / on.scale
+		on.add_child(d)
+		d.global_position = world
+	else:
+		floor_node.add_child(d)
+		d.global_position = world
+	return d
+
+
+func _regrime() -> void:
+	if texture != null and not _grimy:
 		return
-	if layer_name == "ground":
-		z_index = Z_FLOOR_DIRT
+	_grimy = true
+	texture = _grime(object_id, tool, int(round(area_size.x)), int(round(area_size.y)))
+
+
+func apply_depth(_extra: int = 0) -> void:
+	if parent_thing:
+		# Just above the furniture it is on.
+		z_as_relative = true
+		z_index = 1
 		return
-	super(extra)
+	z_as_relative = false
+	z_index = Z_FLOOR_DIRT
 
 
 ## Scrub with `t` for `amount`. Returns "cleaned", "progress", "wrong-tool" or "none".

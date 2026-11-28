@@ -18,30 +18,34 @@ const BASE := {
 	"tutorialEveryTime": false,
 }
 
+## Settings for this room, over the script's DEFAULTS (keys as in DEFAULTS and BASE, e.g.
+## triggerProgress, introText, maxRepeats, floorArea {x, y, w, h}).
+@export var config: Dictionary = {}
+## Pages shown the first time the event happens: [{title, text, image}].
+@export var tutorial: Array[Dictionary] = []
+
 var room: RoomScreen
+## Event kind ("cat", "rain", ...), also the id of its card and pointers.
 var id := ""
 var cfg: Dictionary = {}
-var tutorial: Array = []
 var running := false
 var _started := false
 var _repeats := 0
 
 
-## `DEFAULTS` of the event's own script, overridden by the room data's keys.
-func setup(r: RoomScreen, def: Dictionary) -> RoomEvent:
+func setup(r: RoomScreen) -> RoomEvent:
 	var defaults: Dictionary = (get_script() as Script).get_script_constant_map().get("DEFAULTS", {})
 	room = r
-	id = String(def.get("kind", "event"))
+	id = String(config.get("kind", name.to_snake_case().trim_suffix("_event")))
 	var merged := BASE.duplicate(true)
 	merged.merge(defaults, true)
 	for key: String in merged.keys():
-		if def.has(key) and def[key] != null:
-			var v: Variant = def[key]
+		if config.has(key) and config[key] != null:
+			var v: Variant = config[key]
 			var fallback: Variant = merged[key]
 			if typeof(v) == typeof(fallback) or (fallback is float and v is int) or (fallback is int and v is float):
 				merged[key] = v
 	cfg = merged
-	tutorial = def.get("tutorial", [])
 	if GameState.is_completed(String(room.def["id"])):
 		cfg["enabled"] = false
 	room.ctx.progress.connect(_on_progress)

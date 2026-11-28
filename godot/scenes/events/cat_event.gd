@@ -8,7 +8,6 @@ const DEFAULTS := {
 	"scatterCount": 4,
 	"minItemsNeeded": 2,
 	"runSpeed": 90.0,
-	"catTexture": "cat_run",
 	"catEntry": {"x": 540, "y": 200},
 	"catExit": {"x": -30, "y": 260},
 	"floorArea": {"x": 60, "y": 110, "w": 392, "h": 210},

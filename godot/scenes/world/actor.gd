@@ -1,19 +1,18 @@
+@tool
 class_name Actor
 extends Thing
-## A character for the flashback cutscenes (Nenek, MC kecil, MC). Hidden until a line shows it.
+## A character for the flashback cutscenes (Nenek, MC kecil, MC). Hidden in the game until a
+## line shows it; visible in the editor so it can be placed.
 
-var actor := ""
+## Name used by the flashback lines ("nenek", "mc_kecil", "mc").
+@export var actor := ""
 
 
-func setup_actor(def: Dictionary) -> Actor:
-	var s := def.duplicate()
-	s["originAtBase"] = true
-	s["layer"] = "ysort"
-	s["shadow"] = true
-	setup(s)
-	actor = String(def.get("actor", ""))
-	hide()
-	return self
+func _ready() -> void:
+	has_shadow = true
+	super()
+	if not Engine.is_editor_hint():
+		hide()
 
 
 func appear() -> void:

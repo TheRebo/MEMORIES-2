@@ -1,30 +1,20 @@
+@tool
 class_name Interactable
 extends Thing
 ## Double-click objects: tidy the pillow, throw out the wilted vase.
 
-var group := ""
-var trash := false
-var label_text := ""
+@export var group := ""
+@export var trash := false
+## Double clicks it takes.
+@export var needed := 1
+## Picture once done (a tidy pillow); empty keeps the picture.
+@export var after_texture: Texture2D
+## Fades away once done (thrown out).
+@export var hide_after := false
+
 var done := false
-var _needed := 1
-var _after := ""
-var _hide_after := false
 var _count := 0
 var _hovered := false
-
-
-func setup_interact(def: Dictionary) -> Interactable:
-	var s := def.duplicate()
-	s["originAtBase"] = true
-	s["layer"] = "ysort"
-	setup(s)
-	group = String(def.get("group", ""))
-	trash = bool(def.get("trash", false))
-	label_text = String(def.get("label", ""))
-	_needed = maxi(1, int(def.get("needed", 1)))
-	_after = String(def.get("after", ""))
-	_hide_after = bool(def.get("hideAfter", false))
-	return self
 
 
 func set_hover(on: bool) -> void:
@@ -44,14 +34,14 @@ func interact() -> bool:
 	var t := create_tween()
 	t.tween_property(self, "scale", base_scale * Vector2(1.14, 0.9), 0.08)
 	t.tween_property(self, "scale", base_scale, 0.08)
-	if _count < _needed:
+	if _count < maxi(1, needed):
 		return false
 	_finish(false)
 	return true
 
 
 func restore_done() -> void:
-	_count = _needed
+	_count = needed
 	_finish(true)
 
 
@@ -59,9 +49,9 @@ func _finish(instant: bool) -> void:
 	done = true
 	_hovered = false
 	modulate = Color.WHITE
-	if _after != "":
-		set_tex(_after)
-	if _hide_after:
+	if after_texture:
+		set_tex(after_texture)
+	if hide_after:
 		if instant:
 			hide()
 		else:

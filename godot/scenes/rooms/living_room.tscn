@@ -1,0 +1,1034 @@
+[gd_scene load_steps=71 format=3]
+
+[ext_resource type="Script" path="res://scenes/rooms/room_layout.gd" id="1_913ee"]
+[ext_resource type="PackedScene" path="res://scenes/world/thing.tscn" id="2_03861"]
+[ext_resource type="PackedScene" path="res://scenes/world/zone.tscn" id="3_763a9"]
+[ext_resource type="PackedScene" path="res://scenes/world/item.tscn" id="4_e02f3"]
+[ext_resource type="PackedScene" path="res://scenes/world/interactable.tscn" id="5_421bf"]
+[ext_resource type="PackedScene" path="res://scenes/world/actor.tscn" id="6_ebadb"]
+[ext_resource type="PackedScene" path="res://scenes/world/dirt.tscn" id="7_52ac9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ruang_keluarga_512x352.png" id="8_2c8be"]
+[ext_resource type="Texture2D" path="res://assets/sprites/debu_ulahan_daus.png" id="9_4bbee"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kamar_ground_pelnoda3.png" id="10_21ba5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kamar_ground_pelnoda1.png" id="11_24cdd"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kamar_ground_pelnoda2.png" id="12_96423"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kamar_ground_pelnoda4.png" id="13_941d6"]
+[ext_resource type="Texture2D" path="res://assets/sprites/jaringlabalaba_sudut.png" id="14_4edd8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/jaring_laba_laba_pro_maxx_by_faris_better_than_punya_zulfa.png" id="15_029cb"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dapur_jendela_dapur.png" id="16_a7537"]
+[ext_resource type="Texture2D" path="res://assets/sprites/lukisan_gunung.png" id="17_88e51"]
+[ext_resource type="Texture2D" path="res://assets/sprites/jam.png" id="18_8ede2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/doc_2.png" id="19_9bc1c"]
+[ext_resource type="Texture2D" path="res://assets/sprites/grandma_grandchild.png" id="20_d0c47"]
+[ext_resource type="Texture2D" path="res://assets/sprites/foto_wisuda.png" id="21_c2778"]
+[ext_resource type="Texture2D" path="res://assets/sprites/lampu_berdiri.png" id="22_e3ff4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/doc_6.png" id="23_84fc8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/karpet_merah_kecil.png" id="24_ed778"]
+[ext_resource type="Texture2D" path="res://assets/sprites/rak_sempit.png" id="25_d7df3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/vas_lavender_1.png" id="26_741de"]
+[ext_resource type="Texture2D" path="res://assets/sprites/karpet_toska.png" id="27_9a025"]
+[ext_resource type="Texture2D" path="res://assets/sprites/doc_9.png" id="28_192ac"]
+[ext_resource type="Texture2D" path="res://assets/sprites/sofa_anglebelakang.png" id="29_bf18d"]
+[ext_resource type="Texture2D" path="res://assets/sprites/sofa_anglekekanan.png" id="30_e6d28"]
+[ext_resource type="Texture2D" path="res://assets/sprites/sofa_anglekekiri.png" id="31_383ff"]
+[ext_resource type="Texture2D" path="res://assets/sprites/karpet_bulat.png" id="32_aace2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/meja_bundar_trim.png" id="33_6c0c9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_terbuka_2.png" id="34_37162"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kursi_samping_kanan.png" id="35_9a165"]
+[ext_resource type="Texture2D" path="res://assets/sprites/vas_pink.png" id="36_7fff4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/sofa_tunggal_biru.png" id="37_b9728"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pot_laci_kecil.png" id="38_97996"]
+[ext_resource type="Texture2D" path="res://assets/sprites/karpet_merah_persegi.png" id="39_32ceb"]
+[ext_resource type="Texture2D" path="res://assets/sprites/meja_oval.png" id="40_cb6f0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kursi_samping_kiri.png" id="41_c28a0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/kendi.png" id="42_ba165"]
+[ext_resource type="Texture2D" path="res://assets/sprites/peti_besar_1.png" id="43_d7ac3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pot_tanaman_pot.png" id="44_f2530"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pot_tanaman_mangkuk.png" id="45_e6834"]
+[ext_resource type="Texture2D" path="res://assets/sprites/vas_kuning.png" id="46_465b3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_teisi_4.png" id="47_eb64a"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_teisi_3.png" id="48_51819"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_teisi_2.png" id="49_942f0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_teisi_1.png" id="50_7316a"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_teisi.png" id="51_fadba"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dapur_lemari_fix.png" id="52_998a4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/item_bak_sampah_kosong_trim.png" id="53_ec4ee"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bin_full1_trim.png" id="54_2e39d"]
+[ext_resource type="Texture2D" path="res://assets/sprites/bin_full2_trim.png" id="55_860a2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_biru.png" id="56_b5d7f"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_hijau_baru.png" id="57_b65b5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_kuning.png" id="58_53dc8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/buku_merah.png" id="59_107a3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pajangan_1.png" id="60_9edc4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pajangan_4.png" id="61_30306"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pajangan_3.png" id="62_12684"]
+[ext_resource type="Texture2D" path="res://assets/sprites/trash_apple_trim.png" id="63_3becf"]
+[ext_resource type="Texture2D" path="res://assets/sprites/trash_paper_trim.png" id="64_9b4ea"]
+[ext_resource type="Texture2D" path="res://assets/sprites/trash_can1_trim.png" id="65_80eea"]
+[ext_resource type="Texture2D" path="res://assets/sprites/sampah_kaleng_2.png" id="66_6f8a2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/vas_bunga.png" id="67_b67aa"]
+[ext_resource type="Texture2D" path="res://assets/sprites/actor_doc_1.png" id="68_424a7"]
+[ext_resource type="Texture2D" path="res://assets/sprites/actor_doc.png" id="69_01e11"]
+[ext_resource type="PackedScene" path="res://scenes/events/cat_event.tscn" id="70_985ab"]
+
+[node name="LivingRoom" type="Node2D"]
+script = ExtResource("1_913ee")
+room_id = "living_room"
+room_name = "Ruang Keluarga"
+short_name = "R. Keluarga"
+room_size = Vector2(512, 352)
+wall_height = 64
+flashback = Array[Dictionary]([{
+"speaker": "MC",
+"text": "Hm? Apa ini...?",
+"show": ["mc"],
+"moves": [{
+"actor": "mc",
+"x": 372,
+"y": 84
+}],
+"focus": [360, 80]
+}, {
+"speaker": "Narator",
+"text": "Sebuah foto lama yang warnanya sudah mulai pudar.",
+"focus": [378, 36]
+}, {
+"speaker": "MC kecil",
+"text": "Nenek lagi ngapain?",
+"show": ["nenek", "mc_kecil"],
+"hide": ["mc"],
+"tint": [1, 0.82, 0.55, 1],
+"focus": [256, 214]
+}, {
+"speaker": "Nenek",
+"text": "Ga ngapa-ngapain kok, mau main?"
+}, {
+"speaker": "MC kecil",
+"text": "Mau!"
+}, {
+"speaker": "Narator",
+"text": "Aku dan nenek pun memainkan mainan mobil-mobilan.",
+"moves": [{
+"actor": "mc_kecil",
+"x": 292,
+"y": 246
+}]
+}])
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4090
+z_as_relative = false
+texture = ExtResource("8_2c8be")
+centered = false
+
+[node name="FloorDirt" type="Node2D" parent="."]
+
+[node name="SapuLantai1" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(110, 136)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai1"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai2" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(176, 150)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai2"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+reward_item = "candle"
+reward_amount = 2
+reward_message = "Kamu menemukan sebatang lilin di bawah debu!"
+
+[node name="SapuLantai3" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(360, 130)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai3"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai4" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(420, 190)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai4"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai5" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(60, 250)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai5"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+reward_item = "candle"
+reward_amount = 1
+reward_message = "Kamu menemukan sebatang lilin di bawah debu!"
+
+[node name="SapuLantai6" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(150, 270)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai6"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai7" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(300, 272)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai7"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai8" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(440, 262)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai8"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai9" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(90, 312)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai9"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+reward_item = "candle"
+reward_amount = 1
+reward_message = "Kamu menemukan sebatang lilin di bawah debu!"
+
+[node name="SapuLantai10" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(230, 300)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai10"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai11" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(340, 320)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai11"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai12" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(380, 236)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai12"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="PelNoda1" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(130, 230)
+texture = ExtResource("10_21ba5")
+object_id = "PelNoda1"
+tool = "mop"
+effort = 276
+group = "Pel noda lantai"
+
+[node name="PelNoda2" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(288, 316)
+texture = ExtResource("11_24cdd")
+object_id = "PelNoda2"
+tool = "mop"
+effort = 276
+group = "Pel noda lantai"
+
+[node name="PelNoda3" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(460, 296)
+texture = ExtResource("12_96423")
+object_id = "PelNoda3"
+tool = "mop"
+effort = 276
+group = "Pel noda lantai"
+
+[node name="PelNoda4" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(100, 270)
+texture = ExtResource("13_941d6")
+object_id = "PelNoda4"
+area_size = Vector2(30, 14)
+tool = "mop"
+effort = 276
+group = "Pel noda lantai"
+
+[node name="PelNoda5" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(380, 112)
+texture = ExtResource("11_24cdd")
+object_id = "PelNoda5"
+tool = "mop"
+effort = 276
+group = "Pel noda lantai"
+
+[node name="PelNoda6" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(190, 112)
+texture = ExtResource("12_96423")
+object_id = "PelNoda6"
+tool = "mop"
+effort = 276
+group = "Pel noda lantai"
+
+[node name="Jaring1" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(12, 12)
+texture = ExtResource("14_4edd8")
+object_id = "Jaring1"
+tool = "duster"
+effort = 216
+group = "Kemoceng jaring laba-laba"
+
+[node name="Jaring2" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(500, 12)
+rotation = 1.5708
+texture = ExtResource("14_4edd8")
+object_id = "Jaring2"
+tool = "duster"
+effort = 216
+group = "Kemoceng jaring laba-laba"
+
+[node name="Jaring3" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(160, 14)
+texture = ExtResource("15_029cb")
+object_id = "Jaring3"
+tool = "duster"
+effort = 216
+group = "Kemoceng jaring laba-laba"
+
+[node name="Jaring4" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(360, 16)
+texture = ExtResource("15_029cb")
+object_id = "Jaring4"
+tool = "duster"
+effort = 216
+group = "Kemoceng jaring laba-laba"
+
+[node name="Jaring5" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(280, 12)
+texture = ExtResource("14_4edd8")
+object_id = "Jaring5"
+tool = "duster"
+effort = 216
+group = "Kemoceng jaring laba-laba"
+
+[node name="SapuLantai13" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(130, 230)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai13"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai14" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(460, 296)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai14"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="SapuLantai15" parent="FloorDirt" instance=ExtResource("7_52ac9")]
+position = Vector2(380, 112)
+texture = ExtResource("9_4bbee")
+object_id = "SapuLantai15"
+tool = "broom"
+effort = 252
+group = "Sapu lantai"
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Jendela" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(120, 56)
+texture = ExtResource("16_a7537")
+object_id = "Jendela"
+label_text = "Jendela"
+
+[node name="Kotor1" parent="Props/Jendela" instance=ExtResource("7_52ac9")]
+position = Vector2(-10, -19)
+object_id = "Jendela.Kotor1"
+area_size = Vector2(22, 29)
+tool = "cloth"
+effort = 234
+group = "Lap jendela"
+
+[node name="Kotor2" parent="Props/Jendela" instance=ExtResource("7_52ac9")]
+position = Vector2(12, -19)
+object_id = "Jendela.Kotor2"
+area_size = Vector2(22, 29)
+tool = "cloth"
+effort = 234
+group = "Lap jendela"
+
+[node name="Lukisan" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(186, 50)
+texture = ExtResource("17_88e51")
+object_id = "Lukisan"
+label_text = "Lukisan"
+
+[node name="Kotor1" parent="Props/Lukisan" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -16)
+object_id = "Lukisan.Kotor1"
+area_size = Vector2(42, 24)
+tool = "cloth"
+effort = 264
+group = "Lap lukisan & foto"
+
+[node name="JamDinding" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(236, 32)
+texture = ExtResource("18_8ede2")
+object_id = "JamDinding"
+label_text = "Jam"
+
+[node name="Kotor1" parent="Props/JamDinding" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -8)
+object_id = "JamDinding.Kotor1"
+area_size = Vector2(11, 11)
+tool = "cloth"
+effort = 168
+group = "Lap jam dinding"
+
+[node name="Pintu" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(323, 64)
+texture = ExtResource("19_9bc1c")
+object_id = "Pintu"
+label_text = "Pintu"
+
+[node name="Kotor1" parent="Props/Pintu" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -25)
+object_id = "Pintu.Kotor1"
+area_size = Vector2(26, 42)
+tool = "cloth"
+effort = 270
+group = "Lap pintu"
+
+[node name="FotoKeluarga" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(378, 44)
+texture = ExtResource("20_d0c47")
+object_id = "FotoKeluarga"
+label_text = "Foto Keluarga"
+
+[node name="Kotor1" parent="Props/FotoKeluarga" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -12)
+object_id = "FotoKeluarga.Kotor1"
+area_size = Vector2(28, 18)
+tool = "cloth"
+effort = 222
+group = "Lap lukisan & foto"
+
+[node name="FotoWisuda" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(418, 60)
+texture = ExtResource("21_c2778")
+object_id = "FotoWisuda"
+label_text = "Foto Wisuda"
+
+[node name="Kotor1" parent="Props/FotoWisuda" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -25)
+object_id = "FotoWisuda.Kotor1"
+area_size = Vector2(26, 42)
+tool = "cloth"
+effort = 270
+group = "Lap lukisan & foto"
+
+[node name="LampuKiri" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(74, 100)
+texture = ExtResource("22_e3ff4")
+object_id = "LampuKiri"
+label_text = "Lampu"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/LampuKiri" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -46)
+object_id = "LampuKiri.Kotor1"
+area_size = Vector2(19, 17)
+tool = "cloth"
+effort = 198
+group = "Lap lampu"
+
+[node name="TVCabinet" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(256, 104)
+texture = ExtResource("23_84fc8")
+object_id = "TVCabinet"
+label_text = "TV + Meja TV"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/TVCabinet" instance=ExtResource("7_52ac9")]
+position = Vector2(-2, -33)
+object_id = "TVCabinet.Kotor1"
+area_size = Vector2(37, 18)
+tool = "cloth"
+effort = 240
+group = "Lap TV & meja TV"
+
+[node name="Kotor2" parent="Props/TVCabinet" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -11)
+object_id = "TVCabinet.Kotor2"
+area_size = Vector2(62, 13)
+tool = "cloth"
+effort = 282
+group = "Lap TV & meja TV"
+
+[node name="Debu3" parent="Props/TVCabinet" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -44)
+object_id = "TVCabinet.Debu3"
+area_size = Vector2(37, 6)
+tool = "duster"
+effort = 180
+group = "Kemoceng debu atas furniture"
+
+[node name="KesetPintu" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(323, 80)
+texture = ExtResource("24_ed778")
+object_id = "KesetPintu"
+label_text = "Keset"
+layer_name = "ground"
+origin_at_base = false
+
+[node name="RakSempit" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(438, 102)
+texture = ExtResource("25_d7df3")
+object_id = "RakSempit"
+label_text = "Rak Kecil"
+has_shadow = true
+
+[node name="Debu1" parent="Props/RakSempit" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -38)
+object_id = "RakSempit.Debu1"
+area_size = Vector2(16, 5)
+tool = "duster"
+effort = 144
+group = "Kemoceng debu atas furniture"
+
+[node name="Vas1" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(438, 64)
+texture = ExtResource("26_741de")
+object_id = "Vas1"
+label_text = "Vas"
+z_level = 1
+
+[node name="Karpet" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(256, 192)
+texture = ExtResource("27_9a025")
+object_id = "Karpet"
+label_text = "Karpet"
+layer_name = "ground"
+origin_at_base = false
+
+[node name="MejaTamu" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(256, 196)
+texture = ExtResource("28_192ac")
+object_id = "MejaTamu"
+label_text = "Meja Tamu"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/MejaTamu" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -14)
+object_id = "MejaTamu.Kotor1"
+area_size = Vector2(46, 11)
+tool = "cloth"
+effort = 246
+group = "Lap meja tamu"
+
+[node name="Sofa" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(256, 248)
+texture = ExtResource("29_bf18d")
+object_id = "Sofa"
+label_text = "Sofa"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/Sofa" instance=ExtResource("7_52ac9")]
+position = Vector2(-24, -20)
+object_id = "Sofa.Kotor1"
+area_size = Vector2(23, 15)
+tool = "cloth"
+effort = 204
+group = "Lap sofa"
+
+[node name="Kotor2" parent="Props/Sofa" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -20)
+object_id = "Sofa.Kotor2"
+area_size = Vector2(23, 15)
+tool = "cloth"
+effort = 204
+group = "Lap sofa"
+
+[node name="Kotor3" parent="Props/Sofa" instance=ExtResource("7_52ac9")]
+position = Vector2(24, -20)
+object_id = "Sofa.Kotor3"
+area_size = Vector2(23, 15)
+tool = "cloth"
+effort = 204
+group = "Lap sofa"
+
+[node name="KursiKiri" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(176, 210)
+texture = ExtResource("30_e6d28")
+object_id = "KursiKiri"
+label_text = "Kursi"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/KursiKiri" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -16)
+object_id = "KursiKiri.Kotor1"
+area_size = Vector2(21, 16)
+tool = "cloth"
+effort = 204
+group = "Lap kursi"
+
+[node name="KursiKanan" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(336, 210)
+texture = ExtResource("31_383ff")
+object_id = "KursiKanan"
+label_text = "Kursi"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/KursiKanan" instance=ExtResource("7_52ac9")]
+position = Vector2(2, -16)
+object_id = "KursiKanan.Kotor1"
+area_size = Vector2(21, 16)
+tool = "cloth"
+effort = 204
+group = "Lap kursi"
+
+[node name="KarpetBaca" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(70, 196)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("32_aace2")
+object_id = "KarpetBaca"
+label_text = "Karpet Kecil"
+area_size = Vector2(51, 38)
+layer_name = "ground"
+origin_at_base = false
+
+[node name="MejaSamping" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(70, 204)
+texture = ExtResource("33_6c0c9")
+object_id = "MejaSamping"
+label_text = "Meja"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/MejaSamping" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -20)
+object_id = "MejaSamping.Kotor1"
+area_size = Vector2(30, 13)
+tool = "cloth"
+effort = 216
+group = "Lap meja samping"
+
+[node name="BukuBaca" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(64, 186)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("34_37162")
+object_id = "BukuBaca"
+label_text = "Buku"
+area_size = Vector2(19, 13)
+z_level = 1
+
+[node name="KursiBaca" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(40, 214)
+texture = ExtResource("35_9a165")
+object_id = "KursiBaca"
+label_text = "Kursi"
+has_shadow = true
+
+[node name="VasMeja" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(82, 186)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("36_7fff4")
+object_id = "VasMeja"
+label_text = "Vas"
+area_size = Vector2(13, 17)
+z_level = 1
+
+[node name="SofaBiru" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(478, 222)
+texture = ExtResource("37_b9728")
+object_id = "SofaBiru"
+label_text = "Kursi Santai"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/SofaBiru" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -23)
+object_id = "SofaBiru.Kotor1"
+area_size = Vector2(14, 18)
+tool = "cloth"
+effort = 192
+group = "Lap kursi"
+
+[node name="Nakas" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(478, 248)
+texture = ExtResource("38_97996")
+object_id = "Nakas"
+label_text = "Laci"
+has_shadow = true
+
+[node name="LampuKanan" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(452, 210)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("22_e3ff4")
+object_id = "LampuKanan"
+label_text = "Lampu"
+area_size = Vector2(20, 48)
+has_shadow = true
+
+[node name="Kotor1" parent="Props/LampuKanan" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -45.882)
+scale = Vector2(1.1765, 1.1765)
+object_id = "LampuKanan.Kotor1"
+area_size = Vector2(16, 15)
+tool = "cloth"
+effort = 192
+group = "Lap lampu"
+
+[node name="KarpetTeh" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(404, 304)
+scale = Vector2(1.3, 0.8)
+texture = ExtResource("39_32ceb")
+object_id = "KarpetTeh"
+label_text = "Karpet"
+area_size = Vector2(68, 50)
+layer_name = "ground"
+origin_at_base = false
+
+[node name="MejaTeh" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(404, 310)
+texture = ExtResource("40_cb6f0")
+object_id = "MejaTeh"
+label_text = "Meja Teh"
+has_shadow = true
+
+[node name="Kotor1" parent="Props/MejaTeh" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -25)
+object_id = "MejaTeh.Kotor1"
+area_size = Vector2(31, 14)
+tool = "cloth"
+effort = 222
+group = "Lap meja teh"
+
+[node name="KursiTehKiri" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(374, 314)
+texture = ExtResource("41_c28a0")
+object_id = "KursiTehKiri"
+label_text = "Kursi"
+has_shadow = true
+
+[node name="KursiTehKanan" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(434, 314)
+texture = ExtResource("35_9a165")
+object_id = "KursiTehKanan"
+label_text = "Kursi"
+has_shadow = true
+
+[node name="Kendi" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(400, 284)
+texture = ExtResource("42_ba165")
+object_id = "Kendi"
+label_text = "Kendi"
+z_level = 1
+
+[node name="PetiKayu" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(150, 336)
+texture = ExtResource("43_d7ac3")
+object_id = "PetiKayu"
+label_text = "Peti"
+has_shadow = true
+
+[node name="Debu1" parent="Props/PetiKayu" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -26)
+object_id = "PetiKayu.Debu1"
+area_size = Vector2(19, 5)
+tool = "duster"
+effort = 150
+group = "Kemoceng debu atas furniture"
+
+[node name="Tanaman" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(486, 340)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("44_f2530")
+object_id = "Tanaman"
+label_text = "Tanaman"
+area_size = Vector2(22, 24)
+has_shadow = true
+
+[node name="Kotor1" parent="Props/Tanaman" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -9.286)
+scale = Vector2(0.7143, 0.7143)
+object_id = "Tanaman.Kotor1"
+area_size = Vector2(18, 17)
+tool = "cloth"
+effort = 198
+group = "Lap tanaman"
+
+[node name="Tanaman2" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(26, 132)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("45_e6834")
+object_id = "Tanaman2"
+label_text = "Tanaman"
+area_size = Vector2(19, 20)
+has_shadow = true
+
+[node name="Tanaman3" parent="Props" instance=ExtResource("2_03861")]
+position = Vector2(200, 108)
+texture = ExtResource("46_465b3")
+object_id = "Tanaman3"
+label_text = "Vas"
+has_shadow = true
+
+[node name="Zones" type="Node2D" parent="."]
+
+[node name="RakBuku" parent="Zones" instance=ExtResource("3_763a9")]
+position = Vector2(40, 115)
+texture = ExtResource("47_eb64a")
+object_id = "RakBuku"
+label_text = "Rak Buku"
+accepts = "book"
+capacity = 4
+states = Array[Texture2D]([ExtResource("47_eb64a"), ExtResource("48_51819"), ExtResource("49_942f0"), ExtResource("50_7316a"), ExtResource("51_fadba")])
+show_counter = true
+
+[node name="Kotor1" parent="Zones/RakBuku" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -60)
+object_id = "RakBuku.Kotor1"
+area_size = Vector2(28, 18)
+tool = "cloth"
+effort = 222
+group = "Lap rak buku"
+
+[node name="Kotor2" parent="Zones/RakBuku" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -36)
+object_id = "RakBuku.Kotor2"
+area_size = Vector2(28, 18)
+tool = "cloth"
+effort = 222
+group = "Lap rak buku"
+
+[node name="Debu3" parent="Zones/RakBuku" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -79)
+object_id = "RakBuku.Debu3"
+area_size = Vector2(32, 6)
+tool = "duster"
+effort = 174
+group = "Kemoceng debu atas furniture"
+
+[node name="LemariPajangan" parent="Zones" instance=ExtResource("3_763a9")]
+position = Vector2(472, 104)
+texture = ExtResource("52_998a4")
+object_id = "LemariPajangan"
+label_text = "Lemari Pajangan"
+accepts = "pajangan"
+capacity = 3
+show_counter = true
+has_shadow = true
+
+[node name="Kotor1" parent="Zones/LemariPajangan" instance=ExtResource("7_52ac9")]
+position = Vector2(-10, -36)
+object_id = "LemariPajangan.Kotor1"
+area_size = Vector2(18, 52)
+tool = "cloth"
+effort = 276
+group = "Lap lemari pajangan"
+
+[node name="Kotor2" parent="Zones/LemariPajangan" instance=ExtResource("7_52ac9")]
+position = Vector2(10, -36)
+object_id = "LemariPajangan.Kotor2"
+area_size = Vector2(18, 52)
+tool = "cloth"
+effort = 276
+group = "Lap lemari pajangan"
+
+[node name="Debu3" parent="Zones/LemariPajangan" instance=ExtResource("7_52ac9")]
+position = Vector2(0, -70)
+object_id = "LemariPajangan.Debu3"
+area_size = Vector2(44, 6)
+tool = "duster"
+effort = 192
+group = "Kemoceng debu atas furniture"
+
+[node name="TempatSampah" parent="Zones" instance=ExtResource("3_763a9")]
+position = Vector2(36, 336)
+texture = ExtResource("53_ec4ee")
+object_id = "TempatSampah"
+label_text = "Tempat Sampah"
+accepts = "trash"
+capacity = 3
+limit = false
+states = Array[Texture2D]([ExtResource("53_ec4ee"), ExtResource("54_2e39d"), ExtResource("55_860a2")])
+states_by_fill = true
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Buku1" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(120, 292)
+texture = ExtResource("56_b5d7f")
+object_id = "Buku1"
+label_text = "Buku"
+z_level = 1
+type = "book"
+group = "Rapikan buku ke rak"
+
+[node name="Buku2" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(300, 300)
+texture = ExtResource("57_b65b5")
+object_id = "Buku2"
+label_text = "Buku"
+z_level = 1
+type = "book"
+group = "Rapikan buku ke rak"
+
+[node name="Buku3" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(210, 278)
+texture = ExtResource("58_53dc8")
+object_id = "Buku3"
+label_text = "Buku"
+z_level = 1
+type = "book"
+group = "Rapikan buku ke rak"
+
+[node name="Buku4" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(470, 160)
+texture = ExtResource("59_107a3")
+object_id = "Buku4"
+label_text = "Buku"
+z_level = 1
+type = "book"
+group = "Rapikan buku ke rak"
+
+[node name="Pajangan1" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(60, 272)
+texture = ExtResource("60_9edc4")
+object_id = "Pajangan1"
+label_text = "Pajangan"
+z_level = 1
+type = "pajangan"
+group = "Rapikan pajangan ke lemari"
+
+[node name="Pajangan2" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(350, 148)
+texture = ExtResource("61_30306")
+object_id = "Pajangan2"
+label_text = "Pajangan"
+z_level = 1
+type = "pajangan"
+group = "Rapikan pajangan ke lemari"
+
+[node name="Pajangan3" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(250, 326)
+texture = ExtResource("62_12684")
+object_id = "Pajangan3"
+label_text = "Pajangan"
+z_level = 1
+type = "pajangan"
+group = "Rapikan pajangan ke lemari"
+
+[node name="Sampah1" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(196, 320)
+texture = ExtResource("63_3becf")
+object_id = "Sampah1"
+label_text = "Sampah"
+z_level = 1
+type = "trash"
+trash = true
+group = "Buang sampah"
+
+[node name="Sampah2" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(120, 158)
+texture = ExtResource("64_9b4ea")
+object_id = "Sampah2"
+label_text = "Sampah"
+z_level = 1
+type = "trash"
+trash = true
+group = "Buang sampah"
+
+[node name="Sampah3" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(400, 168)
+texture = ExtResource("65_80eea")
+object_id = "Sampah3"
+label_text = "Sampah"
+z_level = 1
+type = "trash"
+trash = true
+group = "Buang sampah"
+
+[node name="Sampah4" parent="Items" instance=ExtResource("4_e02f3")]
+position = Vector2(320, 280)
+texture = ExtResource("66_6f8a2")
+object_id = "Sampah4"
+label_text = "Sampah"
+type = "trash"
+trash = true
+group = "Buang sampah"
+
+[node name="Interacts" type="Node2D" parent="."]
+
+[node name="VasBungaLayu" parent="Interacts" instance=ExtResource("5_421bf")]
+position = Vector2(262, 249)
+texture = ExtResource("67_b67aa")
+object_id = "VasBungaLayu"
+label_text = "Vas layu"
+z_level = 1
+group = "Buang vas bunga layu"
+trash = true
+hide_after = true
+has_shadow = true
+
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="Nenek" parent="Actors" instance=ExtResource("6_ebadb")]
+position = Vector2(236, 238)
+texture = ExtResource("68_424a7")
+object_id = "Nenek"
+label_text = "Nenek"
+actor = "nenek"
+
+[node name="MCKecil" parent="Actors" instance=ExtResource("6_ebadb")]
+position = Vector2(270, 242)
+texture = ExtResource("69_01e11")
+object_id = "MCKecil"
+label_text = "MC kecil"
+actor = "mc_kecil"
+
+[node name="MCDewasa" parent="Actors" instance=ExtResource("6_ebadb")]
+position = Vector2(323, 92)
+texture = ExtResource("69_01e11")
+object_id = "MCDewasa"
+label_text = "MC"
+actor = "mc"
+
+[node name="Events" type="Node" parent="."]
+
+[node name="CatEvent" parent="Events" instance=ExtResource("70_985ab")]
+config = {
+"kind": "cat",
+"scatterCount": 9,
+"minItemsNeeded": 4,
+"triggerProgress": 35,
+"introText": "Meong! Seekor kucing tiba-tiba masuk dan mengacak-acak barang!",
+"maxRepeats": 2,
+"repeatInterval": 80,
+"catEntry": {
+"x": 560,
+"y": 220
+},
+"catExit": {
+"x": -40,
+"y": 280
+},
+"floorArea": {
+"x": 40,
+"y": 130,
+"w": 430,
+"h": 190
+}
+}
+tutorial = Array[Dictionary]([{
+"title": "Event: Kucing Nakal",
+"text": "Seekor kucing tiba-tiba masuk dan menjatuhkan barang yang sudah kamu rapikan. Ikuti panah untuk melihat kucingnya, lalu rapikan lagi barang yang berserakan (drag ke tempatnya). Event ini bisa muncul lagi."
+}])

@@ -1,33 +1,22 @@
+@tool
 class_name Zone
 extends Thing
 ## Where items go: shelf, wardrobe, sink, bin. Its picture can change as it fills.
 
-var accepts := ""
-var capacity := 1
-var limit := true
-var label_text := ""
-var states: Array = []
-var by_fill := false
+## Item type it takes.
+@export var accepts := ""
+@export var capacity := 1
+## Refuses items once full.
+@export var limit := true
+## Pictures from empty to full (the first is the starting texture).
+@export var states: Array[Texture2D] = []
+## Pick the picture by how full it is, instead of one picture per item.
+@export var states_by_fill := false
+@export var show_counter := false
+
 var received := 0
 var _pulse: Tween
 var _glow := false
-
-
-func setup_zone(def: Dictionary) -> Zone:
-	var s := def.duplicate()
-	var st: Array = def.get("states", [])
-	if not st.is_empty():
-		s["tex"] = st[0]
-	s["originAtBase"] = true
-	s["layer"] = "ysort"
-	setup(s)
-	accepts = String(def.get("accepts", ""))
-	capacity = maxi(1, int(def.get("capacity", 1)))
-	limit = bool(def.get("limit", true))
-	label_text = String(def.get("label", ""))
-	states = st
-	by_fill = bool(def.get("statesByFill", false))
-	return self
 
 
 func can_accept(it: Item) -> bool:
@@ -77,9 +66,9 @@ func _apply_state() -> void:
 	if states.is_empty():
 		return
 	var idx := 0
-	if by_fill:
+	if states_by_fill:
 		var ratio := float(received) / capacity
 		idx = 0 if received == 0 else mini(states.size() - 1, 1 + int(floor(ratio * (states.size() - 1))))
 	else:
 		idx = mini(received, states.size() - 1)
-	set_tex(String(states[idx]))
+	set_tex(states[idx])

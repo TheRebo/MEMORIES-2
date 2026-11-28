@@ -2,25 +2,14 @@ class_name RoomScreen
 extends Node2D
 ## One room of the house: cleaning, events, completion, flashback, navigation.
 
-## Scene for each event kind in the room data. Loaded on demand: event scripts refer back to
-## RoomScreen, so preloading them here would be a cyclic load.
-const EVENT_SCENES := {
-	"cat": "res://scenes/events/cat_event.tscn",
-	"rain": "res://scenes/events/rain_event.tscn",
-	"blackout": "res://scenes/events/blackout_event.tscn",
-	"wind": "res://scenes/events/wind_event.tscn",
-	"cockroach": "res://scenes/events/cockroach_event.tscn",
-}
-const THING := preload("res://scenes/world/thing.tscn")
-const ZONE := preload("res://scenes/world/zone.tscn")
-const ITEM := preload("res://scenes/world/item.tscn")
 const DIRT := preload("res://scenes/world/dirt.tscn")
-const INTERACTABLE := preload("res://scenes/world/interactable.tscn")
-const ACTOR := preload("res://scenes/world/actor.tscn")
 
 var args: Dictionary = {}
 var main: Node
+## Room facts from the layout (id, name, short, size, wallHeight, flashback).
 var def: Dictionary
+## The room as laid out in the editor (scenes/rooms/<id>.tscn).
+var layout: RoomLayout
 var ctx: RoomCtx
 var tools: ToolSystem
 var hands: HandSystem
@@ -57,15 +46,23 @@ func _ready() -> void:
 	# Back to the last save: a room left halfway does not keep its rewards, trash or tool XP.
 	GameState.load_save()
 	var id := String(args.get("room", "living_room"))
-	def = Db.room(id)
-	if def.is_empty():
-		def = Db.room("living_room")
+	var path := "res://scenes/rooms/%s.tscn" % id
+	if not ResourceLoader.exists(path):
+		push_warning("No layout for room %s" % id)
+		path = "res://scenes/rooms/living_room.tscn"
+	layout = (load(path) as PackedScene).instantiate()
+	world.add_child(layout)
+	world.move_child(layout, 0)
+	def = {
+		"id": layout.room_id, "name": layout.room_name, "short": layout.short_name,
+		"size": {"w": layout.room_size.x, "h": layout.room_size.y},
+		"wallHeight": layout.wall_height, "flashback": layout.flashback,
+	}
 	ctx = RoomCtx.new(def)
 	tracker = TaskTracker.new()
 	_completed_visit = GameState.is_completed(String(def["id"]))
 	RenderingServer.set_default_clear_color(Color("0d0907"))
 
-	(%Background as Sprite2D).texture = Db.tex(String(def["background"]))
 	_build_world()
 
 	var size := Vector2(float(def["size"]["w"]), float(def["size"]["h"]))
@@ -73,9 +70,9 @@ func _ready() -> void:
 	camera.setup(size)
 	camera.make_current()
 	# Every window throws a beam of daylight that brightens as the room gets clean.
-	for pr: Dictionary in def["props"]:
-		if String(pr["id"]).begins_with("Jendela") and String(pr.get("tex", "")) != "":
-			_beams.append(fx.window_light(float(pr["x"]), float(pr["y"]), float(pr["w"])))
+	for f in furniture:
+		if f.object_id.begins_with("Jendela") and f.texture:
+			_beams.append(fx.window_light(f.position.x, f.position.y, f.w))
 
 	hud.setup(def)
 	tools = ToolSystem.new(self)
@@ -84,15 +81,8 @@ func _ready() -> void:
 	_wire()
 	camera.inset_left = hud.todo_inset()
 
-	for e: Dictionary in def.get("events", []):
-		var path := String(EVENT_SCENES.get(String(e.get("kind", "")), ""))
-		var packed: PackedScene = load(path) if path != "" else null
-		if packed == null:
-			push_warning("Unknown event kind %s" % e.get("kind"))
-			continue
-		var ev: RoomEvent = packed.instantiate()
-		%Events.add_child(ev)
-		ev.setup(self, e)
+	for ev: RoomEvent in layout.things_of("Events"):
+		ev.setup(self)
 		_events.append(ev)
 
 	Sfx.play_music("present", 1.4)
@@ -161,49 +151,28 @@ func debug_end_events() -> void:
 # ================== World ==================
 
 func _build_world() -> void:
-	for p: Dictionary in def["props"]:
-		var t: Thing = THING.instantiate()
-		t.setup(p)
-		things.add_child(t)
+	for t: Thing in layout.things_of("Props"):
 		furniture.append(t)
-		_add_dirt_children(t, p.get("dirt", []))
-	for z: Dictionary in def["zones"]:
-		var zone: Zone = ZONE.instantiate()
-		zone.setup_zone(z)
-		things.add_child(zone)
-		zones.append(zone)
-		furniture.append(zone)
-		_add_dirt_children(zone, z.get("dirt", []))
-	for d: Dictionary in def["floorDirt"]:
-		spawn_dirt(d, null)
-	for i: Dictionary in def["items"]:
-		var it: Item = ITEM.instantiate()
-		it.setup_item(i)
-		things.add_child(it)
+	for z: Zone in layout.things_of("Zones"):
+		zones.append(z)
+		furniture.append(z)
+	for d: Dirt in layout.all_dirt():
+		dirt.append(d)
+		tracker.add(d)
+	for it: Item in layout.things_of("Items"):
 		items.append(it)
 		tracker.add(it)
-	for i: Dictionary in def["interacts"]:
-		var it: Interactable = INTERACTABLE.instantiate()
-		it.setup_interact(i)
-		things.add_child(it)
+	for it: Interactable in layout.things_of("Interacts"):
 		interacts.append(it)
 		tracker.add(it)
-	for a: Dictionary in def["actors"]:
-		var ac: Actor = ACTOR.instantiate()
-		ac.setup_actor(a)
-		things.add_child(ac)
-		actors.append(ac)
+	for a: Actor in layout.things_of("Actors"):
+		actors.append(a)
 
 
-func _add_dirt_children(parent: Thing, list: Array) -> void:
-	for d: Dictionary in list:
-		spawn_dirt(d, parent)
-
-
+## New dirt at runtime (events, dust settling again), on `parent` or on the floor.
 func spawn_dirt(spec: Dictionary, parent: Thing) -> Dirt:
-	var d: Dirt = DIRT.instantiate()
-	d.setup_dirt(spec, parent)
-	things.add_child(d)
+	var floor_node := layout.get_node_or_null("FloorDirt")
+	var d := Dirt.spawn(DIRT, spec, parent, floor_node if floor_node else things)
 	dirt.append(d)
 	tracker.add(d)
 	return d
@@ -211,7 +180,7 @@ func spawn_dirt(spec: Dictionary, parent: Thing) -> Dirt:
 
 func find_thing(id: String) -> Thing:
 	for f in furniture:
-		if f.id == id:
+		if f.object_id == id:
 			return f
 	return null
 
