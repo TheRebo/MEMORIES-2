@@ -57,6 +57,45 @@ export class Fx {
     this.puff.explode(this.calm ? 2 : 6, x, y);
   }
 
+  /**
+   * Daylight falling from a window onto the floor: a soft additive wedge with dust drifting in it.
+   * `strength` follows the room's cleanliness (grimy glass lets less light through).
+   */
+  windowLight(x: number, wallY: number, width: number): (strength: number) => void {
+    const key = 'fx_beam';
+    if (!this.scene.textures.exists(key)) {
+      const c = this.scene.textures.createCanvas(key, 64, 128);
+      const ctx = c?.getContext();
+      if (c && ctx) {
+        const g = ctx.createLinearGradient(0, 0, 0, 128);
+        g.addColorStop(0, 'rgba(255,240,200,0.9)');
+        g.addColorStop(1, 'rgba(255,240,200,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        // Slanted wedge: the sun comes in from the upper left.
+        ctx.moveTo(8, 0); ctx.lineTo(34, 0); ctx.lineTo(64, 128); ctx.lineTo(22, 128); ctx.closePath();
+        ctx.fill();
+        c.refresh();
+      }
+    }
+    const beam = this.scene.add.image(x + 10, wallY, key).setOrigin(0.5, 0).setBlendMode(Phaser.BlendModes.ADD)
+      .setDisplaySize(width * 1.6, 150).setDepth(DEPTH.weather - 30).setAlpha(0.05);
+    const specks = this.scene.add.particles(0, 0, 'fx_px', {
+      x: { min: x - width * 0.4, max: x + width * 0.8 }, y: { min: wallY + 10, max: wallY + 130 }, lifespan: 4200, frequency: 260,
+      speedX: { min: -2, max: 4 }, speedY: { min: 1, max: 4 }, scale: { min: 0.5, max: 1 }, tint: 0xfff0c8,
+      alpha: { start: 0, end: 0, ease: (t: number) => Math.sin(t * Math.PI) * 0.8 },
+    }).setDepth(DEPTH.weather - 29);
+    if (this.calm) specks.stop();
+    // A slow shimmer, like leaves moving outside the window.
+    let base = 0.05;
+    const shimmer = this.scene.tweens.addCounter({ from: 0, to: Math.PI * 2, duration: 5200, repeat: -1,
+      onUpdate: (tw) => beam.setAlpha(base * (1 + (this.calm ? 0 : Math.sin(tw.getValue() ?? 0) * 0.15))) });
+    this.scene.events.once('shutdown', () => shimmer.remove());
+    return (strength: number) => {
+      base = 0.04 + 0.16 * Phaser.Math.Clamp(strength, 0, 1);
+    };
+  }
+
   /** Expanding rings that say 'here': used when a task is located from the note. */
   ping(x: number, y: number): void {
     for (let i = 0; i < 2; i += 1) {
