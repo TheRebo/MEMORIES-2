@@ -38,11 +38,20 @@ Semua aset dipanggil dengan path relatif (`base: './'` di `vite.config.ts`), jad
 | Objek "klik 2x" | Klik dua kali (vas layu, bantal, guling, selimut) | Ketuk dua kali |
 | Lilin (saat listrik padam) | Tahan `5` atau tahan slot Lilin, lepas di lantai | Tahan slot, lepas di lantai |
 | Lihat ruangan | Arahkan kursor ke tepi area kosong, scroll untuk zoom | |
-| Daftar tugas | `T` | Tombol Tugas |
+| Catatan tugas | `T` buka/tutup; klik baris tugas untuk menunjukkan lokasinya | Tombol Catatan, ketuk baris tugas |
 | Jeda | `Esc` (melepas alat dulu bila sedang dipegang dengan ketukan) | Tombol menu |
 | Dialog | Klik / `Enter` / `Spasi` lanjut, `Esc` lewati | Ketuk |
 
 Ketuk-untuk-pegang juga berguna di trackpad. Tahan-tombol tetap bekerja seperti versi Godot.
+
+## Tantangan
+
+- **Urutan kerja**: debu yang menutupi noda harus disapu dulu sebelum nodanya bisa dipel, dan perabot berdebu harus dikemoceng dulu sebelum dilap.
+- **Salah alat**: menggosok dengan alat yang salah membuat kotoran sedikit menyebar lagi.
+- **Waktu dan bintang**: setiap ruangan punya target waktu untuk 3 bintang (2 bintang sampai 1,5 kali target). Rekor tercepat disimpan.
+- **Event lebih sering**: kucing datang dua kali, hujan dua kali, kecoa juga muncul di dapur, angin bertiup dua kali, listrik padam lebih lama dengan lilin cadangan lebih sedikit.
+- **Debu menumpuk lagi**: sampai 3 kali per ruangan, debu baru muncul di lantai.
+- **Level alat** naik setiap 9 kotoran (sebelumnya 6).
 
 ## Struktur
 
@@ -85,22 +94,11 @@ Ruangan tidak bisa selesai selama event berjalan. Event bisa muncul lagi setelah
 
 ## Mengubah konten
 
-- **Posisi objek, tugas, dialog kilas balik, parameter event**: `src/data/rooms/*.ts` (data biasa, aman diedit tangan).
+- **Tata letak ruangan**: ditulis dalam Python di `tools/rooms/` (`living.py`, `kitchen.py`, `bedroom.py`), lalu `python3 tools/rooms/emit.py` menulis `src/data/rooms/*.ts`. Pratinjau persis seperti di game: `python3 tools/rooms/compose.py tools/rooms/out_kitchen.json pratinjau.png --boxes`. Lihat `tools/rooms/README.md`.
+- **Tingkat kesulitan**: semua effort kotoran dihitung dari satu tabel (`BASE`, `PER_PX`, `DIFFICULTY`) di `tools/rooms/emit.py`; target bintang di `STAR_PAR` (`src/config.ts`).
 - **Prolog, epilog, tutorial, kredit**: `src/data/story.ts`.
 - **Kredit**: masih `[NAMA]`, isi sesuai tim.
-- **Sprite baru**: taruh PNG di `public/assets/sprites/`, tambahkan entri di `src/data/sprites.ts`.
-
-Data ruangan awalnya dibuat otomatis dari scene Godot:
-
-```bash
-mkdir -p .cache/json
-for r in living_room kitchen bedroom; do
-  python3 tools/tscn2json.py ../MEMORIES/scenes/rooms/$r.tscn > .cache/json/$r.json
-done
-GODOT_PROJECT=../MEMORIES DRIVE_ASSETS=../drive python3 tools/gen_rooms.py
-```
-
-Menjalankan ulang akan menimpa `src/data/rooms/*.ts`.
+- **Sprite baru**: taruh PNG di `public/assets/sprites/` (atau tambahkan ke `tools/ingest_assets.py` agar otomatis di-trim), lalu `python3 tools/gen_sprites.py` untuk memperbarui `src/data/sprites.ts`.
 
 ## Pemetaan aset
 
