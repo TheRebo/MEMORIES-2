@@ -79,6 +79,7 @@ func _show(screen: String, args: Dictionary) -> void:
 	current = script.new()
 	# The router keeps running while paused (for the iris); screens pause with the tree.
 	current.process_mode = Node.PROCESS_MODE_PAUSABLE
+	current.name = screen
 	current.set("args", args)
 	current.set("main", self)
 	add_child(current)

@@ -116,6 +116,47 @@ func _exit_tree() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 
+# ================== Debug (tests/smoke.gd) ==================
+
+## Finish every task except `leave` of them.
+func debug_finish(leave: int = 0) -> void:
+	var todo: Array = []
+	for d in dirt:
+		if not d.done:
+			todo.append(d)
+	for i in interacts:
+		if not i.done:
+			todo.append(i)
+	for t: Object in todo.slice(leave):
+		if t is Dirt:
+			(t as Dirt).scrub((t as Dirt).tool, (t as Dirt).effort)
+		else:
+			(t as Interactable).interact()
+	for it in items:
+		if it.done:
+			continue
+		for z in zones:
+			if z.can_accept(it):
+				z.receive(it)
+				break
+	ctx.tasks_changed.emit()
+
+
+## Start every event of this room now, one after another.
+func debug_events() -> void:
+	for ev in _events:
+		ev.cfg["triggerProgress"] = 0.0
+		ev.cfg["repeatEnabled"] = false
+		ev.cfg["enabled"] = true
+	ctx.progress.emit(percent())
+
+
+func debug_end_events() -> void:
+	for ev in _events:
+		if ev.running:
+			ev.debug_end()
+
+
 # ================== World ==================
 
 func _build_world() -> void:

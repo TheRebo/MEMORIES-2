@@ -52,3 +52,8 @@ func _cleared() -> void:
 func _exit_tree() -> void:
 	if room:
 		room.ctx.set_blocked("roach", false)
+
+
+func debug_end() -> void:
+	if running:
+		_cleared()

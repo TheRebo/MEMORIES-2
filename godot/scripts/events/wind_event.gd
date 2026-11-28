@@ -164,3 +164,8 @@ func _close() -> void:
 
 func _exit_tree() -> void:
 	Sfx.stop_loop(_loop, 0.2)
+
+
+func debug_end() -> void:
+	if running:
+		_close()

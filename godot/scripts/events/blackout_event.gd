@@ -119,3 +119,8 @@ func _end() -> void:
 	set_objective("")
 	c.dialog.emit("MC", "Listriknya menyala lagi. Syukurlah!", 3.5)
 	finish()
+
+
+func debug_end() -> void:
+	if running:
+		_end()

@@ -83,6 +83,11 @@ func _show_tutorial() -> void:
 	later(0.9, func() -> void: room.show_tutorial(tutorial, "Kejadian"))
 
 
+## Tests: end the event now the way it would end on its own.
+func debug_end() -> void:
+	finish()
+
+
 ## Extra start condition.
 func can_start(_pct: float) -> bool:
 	return true
