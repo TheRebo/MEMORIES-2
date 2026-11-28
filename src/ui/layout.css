@@ -88,7 +88,8 @@
   gap: 22px;
   pointer-events: auto;
 }
-.menu-buttons .img-btn { animation: rise-in 420ms steps(6) both; }
+/* Fade only: a moving entrance shifts the hit box and swallows an early click. */
+.menu-buttons .img-btn { animation: fade-in 420ms ease-out both; }
 .menu-buttons .img-btn:nth-child(2) { animation-delay: 70ms; }
 .menu-buttons .img-btn:nth-child(3) { animation-delay: 140ms; }
 .menu-buttons .img-btn:nth-child(4) { animation-delay: 210ms; }
@@ -432,7 +433,8 @@ span.todo-kind.none { box-shadow: none; }
    event's target (window, cockroach), so a centred card would cover the very thing to click. */
 .hud-msgs {
   position: absolute;
-  top: 16px;
+  /* Under the plaque and the action cluster, so a toast never covers the timer. */
+  top: 74px;
   left: var(--inset);
   right: 0;
   display: flex;

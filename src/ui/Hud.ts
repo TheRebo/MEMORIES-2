@@ -332,22 +332,33 @@ export class Hud {
           h('dt', {}, 'Target 3 bintang'), h('dd', { class: 'display' }, clock(r.par)),
           h('dt', {}, 'Rekor'), h('dd', { class: 'display' }, clock(best))),
         r.record && r.best !== null ? h('p', { class: 'result-record display' }, 'Rekor baru!') : h('span', {}),
-        h('p', { class: 'result-hint' }, 'Klik untuk lanjut'));
+        h('p', { class: 'result-hint' }, 'Klik atau Enter untuk lanjut'));
       this.root.append(card);
       stars.forEach((_el, i) => {
         if (i < r.stars) window.setTimeout(() => Audio.sfx('reward', { volume: 0.6, detune: i * 200 }), 300 + i * 260);
       });
       let closed = false;
+      // Keyboard players close it with Enter, Space or Esc (Esc must not also skip the flashback).
+      const onKey = (e: KeyboardEvent): void => {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Escape') return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        close();
+      };
       const close = (): void => {
         if (closed) return;
         closed = true;
+        window.removeEventListener('keydown', onKey, true);
         card.classList.add('out');
         window.setTimeout(() => {
           card.remove();
           resolve();
         }, 260);
       };
-      window.setTimeout(() => card.addEventListener('pointerdown', close), 900);
+      window.setTimeout(() => {
+        card.addEventListener('pointerdown', close);
+        if (!closed) window.addEventListener('keydown', onKey, true);
+      }, 900);
       window.setTimeout(close, 6000);
     });
   }
