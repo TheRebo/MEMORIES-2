@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scenes/room/room.gd" id="1_96435"]
+[ext_resource type="PackedScene" path="res://scenes/room/fx.tscn" id="2_584e2"]
+[ext_resource type="PackedScene" path="res://scenes/room/lighting.tscn" id="3_57f86"]
+[ext_resource type="Script" path="res://scenes/room/camera_rig.gd" id="4_b8d90"]
+[ext_resource type="PackedScene" path="res://scenes/room/hud/hud.tscn" id="5_a6d5a"]
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_96435")
+
+[node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="Sprite2D" parent="World"]
+unique_name_in_owner = true
+z_index = -4090
+centered = false
+
+[node name="Things" type="Node2D" parent="World"]
+unique_name_in_owner = true
+
+[node name="Fx" parent="World" instance=ExtResource("2_584e2")]
+unique_name_in_owner = true
+
+[node name="Lighting" parent="." instance=ExtResource("3_57f86")]
+unique_name_in_owner = true
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_b8d90")
+
+[node name="Events" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Hud" parent="." instance=ExtResource("5_a6d5a")]
+unique_name_in_owner = true

@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/dialogs/pause_dialog.gd" id="1_f8c0e"]
+[ext_resource type="Texture2D" path="res://assets/ui/btn_continue_long.png" id="2_14cd6"]
+[ext_resource type="Script" path="res://scenes/ui/art_button.gd" id="3_db3a8"]
+[ext_resource type="Texture2D" path="res://assets/ui/btn_setting_long.png" id="4_a9778"]
+[ext_resource type="Script" path="res://scenes/ui/sfx_button.gd" id="5_55bbb"]
+[ext_resource type="Texture2D" path="res://assets/ui/btn_quit_long.png" id="6_a5996"]
+
+[node name="PauseDialog" type="Control"]
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f8c0e")
+title = "Jeda"
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0706, 0.0392, 0.0275, 0.72)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="PanelContainer" parent="Center"]
+theme_type_variation = &"WoodDialog"
+
+[node name="Layout" type="VBoxContainer" parent="Center/Frame"]
+theme_override_constants/separation = 14
+
+[node name="TitleStrip" type="PanelContainer" parent="Center/Frame/Layout"]
+theme_type_variation = &"TitleStrip"
+
+[node name="Title" type="Label" parent="Center/Frame/Layout/TitleStrip"]
+unique_name_in_owner = true
+theme_type_variation = &"AmberLabel"
+theme_override_font_sizes/font_size = 26
+text = "Jeda"
+
+[node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
+unique_name_in_owner = true
+theme_override_constants/separation = 10
+
+[node name="Info" type="PanelContainer" parent="Center/Frame/Layout/Body"]
+theme_type_variation = &"InfoStrip"
+
+[node name="Row" type="HBoxContainer" parent="Center/Frame/Layout/Body/Info"]
+
+[node name="RoomName" type="Label" parent="Center/Frame/Layout/Body/Info/Row"]
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 20
+text = ""
+size_flags_horizontal = 3
+
+[node name="Percent" type="Label" parent="Center/Frame/Layout/Body/Info/Row"]
+unique_name_in_owner = true
+theme_type_variation = &"AmberLabel"
+theme_override_font_sizes/font_size = 18
+text = ""
+
+[node name="List" type="VBoxContainer" parent="Center/Frame/Layout/Body"]
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="Continue" type="TextureButton" parent="Center/Frame/Layout/Body/List"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 64)
+tooltip_text = "Lanjutkan"
+texture_normal = ExtResource("2_14cd6")
+ignore_texture_size = true
+stretch_mode = 0
+size_flags_horizontal = 4
+script = ExtResource("3_db3a8")
+
+[node name="Settings" type="TextureButton" parent="Center/Frame/Layout/Body/List"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 64)
+tooltip_text = "Pengaturan"
+texture_normal = ExtResource("4_a9778")
+ignore_texture_size = true
+stretch_mode = 0
+size_flags_horizontal = 4
+script = ExtResource("3_db3a8")
+
+[node name="Tutorial" type="Button" parent="Center/Frame/Layout/Body/List"]
+unique_name_in_owner = true
+text = "Tutorial"
+custom_minimum_size = Vector2(330, 64)
+size_flags_horizontal = 4
+script = ExtResource("5_55bbb")
+
+[node name="Quit" type="TextureButton" parent="Center/Frame/Layout/Body/List"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(384, 64)
+tooltip_text = "Menu utama"
+texture_normal = ExtResource("6_a5996")
+ignore_texture_size = true
+stretch_mode = 0
+size_flags_horizontal = 4
+script = ExtResource("3_db3a8")
+
+[node name="Note" type="Label" parent="Center/Frame/Layout/Body"]
+unique_name_in_owner = true
+theme_type_variation = &"DimLabel"
+theme_override_font_sizes/font_size = 18
+text = "Progres tersimpan otomatis setiap kali satu ruangan selesai."
+custom_minimum_size = Vector2(360, 0)
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Frame/Layout"]
+unique_name_in_owner = true
+theme_override_constants/separation = 12
+alignment = 2

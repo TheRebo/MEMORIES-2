@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scenes/story/story.gd" id="1_96d80"]
+[ext_resource type="Script" path="res://scenes/ui/typer.gd" id="2_d2cda"]
+[ext_resource type="Script" path="res://scenes/ui/sfx_button.gd" id="3_e4438"]
+
+[node name="Story" type="Node2D"]
+script = ExtResource("1_96d80")
+
+[node name="Art" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Box" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDialog"
+offset_left = 160
+offset_top = 520
+offset_right = 1120
+offset_bottom = 660
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="UI/Box"]
+theme_override_constants/separation = 6
+
+[node name="SpeakerTab" type="PanelContainer" parent="UI/Box/Content"]
+unique_name_in_owner = true
+theme_type_variation = &"SpeakerTab"
+size_flags_horizontal = 0
+
+[node name="Speaker" type="Label" parent="UI/Box/Content/SpeakerTab"]
+unique_name_in_owner = true
+theme_type_variation = &"DisplayLabel"
+theme_override_font_sizes/font_size = 21
+text = ""
+
+[node name="Text" type="Label" parent="UI/Box/Content"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperLabel"
+theme_override_font_sizes/font_size = 27
+custom_minimum_size = Vector2(0, 70)
+autowrap_mode = 3
+script = ExtResource("2_d2cda")
+
+[node name="Hint" type="Label" parent="UI/Box/Content"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperSoftLabel"
+theme_override_font_sizes/font_size = 18
+text = "Klik atau tekan Enter untuk lanjut"
+horizontal_alignment = 2
+
+[node name="Skip" type="Button" parent="UI"]
+unique_name_in_owner = true
+theme_type_variation = &"SmallButton"
+text = "Lewati"
+anchors_preset = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -140
+offset_top = 24
+offset_right = -24
+offset_bottom = 68
+grow_horizontal = 0
+script = ExtResource("3_e4438")

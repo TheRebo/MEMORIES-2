@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/room/window_light.gd" id="1_5909f"]
+[ext_resource type="Texture2D" path="res://assets/ui/theme/px.png" id="2_396e7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7a6c0"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_36d1f"]
+offsets = PackedFloat32Array(0.0, 0.5, 1.0)
+colors = PackedColorArray(1, 0.94, 0.78, 0, 1, 0.94, 0.78, 1, 1, 0.94, 0.78, 0)
+
+[node name="WindowLight" type="Node2D"]
+z_index = -10
+script = ExtResource("1_5909f")
+
+[node name="Beam" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.05)
+material = SubResource("CanvasItemMaterial_7a6c0")
+polygon = PackedVector2Array(-29, 0, 2, 0, 38, 150, -12, 150)
+vertex_colors = PackedColorArray(1, 0.94, 0.78, 0.9, 1, 0.94, 0.78, 0.9, 1, 0.94, 0.78, 0, 1, 0.94, 0.78, 0)
+
+[node name="Specks" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+amount = 14
+lifetime = 4.2
+preprocess = 4
+texture = ExtResource("2_396e7")
+emission_shape = 3
+emission_rect_extents = Vector2(28, 60)
+gravity = Vector2(1, 2)
+initial_velocity_max = 2
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_36d1f")

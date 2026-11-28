@@ -31,6 +31,9 @@ jobs:
 
       - name: Import assets
         run: |
+          # The first import can report the theme's fonts as missing (they are imported in the
+          # same pass); the second pass must be clean.
+          godot --headless --path . --import > import-first.log 2>&1 || true
           godot --headless --path . --import 2>&1 | tee import.log
           ! grep -nE "SCRIPT ERROR|^ERROR:" import.log
 
@@ -54,4 +57,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: godot-logs
-          path: godot/*.log
+          path: |
+            godot/*.log
+            godot/**/*.import

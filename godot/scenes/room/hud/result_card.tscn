@@ -1,0 +1,119 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/room/hud/result_card.gd" id="1_9ad46"]
+[ext_resource type="Script" path="res://scenes/ui/star.gd" id="2_b44c0"]
+
+[node name="ResultCard" type="Control"]
+mouse_filter = 2
+script = ExtResource("1_9ad46")
+
+[node name="Card" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+theme_type_variation = &"PaperCard"
+custom_minimum_size = Vector2(380, 0)
+
+[node name="Content" type="VBoxContainer" parent="Card"]
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Card/Content"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 32
+text = "Sempurna!"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="Card/Content"]
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="Star1" type="Control" parent="Card/Content/Stars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 54)
+script = ExtResource("2_b44c0")
+color = Color(0.8667, 0.7882, 0.6275, 1)
+
+[node name="Star2" type="Control" parent="Card/Content/Stars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 54)
+script = ExtResource("2_b44c0")
+color = Color(0.8667, 0.7882, 0.6275, 1)
+
+[node name="Star3" type="Control" parent="Card/Content/Stars"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(54, 54)
+script = ExtResource("2_b44c0")
+color = Color(0.8667, 0.7882, 0.6275, 1)
+
+[node name="StatsCenter" type="CenterContainer" parent="Card/Content"]
+
+[node name="Stats" type="GridContainer" parent="Card/Content/StatsCenter"]
+columns = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 4
+
+[node name="TimeKey" type="Label" parent="Card/Content/StatsCenter/Stats"]
+theme_type_variation = &"PaperSoftLabel"
+theme_override_font_sizes/font_size = 19
+text = "Waktu"
+custom_minimum_size = Vector2(180, 0)
+
+[node name="TimeValue" type="Label" parent="Card/Content/StatsCenter/Stats"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 18
+text = "0:00"
+custom_minimum_size = Vector2(70, 0)
+horizontal_alignment = 2
+
+[node name="ParKey" type="Label" parent="Card/Content/StatsCenter/Stats"]
+theme_type_variation = &"PaperSoftLabel"
+theme_override_font_sizes/font_size = 19
+text = "Target 3 bintang"
+custom_minimum_size = Vector2(180, 0)
+
+[node name="ParValue" type="Label" parent="Card/Content/StatsCenter/Stats"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 18
+text = "0:00"
+custom_minimum_size = Vector2(70, 0)
+horizontal_alignment = 2
+
+[node name="BestKey" type="Label" parent="Card/Content/StatsCenter/Stats"]
+theme_type_variation = &"PaperSoftLabel"
+theme_override_font_sizes/font_size = 19
+text = "Rekor"
+custom_minimum_size = Vector2(180, 0)
+
+[node name="BestValue" type="Label" parent="Card/Content/StatsCenter/Stats"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 18
+text = "0:00"
+custom_minimum_size = Vector2(70, 0)
+horizontal_alignment = 2
+
+[node name="Record" type="Label" parent="Card/Content"]
+unique_name_in_owner = true
+theme_type_variation = &"PaperDisplayLabel"
+theme_override_font_sizes/font_size = 20
+text = "Rekor baru!"
+visible = false
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.6039, 0.2118, 0.1333, 1)
+
+[node name="Hint" type="Label" parent="Card/Content"]
+theme_type_variation = &"PaperSoftLabel"
+theme_override_font_sizes/font_size = 16
+text = "Klik atau Enter untuk lanjut"
+horizontal_alignment = 1
+
+[node name="Tape" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = 151
+offset_top = -10
+offset_right = 229
+offset_bottom = 10
+rotation = -0.0349
+mouse_filter = 2
+color = Color(0.84, 0.77, 0.59, 0.88)

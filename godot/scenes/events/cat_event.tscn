@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scenes/events/cat_event.gd" id="1_fbcb6"]
+[ext_resource type="Texture2D" path="res://assets/sprites/cat_run.png" id="2_7c63d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e004"]
+atlas = ExtResource("2_7c63d")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b06ff"]
+atlas = ExtResource("2_7c63d")
+region = Rect2(35, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eea42"]
+atlas = ExtResource("2_7c63d")
+region = Rect2(70, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a367"]
+atlas = ExtResource("2_7c63d")
+region = Rect2(105, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_260ff"]
+atlas = ExtResource("2_7c63d")
+region = Rect2(140, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d995b"]
+atlas = ExtResource("2_7c63d")
+region = Rect2(175, 0, 35, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_477d5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e004")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b06ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eea42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a367")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_260ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d995b")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[node name="CatEvent" type="Node"]
+script = ExtResource("1_fbcb6")
+
+[node name="Cat" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_477d5")
+animation = &"run"
+offset = Vector2(0, -16)

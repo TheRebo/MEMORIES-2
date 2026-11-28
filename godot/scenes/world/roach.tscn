@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/kecoa.png" id="1_8b080"]
+[ext_resource type="Script" path="res://scenes/world/roach.gd" id="2_51306"]
+
+[node name="Roach" type="Sprite2D"]
+z_as_relative = false
+z_index = 3500
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_8b080")
+script = ExtResource("2_51306")

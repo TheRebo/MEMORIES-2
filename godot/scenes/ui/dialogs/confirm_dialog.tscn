@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/dialogs/confirm_dialog.gd" id="1_ae7c4"]
+[ext_resource type="Script" path="res://scenes/ui/sfx_button.gd" id="2_880f0"]
+
+[node name="ConfirmDialog" type="Control"]
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ae7c4")
+title = "Yakin?"
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0706, 0.0392, 0.0275, 0.72)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="PanelContainer" parent="Center"]
+theme_type_variation = &"WoodDialog"
+
+[node name="Layout" type="VBoxContainer" parent="Center/Frame"]
+theme_override_constants/separation = 14
+
+[node name="TitleStrip" type="PanelContainer" parent="Center/Frame/Layout"]
+theme_type_variation = &"TitleStrip"
+
+[node name="Title" type="Label" parent="Center/Frame/Layout/TitleStrip"]
+unique_name_in_owner = true
+theme_type_variation = &"AmberLabel"
+theme_override_font_sizes/font_size = 26
+text = "Yakin?"
+
+[node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
+unique_name_in_owner = true
+theme_override_constants/separation = 10
+
+[node name="Message" type="Label" parent="Center/Frame/Layout/Body"]
+unique_name_in_owner = true
+text = ""
+custom_minimum_size = Vector2(440, 0)
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Frame/Layout"]
+unique_name_in_owner = true
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="Cancel" type="Button" parent="Center/Frame/Layout/Buttons"]
+unique_name_in_owner = true
+theme_type_variation = &"SmallButton"
+text = "Batal"
+script = ExtResource("2_880f0")
+
+[node name="Confirm" type="Button" parent="Center/Frame/Layout/Buttons"]
+unique_name_in_owner = true
+theme_type_variation = &"PrimarySmallButton"
+text = "Ya"
+script = ExtResource("2_880f0")
