@@ -1,0 +1,123 @@
+{
+ "tools": [
+  {
+   "id": "broom",
+   "name": "Sapu",
+   "code": "Digit1",
+   "keyLabel": "1",
+   "icon": "item_sapu",
+   "sfx": "tool_broom",
+   "tint": 14270602
+  },
+  {
+   "id": "mop",
+   "name": "Pel",
+   "code": "Digit2",
+   "keyLabel": "2",
+   "icon": "item_pel",
+   "sfx": "tool_mop",
+   "tint": 10274792
+  },
+  {
+   "id": "cloth",
+   "name": "Kain Lap",
+   "code": "Digit3",
+   "keyLabel": "3",
+   "icon": "item_kain_lap",
+   "sfx": "tool_cloth",
+   "tint": 15249588
+  },
+  {
+   "id": "duster",
+   "name": "Kemoceng",
+   "code": "Digit4",
+   "keyLabel": "4",
+   "icon": "kemoceng_daus",
+   "sfx": "tool_duster",
+   "tint": 13616104
+  }
+ ],
+ "tool_levels": {
+  "cleansPerLevel": 9,
+  "maxLevel": 5,
+  "speedBonusPerLevel": 0.25
+ },
+ "candle_key": {
+  "code": "Digit5",
+  "label": "5"
+ },
+ "sfx": [
+  "ambient_room",
+  "blackout_off",
+  "blackout_on",
+  "bucket_empty",
+  "bucket_place",
+  "candle_light",
+  "candle_out",
+  "clean_done",
+  "door_close",
+  "drawer_open",
+  "drip_bucket",
+  "drip_floor",
+  "drop",
+  "ending_chime",
+  "gema",
+  "group_done",
+  "interact",
+  "item_return",
+  "meow",
+  "mud_step",
+  "patch",
+  "patch_done",
+  "pause_close",
+  "pause_open",
+  "pickup",
+  "rain_heavy",
+  "rain_light",
+  "rattle",
+  "reward",
+  "room_complete",
+  "room_enter",
+  "secret",
+  "shake",
+  "shard",
+  "slide_in",
+  "stuck",
+  "thunder",
+  "tool_broom",
+  "tool_cloth",
+  "tool_drop",
+  "tool_duster",
+  "tool_mop",
+  "trash",
+  "type_tick",
+  "ui_click",
+  "ui_hover",
+  "unjam",
+  "warning",
+  "wind_soft",
+  "wind_strong",
+  "window_close",
+  "wrong_tool"
+ ],
+ "music": [
+  "menu",
+  "present",
+  "flashback",
+  "ending"
+ ],
+ "star_par": {
+  "living_room": 420,
+  "kitchen": 480,
+  "bedroom": 480
+ },
+ "camera": {
+  "defaultZoom": 3,
+  "minZoom": 1.6,
+  "maxZoom": 5,
+  "zoomStep": 0.25,
+  "smoothing": 6,
+  "deadZone": 0.2,
+  "cinematicZoom": 3.5
+ }
+}
