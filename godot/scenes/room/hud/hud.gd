@@ -119,7 +119,7 @@ func setup(def: Dictionary) -> void:
 		slot.slot_activate.connect(func() -> void: tool_slot_activate.emit(id))
 		slot.set_level(GameState.tool_level(id), max_lv)
 	_trash_count.text = str(GameState.trash_total())
-	_vignette.modulate.a = 1.0
+	_vignette.modulate.a = 0.6
 	_apply_note(true)
 	_refresh_slots()
 
@@ -648,9 +648,9 @@ func fade(to_black: bool, ms: float) -> void:
 	create_tween().tween_property(_fade, "color:a", 1.0 if to_black else 0.0, ms / 1000.0)
 
 
-## Strength follows the web values: 0.6 while filthy down to about 0.15 when clean.
+## Opacity as in the web build: 0.6 while filthy, down to about 0.15 when clean.
 func set_vignette(strength: float) -> void:
-	create_tween().tween_property(_vignette, "modulate:a", clampf(strength / 0.6, 0.0, 1.0), 0.8)
+	create_tween().tween_property(_vignette, "modulate:a", clampf(strength, 0.0, 1.0), 0.8)
 
 
 func set_glow(on: bool, instant: bool = false) -> void:

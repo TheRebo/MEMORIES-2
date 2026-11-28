@@ -34,7 +34,10 @@ func build() -> void:
 		var b: Button = pair[0]
 		var v := String(pair[1])
 		b.button_pressed = Settings.text_speed == v
-		b.pressed.connect(func() -> void: Settings.set_value("textSpeed", v))
+		b.pressed.connect(func() -> void:
+			Settings.set_value("textSpeed", v)
+			_mark_speed())
+	_mark_speed()
 	_fullscreen.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	_fullscreen.toggled.connect(func(on: bool) -> void:
 		Sfx.ui_click()
@@ -42,6 +45,12 @@ func build() -> void:
 	_delete.visible = allow_delete
 	_delete.pressed.connect(_ask_delete)
 	_done.pressed.connect(close)
+
+
+## The chosen text speed reads as the primary (amber) plank.
+func _mark_speed() -> void:
+	for b: Button in [%Slow, %Normal, %Fast]:
+		b.theme_type_variation = &"PrimarySmallButton" if b.button_pressed else &"SmallButton"
 
 
 func _bind_slider(s: HSlider, key: String) -> void:

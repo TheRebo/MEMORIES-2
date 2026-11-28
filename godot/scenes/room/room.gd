@@ -446,6 +446,7 @@ func blocker_of(d: Dirt) -> Dirt:
 
 func _run_completion() -> void:
 	tools.release()
+	hud.hide_dialog()
 	var id := String(def["id"])
 	# Save at once: leaving during the celebration or flashback must not lose the room.
 	GameState.complete_room(id)

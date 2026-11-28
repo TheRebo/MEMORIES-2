@@ -61,6 +61,15 @@ jobs:
           grep -E "^SHOT" shots.log || true
           grep -nE "SCRIPT ERROR|^ERROR:" shots.log | grep -v "still in use at exit" | head -40 || true
 
+      - name: Print import settings
+        if: always()
+        run: |
+          # The import files the editor writes next to each asset, printed so they can be
+          # committed like a project saved from the editor.
+          find assets -name "*.import" | sort | while read -r f; do
+            echo "IMPORT-BEGIN $f"; sed 's/^/IMPORT /' "$f"; echo "IMPORT-END $f"
+          done
+
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4

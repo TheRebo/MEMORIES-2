@@ -21,7 +21,7 @@ width = 256
 height = 144
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_66e47"]
 blend_mode = 1
@@ -36,7 +36,7 @@ width = 256
 height = 144
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8411d"]
 shader = ExtResource("2_51ca0")
