@@ -74,8 +74,8 @@
 [node name="LivingRoom" type="Node2D"]
 script = ExtResource("1_913ee")
 room_id = "living_room"
-room_name = "Living Room"
-short_name = "Living Room"
+room_name = "Ruang Keluarga"
+short_name = "Ruang Keluarga"
 room_size = Vector2(512, 352)
 wall_height = 64
 flashback = Array[Dictionary]([{
@@ -131,7 +131,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai1"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai2" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(176, 150)
@@ -139,10 +139,10 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai2"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 reward_item = "candle"
 reward_amount = 2
-reward_message = "You found 2 candles under the dust!"
+reward_message = "Ada 2 batang lilin di balik debu!"
 
 [node name="SapuLantai3" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(360, 130)
@@ -150,7 +150,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai3"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai4" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(420, 190)
@@ -158,7 +158,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai4"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai5" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(60, 250)
@@ -166,10 +166,10 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai5"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 reward_item = "candle"
 reward_amount = 1
-reward_message = "You found a candle under the dust!"
+reward_message = "Ada sebatang lilin di balik debu!"
 
 [node name="SapuLantai6" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(150, 270)
@@ -177,7 +177,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai6"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai7" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(300, 272)
@@ -185,7 +185,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai7"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai8" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(440, 262)
@@ -193,7 +193,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai8"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai9" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(90, 312)
@@ -201,10 +201,10 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai9"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 reward_item = "candle"
 reward_amount = 1
-reward_message = "You found a candle under the dust!"
+reward_message = "Ada sebatang lilin di balik debu!"
 
 [node name="SapuLantai10" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(230, 300)
@@ -212,7 +212,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai10"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai11" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(340, 320)
@@ -220,7 +220,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai11"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai12" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(380, 236)
@@ -228,7 +228,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai12"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="PelNoda1" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(130, 230)
@@ -236,7 +236,7 @@ texture = ExtResource("10_21ba5")
 object_id = "PelNoda1"
 tool = "mop"
 effort = 276
-group = "Mop the floor stains"
+group = "Pel noda di lantai"
 
 [node name="PelNoda2" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(288, 316)
@@ -244,7 +244,7 @@ texture = ExtResource("11_24cdd")
 object_id = "PelNoda2"
 tool = "mop"
 effort = 276
-group = "Mop the floor stains"
+group = "Pel noda di lantai"
 
 [node name="PelNoda3" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(460, 296)
@@ -252,7 +252,7 @@ texture = ExtResource("12_96423")
 object_id = "PelNoda3"
 tool = "mop"
 effort = 276
-group = "Mop the floor stains"
+group = "Pel noda di lantai"
 
 [node name="PelNoda4" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(100, 270)
@@ -261,7 +261,7 @@ object_id = "PelNoda4"
 area_size = Vector2(30, 14)
 tool = "mop"
 effort = 276
-group = "Mop the floor stains"
+group = "Pel noda di lantai"
 
 [node name="PelNoda5" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(380, 112)
@@ -269,7 +269,7 @@ texture = ExtResource("11_24cdd")
 object_id = "PelNoda5"
 tool = "mop"
 effort = 276
-group = "Mop the floor stains"
+group = "Pel noda di lantai"
 
 [node name="PelNoda6" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(190, 112)
@@ -277,7 +277,7 @@ texture = ExtResource("12_96423")
 object_id = "PelNoda6"
 tool = "mop"
 effort = 276
-group = "Mop the floor stains"
+group = "Pel noda di lantai"
 
 [node name="Jaring1" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(12, 12)
@@ -285,7 +285,7 @@ texture = ExtResource("14_4edd8")
 object_id = "Jaring1"
 tool = "duster"
 effort = 216
-group = "Dust off the cobwebs"
+group = "Bersihkan sarang laba-laba"
 
 [node name="Jaring2" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(500, 12)
@@ -294,7 +294,7 @@ texture = ExtResource("14_4edd8")
 object_id = "Jaring2"
 tool = "duster"
 effort = 216
-group = "Dust off the cobwebs"
+group = "Bersihkan sarang laba-laba"
 
 [node name="Jaring3" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(160, 14)
@@ -302,7 +302,7 @@ texture = ExtResource("15_029cb")
 object_id = "Jaring3"
 tool = "duster"
 effort = 216
-group = "Dust off the cobwebs"
+group = "Bersihkan sarang laba-laba"
 
 [node name="Jaring4" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(360, 16)
@@ -310,7 +310,7 @@ texture = ExtResource("15_029cb")
 object_id = "Jaring4"
 tool = "duster"
 effort = 216
-group = "Dust off the cobwebs"
+group = "Bersihkan sarang laba-laba"
 
 [node name="Jaring5" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(280, 12)
@@ -318,7 +318,7 @@ texture = ExtResource("14_4edd8")
 object_id = "Jaring5"
 tool = "duster"
 effort = 216
-group = "Dust off the cobwebs"
+group = "Bersihkan sarang laba-laba"
 
 [node name="SapuLantai13" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(130, 230)
@@ -326,7 +326,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai13"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai14" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(460, 296)
@@ -334,7 +334,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai14"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="SapuLantai15" parent="FloorDirt" instance=ExtResource("7_52ac9")]
 position = Vector2(380, 112)
@@ -342,7 +342,7 @@ texture = ExtResource("9_4bbee")
 object_id = "SapuLantai15"
 tool = "broom"
 effort = 252
-group = "Sweep the floor"
+group = "Sapu lantai"
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -350,7 +350,7 @@ group = "Sweep the floor"
 position = Vector2(120, 56)
 texture = ExtResource("16_a7537")
 object_id = "Jendela"
-label_text = "Window"
+label_text = "Jendela"
 
 [node name="Kotor1" parent="Props/Jendela" instance=ExtResource("7_52ac9")]
 position = Vector2(-10, -19)
@@ -358,7 +358,7 @@ object_id = "Jendela.Kotor1"
 area_size = Vector2(22, 29)
 tool = "cloth"
 effort = 234
-group = "Wipe the window"
+group = "Lap jendela"
 
 [node name="Kotor2" parent="Props/Jendela" instance=ExtResource("7_52ac9")]
 position = Vector2(12, -19)
@@ -366,13 +366,13 @@ object_id = "Jendela.Kotor2"
 area_size = Vector2(22, 29)
 tool = "cloth"
 effort = 234
-group = "Wipe the window"
+group = "Lap jendela"
 
 [node name="Lukisan" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(186, 50)
 texture = ExtResource("17_88e51")
 object_id = "Lukisan"
-label_text = "Painting"
+label_text = "Lukisan"
 
 [node name="Kotor1" parent="Props/Lukisan" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -16)
@@ -380,13 +380,13 @@ object_id = "Lukisan.Kotor1"
 area_size = Vector2(42, 24)
 tool = "cloth"
 effort = 264
-group = "Wipe the paintings & photos"
+group = "Lap lukisan dan foto"
 
 [node name="JamDinding" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(236, 32)
 texture = ExtResource("18_8ede2")
 object_id = "JamDinding"
-label_text = "Clock"
+label_text = "Jam"
 
 [node name="Kotor1" parent="Props/JamDinding" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -8)
@@ -394,13 +394,13 @@ object_id = "JamDinding.Kotor1"
 area_size = Vector2(11, 11)
 tool = "cloth"
 effort = 168
-group = "Wipe the wall clock"
+group = "Lap jam dinding"
 
 [node name="Pintu" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(323, 64)
 texture = ExtResource("19_9bc1c")
 object_id = "Pintu"
-label_text = "Door"
+label_text = "Pintu"
 
 [node name="Kotor1" parent="Props/Pintu" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -25)
@@ -408,13 +408,13 @@ object_id = "Pintu.Kotor1"
 area_size = Vector2(26, 42)
 tool = "cloth"
 effort = 270
-group = "Wipe the door"
+group = "Lap pintu"
 
 [node name="FotoKeluarga" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(378, 44)
 texture = ExtResource("20_d0c47")
 object_id = "FotoKeluarga"
-label_text = "Family photo"
+label_text = "Foto keluarga"
 
 [node name="Kotor1" parent="Props/FotoKeluarga" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -12)
@@ -422,13 +422,13 @@ object_id = "FotoKeluarga.Kotor1"
 area_size = Vector2(28, 18)
 tool = "cloth"
 effort = 222
-group = "Wipe the paintings & photos"
+group = "Lap lukisan dan foto"
 
 [node name="FotoWisuda" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(418, 60)
 texture = ExtResource("21_c2778")
 object_id = "FotoWisuda"
-label_text = "Graduation photo"
+label_text = "Foto wisuda"
 
 [node name="Kotor1" parent="Props/FotoWisuda" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -25)
@@ -436,13 +436,13 @@ object_id = "FotoWisuda.Kotor1"
 area_size = Vector2(26, 42)
 tool = "cloth"
 effort = 270
-group = "Wipe the paintings & photos"
+group = "Lap lukisan dan foto"
 
 [node name="LampuKiri" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(74, 100)
 texture = ExtResource("22_e3ff4")
 object_id = "LampuKiri"
-label_text = "Lamp"
+label_text = "Lampu"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/LampuKiri" instance=ExtResource("7_52ac9")]
@@ -451,13 +451,13 @@ object_id = "LampuKiri.Kotor1"
 area_size = Vector2(19, 17)
 tool = "cloth"
 effort = 198
-group = "Wipe the lamp"
+group = "Lap lampu"
 
 [node name="TVCabinet" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(256, 104)
 texture = ExtResource("23_84fc8")
 object_id = "TVCabinet"
-label_text = "TV & stand"
+label_text = "TV dan meja TV"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/TVCabinet" instance=ExtResource("7_52ac9")]
@@ -466,7 +466,7 @@ object_id = "TVCabinet.Kotor1"
 area_size = Vector2(37, 18)
 tool = "cloth"
 effort = 240
-group = "Wipe the TV & stand"
+group = "Lap TV dan mejanya"
 
 [node name="Kotor2" parent="Props/TVCabinet" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -11)
@@ -474,7 +474,7 @@ object_id = "TVCabinet.Kotor2"
 area_size = Vector2(62, 13)
 tool = "cloth"
 effort = 282
-group = "Wipe the TV & stand"
+group = "Lap TV dan mejanya"
 
 [node name="Debu3" parent="Props/TVCabinet" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -44)
@@ -482,13 +482,13 @@ object_id = "TVCabinet.Debu3"
 area_size = Vector2(37, 6)
 tool = "duster"
 effort = 180
-group = "Dust the furniture tops"
+group = "Bersihkan debu di atas perabot"
 
 [node name="KesetPintu" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(323, 80)
 texture = ExtResource("24_ed778")
 object_id = "KesetPintu"
-label_text = "Doormat"
+label_text = "Keset"
 layer_name = "ground"
 origin_at_base = false
 
@@ -496,7 +496,7 @@ origin_at_base = false
 position = Vector2(438, 102)
 texture = ExtResource("25_d7df3")
 object_id = "RakSempit"
-label_text = "Small shelf"
+label_text = "Rak kecil"
 has_shadow = true
 
 [node name="Debu1" parent="Props/RakSempit" instance=ExtResource("7_52ac9")]
@@ -505,20 +505,20 @@ object_id = "RakSempit.Debu1"
 area_size = Vector2(16, 5)
 tool = "duster"
 effort = 144
-group = "Dust the furniture tops"
+group = "Bersihkan debu di atas perabot"
 
 [node name="Vas1" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(438, 64)
 texture = ExtResource("26_741de")
 object_id = "Vas1"
-label_text = "Vase"
+label_text = "Vas"
 z_level = 1
 
 [node name="Karpet" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(256, 192)
 texture = ExtResource("27_9a025")
 object_id = "Karpet"
-label_text = "Rug"
+label_text = "Karpet"
 layer_name = "ground"
 origin_at_base = false
 
@@ -526,7 +526,7 @@ origin_at_base = false
 position = Vector2(256, 196)
 texture = ExtResource("28_192ac")
 object_id = "MejaTamu"
-label_text = "Coffee table"
+label_text = "Meja tamu"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/MejaTamu" instance=ExtResource("7_52ac9")]
@@ -535,7 +535,7 @@ object_id = "MejaTamu.Kotor1"
 area_size = Vector2(46, 11)
 tool = "cloth"
 effort = 246
-group = "Wipe the coffee table"
+group = "Lap meja tamu"
 
 [node name="Sofa" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(256, 248)
@@ -550,7 +550,7 @@ object_id = "Sofa.Kotor1"
 area_size = Vector2(23, 15)
 tool = "cloth"
 effort = 204
-group = "Wipe the sofa"
+group = "Lap sofa"
 
 [node name="Kotor2" parent="Props/Sofa" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -20)
@@ -558,7 +558,7 @@ object_id = "Sofa.Kotor2"
 area_size = Vector2(23, 15)
 tool = "cloth"
 effort = 204
-group = "Wipe the sofa"
+group = "Lap sofa"
 
 [node name="Kotor3" parent="Props/Sofa" instance=ExtResource("7_52ac9")]
 position = Vector2(24, -20)
@@ -566,13 +566,13 @@ object_id = "Sofa.Kotor3"
 area_size = Vector2(23, 15)
 tool = "cloth"
 effort = 204
-group = "Wipe the sofa"
+group = "Lap sofa"
 
 [node name="KursiKiri" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(176, 210)
 texture = ExtResource("30_e6d28")
 object_id = "KursiKiri"
-label_text = "Chair"
+label_text = "Kursi"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/KursiKiri" instance=ExtResource("7_52ac9")]
@@ -581,13 +581,13 @@ object_id = "KursiKiri.Kotor1"
 area_size = Vector2(21, 16)
 tool = "cloth"
 effort = 204
-group = "Wipe the chairs"
+group = "Lap kursi"
 
 [node name="KursiKanan" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(336, 210)
 texture = ExtResource("31_383ff")
 object_id = "KursiKanan"
-label_text = "Chair"
+label_text = "Kursi"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/KursiKanan" instance=ExtResource("7_52ac9")]
@@ -596,14 +596,14 @@ object_id = "KursiKanan.Kotor1"
 area_size = Vector2(21, 16)
 tool = "cloth"
 effort = 204
-group = "Wipe the chairs"
+group = "Lap kursi"
 
 [node name="KarpetBaca" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(70, 196)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("32_aace2")
 object_id = "KarpetBaca"
-label_text = "Small rug"
+label_text = "Karpet kecil"
 area_size = Vector2(51, 38)
 layer_name = "ground"
 origin_at_base = false
@@ -612,7 +612,7 @@ origin_at_base = false
 position = Vector2(70, 204)
 texture = ExtResource("33_6c0c9")
 object_id = "MejaSamping"
-label_text = "Table"
+label_text = "Meja"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/MejaSamping" instance=ExtResource("7_52ac9")]
@@ -621,14 +621,14 @@ object_id = "MejaSamping.Kotor1"
 area_size = Vector2(30, 13)
 tool = "cloth"
 effort = 216
-group = "Wipe the side table"
+group = "Lap meja samping"
 
 [node name="BukuBaca" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(64, 186)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("34_37162")
 object_id = "BukuBaca"
-label_text = "Book"
+label_text = "Buku"
 area_size = Vector2(19, 13)
 z_level = 1
 
@@ -636,7 +636,7 @@ z_level = 1
 position = Vector2(40, 214)
 texture = ExtResource("35_9a165")
 object_id = "KursiBaca"
-label_text = "Chair"
+label_text = "Kursi"
 has_shadow = true
 
 [node name="VasMeja" parent="Props" instance=ExtResource("2_03861")]
@@ -644,7 +644,7 @@ position = Vector2(82, 186)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("36_7fff4")
 object_id = "VasMeja"
-label_text = "Vase"
+label_text = "Vas"
 area_size = Vector2(13, 17)
 z_level = 1
 
@@ -652,7 +652,7 @@ z_level = 1
 position = Vector2(478, 222)
 texture = ExtResource("37_b9728")
 object_id = "SofaBiru"
-label_text = "Armchair"
+label_text = "Kursi santai"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/SofaBiru" instance=ExtResource("7_52ac9")]
@@ -661,13 +661,13 @@ object_id = "SofaBiru.Kotor1"
 area_size = Vector2(14, 18)
 tool = "cloth"
 effort = 192
-group = "Wipe the chairs"
+group = "Lap kursi"
 
 [node name="Nakas" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(478, 248)
 texture = ExtResource("38_97996")
 object_id = "Nakas"
-label_text = "Drawer"
+label_text = "Laci"
 has_shadow = true
 
 [node name="LampuKanan" parent="Props" instance=ExtResource("2_03861")]
@@ -675,7 +675,7 @@ position = Vector2(452, 210)
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("22_e3ff4")
 object_id = "LampuKanan"
-label_text = "Lamp"
+label_text = "Lampu"
 area_size = Vector2(20, 48)
 has_shadow = true
 
@@ -686,14 +686,14 @@ object_id = "LampuKanan.Kotor1"
 area_size = Vector2(16, 15)
 tool = "cloth"
 effort = 192
-group = "Wipe the lamp"
+group = "Lap lampu"
 
 [node name="KarpetTeh" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(404, 304)
 scale = Vector2(1.3, 0.8)
 texture = ExtResource("39_32ceb")
 object_id = "KarpetTeh"
-label_text = "Rug"
+label_text = "Karpet"
 area_size = Vector2(68, 50)
 layer_name = "ground"
 origin_at_base = false
@@ -702,7 +702,7 @@ origin_at_base = false
 position = Vector2(404, 310)
 texture = ExtResource("40_cb6f0")
 object_id = "MejaTeh"
-label_text = "Tea table"
+label_text = "Meja teh"
 has_shadow = true
 
 [node name="Kotor1" parent="Props/MejaTeh" instance=ExtResource("7_52ac9")]
@@ -711,34 +711,34 @@ object_id = "MejaTeh.Kotor1"
 area_size = Vector2(31, 14)
 tool = "cloth"
 effort = 222
-group = "Wipe the tea table"
+group = "Lap meja teh"
 
 [node name="KursiTehKiri" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(374, 314)
 texture = ExtResource("41_c28a0")
 object_id = "KursiTehKiri"
-label_text = "Chair"
+label_text = "Kursi"
 has_shadow = true
 
 [node name="KursiTehKanan" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(434, 314)
 texture = ExtResource("35_9a165")
 object_id = "KursiTehKanan"
-label_text = "Chair"
+label_text = "Kursi"
 has_shadow = true
 
 [node name="Kendi" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(400, 284)
 texture = ExtResource("42_ba165")
 object_id = "Kendi"
-label_text = "Jug"
+label_text = "Kendi"
 z_level = 1
 
 [node name="PetiKayu" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(150, 336)
 texture = ExtResource("43_d7ac3")
 object_id = "PetiKayu"
-label_text = "Chest"
+label_text = "Peti"
 has_shadow = true
 
 [node name="Debu1" parent="Props/PetiKayu" instance=ExtResource("7_52ac9")]
@@ -747,14 +747,14 @@ object_id = "PetiKayu.Debu1"
 area_size = Vector2(19, 5)
 tool = "duster"
 effort = 150
-group = "Dust the furniture tops"
+group = "Bersihkan debu di atas perabot"
 
 [node name="Tanaman" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(486, 340)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("44_f2530")
 object_id = "Tanaman"
-label_text = "Plant"
+label_text = "Tanaman"
 area_size = Vector2(22, 24)
 has_shadow = true
 
@@ -765,14 +765,14 @@ object_id = "Tanaman.Kotor1"
 area_size = Vector2(18, 17)
 tool = "cloth"
 effort = 198
-group = "Wipe the plants"
+group = "Lap daun tanaman"
 
 [node name="Tanaman2" parent="Props" instance=ExtResource("2_03861")]
 position = Vector2(26, 132)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("45_e6834")
 object_id = "Tanaman2"
-label_text = "Plant"
+label_text = "Tanaman"
 area_size = Vector2(19, 20)
 has_shadow = true
 
@@ -780,7 +780,7 @@ has_shadow = true
 position = Vector2(200, 108)
 texture = ExtResource("46_465b3")
 object_id = "Tanaman3"
-label_text = "Vase"
+label_text = "Vas"
 has_shadow = true
 
 [node name="Zones" type="Node2D" parent="."]
@@ -789,7 +789,7 @@ has_shadow = true
 position = Vector2(40, 115)
 texture = ExtResource("47_eb64a")
 object_id = "RakBuku"
-label_text = "Bookshelf"
+label_text = "Rak buku"
 accepts = "book"
 capacity = 4
 states = Array[Texture2D]([ExtResource("47_eb64a"), ExtResource("48_51819"), ExtResource("49_942f0"), ExtResource("50_7316a"), ExtResource("51_fadba")])
@@ -801,7 +801,7 @@ object_id = "RakBuku.Kotor1"
 area_size = Vector2(28, 18)
 tool = "cloth"
 effort = 222
-group = "Wipe the bookshelf"
+group = "Lap rak buku"
 
 [node name="Kotor2" parent="Zones/RakBuku" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -36)
@@ -809,7 +809,7 @@ object_id = "RakBuku.Kotor2"
 area_size = Vector2(28, 18)
 tool = "cloth"
 effort = 222
-group = "Wipe the bookshelf"
+group = "Lap rak buku"
 
 [node name="Debu3" parent="Zones/RakBuku" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -79)
@@ -817,13 +817,13 @@ object_id = "RakBuku.Debu3"
 area_size = Vector2(32, 6)
 tool = "duster"
 effort = 174
-group = "Dust the furniture tops"
+group = "Bersihkan debu di atas perabot"
 
 [node name="LemariPajangan" parent="Zones" instance=ExtResource("3_763a9")]
 position = Vector2(472, 104)
 texture = ExtResource("52_998a4")
 object_id = "LemariPajangan"
-label_text = "Display cabinet"
+label_text = "Lemari pajangan"
 accepts = "pajangan"
 capacity = 3
 show_counter = true
@@ -835,7 +835,7 @@ object_id = "LemariPajangan.Kotor1"
 area_size = Vector2(18, 52)
 tool = "cloth"
 effort = 276
-group = "Wipe the display cabinet"
+group = "Lap lemari pajangan"
 
 [node name="Kotor2" parent="Zones/LemariPajangan" instance=ExtResource("7_52ac9")]
 position = Vector2(10, -36)
@@ -843,7 +843,7 @@ object_id = "LemariPajangan.Kotor2"
 area_size = Vector2(18, 52)
 tool = "cloth"
 effort = 276
-group = "Wipe the display cabinet"
+group = "Lap lemari pajangan"
 
 [node name="Debu3" parent="Zones/LemariPajangan" instance=ExtResource("7_52ac9")]
 position = Vector2(0, -70)
@@ -851,13 +851,13 @@ object_id = "LemariPajangan.Debu3"
 area_size = Vector2(44, 6)
 tool = "duster"
 effort = 192
-group = "Dust the furniture tops"
+group = "Bersihkan debu di atas perabot"
 
 [node name="TempatSampah" parent="Zones" instance=ExtResource("3_763a9")]
 position = Vector2(36, 336)
 texture = ExtResource("53_ec4ee")
 object_id = "TempatSampah"
-label_text = "Trash bin"
+label_text = "Tempat sampah"
 accepts = "trash"
 capacity = 3
 limit = false
@@ -870,103 +870,103 @@ states_by_fill = true
 position = Vector2(120, 292)
 texture = ExtResource("56_b5d7f")
 object_id = "Buku1"
-label_text = "Book"
+label_text = "Buku"
 z_level = 1
 type = "book"
-group = "Shelve the books"
+group = "Susun buku di rak"
 
 [node name="Buku2" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(300, 300)
 texture = ExtResource("57_b65b5")
 object_id = "Buku2"
-label_text = "Book"
+label_text = "Buku"
 z_level = 1
 type = "book"
-group = "Shelve the books"
+group = "Susun buku di rak"
 
 [node name="Buku3" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(210, 278)
 texture = ExtResource("58_53dc8")
 object_id = "Buku3"
-label_text = "Book"
+label_text = "Buku"
 z_level = 1
 type = "book"
-group = "Shelve the books"
+group = "Susun buku di rak"
 
 [node name="Buku4" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(470, 160)
 texture = ExtResource("59_107a3")
 object_id = "Buku4"
-label_text = "Book"
+label_text = "Buku"
 z_level = 1
 type = "book"
-group = "Shelve the books"
+group = "Susun buku di rak"
 
 [node name="Pajangan1" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(60, 272)
 texture = ExtResource("60_9edc4")
 object_id = "Pajangan1"
-label_text = "Ornament"
+label_text = "Pajangan"
 z_level = 1
 type = "pajangan"
-group = "Put the ornaments in the cabinet"
+group = "Taruh pajangan di lemari"
 
 [node name="Pajangan2" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(350, 148)
 texture = ExtResource("61_30306")
 object_id = "Pajangan2"
-label_text = "Ornament"
+label_text = "Pajangan"
 z_level = 1
 type = "pajangan"
-group = "Put the ornaments in the cabinet"
+group = "Taruh pajangan di lemari"
 
 [node name="Pajangan3" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(250, 326)
 texture = ExtResource("62_12684")
 object_id = "Pajangan3"
-label_text = "Ornament"
+label_text = "Pajangan"
 z_level = 1
 type = "pajangan"
-group = "Put the ornaments in the cabinet"
+group = "Taruh pajangan di lemari"
 
 [node name="Sampah1" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(196, 320)
 texture = ExtResource("63_3becf")
 object_id = "Sampah1"
-label_text = "Trash"
+label_text = "Sampah"
 z_level = 1
 type = "trash"
 trash = true
-group = "Throw out the trash"
+group = "Buang sampah"
 
 [node name="Sampah2" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(120, 158)
 texture = ExtResource("64_9b4ea")
 object_id = "Sampah2"
-label_text = "Trash"
+label_text = "Sampah"
 z_level = 1
 type = "trash"
 trash = true
-group = "Throw out the trash"
+group = "Buang sampah"
 
 [node name="Sampah3" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(400, 168)
 texture = ExtResource("65_80eea")
 object_id = "Sampah3"
-label_text = "Trash"
+label_text = "Sampah"
 z_level = 1
 type = "trash"
 trash = true
-group = "Throw out the trash"
+group = "Buang sampah"
 
 [node name="Sampah4" parent="Items" instance=ExtResource("4_e02f3")]
 position = Vector2(320, 280)
 texture = ExtResource("66_6f8a2")
 object_id = "Sampah4"
-label_text = "Trash"
+label_text = "Sampah"
 type = "trash"
 trash = true
-group = "Throw out the trash"
+group = "Buang sampah"
 
 [node name="Interacts" type="Node2D" parent="."]
 
@@ -974,9 +974,9 @@ group = "Throw out the trash"
 position = Vector2(262, 249)
 texture = ExtResource("67_b67aa")
 object_id = "VasBungaLayu"
-label_text = "Wilted vase"
+label_text = "Vas bunga layu"
 z_level = 1
-group = "Throw out the wilted vase"
+group = "Buang vas bunga yang layu"
 trash = true
 hide_after = true
 has_shadow = true
@@ -987,14 +987,14 @@ has_shadow = true
 position = Vector2(236, 238)
 texture = ExtResource("68_424a7")
 object_id = "Nenek"
-label_text = "Grandma"
+label_text = "Nenek"
 actor = "nenek"
 
 [node name="MCKecil" parent="Actors" instance=ExtResource("6_ebadb")]
 position = Vector2(270, 242)
 texture = ExtResource("69_01e11")
 object_id = "MCKecil"
-label_text = "Young MC"
+label_text = "MC kecil"
 actor = "mc_kecil"
 
 [node name="MCDewasa" parent="Actors" instance=ExtResource("6_ebadb")]
@@ -1012,7 +1012,7 @@ config = {
 "scatterCount": 9,
 "minItemsNeeded": 4,
 "triggerProgress": 35,
-"introText": "A cat bursts in and knocks your things over!",
+"introText": "Seekor kucing tiba-tiba masuk dan mengacak-acak barang!",
 "maxRepeats": 2,
 "repeatInterval": 80,
 "catEntry": {
@@ -1031,6 +1031,6 @@ config = {
 }
 }
 tutorial = Array[Dictionary]([{
-"title": "Event: Naughty Cat",
-"text": "A cat suddenly runs in and knocks over things you already tidied. You cannot stop it: tidy the scattered things again (drag them back where they belong). It can happen again."
+"title": "Kucing Nakal",
+"text": "Seekor kucing tiba-tiba masuk dan menjatuhkan barang yang sudah kamu rapikan. Kucingnya tidak bisa dihentikan, jadi rapikan lagi barang yang berserakan dengan menyeretnya ke tempatnya. Kejadian ini bisa terulang."
 }])

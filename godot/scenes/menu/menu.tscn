@@ -125,7 +125,7 @@ alignment = 1
 [node name="Continue" type="TextureButton" parent="UI/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(192, 96)
-tooltip_text = "Continue"
+tooltip_text = "Lanjutkan"
 texture_normal = ExtResource("4_48573")
 ignore_texture_size = true
 stretch_mode = 0
@@ -134,7 +134,7 @@ script = ExtResource("5_55e5f")
 [node name="NewGame" type="TextureButton" parent="UI/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(192, 96)
-tooltip_text = "New game"
+tooltip_text = "Main baru"
 texture_normal = ExtResource("6_ee7ba")
 ignore_texture_size = true
 stretch_mode = 0
@@ -143,7 +143,7 @@ script = ExtResource("5_55e5f")
 [node name="Play" type="TextureButton" parent="UI/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(192, 96)
-tooltip_text = "Play"
+tooltip_text = "Main"
 texture_normal = ExtResource("7_e79f7")
 ignore_texture_size = true
 stretch_mode = 0
@@ -152,7 +152,7 @@ script = ExtResource("5_55e5f")
 [node name="Settings" type="TextureButton" parent="UI/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(192, 96)
-tooltip_text = "Settings"
+tooltip_text = "Pengaturan"
 texture_normal = ExtResource("8_df607")
 ignore_texture_size = true
 stretch_mode = 0
@@ -161,7 +161,7 @@ script = ExtResource("5_55e5f")
 [node name="Credits" type="TextureButton" parent="UI/Buttons"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(192, 96)
-tooltip_text = "Credits"
+tooltip_text = "Kredit"
 texture_normal = ExtResource("9_f060a")
 ignore_texture_size = true
 stretch_mode = 0
@@ -186,7 +186,7 @@ theme_override_constants/separation = 4
 [node name="Title" type="Label" parent="UI/SaveNote/Paper/Content"]
 theme_type_variation = &"PaperDisplayLabel"
 theme_override_font_sizes/font_size = 22
-text = "Your progress"
+text = "Progresmu"
 horizontal_alignment = 1
 
 [node name="Lines" type="VBoxContainer" parent="UI/SaveNote/Paper/Content"]

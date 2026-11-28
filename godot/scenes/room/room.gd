@@ -94,7 +94,7 @@ func _ready() -> void:
 		_refresh()
 		if not GameState.tutorial_seen():
 			GameState.mark_tutorial_seen()
-			_later(1.7, func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "How to play"))
+			_later(1.7, func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "Cara bermain"))
 
 
 func _exit_tree() -> void:
@@ -246,7 +246,7 @@ func _on_tool_level(tool: String, level: int, leveled_up: bool) -> void:
 	hud.set_tool_level(tool, level, leveled_up)
 	if leveled_up:
 		Sfx.play("patch_done", 0.8)
-		hud.toast("Tool level up! %s Lv.%d: cleans faster." % [Db.tool_info(tool).get("name", tool), level])
+		hud.toast("Alat naik level! %s Lv.%d: membersihkan lebih cepat." % [Db.tool_info(tool).get("name", tool), level])
 
 
 func add_click_interceptor(fn: Callable) -> void:
@@ -441,7 +441,7 @@ func _run_completion() -> void:
 	await _wait(1.2)
 	hud.set_progress(100.0)
 	Sfx.play("room_complete", 0.9)
-	hud.banner("%s bersih!" % def["name"], 2.2)
+	hud.banner("%s sudah bersih!" % def["name"], 2.2)
 	_celebrate(false)
 	await _wait(1.4)
 	var par := Db.star_par(id)
@@ -455,9 +455,9 @@ func _run_completion() -> void:
 	Sfx.play_music("present", 1.6)
 	hud.show_nav()
 	if GameState.all_completed():
-		hud.toast("Every room is clean. Time to go home.")
+		hud.toast("Semua ruangan sudah bersih. Saatnya pulang.")
 	else:
-		hud.toast("Room done! Pick the next room at the bottom right.")
+		hud.toast("Ruangan beres! Pilih ruangan berikutnya di kanan bawah.")
 
 
 func _celebrate(instant: bool) -> void:
@@ -520,7 +520,7 @@ func _open_pause() -> void:
 	Sfx.play("pause_open", 0.6)
 	get_tree().paused = true
 	var d := PauseDialog.make(String(def["name"]), roundi(percent()), GameState.is_completed(String(def["id"])),
-		func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "How to play"),
+		func() -> void: show_tutorial(Db.story.get("start_tutorial", []), "Cara bermain"),
 		func() -> void: _leave("Menu", {}, 0.6))
 	d.closed.connect(func() -> void:
 		Sfx.play("pause_close", 0.6)
@@ -587,9 +587,9 @@ func _dust_drift(dt: float) -> void:
 	var p := Vector2(randf_range(48, w - 48), randf_range(float(def["wallHeight"]) + 60, h - 30))
 	_drifts += 1
 	spawn_dirt({"id": "drift-%d" % _drifts, "x": p.x, "y": p.y, "w": 28, "h": 14, "tool": "broom", "effort": 190,
-		"group": "Sweep the floor", "tex": "debu_ulahan_daus"}, null)
+		"group": "Sapu lantai", "tex": "debu_ulahan_daus"}, null)
 	fx.ping(p)
-	ctx.toast.emit("Dust has settled on the floor again!")
+	ctx.toast.emit("Lantainya berdebu lagi!")
 	ctx.tasks_changed.emit()
 
 

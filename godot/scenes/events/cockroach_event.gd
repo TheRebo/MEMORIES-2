@@ -25,8 +25,8 @@ func on_start() -> void:
 		_roaches.append(r)
 		point_at("roach%d" % i, func() -> Variant: return null if not is_instance_valid(r) or r.dead else r.position + Vector2(0, -6))
 	room.ctx.attend.emit(spawn)
-	room.ctx.set_blocked("roach", true, "A cockroach! Click it first.")
-	set_objective("A cockroach! Click it to keep cleaning.")
+	room.ctx.set_blocked("roach", true, "Ada kecoa! Klik kecoanya dulu.")
+	set_objective("Ada kecoa! Klik kecoanya dulu, baru bisa lanjut bersih-bersih.")
 	_intercept = _on_click
 	room.add_click_interceptor(_intercept)
 

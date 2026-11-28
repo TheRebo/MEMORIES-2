@@ -12,7 +12,7 @@ anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d8804")
-title = "Settings"
+title = "Pengaturan"
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -42,7 +42,7 @@ theme_type_variation = &"TitleStrip"
 unique_name_in_owner = true
 theme_type_variation = &"AmberLabel"
 theme_override_font_sizes/font_size = 26
-text = "Settings"
+text = "Pengaturan"
 horizontal_alignment = 1
 
 [node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
@@ -54,7 +54,7 @@ theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="Center/Frame/Layout/Body/MasterRow"]
 theme_override_font_sizes/font_size = 20
-text = "Master"
+text = "Utama"
 custom_minimum_size = Vector2(140, 0)
 
 [node name="Master" type="HSlider" parent="Center/Frame/Layout/Body/MasterRow"]
@@ -75,7 +75,7 @@ theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="Center/Frame/Layout/Body/MusicRow"]
 theme_override_font_sizes/font_size = 20
-text = "Music"
+text = "Musik"
 custom_minimum_size = Vector2(140, 0)
 
 [node name="Music" type="HSlider" parent="Center/Frame/Layout/Body/MusicRow"]
@@ -96,7 +96,7 @@ theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="Center/Frame/Layout/Body/SfxRow"]
 theme_override_font_sizes/font_size = 20
-text = "Sound effects"
+text = "Efek suara"
 custom_minimum_size = Vector2(140, 0)
 
 [node name="Sfx" type="HSlider" parent="Center/Frame/Layout/Body/SfxRow"]
@@ -114,7 +114,7 @@ custom_minimum_size = Vector2(48, 0)
 
 [node name="Motion" type="CheckBox" parent="Center/Frame/Layout/Body"]
 unique_name_in_owner = true
-text = "Motion effects (shake, flashes, moving backgrounds)"
+text = "Efek gerak (guncangan, kilatan, latar bergerak)"
 
 [node name="SpeedRow" type="HBoxContainer" parent="Center/Frame/Layout/Body"]
 theme_override_constants/separation = 8
@@ -122,13 +122,13 @@ theme_override_constants/separation = 8
 [node name="Label" type="Label" parent="Center/Frame/Layout/Body/SpeedRow"]
 theme_type_variation = &"DimLabel"
 theme_override_font_sizes/font_size = 20
-text = "Text speed"
+text = "Kecepatan teks"
 size_flags_vertical = 4
 
 [node name="Slow" type="Button" parent="Center/Frame/Layout/Body/SpeedRow"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Slow"
+text = "Lambat"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_599ee")
 script = ExtResource("2_e8e3d")
@@ -144,14 +144,14 @@ script = ExtResource("2_e8e3d")
 [node name="Fast" type="Button" parent="Center/Frame/Layout/Body/SpeedRow"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Fast"
+text = "Cepat"
 toggle_mode = true
 button_group = SubResource("ButtonGroup_599ee")
 script = ExtResource("2_e8e3d")
 
 [node name="Fullscreen" type="CheckBox" parent="Center/Frame/Layout/Body"]
 unique_name_in_owner = true
-text = "Fullscreen"
+text = "Layar penuh"
 
 [node name="Status" type="Label" parent="Center/Frame/Layout/Body"]
 unique_name_in_owner = true
@@ -167,11 +167,11 @@ alignment = 2
 [node name="Delete" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Delete save data"
+text = "Hapus data simpanan"
 script = ExtResource("2_e8e3d")
 
 [node name="Done" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"PrimarySmallButton"
-text = "Done"
+text = "Selesai"
 script = ExtResource("2_e8e3d")

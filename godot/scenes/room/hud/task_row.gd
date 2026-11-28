@@ -38,7 +38,7 @@ func setup(g: Dictionary, kind: String) -> TaskRow:
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 		focus_mode = Control.FOCUS_NONE
 	else:
-		tooltip_text = "Show me in the room"
+		tooltip_text = "Tunjukkan di ruangan"
 		mouse_entered.connect(_style.bind(&"TaskRowHover"))
 		mouse_exited.connect(_style.bind(&"TaskRow"))
 		focus_entered.connect(_style.bind(&"TaskRowHover"))

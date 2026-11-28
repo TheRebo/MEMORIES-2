@@ -7,8 +7,8 @@
  "rooms": {
   "living_room": {
    "id": "living_room",
-   "name": "Living Room",
-   "short": "Living Room",
+   "name": "Ruang Keluarga",
+   "short": "Ruang Keluarga",
    "size": {
     "w": 512,
     "h": 352
@@ -30,7 +30,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -42,13 +42,13 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground",
      "reward": {
       "item": "candle",
       "amount": 2,
-      "message": "You found 2 candles under the dust!"
+      "message": "Ada 2 batang lilin di balik debu!"
      }
     },
     {
@@ -59,7 +59,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -71,7 +71,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -83,13 +83,13 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground",
      "reward": {
       "item": "candle",
       "amount": 1,
-      "message": "You found a candle under the dust!"
+      "message": "Ada sebatang lilin di balik debu!"
      }
     },
     {
@@ -100,7 +100,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -112,7 +112,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -124,7 +124,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -136,13 +136,13 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground",
      "reward": {
       "item": "candle",
       "amount": 1,
-      "message": "You found a candle under the dust!"
+      "message": "Ada sebatang lilin di balik debu!"
      }
     },
     {
@@ -153,7 +153,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -165,7 +165,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -177,7 +177,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -189,7 +189,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda3",
      "layer": "ground"
     },
@@ -201,7 +201,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda1",
      "layer": "ground"
     },
@@ -213,7 +213,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda2",
      "layer": "ground"
     },
@@ -225,7 +225,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda4",
      "layer": "ground"
     },
@@ -237,7 +237,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda1",
      "layer": "ground"
     },
@@ -249,7 +249,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda2",
      "layer": "ground"
     },
@@ -261,7 +261,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -273,7 +273,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground",
      "rotation": 1.5708
@@ -286,7 +286,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaring_laba_laba_pro_maxx_by_faris_better_than_punya_zulfa",
      "layer": "ground"
     },
@@ -298,7 +298,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaring_laba_laba_pro_maxx_by_faris_better_than_punya_zulfa",
      "layer": "ground"
     },
@@ -310,7 +310,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -322,7 +322,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -334,7 +334,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -346,7 +346,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     }
@@ -358,7 +358,7 @@
      "y": 56,
      "w": 48,
      "h": 36,
-     "label": "Window",
+     "label": "Jendela",
      "tex": "dapur_jendela_dapur",
      "layer": "ysort",
      "originAtBase": true,
@@ -372,7 +372,7 @@
        "h": 29,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the window",
+       "group": "Lap jendela",
        "parent": "Jendela"
       },
       {
@@ -383,7 +383,7 @@
        "h": 29,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the window",
+       "group": "Lap jendela",
        "parent": "Jendela"
       }
      ]
@@ -394,7 +394,7 @@
      "y": 50,
      "w": 50,
      "h": 32,
-     "label": "Painting",
+     "label": "Lukisan",
      "tex": "lukisan_gunung",
      "layer": "ysort",
      "originAtBase": true,
@@ -408,7 +408,7 @@
        "h": 24,
        "tool": "cloth",
        "effort": 264,
-       "group": "Wipe the paintings & photos",
+       "group": "Lap lukisan dan foto",
        "parent": "Lukisan"
       }
      ]
@@ -419,7 +419,7 @@
      "y": 32,
      "w": 15,
      "h": 15,
-     "label": "Clock",
+     "label": "Jam",
      "tex": "jam",
      "layer": "ysort",
      "originAtBase": true,
@@ -433,7 +433,7 @@
        "h": 11,
        "tool": "cloth",
        "effort": 168,
-       "group": "Wipe the wall clock",
+       "group": "Lap jam dinding",
        "parent": "JamDinding"
       }
      ]
@@ -444,7 +444,7 @@
      "y": 64,
      "w": 34,
      "h": 52,
-     "label": "Door",
+     "label": "Pintu",
      "tex": "doc_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -458,7 +458,7 @@
        "h": 42,
        "tool": "cloth",
        "effort": 270,
-       "group": "Wipe the door",
+       "group": "Lap pintu",
        "parent": "Pintu"
       }
      ]
@@ -469,7 +469,7 @@
      "y": 44,
      "w": 34,
      "h": 24,
-     "label": "Family photo",
+     "label": "Foto keluarga",
      "tex": "grandma_grandchild",
      "layer": "ysort",
      "originAtBase": true,
@@ -483,7 +483,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 222,
-       "group": "Wipe the paintings & photos",
+       "group": "Lap lukisan dan foto",
        "parent": "FotoKeluarga"
       }
      ]
@@ -494,7 +494,7 @@
      "y": 60,
      "w": 32,
      "h": 50,
-     "label": "Graduation photo",
+     "label": "Foto wisuda",
      "tex": "foto_wisuda",
      "layer": "ysort",
      "originAtBase": true,
@@ -508,7 +508,7 @@
        "h": 42,
        "tool": "cloth",
        "effort": 270,
-       "group": "Wipe the paintings & photos",
+       "group": "Lap lukisan dan foto",
        "parent": "FotoWisuda"
       }
      ]
@@ -519,7 +519,7 @@
      "y": 100,
      "w": 24,
      "h": 57,
-     "label": "Lamp",
+     "label": "Lampu",
      "tex": "lampu_berdiri",
      "layer": "ysort",
      "originAtBase": true,
@@ -533,7 +533,7 @@
        "h": 17,
        "tool": "cloth",
        "effort": 198,
-       "group": "Wipe the lamp",
+       "group": "Lap lampu",
        "parent": "LampuKiri"
       }
      ]
@@ -544,7 +544,7 @@
      "y": 104,
      "w": 74,
      "h": 44,
-     "label": "TV & stand",
+     "label": "TV dan meja TV",
      "tex": "doc_6",
      "layer": "ysort",
      "originAtBase": true,
@@ -558,7 +558,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 240,
-       "group": "Wipe the TV & stand",
+       "group": "Lap TV dan mejanya",
        "parent": "TVCabinet"
       },
       {
@@ -569,7 +569,7 @@
        "h": 13,
        "tool": "cloth",
        "effort": 282,
-       "group": "Wipe the TV & stand",
+       "group": "Lap TV dan mejanya",
        "parent": "TVCabinet"
       },
       {
@@ -580,7 +580,7 @@
        "h": 6,
        "tool": "duster",
        "effort": 180,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "TVCabinet"
       }
      ]
@@ -591,7 +591,7 @@
      "y": 80,
      "w": 36,
      "h": 22,
-     "label": "Doormat",
+     "label": "Keset",
      "tex": "karpet_merah_kecil",
      "layer": "ground",
      "originAtBase": false,
@@ -603,7 +603,7 @@
      "y": 102,
      "w": 16,
      "h": 38,
-     "label": "Small shelf",
+     "label": "Rak kecil",
      "tex": "rak_sempit",
      "layer": "ysort",
      "originAtBase": true,
@@ -617,7 +617,7 @@
        "h": 5,
        "tool": "duster",
        "effort": 144,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "RakSempit"
       }
      ]
@@ -628,7 +628,7 @@
      "y": 64,
      "w": 16,
      "h": 18,
-     "label": "Vase",
+     "label": "Vas",
      "tex": "vas_lavender_1",
      "layer": "ysort",
      "originAtBase": true,
@@ -641,7 +641,7 @@
      "y": 192,
      "w": 120,
      "h": 70,
-     "label": "Rug",
+     "label": "Karpet",
      "tex": "karpet_toska",
      "layer": "ground",
      "originAtBase": false,
@@ -653,7 +653,7 @@
      "y": 196,
      "w": 52,
      "h": 22,
-     "label": "Coffee table",
+     "label": "Meja tamu",
      "tex": "doc_9",
      "layer": "ysort",
      "originAtBase": true,
@@ -667,7 +667,7 @@
        "h": 11,
        "tool": "cloth",
        "effort": 246,
-       "group": "Wipe the coffee table",
+       "group": "Lap meja tamu",
        "parent": "MejaTamu"
       }
      ]
@@ -692,7 +692,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the sofa",
+       "group": "Lap sofa",
        "parent": "Sofa"
       },
       {
@@ -703,7 +703,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the sofa",
+       "group": "Lap sofa",
        "parent": "Sofa"
       },
       {
@@ -714,7 +714,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the sofa",
+       "group": "Lap sofa",
        "parent": "Sofa"
       }
      ]
@@ -725,7 +725,7 @@
      "y": 210,
      "w": 30,
      "h": 28,
-     "label": "Chair",
+     "label": "Kursi",
      "tex": "sofa_anglekekanan",
      "layer": "ysort",
      "originAtBase": true,
@@ -739,7 +739,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "KursiKiri"
       }
      ]
@@ -750,7 +750,7 @@
      "y": 210,
      "w": 30,
      "h": 28,
-     "label": "Chair",
+     "label": "Kursi",
      "tex": "sofa_anglekekiri",
      "layer": "ysort",
      "originAtBase": true,
@@ -764,7 +764,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "KursiKanan"
       }
      ]
@@ -775,7 +775,7 @@
      "y": 196,
      "w": 51,
      "h": 38,
-     "label": "Small rug",
+     "label": "Karpet kecil",
      "tex": "karpet_bulat",
      "layer": "ground",
      "originAtBase": false,
@@ -791,7 +791,7 @@
      "y": 204,
      "w": 37,
      "h": 28,
-     "label": "Table",
+     "label": "Meja",
      "tex": "meja_bundar_trim",
      "layer": "ysort",
      "originAtBase": true,
@@ -805,7 +805,7 @@
        "h": 13,
        "tool": "cloth",
        "effort": 216,
-       "group": "Wipe the side table",
+       "group": "Lap meja samping",
        "parent": "MejaSamping"
       }
      ]
@@ -816,7 +816,7 @@
      "y": 186,
      "w": 19,
      "h": 13,
-     "label": "Book",
+     "label": "Buku",
      "tex": "buku_terbuka_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -833,7 +833,7 @@
      "y": 214,
      "w": 11,
      "h": 25,
-     "label": "Chair",
+     "label": "Kursi",
      "tex": "kursi_samping_kanan",
      "layer": "ysort",
      "originAtBase": true,
@@ -845,7 +845,7 @@
      "y": 186,
      "w": 13,
      "h": 17,
-     "label": "Vase",
+     "label": "Vas",
      "tex": "vas_pink",
      "layer": "ysort",
      "originAtBase": true,
@@ -862,7 +862,7 @@
      "y": 222,
      "w": 18,
      "h": 36,
-     "label": "Armchair",
+     "label": "Kursi santai",
      "tex": "sofa_tunggal_biru",
      "layer": "ysort",
      "originAtBase": true,
@@ -876,7 +876,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 192,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "SofaBiru"
       }
      ]
@@ -887,7 +887,7 @@
      "y": 248,
      "w": 13,
      "h": 19,
-     "label": "Drawer",
+     "label": "Laci",
      "tex": "pot_laci_kecil",
      "layer": "ysort",
      "originAtBase": true,
@@ -899,7 +899,7 @@
      "y": 210,
      "w": 20,
      "h": 48,
-     "label": "Lamp",
+     "label": "Lampu",
      "tex": "lampu_berdiri",
      "layer": "ysort",
      "originAtBase": true,
@@ -917,7 +917,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 192,
-       "group": "Wipe the lamp",
+       "group": "Lap lampu",
        "parent": "LampuKanan"
       }
      ]
@@ -928,7 +928,7 @@
      "y": 304,
      "w": 68,
      "h": 50,
-     "label": "Rug",
+     "label": "Karpet",
      "tex": "karpet_merah_persegi",
      "layer": "ground",
      "originAtBase": false,
@@ -944,7 +944,7 @@
      "y": 310,
      "w": 39,
      "h": 35,
-     "label": "Tea table",
+     "label": "Meja teh",
      "tex": "meja_oval",
      "layer": "ysort",
      "originAtBase": true,
@@ -958,7 +958,7 @@
        "h": 14,
        "tool": "cloth",
        "effort": 222,
-       "group": "Wipe the tea table",
+       "group": "Lap meja teh",
        "parent": "MejaTeh"
       }
      ]
@@ -969,7 +969,7 @@
      "y": 314,
      "w": 11,
      "h": 25,
-     "label": "Chair",
+     "label": "Kursi",
      "tex": "kursi_samping_kiri",
      "layer": "ysort",
      "originAtBase": true,
@@ -981,7 +981,7 @@
      "y": 314,
      "w": 11,
      "h": 25,
-     "label": "Chair",
+     "label": "Kursi",
      "tex": "kursi_samping_kanan",
      "layer": "ysort",
      "originAtBase": true,
@@ -993,7 +993,7 @@
      "y": 284,
      "w": 14,
      "h": 16,
-     "label": "Jug",
+     "label": "Kendi",
      "tex": "kendi",
      "layer": "ysort",
      "originAtBase": true,
@@ -1006,7 +1006,7 @@
      "y": 336,
      "w": 19,
      "h": 27,
-     "label": "Chest",
+     "label": "Peti",
      "tex": "peti_besar_1",
      "layer": "ysort",
      "originAtBase": true,
@@ -1020,7 +1020,7 @@
        "h": 5,
        "tool": "duster",
        "effort": 150,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "PetiKayu"
       }
      ]
@@ -1031,7 +1031,7 @@
      "y": 340,
      "w": 22,
      "h": 24,
-     "label": "Plant",
+     "label": "Tanaman",
      "tex": "pot_tanaman_pot",
      "layer": "ysort",
      "originAtBase": true,
@@ -1049,7 +1049,7 @@
        "h": 17,
        "tool": "cloth",
        "effort": 198,
-       "group": "Wipe the plants",
+       "group": "Lap daun tanaman",
        "parent": "Tanaman"
       }
      ]
@@ -1060,7 +1060,7 @@
      "y": 132,
      "w": 19,
      "h": 20,
-     "label": "Plant",
+     "label": "Tanaman",
      "tex": "pot_tanaman_mangkuk",
      "layer": "ysort",
      "originAtBase": true,
@@ -1076,7 +1076,7 @@
      "y": 108,
      "w": 16,
      "h": 21,
-     "label": "Vase",
+     "label": "Vas",
      "tex": "vas_kuning",
      "layer": "ysort",
      "originAtBase": true,
@@ -1090,7 +1090,7 @@
      "y": 115,
      "w": 96,
      "h": 96,
-     "label": "Bookshelf",
+     "label": "Rak buku",
      "tex": "buku_teisi_4",
      "accepts": "book",
      "capacity": 4,
@@ -1113,7 +1113,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 222,
-       "group": "Wipe the bookshelf",
+       "group": "Lap rak buku",
        "parent": "RakBuku"
       },
       {
@@ -1124,7 +1124,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 222,
-       "group": "Wipe the bookshelf",
+       "group": "Lap rak buku",
        "parent": "RakBuku"
       },
       {
@@ -1135,7 +1135,7 @@
        "h": 6,
        "tool": "duster",
        "effort": 174,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "RakBuku"
       }
      ]
@@ -1146,7 +1146,7 @@
      "y": 104,
      "w": 44,
      "h": 70,
-     "label": "Display cabinet",
+     "label": "Lemari pajangan",
      "tex": "dapur_lemari_fix",
      "accepts": "pajangan",
      "capacity": 3,
@@ -1163,7 +1163,7 @@
        "h": 52,
        "tool": "cloth",
        "effort": 276,
-       "group": "Wipe the display cabinet",
+       "group": "Lap lemari pajangan",
        "parent": "LemariPajangan"
       },
       {
@@ -1174,7 +1174,7 @@
        "h": 52,
        "tool": "cloth",
        "effort": 276,
-       "group": "Wipe the display cabinet",
+       "group": "Lap lemari pajangan",
        "parent": "LemariPajangan"
       },
       {
@@ -1185,7 +1185,7 @@
        "h": 6,
        "tool": "duster",
        "effort": 192,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "LemariPajangan"
       }
      ]
@@ -1196,7 +1196,7 @@
      "y": 336,
      "w": 18,
      "h": 17,
-     "label": "Trash bin",
+     "label": "Tempat sampah",
      "tex": "item_bak_sampah_kosong_trim",
      "accepts": "trash",
      "capacity": 3,
@@ -1218,12 +1218,12 @@
      "y": 292,
      "w": 16,
      "h": 16,
-     "label": "Book",
+     "label": "Buku",
      "tex": "buku_biru",
      "z": 1,
      "type": "book",
      "trash": false,
-     "group": "Shelve the books"
+     "group": "Susun buku di rak"
     },
     {
      "id": "Buku2",
@@ -1231,12 +1231,12 @@
      "y": 300,
      "w": 16,
      "h": 16,
-     "label": "Book",
+     "label": "Buku",
      "tex": "buku_hijau_baru",
      "z": 1,
      "type": "book",
      "trash": false,
-     "group": "Shelve the books"
+     "group": "Susun buku di rak"
     },
     {
      "id": "Buku3",
@@ -1244,12 +1244,12 @@
      "y": 278,
      "w": 16,
      "h": 16,
-     "label": "Book",
+     "label": "Buku",
      "tex": "buku_kuning",
      "z": 1,
      "type": "book",
      "trash": false,
-     "group": "Shelve the books"
+     "group": "Susun buku di rak"
     },
     {
      "id": "Buku4",
@@ -1257,12 +1257,12 @@
      "y": 160,
      "w": 16,
      "h": 16,
-     "label": "Book",
+     "label": "Buku",
      "tex": "buku_merah",
      "z": 1,
      "type": "book",
      "trash": false,
-     "group": "Shelve the books"
+     "group": "Susun buku di rak"
     },
     {
      "id": "Pajangan1",
@@ -1270,12 +1270,12 @@
      "y": 272,
      "w": 16,
      "h": 16,
-     "label": "Ornament",
+     "label": "Pajangan",
      "tex": "pajangan_1",
      "z": 1,
      "type": "pajangan",
      "trash": false,
-     "group": "Put the ornaments in the cabinet"
+     "group": "Taruh pajangan di lemari"
     },
     {
      "id": "Pajangan2",
@@ -1283,12 +1283,12 @@
      "y": 148,
      "w": 16,
      "h": 16,
-     "label": "Ornament",
+     "label": "Pajangan",
      "tex": "pajangan_4",
      "z": 1,
      "type": "pajangan",
      "trash": false,
-     "group": "Put the ornaments in the cabinet"
+     "group": "Taruh pajangan di lemari"
     },
     {
      "id": "Pajangan3",
@@ -1296,12 +1296,12 @@
      "y": 326,
      "w": 16,
      "h": 16,
-     "label": "Ornament",
+     "label": "Pajangan",
      "tex": "pajangan_3",
      "z": 1,
      "type": "pajangan",
      "trash": false,
-     "group": "Put the ornaments in the cabinet"
+     "group": "Taruh pajangan di lemari"
     },
     {
      "id": "Sampah1",
@@ -1309,12 +1309,12 @@
      "y": 320,
      "w": 17,
      "h": 20,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_apple_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
      "id": "Sampah2",
@@ -1322,12 +1322,12 @@
      "y": 158,
      "w": 19,
      "h": 22,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_paper_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
      "id": "Sampah3",
@@ -1335,19 +1335,19 @@
      "y": 168,
      "w": 13,
      "h": 20,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_can1_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "sampah_kaleng_2",
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash",
+     "group": "Buang sampah",
      "id": "Sampah4",
      "x": 320,
      "y": 280,
@@ -1362,10 +1362,10 @@
      "y": 249,
      "w": 128,
      "h": 128,
-     "label": "Wilted vase",
+     "label": "Vas bunga layu",
      "tex": "vas_bunga",
      "z": 1,
-     "group": "Throw out the wilted vase",
+     "group": "Buang vas bunga yang layu",
      "hideAfter": true,
      "trash": true,
      "needed": 1,
@@ -1379,7 +1379,7 @@
      "y": 238,
      "w": 32,
      "h": 32,
-     "label": "Grandma",
+     "label": "Nenek",
      "tex": "actor_doc_1",
      "actor": "nenek",
      "cutscene": "flashback"
@@ -1390,7 +1390,7 @@
      "y": 242,
      "w": 32,
      "h": 32,
-     "label": "Young MC",
+     "label": "MC kecil",
      "tex": "actor_doc",
      "actor": "mc_kecil",
      "cutscene": "flashback"
@@ -1484,11 +1484,11 @@
      "scatterCount": 9,
      "minItemsNeeded": 4,
      "triggerProgress": 35,
-     "introText": "A cat bursts in and knocks your things over!",
+     "introText": "Seekor kucing tiba-tiba masuk dan mengacak-acak barang!",
      "tutorial": [
       {
-       "title": "Event: Naughty Cat",
-       "text": "A cat suddenly runs in and knocks over things you already tidied. You cannot stop it: tidy the scattered things again (drag them back where they belong). It can happen again."
+       "title": "Kucing Nakal",
+       "text": "Seekor kucing tiba-tiba masuk dan menjatuhkan barang yang sudah kamu rapikan. Kucingnya tidak bisa dihentikan, jadi rapikan lagi barang yang berserakan dengan menyeretnya ke tempatnya. Kejadian ini bisa terulang."
       }
      ],
      "maxRepeats": 2,
@@ -1512,8 +1512,8 @@
   },
   "kitchen": {
    "id": "kitchen",
-   "name": "Kitchen",
-   "short": "Kitchen",
+   "name": "Dapur",
+   "short": "Dapur",
    "size": {
     "w": 512,
     "h": 352
@@ -1535,7 +1535,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1547,7 +1547,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1559,7 +1559,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1571,7 +1571,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1583,7 +1583,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1595,7 +1595,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1607,7 +1607,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1619,7 +1619,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1631,7 +1631,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1643,7 +1643,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1655,7 +1655,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda2",
      "layer": "ground"
     },
@@ -1667,7 +1667,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda3",
      "layer": "ground"
     },
@@ -1679,7 +1679,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda4",
      "layer": "ground"
     },
@@ -1691,7 +1691,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda1",
      "layer": "ground"
     },
@@ -1703,7 +1703,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda2",
      "layer": "ground"
     },
@@ -1715,7 +1715,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda3",
      "layer": "ground"
     },
@@ -1727,7 +1727,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda4",
      "layer": "ground"
     },
@@ -1739,7 +1739,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the sticky floor",
+     "group": "Pel lantai yang lengket",
      "tex": "kamar_ground_pelnoda1",
      "layer": "ground"
     },
@@ -1751,7 +1751,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -1763,7 +1763,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground",
      "rotation": 1.5708
@@ -1776,7 +1776,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaring_laba_laba_pro_maxx_by_faris_better_than_punya_zulfa",
      "layer": "ground"
     },
@@ -1788,7 +1788,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -1800,7 +1800,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1812,7 +1812,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1824,7 +1824,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -1836,7 +1836,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     }
@@ -1848,7 +1848,7 @@
      "y": 82,
      "w": 64,
      "h": 96,
-     "label": "Chimney hood",
+     "label": "Cerobong asap",
      "tex": "dapur_cerobong_asap",
      "layer": "ysort",
      "originAtBase": true,
@@ -1862,7 +1862,7 @@
        "h": 14,
        "tool": "cloth",
        "effort": 240,
-       "group": "Wipe the chimney hood",
+       "group": "Lap cerobong asap",
        "parent": "Cerobong"
       }
      ]
@@ -1873,7 +1873,7 @@
      "y": 112,
      "w": 51,
      "h": 55,
-     "label": "Counter",
+     "label": "Meja dapur",
      "tex": "dapur_doc_trim",
      "layer": "ysort",
      "originAtBase": true,
@@ -1887,7 +1887,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the counter",
+       "group": "Lap meja dapur",
        "parent": "MejaMasak"
       },
       {
@@ -1898,7 +1898,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the counter",
+       "group": "Lap meja dapur",
        "parent": "MejaMasak"
       }
      ]
@@ -1909,7 +1909,7 @@
      "y": 94,
      "w": 14,
      "h": 13,
-     "label": "Stove",
+     "label": "Kompor",
      "tex": "dapur_doc_1_trim",
      "layer": "ysort",
      "originAtBase": true,
@@ -1924,7 +1924,7 @@
        "h": 11,
        "tool": "cloth",
        "effort": 174,
-       "group": "Wipe the stove",
+       "group": "Lap kompor",
        "parent": "Kompor"
       }
      ]
@@ -1935,7 +1935,7 @@
      "y": 62,
      "w": 14,
      "h": 40,
-     "label": "Onions",
+     "label": "Bawang",
      "tex": "bawang_gantung",
      "layer": "ysort",
      "originAtBase": true,
@@ -1947,7 +1947,7 @@
      "y": 132,
      "w": 16,
      "h": 24,
-     "label": "Barrel",
+     "label": "Tong",
      "tex": "tong_kayu_1",
      "layer": "ysort",
      "originAtBase": true,
@@ -1959,7 +1959,7 @@
      "y": 52,
      "w": 48,
      "h": 36,
-     "label": "Window",
+     "label": "Jendela",
      "tex": "dapur_jendela_dapur",
      "layer": "ysort",
      "originAtBase": true,
@@ -1973,7 +1973,7 @@
        "h": 29,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the window",
+       "group": "Lap jendela",
        "parent": "Jendela"
       },
       {
@@ -1984,7 +1984,7 @@
        "h": 29,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the window",
+       "group": "Lap jendela",
        "parent": "Jendela"
       }
      ]
@@ -1995,7 +1995,7 @@
      "y": 54,
      "w": 22,
      "h": 31,
-     "label": "Herbs",
+     "label": "Daun herbal",
      "tex": "herbal_gantung",
      "layer": "ysort",
      "originAtBase": true,
@@ -2007,7 +2007,7 @@
      "y": 108,
      "w": 46,
      "h": 52,
-     "label": "Kitchen shelf",
+     "label": "Rak dapur",
      "tex": "rak_kosong_besar",
      "layer": "ysort",
      "originAtBase": true,
@@ -2021,7 +2021,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 240,
-       "group": "Wipe the kitchen shelf",
+       "group": "Lap rak dapur",
        "parent": "RakSayur"
       },
       {
@@ -2032,7 +2032,7 @@
        "h": 6,
        "tool": "duster",
        "effort": 198,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "RakSayur"
       }
      ]
@@ -2043,7 +2043,7 @@
      "y": 80,
      "w": 14,
      "h": 16,
-     "label": "Jug",
+     "label": "Kendi",
      "tex": "kendi",
      "layer": "ysort",
      "originAtBase": true,
@@ -2056,7 +2056,7 @@
      "y": 82,
      "w": 10,
      "h": 11,
-     "label": "Bowl",
+     "label": "Mangkuk",
      "tex": "mangkuk_merah",
      "layer": "ysort",
      "originAtBase": true,
@@ -2069,7 +2069,7 @@
      "y": 100,
      "w": 12,
      "h": 14,
-     "label": "Sack",
+     "label": "Karung",
      "tex": "karung_kecil_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -2082,7 +2082,7 @@
      "y": 126,
      "w": 32,
      "h": 86,
-     "label": "Fridge",
+     "label": "Kulkas",
      "tex": "dapur_kulkas",
      "layer": "ysort",
      "originAtBase": true,
@@ -2100,7 +2100,7 @@
        "h": 33,
        "tool": "cloth",
        "effort": 252,
-       "group": "Wipe the fridge (in & out)",
+       "group": "Lap kulkas (dalam & luar)",
        "parent": "Kulkas"
       },
       {
@@ -2111,7 +2111,7 @@
        "h": 36,
        "tool": "cloth",
        "effort": 258,
-       "group": "Wipe the fridge (in & out)",
+       "group": "Lap kulkas (dalam & luar)",
        "parent": "Kulkas"
       }
      ]
@@ -2122,7 +2122,7 @@
      "y": 134,
      "w": 16,
      "h": 22,
-     "label": "Sack",
+     "label": "Karung",
      "tex": "karung_besar",
      "layer": "ysort",
      "originAtBase": true,
@@ -2134,7 +2134,7 @@
      "y": 136,
      "w": 11,
      "h": 15,
-     "label": "Sack",
+     "label": "Karung",
      "tex": "karung_kecil_1",
      "layer": "ysort",
      "originAtBase": true,
@@ -2146,7 +2146,7 @@
      "y": 186,
      "w": 42,
      "h": 44,
-     "label": "Shelf",
+     "label": "Rak",
      "tex": "rak_kosong_pendek",
      "layer": "ysort",
      "originAtBase": true,
@@ -2160,7 +2160,7 @@
        "h": 5,
        "tool": "duster",
        "effort": 186,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "RakPendek"
       }
      ]
@@ -2171,7 +2171,7 @@
      "y": 236,
      "w": 138,
      "h": 80,
-     "label": "Rug",
+     "label": "Karpet",
      "tex": "karpet_dapur",
      "layer": "ground",
      "originAtBase": false,
@@ -2187,7 +2187,7 @@
      "y": 272,
      "w": 62,
      "h": 88,
-     "label": "Dining table",
+     "label": "Meja makan",
      "tex": "meja_makan_set",
      "layer": "ysort",
      "originAtBase": true,
@@ -2205,7 +2205,7 @@
        "h": 26,
        "tool": "cloth",
        "effort": 282,
-       "group": "Wipe the dining table",
+       "group": "Lap meja makan",
        "parent": "MejaMakan"
       },
       {
@@ -2216,7 +2216,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 192,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "MejaMakan"
       },
       {
@@ -2227,7 +2227,7 @@
        "h": 16,
        "tool": "cloth",
        "effort": 192,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "MejaMakan"
       },
       {
@@ -2238,7 +2238,7 @@
        "h": 25,
        "tool": "cloth",
        "effort": 198,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "MejaMakan"
       },
       {
@@ -2249,7 +2249,7 @@
        "h": 25,
        "tool": "cloth",
        "effort": 198,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "MejaMakan"
       }
      ]
@@ -2260,7 +2260,7 @@
      "y": 214,
      "w": 26,
      "h": 32,
-     "label": "Serving table",
+     "label": "Meja saji",
      "tex": "pot_meja_kotak",
      "layer": "ysort",
      "originAtBase": true,
@@ -2274,7 +2274,7 @@
        "h": 13,
        "tool": "cloth",
        "effort": 198,
-       "group": "Wipe the counter",
+       "group": "Lap meja dapur",
        "parent": "MejaSiap"
       }
      ]
@@ -2285,7 +2285,7 @@
      "y": 194,
      "w": 10,
      "h": 11,
-     "label": "Bowl",
+     "label": "Mangkuk",
      "tex": "mangkuk_merah",
      "layer": "ysort",
      "originAtBase": true,
@@ -2298,7 +2298,7 @@
      "y": 194,
      "w": 10,
      "h": 10,
-     "label": "Bread",
+     "label": "Roti",
      "tex": "roti_bulat",
      "layer": "ysort",
      "originAtBase": true,
@@ -2311,7 +2311,7 @@
      "y": 300,
      "w": 21,
      "h": 22,
-     "label": "Plant",
+     "label": "Tanaman",
      "tex": "pot_tanaman_mangkuk",
      "layer": "ysort",
      "originAtBase": true,
@@ -2329,7 +2329,7 @@
        "h": 13,
        "tool": "cloth",
        "effort": 186,
-       "group": "Wipe the plants",
+       "group": "Lap daun tanaman",
        "parent": "Tanaman"
       }
      ]
@@ -2340,7 +2340,7 @@
      "y": 300,
      "w": 16,
      "h": 24,
-     "label": "Barrel",
+     "label": "Tong",
      "tex": "tong_kayu_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -2352,7 +2352,7 @@
      "y": 336,
      "w": 15,
      "h": 24,
-     "label": "Chest",
+     "label": "Peti",
      "tex": "peti_besar_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -2366,7 +2366,7 @@
      "y": 104,
      "w": 50,
      "h": 36,
-     "label": "Sink",
+     "label": "Wastafel",
      "tex": "dapur_wastafel_buatan_daus",
      "accepts": "dish",
      "capacity": 5,
@@ -2390,7 +2390,7 @@
        "h": 13,
        "tool": "cloth",
        "effort": 246,
-       "group": "Wipe the sink",
+       "group": "Lap wastafel",
        "parent": "Wastafel"
       }
      ]
@@ -2401,7 +2401,7 @@
      "y": 46,
      "w": 54,
      "h": 24,
-     "label": "Utensil rack",
+     "label": "Gantungan alat masak",
      "tex": "gantungan_masak_kosong",
      "accepts": "cookware",
      "capacity": 3,
@@ -2423,7 +2423,7 @@
        "h": 8,
        "tool": "cloth",
        "effort": 246,
-       "group": "Wipe the wall shelf",
+       "group": "Lap rak dinding",
        "parent": "RakDinding"
       }
      ]
@@ -2434,7 +2434,7 @@
      "y": 110,
      "w": 30,
      "h": 32,
-     "label": "Kitchen cabinet",
+     "label": "Lemari dapur",
      "tex": "lemari_tutup_trim",
      "accepts": "pantry",
      "capacity": 3,
@@ -2451,7 +2451,7 @@
        "h": 26,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the kitchen cabinet",
+       "group": "Lap lemari dapur",
        "parent": "LemariDapur"
       },
       {
@@ -2462,7 +2462,7 @@
        "h": 5,
        "tool": "duster",
        "effort": 168,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "LemariDapur"
       }
      ]
@@ -2473,7 +2473,7 @@
      "y": 338,
      "w": 18,
      "h": 17,
-     "label": "Trash bin",
+     "label": "Tempat sampah",
      "tex": "item_bak_sampah_kosong_trim",
      "accepts": "trash",
      "capacity": 3,
@@ -2495,12 +2495,12 @@
      "y": 252,
      "w": 32,
      "h": 32,
-     "label": "Plate",
+     "label": "Piring",
      "tex": "dapur_piring_kotoran_nyatu_kata_adi",
      "z": 1,
      "type": "dish",
      "trash": false,
-     "group": "Wash the dishes"
+     "group": "Cuci piring"
     },
     {
      "id": "Piring2",
@@ -2508,12 +2508,12 @@
      "y": 254,
      "w": 32,
      "h": 32,
-     "label": "Plate",
+     "label": "Piring",
      "tex": "dapur_piring_kotoran_nyatu_kata_adi",
      "z": 1,
      "type": "dish",
      "trash": false,
-     "group": "Wash the dishes"
+     "group": "Cuci piring"
     },
     {
      "id": "Piring3",
@@ -2521,12 +2521,12 @@
      "y": 252,
      "w": 32,
      "h": 32,
-     "label": "Plate",
+     "label": "Piring",
      "tex": "dapur_piring_kotoran_nyatu_kata_adi",
      "z": 1,
      "type": "dish",
      "trash": false,
-     "group": "Wash the dishes"
+     "group": "Cuci piring"
     },
     {
      "id": "Piring4",
@@ -2534,12 +2534,12 @@
      "y": 290,
      "w": 32,
      "h": 32,
-     "label": "Plate",
+     "label": "Piring",
      "tex": "dapur_piring_kotoran_nyatu_kata_adi",
      "z": 1,
      "type": "dish",
      "trash": false,
-     "group": "Wash the dishes"
+     "group": "Cuci piring"
     },
     {
      "id": "Piring5",
@@ -2547,12 +2547,12 @@
      "y": 280,
      "w": 32,
      "h": 32,
-     "label": "Plate",
+     "label": "Piring",
      "tex": "dapur_piring_kotoran_nyatu_kata_adi",
      "z": 1,
      "type": "dish",
      "trash": false,
-     "group": "Wash the dishes"
+     "group": "Cuci piring"
     },
     {
      "id": "Alat1",
@@ -2560,12 +2560,12 @@
      "y": 260,
      "w": 26,
      "h": 16,
-     "label": "Cookware",
+     "label": "Alat masak",
      "tex": "dapur_panci_kah",
      "z": 1,
      "type": "cookware",
      "trash": false,
-     "group": "Put away the cookware"
+     "group": "Rapikan alat masak"
     },
     {
      "id": "Alat2",
@@ -2573,12 +2573,12 @@
      "y": 230,
      "w": 19,
      "h": 16,
-     "label": "Cookware",
+     "label": "Alat masak",
      "tex": "dapur_wajan",
      "z": 1,
      "type": "cookware",
      "trash": false,
-     "group": "Put away the cookware"
+     "group": "Rapikan alat masak"
     },
     {
      "id": "Alat3",
@@ -2586,12 +2586,12 @@
      "y": 326,
      "w": 26,
      "h": 16,
-     "label": "Cookware",
+     "label": "Alat masak",
      "tex": "dapur_panci2",
      "z": 1,
      "type": "cookware",
      "trash": false,
-     "group": "Put away the cookware"
+     "group": "Rapikan alat masak"
     },
     {
      "id": "Bumbu1",
@@ -2599,12 +2599,12 @@
      "y": 326,
      "w": 16,
      "h": 16,
-     "label": "Spices",
+     "label": "Bumbu",
      "tex": "dapur_bumbu_dapur_1",
      "z": 1,
      "type": "pantry",
      "trash": false,
-     "group": "Put away the spices"
+     "group": "Simpan bumbu di lemari"
     },
     {
      "id": "Bumbu2",
@@ -2612,12 +2612,12 @@
      "y": 188,
      "w": 16,
      "h": 16,
-     "label": "Spices",
+     "label": "Bumbu",
      "tex": "dapur_bumbu_dapur_2",
      "z": 1,
      "type": "pantry",
      "trash": false,
-     "group": "Put away the spices"
+     "group": "Simpan bumbu di lemari"
     },
     {
      "id": "Bumbu3",
@@ -2625,12 +2625,12 @@
      "y": 170,
      "w": 16,
      "h": 16,
-     "label": "Spices",
+     "label": "Bumbu",
      "tex": "dapur_bumbu_dapur_3",
      "z": 1,
      "type": "pantry",
      "trash": false,
-     "group": "Put away the spices"
+     "group": "Simpan bumbu di lemari"
     },
     {
      "id": "Sampah1",
@@ -2638,12 +2638,12 @@
      "y": 200,
      "w": 17,
      "h": 20,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_apple_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
      "id": "Sampah2",
@@ -2651,12 +2651,12 @@
      "y": 160,
      "w": 19,
      "h": 22,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_paper_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
      "id": "Sampah3",
@@ -2664,19 +2664,19 @@
      "y": 160,
      "w": 13,
      "h": 20,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_can1_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "sampah_kaleng_2",
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash",
+     "group": "Buang sampah",
      "id": "Sampah4",
      "x": 90,
      "y": 330,
@@ -2692,7 +2692,7 @@
      "y": 132,
      "w": 32,
      "h": 32,
-     "label": "Grandma",
+     "label": "Nenek",
      "tex": "actor_doc_1",
      "actor": "nenek",
      "cutscene": "flashback"
@@ -2703,7 +2703,7 @@
      "y": 214,
      "w": 32,
      "h": 32,
-     "label": "Young MC",
+     "label": "MC kecil",
      "tex": "actor_doc",
      "actor": "mc_kecil",
      "cutscene": "flashback"
@@ -2803,11 +2803,11 @@
     {
      "kind": "rain",
      "triggerProgress": 20,
-     "introText": "A sudden downpour! Water is seeping in and flooding the floor.",
+     "introText": "Tiba-tiba hujan deras! Airnya merembes masuk dan menggenangi lantai.",
      "tutorial": [
       {
-       "title": "Event: Downpour",
-       "text": "Heavy rain floods the floor. Follow the arrows to each puddle and clean it with the Mop (hold 2). It can happen again."
+       "title": "Hujan Deras",
+       "text": "Hujan deras membuat air masuk dan menggenangi lantai. Ikuti panah ke setiap genangan, lalu bersihkan dengan Pel (tahan 2). Kejadian ini bisa terulang."
       }
      ],
      "spawnArea": {
@@ -2825,12 +2825,12 @@
      "blackoutDuration": 75,
      "emergencyCandles": 3,
      "triggerProgress": 60,
-     "introText": "Power cut! Place candles (hold 5, release on the floor) so you can see.",
+     "introText": "Listrik padam! Pasang lilin (tahan 5, lalu lepas di lantai) supaya bisa melihat.",
      "introDuration": 6,
      "tutorial": [
       {
-       "title": "Event: Power Cut",
-       "text": "The room goes dark and you can only clean where it is lit. Hold 5 (or hold the Candle slot) and release on the floor to place a candle. You can place more than one. Candles burn out, so place new ones. Staying in the dark too long grows more cobwebs."
+       "title": "Listrik Padam",
+       "text": "Ruangan jadi gelap, dan kamu hanya bisa membersihkan bagian yang terang. Tahan 5 (atau tahan slot Lilin), lalu lepas di lantai untuk memasang lilin. Kamu boleh memasang lebih dari satu. Lilin lama-lama habis, jadi pasang yang baru. Kalau terlalu lama gelap, sarang laba-laba makin banyak."
       }
      ],
      "hintPosition": {
@@ -2850,11 +2850,11 @@
      "repeatInterval": 40,
      "repeatJitter": 8,
      "maxRepeats": 2,
-     "introText": "A cockroach! Click it to keep cleaning.",
+     "introText": "Ada kecoa! Klik kecoanya dulu, baru bisa lanjut bersih-bersih.",
      "tutorial": [
       {
-       "title": "Event: Cockroach",
-       "text": "A cockroach blocks your cleaning. Follow the arrow and click the running cockroach to catch it."
+       "title": "Kecoa",
+       "text": "Ada kecoa yang bikin kamu tidak bisa bersih-bersih. Ikuti panahnya, lalu klik kecoa yang sedang berlari untuk menangkapnya."
       }
      ],
      "roachCount": 2,
@@ -2874,8 +2874,8 @@
   },
   "bedroom": {
    "id": "bedroom",
-   "name": "Grandma's Bedroom",
-   "short": "Bedroom",
+   "name": "Kamar Nenek",
+   "short": "Kamar Nenek",
    "size": {
     "w": 512,
     "h": 352
@@ -2897,7 +2897,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2909,7 +2909,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2921,7 +2921,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2933,7 +2933,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2945,7 +2945,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2957,7 +2957,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2969,7 +2969,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2981,7 +2981,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -2993,7 +2993,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -3005,7 +3005,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -3017,7 +3017,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda2",
      "layer": "ground"
     },
@@ -3029,7 +3029,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda3",
      "layer": "ground"
     },
@@ -3041,7 +3041,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda4",
      "layer": "ground"
     },
@@ -3053,7 +3053,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda1",
      "layer": "ground"
     },
@@ -3065,7 +3065,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda2",
      "layer": "ground"
     },
@@ -3077,7 +3077,7 @@
      "h": 14,
      "tool": "mop",
      "effort": 276,
-     "group": "Mop the floor stains",
+     "group": "Pel noda di lantai",
      "tex": "kamar_ground_pelnoda3",
      "layer": "ground"
     },
@@ -3089,7 +3089,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -3101,7 +3101,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground",
      "rotation": 1.5708
@@ -3114,7 +3114,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaring_laba_laba_pro_maxx_by_faris_better_than_punya_zulfa",
      "layer": "ground"
     },
@@ -3126,7 +3126,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -3138,7 +3138,7 @@
      "h": 32,
      "tool": "duster",
      "effort": 216,
-     "group": "Dust off the cobwebs",
+     "group": "Bersihkan sarang laba-laba",
      "tex": "jaringlabalaba_sudut",
      "layer": "ground"
     },
@@ -3150,7 +3150,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -3162,7 +3162,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     },
@@ -3174,7 +3174,7 @@
      "h": 16,
      "tool": "broom",
      "effort": 252,
-     "group": "Sweep the floor",
+     "group": "Sapu lantai",
      "tex": "debu_ulahan_daus",
      "layer": "ground"
     }
@@ -3186,7 +3186,7 @@
      "y": 56,
      "w": 48,
      "h": 36,
-     "label": "Window",
+     "label": "Jendela",
      "tex": "dapur_jendela_dapur",
      "layer": "ysort",
      "originAtBase": true,
@@ -3200,7 +3200,7 @@
        "h": 29,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the window",
+       "group": "Lap jendela",
        "parent": "Jendela"
       },
       {
@@ -3211,7 +3211,7 @@
        "h": 29,
        "tool": "cloth",
        "effort": 234,
-       "group": "Wipe the window",
+       "group": "Lap jendela",
        "parent": "Jendela"
       }
      ]
@@ -3222,7 +3222,7 @@
      "y": 58,
      "w": 36,
      "h": 48,
-     "label": "Framed photo",
+     "label": "Foto berbingkai",
      "tex": "doc_4_trim",
      "layer": "ysort",
      "originAtBase": true,
@@ -3236,7 +3236,7 @@
        "h": 38,
        "tool": "cloth",
        "effort": 270,
-       "group": "Wipe the photo frame",
+       "group": "Lap bingkai foto",
        "parent": "FotoBingkai"
       }
      ]
@@ -3247,7 +3247,7 @@
      "y": 50,
      "w": 38,
      "h": 38,
-     "label": "Painting",
+     "label": "Lukisan",
      "tex": "lukisan_bunga",
      "layer": "ysort",
      "originAtBase": true,
@@ -3261,7 +3261,7 @@
        "h": 31,
        "tool": "cloth",
        "effort": 258,
-       "group": "Wipe the photo frame",
+       "group": "Lap bingkai foto",
        "parent": "LukisanBunga"
       }
      ]
@@ -3272,7 +3272,7 @@
      "y": 56,
      "w": 24,
      "h": 28,
-     "label": "Mirror",
+     "label": "Cermin",
      "tex": "kamar_doc_trim",
      "layer": "ysort",
      "originAtBase": true,
@@ -3286,7 +3286,7 @@
        "h": 24,
        "tool": "cloth",
        "effort": 216,
-       "group": "Wipe the mirror",
+       "group": "Lap cermin",
        "parent": "Cermin"
       }
      ]
@@ -3297,7 +3297,7 @@
      "y": 30,
      "w": 15,
      "h": 15,
-     "label": "Clock",
+     "label": "Jam",
      "tex": "jam",
      "layer": "ysort",
      "originAtBase": true,
@@ -3311,7 +3311,7 @@
        "h": 11,
        "tool": "cloth",
        "effort": 168,
-       "group": "Wipe the clock",
+       "group": "Lap jam",
        "parent": "Jam"
       }
      ]
@@ -3322,7 +3322,7 @@
      "y": 156,
      "w": 110,
      "h": 84,
-     "label": "Bed",
+     "label": "Kasur",
      "tex": "kamar_ksur_fix",
      "layer": "ysort",
      "originAtBase": true,
@@ -3340,7 +3340,7 @@
        "h": 8,
        "tool": "duster",
        "effort": 240,
-       "group": "Dust the bed canopy",
+       "group": "Bersihkan debu kelambu",
        "parent": "Kasur"
       },
       {
@@ -3351,7 +3351,7 @@
        "h": 12,
        "tool": "cloth",
        "effort": 330,
-       "group": "Wipe the bed frame",
+       "group": "Lap rangka kasur",
        "parent": "Kasur"
       }
      ]
@@ -3362,7 +3362,7 @@
      "y": 100,
      "w": 13,
      "h": 19,
-     "label": "Nightstand",
+     "label": "Meja nakas",
      "tex": "pot_laci_kecil",
      "layer": "ysort",
      "originAtBase": true,
@@ -3376,7 +3376,7 @@
        "h": 8,
        "tool": "cloth",
        "effort": 162,
-       "group": "Wipe the nightstand",
+       "group": "Lap meja nakas",
        "parent": "NightstandL"
       }
      ]
@@ -3387,7 +3387,7 @@
      "y": 100,
      "w": 13,
      "h": 19,
-     "label": "Nightstand",
+     "label": "Meja nakas",
      "tex": "pot_laci_kecil",
      "layer": "ysort",
      "originAtBase": true,
@@ -3401,7 +3401,7 @@
        "h": 8,
        "tool": "cloth",
        "effort": 162,
-       "group": "Wipe the nightstand",
+       "group": "Lap meja nakas",
        "parent": "NightstandR"
       }
      ]
@@ -3412,7 +3412,7 @@
      "y": 82,
      "w": 13,
      "h": 14,
-     "label": "Vase",
+     "label": "Vas",
      "tex": "vas_lavender_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -3429,7 +3429,7 @@
      "y": 206,
      "w": 92,
      "h": 30,
-     "label": "Stool",
+     "label": "Bangku",
      "tex": "sofa_anglebelakang",
      "layer": "ysort",
      "originAtBase": true,
@@ -3443,7 +3443,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 312,
-       "group": "Wipe the stool",
+       "group": "Lap bangku",
        "parent": "Bangku"
       }
      ]
@@ -3454,7 +3454,7 @@
      "y": 168,
      "w": 128,
      "h": 128,
-     "label": "Desk",
+     "label": "Meja belajar",
      "tex": "kamar_meja_belajar",
      "layer": "ysort",
      "originAtBase": true,
@@ -3468,7 +3468,7 @@
        "h": 4,
        "tool": "cloth",
        "effort": 156,
-       "group": "Wipe the desk",
+       "group": "Lap meja belajar",
        "parent": "MejaBelajar"
       }
      ]
@@ -3479,7 +3479,7 @@
      "y": 144,
      "w": 12,
      "h": 21,
-     "label": "Desk chair",
+     "label": "Kursi belajar",
      "tex": "pot_kursi_depan_2",
      "layer": "ysort",
      "originAtBase": true,
@@ -3493,7 +3493,7 @@
        "h": 9,
        "tool": "cloth",
        "effort": 162,
-       "group": "Wipe the desk chair",
+       "group": "Lap kursi belajar",
        "parent": "KursiBelajar"
       }
      ]
@@ -3504,7 +3504,7 @@
      "y": 108,
      "w": 20,
      "h": 48,
-     "label": "Lamp",
+     "label": "Lampu",
      "tex": "lampu_berdiri",
      "layer": "ysort",
      "originAtBase": true,
@@ -3522,7 +3522,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 192,
-       "group": "Wipe the lamp",
+       "group": "Lap lampu",
        "parent": "LampuBelajar"
       }
      ]
@@ -3533,7 +3533,7 @@
      "y": 106,
      "w": 26,
      "h": 44,
-     "label": "Bookshelf",
+     "label": "Rak buku",
      "tex": "rak_buku_isi",
      "layer": "ysort",
      "originAtBase": true,
@@ -3547,7 +3547,7 @@
        "h": 5,
        "tool": "duster",
        "effort": 162,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "RakBukuKamar"
       }
      ]
@@ -3558,7 +3558,7 @@
      "y": 112,
      "w": 13,
      "h": 17,
-     "label": "Chest",
+     "label": "Peti",
      "tex": "pot_peti_kayu_kecil_1",
      "layer": "ysort",
      "originAtBase": true,
@@ -3570,7 +3570,7 @@
      "y": 262,
      "w": 88,
      "h": 68,
-     "label": "Rug",
+     "label": "Karpet",
      "tex": "karpet_merah_persegi",
      "layer": "ground",
      "originAtBase": false,
@@ -3586,7 +3586,7 @@
      "y": 236,
      "w": 18,
      "h": 36,
-     "label": "Armchair",
+     "label": "Kursi santai",
      "tex": "sofa_tunggal_biru",
      "layer": "ysort",
      "originAtBase": true,
@@ -3600,7 +3600,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 192,
-       "group": "Wipe the chairs",
+       "group": "Lap kursi",
        "parent": "KursiSantai"
       }
      ]
@@ -3611,7 +3611,7 @@
      "y": 268,
      "w": 30,
      "h": 46,
-     "label": "Old TV",
+     "label": "TV tua",
      "tex": "tv_hadap_kiri",
      "layer": "ysort",
      "originAtBase": true,
@@ -3629,7 +3629,7 @@
        "h": 18,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the old TV",
+       "group": "Lap TV tua",
        "parent": "TVTua"
       }
      ]
@@ -3640,7 +3640,7 @@
      "y": 286,
      "w": 13,
      "h": 17,
-     "label": "Basket",
+     "label": "Keranjang",
      "tex": "pot_peti_kayu_kecil_1",
      "layer": "ysort",
      "originAtBase": true,
@@ -3654,7 +3654,7 @@
        "h": 10,
        "tool": "cloth",
        "effort": 168,
-       "group": "Wipe the basket",
+       "group": "Lap keranjang",
        "parent": "Keranjang"
       }
      ]
@@ -3665,7 +3665,7 @@
      "y": 316,
      "w": 36,
      "h": 32,
-     "label": "Rug",
+     "label": "Karpet",
      "tex": "karpet_merah_panjang",
      "layer": "ground",
      "originAtBase": false,
@@ -3677,7 +3677,7 @@
      "y": 330,
      "w": 18,
      "h": 20,
-     "label": "Plant",
+     "label": "Tanaman",
      "tex": "pot_tanaman_bunga_putih",
      "layer": "ysort",
      "originAtBase": true,
@@ -3695,7 +3695,7 @@
        "h": 12,
        "tool": "cloth",
        "effort": 180,
-       "group": "Wipe the plants",
+       "group": "Lap daun tanaman",
        "parent": "Tanaman"
       }
      ]
@@ -3706,7 +3706,7 @@
      "y": 336,
      "w": 16,
      "h": 21,
-     "label": "Vase",
+     "label": "Vas",
      "tex": "vas_pink",
      "layer": "ysort",
      "originAtBase": true,
@@ -3720,7 +3720,7 @@
      "y": 74,
      "w": 26,
      "h": 44,
-     "label": "Table shelf",
+     "label": "Rak meja",
      "tex": "doc_7_trim",
      "accepts": "desk_item",
      "capacity": 3,
@@ -3737,7 +3737,7 @@
        "h": 15,
        "tool": "cloth",
        "effort": 204,
-       "group": "Wipe the table shelf",
+       "group": "Lap rak meja",
        "parent": "RakMeja"
       }
      ]
@@ -3748,7 +3748,7 @@
      "y": 114,
      "w": 44,
      "h": 70,
-     "label": "Wardrobe",
+     "label": "Lemari pakaian",
      "tex": "dapur_lemari_fix",
      "accepts": "clothes",
      "capacity": 3,
@@ -3765,7 +3765,7 @@
        "h": 60,
        "tool": "cloth",
        "effort": 300,
-       "group": "Clean the wardrobe (in & out)",
+       "group": "Bersihkan lemari (dalam & luar)",
        "parent": "Lemari",
        "tex": "lemari_kotor_1"
       },
@@ -3777,7 +3777,7 @@
        "h": 60,
        "tool": "cloth",
        "effort": 300,
-       "group": "Clean the wardrobe (in & out)",
+       "group": "Bersihkan lemari (dalam & luar)",
        "parent": "Lemari",
        "tex": "lemari_kotor_2"
       },
@@ -3789,7 +3789,7 @@
        "h": 6,
        "tool": "duster",
        "effort": 192,
-       "group": "Dust the furniture tops",
+       "group": "Bersihkan debu di atas perabot",
        "parent": "Lemari"
       }
      ]
@@ -3800,7 +3800,7 @@
      "y": 338,
      "w": 18,
      "h": 17,
-     "label": "Trash bin",
+     "label": "Tempat sampah",
      "tex": "item_bak_sampah_kosong_trim",
      "accepts": "trash",
      "capacity": 3,
@@ -3822,12 +3822,12 @@
      "y": 300,
      "w": 11,
      "h": 11,
-     "label": "Things",
+     "label": "Barang",
      "tex": "kamar_pensil_trim",
      "z": 1,
      "type": "desk_item",
      "trash": false,
-     "group": "Tidy the desk"
+     "group": "Rapikan meja belajar"
     },
     {
      "id": "BarangMeja2",
@@ -3835,12 +3835,12 @@
      "y": 314,
      "w": 16,
      "h": 11,
-     "label": "Things",
+     "label": "Barang",
      "tex": "buku_kuning_trim",
      "z": 1,
      "type": "desk_item",
      "trash": false,
-     "group": "Tidy the desk"
+     "group": "Rapikan meja belajar"
     },
     {
      "id": "BarangMeja3",
@@ -3848,12 +3848,12 @@
      "y": 196,
      "w": 16,
      "h": 11,
-     "label": "Things",
+     "label": "Barang",
      "tex": "buku_merah_trim",
      "z": 1,
      "type": "desk_item",
      "trash": false,
-     "group": "Tidy the desk"
+     "group": "Rapikan meja belajar"
     },
     {
      "id": "Baju1",
@@ -3861,12 +3861,12 @@
      "y": 250,
      "w": 20,
      "h": 18,
-     "label": "Clothes",
+     "label": "Baju",
      "tex": "kamar_baju_merah_trim",
      "z": 1,
      "type": "clothes",
      "trash": false,
-     "group": "Put the clothes in the wardrobe"
+     "group": "Masukkan baju ke lemari"
     },
     {
      "id": "Baju2",
@@ -3874,12 +3874,12 @@
      "y": 296,
      "w": 17,
      "h": 20,
-     "label": "Clothes",
+     "label": "Baju",
      "tex": "kamar_baju_ungu_trim",
      "z": 1,
      "type": "clothes",
      "trash": false,
-     "group": "Put the clothes in the wardrobe"
+     "group": "Masukkan baju ke lemari"
     },
     {
      "id": "Baju3",
@@ -3887,12 +3887,12 @@
      "y": 250,
      "w": 19,
      "h": 21,
-     "label": "Clothes",
+     "label": "Baju",
      "tex": "kamar_baju_kuning_trim",
      "z": 1,
      "type": "clothes",
      "trash": false,
-     "group": "Put the clothes in the wardrobe"
+     "group": "Masukkan baju ke lemari"
     },
     {
      "id": "Sampah1",
@@ -3900,12 +3900,12 @@
      "y": 330,
      "w": 17,
      "h": 20,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_apple_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
      "id": "Sampah2",
@@ -3913,12 +3913,12 @@
      "y": 200,
      "w": 19,
      "h": 22,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_paper_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
      "id": "Sampah3",
@@ -3926,19 +3926,19 @@
      "y": 316,
      "w": 13,
      "h": 20,
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "trash_can1_trim",
      "z": 1,
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash"
+     "group": "Buang sampah"
     },
     {
-     "label": "Trash",
+     "label": "Sampah",
      "tex": "sampah_kaleng_2",
      "type": "trash",
      "trash": true,
-     "group": "Throw out the trash",
+     "group": "Buang sampah",
      "id": "Sampah4",
      "x": 300,
      "y": 220,
@@ -3953,10 +3953,10 @@
      "y": 110,
      "w": 22,
      "h": 12,
-     "label": "Pillow",
+     "label": "Bantal",
      "tex": "kamar_bantal_berantakan",
      "z": 1,
-     "group": "Make the bed",
+     "group": "Rapikan kasur",
      "hideAfter": false,
      "trash": false,
      "needed": 1,
@@ -3969,10 +3969,10 @@
      "y": 112,
      "w": 26,
      "h": 14,
-     "label": "Bolster",
+     "label": "Guling",
      "tex": "kamar_guling_berantakan",
      "z": 1,
-     "group": "Make the bed",
+     "group": "Rapikan kasur",
      "hideAfter": false,
      "trash": false,
      "needed": 1,
@@ -3985,10 +3985,10 @@
      "y": 135,
      "w": 88,
      "h": 28,
-     "label": "Blanket",
+     "label": "Selimut",
      "tex": "kamar_selimut_berantakan",
      "z": 1,
-     "group": "Make the bed",
+     "group": "Rapikan kasur",
      "hideAfter": false,
      "trash": false,
      "needed": 1,
@@ -4003,7 +4003,7 @@
      "y": 172,
      "w": 32,
      "h": 32,
-     "label": "Grandma",
+     "label": "Nenek",
      "tex": "actor_doc_1",
      "actor": "nenek",
      "cutscene": "flashback"
@@ -4014,7 +4014,7 @@
      "y": 178,
      "w": 32,
      "h": 32,
-     "label": "Young MC",
+     "label": "MC kecil",
      "tex": "actor_doc",
      "actor": "mc_kecil",
      "cutscene": "flashback"
@@ -4095,11 +4095,11 @@
      "windowClosedTexture": "dapur_jendela_dapur",
      "scatterBase": 3,
      "triggerProgress": 35,
-     "introText": "A gale blows the window open! Click the window again and again to shut it!",
+     "introText": "Angin kencang membuka jendela! Klik jendelanya terus sampai tertutup!",
      "tutorial": [
       {
-       "title": "Event: Gale",
-       "text": "The wind throws the window open! Click the window again and again until it shuts (watch the bar on the event card). While it is open the wind blows tidied things around, brings in dust and dirties cleaned spots again, and it gets worse over time."
+       "title": "Angin Kencang",
+       "text": "Angin membuka jendela! Klik jendelanya terus sampai tertutup (lihat bar di kartu kejadian). Selama jendela terbuka, angin menerbangkan barang yang sudah rapi, membawa debu masuk, dan mengotori lagi tempat yang sudah bersih. Makin lama dibiarkan, makin parah."
       }
      ],
      "floorArea": {
@@ -4119,11 +4119,11 @@
      "repeatInterval": 26,
      "repeatJitter": 0,
      "maxRepeats": 4,
-     "introText": "A cockroach! Click it to keep cleaning.",
+     "introText": "Ada kecoa! Klik kecoanya dulu, baru bisa lanjut bersih-bersih.",
      "tutorial": [
       {
-       "title": "Event: Cockroach",
-       "text": "A cockroach blocks your cleaning. Follow the arrow and click the running cockroach to catch it."
+       "title": "Kecoa",
+       "text": "Ada kecoa yang bikin kamu tidak bisa bersih-bersih. Ikuti panahnya, lalu klik kecoa yang sedang berlari untuk menangkapnya."
       }
      ],
      "walkArea": {

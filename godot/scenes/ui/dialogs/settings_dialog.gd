@@ -65,8 +65,8 @@ func _bind_slider(s: HSlider, key: String) -> void:
 
 
 func _ask_delete() -> void:
-	get_parent().add_child(ConfirmDialog.make("Delete save data?",
-		"All room progress and tool levels will be lost. Your settings stay.", "Delete",
+	get_parent().add_child(ConfirmDialog.make("Hapus data simpanan?",
+		"Semua progres ruangan dan level alat akan hilang. Pengaturanmu tetap tersimpan.", "Hapus",
 		func() -> void:
 			GameState.new_game()
-			_status.text = "Save data deleted."))
+			_status.text = "Data simpanan sudah dihapus."))

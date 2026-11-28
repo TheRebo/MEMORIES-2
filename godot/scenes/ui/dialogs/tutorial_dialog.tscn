@@ -10,7 +10,7 @@ anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4edf2")
-title = "How to play"
+title = "Cara bermain"
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -40,7 +40,7 @@ theme_type_variation = &"TitleStrip"
 unique_name_in_owner = true
 theme_type_variation = &"AmberLabel"
 theme_override_font_sizes/font_size = 26
-text = "How to play"
+text = "Cara bermain"
 horizontal_alignment = 1
 
 [node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
@@ -81,17 +81,17 @@ theme_override_constants/separation = 6
 [node name="Close" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Close"
+text = "Tutup"
 script = ExtResource("2_116d3")
 
 [node name="Prev" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Back"
+text = "Kembali"
 script = ExtResource("2_116d3")
 
 [node name="Next" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"PrimarySmallButton"
-text = "Next"
+text = "Lanjut"
 script = ExtResource("2_116d3")

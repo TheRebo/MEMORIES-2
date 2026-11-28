@@ -220,7 +220,7 @@ alignment = 2
 unique_name_in_owner = true
 theme_type_variation = &"WoodDarkFrame"
 size_flags_vertical = 4
-tooltip_text = "Time in this room. Clean faster for more stars."
+tooltip_text = "Waktu di ruangan ini. Makin cepat bersih, makin banyak bintang."
 
 [node name="Row" type="HBoxContainer" parent="Root/Top/Actions/Timer"]
 custom_minimum_size = Vector2(0, 40)
@@ -262,16 +262,16 @@ vertical_alignment = 1
 [node name="NotesButton" type="Button" parent="Root/Top/Actions"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Notes  T"
+text = "Catatan  T"
 custom_minimum_size = Vector2(0, 46)
 size_flags_vertical = 4
-tooltip_text = "Show or hide the notes (T)"
+tooltip_text = "Tampilkan atau sembunyikan catatan (T)"
 script = ExtResource("4_7b53c")
 
 [node name="MenuButton" type="TextureButton" parent="Root/Top/Actions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(46, 46)
-tooltip_text = "Pause (Esc)"
+tooltip_text = "Jeda (Esc)"
 texture_normal = ExtResource("5_a5473")
 ignore_texture_size = true
 stretch_mode = 0
@@ -303,7 +303,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="Root/Note/NotePaper/Content/Head"]
 theme_type_variation = &"PaperDisplayLabel"
 theme_override_font_sizes/font_size = 22
-text = "Notes"
+text = "Catatan"
 anchors_preset = 15
 anchor_right = 1
 anchor_bottom = 1
@@ -361,7 +361,7 @@ stretch_mode = 1
 [node name="DoneToggle" type="Button" parent="Root/Note/NotePaper/Content/DoneBox"]
 unique_name_in_owner = true
 theme_type_variation = &"PaperFlatButton"
-text = "+ Done (0)"
+text = "+ Selesai (0)"
 alignment = 0
 script = ExtResource("4_7b53c")
 
@@ -516,7 +516,7 @@ script = ExtResource("9_8cffe")
 unique_name_in_owner = true
 theme_type_variation = &"PaperSoftLabel"
 theme_override_font_sizes/font_size = 17
-text = "Click or Enter to continue, Esc to skip"
+text = "Klik atau Enter untuk lanjut, Esc untuk melewati"
 modulate = Color(1, 1, 1, 0)
 horizontal_alignment = 2
 

@@ -57,10 +57,10 @@ func release() -> void:
 	if not room.pointer_in_world():
 		return
 	if not c.blackout:
-		c.toast.emit("No need for a candle right now.")
+		c.toast.emit("Sekarang belum perlu lilin.")
 		return
 	if active_count() >= max_active:
-		c.toast.emit("That is enough candles!")
+		c.toast.emit("Lilinnya sudah cukup!")
 		return
 	if not GameState.take_item("candle"):
 		return

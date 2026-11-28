@@ -74,7 +74,7 @@ func update() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_CAN_DROP if item else (Input.CURSOR_POINTING_HAND if inter else Input.CURSOR_ARROW))
 	var text := ""
 	if inter:
-		text = "%s: double-click" % inter.label_text
+		text = "%s: klik 2x" % inter.label_text
 	elif item:
 		text = item.label_text
 	room.hud.hover_label(room.pointer_screen, text)

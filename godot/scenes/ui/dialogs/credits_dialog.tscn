@@ -10,7 +10,7 @@ anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_783be")
-title = "Credits"
+title = "Kredit"
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -40,7 +40,7 @@ theme_type_variation = &"TitleStrip"
 unique_name_in_owner = true
 theme_type_variation = &"AmberLabel"
 theme_override_font_sizes/font_size = 26
-text = "Credits"
+text = "Kredit"
 horizontal_alignment = 1
 
 [node name="Body" type="VBoxContainer" parent="Center/Frame/Layout"]
@@ -67,5 +67,5 @@ alignment = 2
 [node name="Back" type="Button" parent="Center/Frame/Layout/Buttons"]
 unique_name_in_owner = true
 theme_type_variation = &"SmallButton"
-text = "Back"
+text = "Kembali"
 script = ExtResource("2_5d271")

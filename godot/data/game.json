@@ -2,7 +2,7 @@
  "tools": [
   {
    "id": "broom",
-   "name": "Broom",
+   "name": "Sapu",
    "code": "Digit1",
    "keyLabel": "1",
    "icon": "item_sapu",
@@ -11,7 +11,7 @@
   },
   {
    "id": "mop",
-   "name": "Mop",
+   "name": "Pel",
    "code": "Digit2",
    "keyLabel": "2",
    "icon": "item_pel",
@@ -20,7 +20,7 @@
   },
   {
    "id": "cloth",
-   "name": "Cloth",
+   "name": "Kain Lap",
    "code": "Digit3",
    "keyLabel": "3",
    "icon": "item_kain_lap",
@@ -29,7 +29,7 @@
   },
   {
    "id": "duster",
-   "name": "Duster",
+   "name": "Kemoceng",
    "code": "Digit4",
    "keyLabel": "4",
    "icon": "kemoceng_daus",

@@ -32,8 +32,8 @@ const DEFAULTS := {
 	"floorArea": {"x": 40, "y": 100, "w": 368, "h": 200},
 	"dustSize": {"x": 28, "y": 14},
 	"dustEffort": 200.0,
-	"dustFloorGroup": "Sweep the wind-blown dust",
-	"dustClothGroup": "Wipe the wind-blown dust",
+	"dustFloorGroup": "Sapu debu yang terbawa angin",
+	"dustClothGroup": "Lap debu yang terbawa angin",
 }
 
 ## Window pictures while it is blown open, half closed and closed (empty: its own picture).
@@ -83,7 +83,7 @@ func on_start() -> void:
 	var w := _win
 	point_at("window", func() -> Variant: return Vector2(w.position.x, w.bounds().position.y - 4))
 	room.ctx.attend.emit(w.center())
-	set_objective("Click the window again and again to shut it!")
+	set_objective("Klik jendelanya terus sampai tertutup!")
 	_emit_bar()
 	_intercept = _on_click
 	room.add_click_interceptor(_intercept)
@@ -103,7 +103,7 @@ func _set_state(s: int) -> void:
 
 func _emit_bar() -> void:
 	if running:
-		set_bar("Window", _progress)
+		set_bar("Jendela", _progress)
 
 
 func _process(dt: float) -> void:
@@ -163,7 +163,7 @@ func _penalty_wave() -> void:
 		_gust.amount = 90
 		_gust.restart()
 		_gust.emitting = true
-	room.ctx.toast.emit("The wind is getting stronger! Things are flying and dust is coming in!")
+	room.ctx.toast.emit("Anginnya makin kencang! Barang beterbangan dan debu mulai masuk!")
 	room.ctx.tasks_changed.emit()
 
 
@@ -194,7 +194,7 @@ func _redirty(n: int) -> void:
 	for d: Dirt in clean.slice(0, n):
 		d.dirty_again(0.7)
 	if not clean.is_empty():
-		room.ctx.toast.emit("The wind blew dust back onto cleaned spots!")
+		room.ctx.toast.emit("Angin membawa debu lagi ke tempat yang sudah bersih!")
 
 
 func _on_click(p: Vector2) -> bool:
@@ -209,7 +209,7 @@ func _on_click(p: Vector2) -> bool:
 	if _progress >= 0.5 and _state == 0:
 		_floor = 0.5
 		_set_state(1)
-		room.ctx.toast.emit("The window is half shut! Keep clicking!")
+		room.ctx.toast.emit("Jendelanya sudah setengah tertutup! Terus klik!")
 	if _progress >= 1.0:
 		_close()
 		return true

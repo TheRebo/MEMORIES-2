@@ -13,7 +13,7 @@ var _closed := false
 
 
 func show_result(stars: int, seconds: float, par: float, best: float, record: bool, center_x: float) -> void:
-	(%Title as Label).text = "Perfect!" if stars == 3 else ("Great!" if stars == 2 else "Selesai!")
+	(%Title as Label).text = "Sempurna!" if stars == 3 else ("Hebat!" if stars == 2 else "Selesai!")
 	(%TimeValue as Label).text = Db.clock(seconds)
 	(%ParValue as Label).text = Db.clock(par)
 	var shown_best := seconds if (best < 0.0 or record) else minf(best, seconds)

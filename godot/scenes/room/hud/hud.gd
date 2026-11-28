@@ -193,10 +193,10 @@ func set_groups(groups: Array, kinds: Dictionary) -> void:
 		if (prev == null and not _last_groups.is_empty()) or (prev is Dictionary and int(prev["total"]) < int(g["total"])):
 			row.flash(&"TaskRowGrew")
 	if open_n == 0:
-		var empty := UI.label("All done!" if not groups.is_empty() else "No tasks.", "PaperDoneLabel", 19)
+		var empty := UI.label("Semua beres!" if not groups.is_empty() else "Tidak ada tugas.", "PaperDoneLabel", 19)
 		_task_list.add_child(empty)
 	_task_count.text = "%d/%d" % [done_n, total_n]
-	_task_count.tooltip_text = "%d parts left" % (total_n - done_n)
+	_task_count.tooltip_text = "Tinggal %d lagi" % (total_n - done_n)
 	_done_box.visible = _done_count > 0
 	_render_done_toggle()
 	_last_groups.clear()
@@ -206,7 +206,7 @@ func set_groups(groups: Array, kinds: Dictionary) -> void:
 
 
 func _render_done_toggle() -> void:
-	_done_toggle.text = "%s Done (%d)" % ["-" if _show_done else "+", _done_count]
+	_done_toggle.text = "%s Selesai (%d)" % ["-" if _show_done else "+", _done_count]
 
 
 ## The note grows with its list up to 500px, then the list scrolls.
@@ -221,7 +221,7 @@ func _fit_note() -> void:
 
 
 func flash_group(name_text: String) -> void:
-	toast("Done: %s" % name_text)
+	toast("Selesai: %s" % name_text)
 
 
 func toggle_todo() -> void:
@@ -282,7 +282,7 @@ func set_time(seconds: float, par: float) -> void:
 		t.tween_callback(func() -> void: lost.color = UI.WOOD_600)
 		_timer.theme_type_variation = &"AlertFrame"
 		get_tree().create_timer(1.2, false).timeout.connect(func() -> void: _timer.theme_type_variation = &"WoodDarkFrame")
-		toast("Third star lost. Two are still yours!" if stars == 2 else "One star left. Finish up!")
+		toast("Bintang ketiga hilang. Dua lagi masih aman!" if stars == 2 else "Tinggal satu bintang. Ayo selesaikan!")
 	# The last 30 s before the next star is lost: the timer warms up as a nudge.
 	var nxt := par if stars == 3 else (par * 1.5 if stars == 2 else INF)
 	_hurry = nxt - seconds < 30.0
@@ -575,7 +575,7 @@ func show_nav() -> void:
 	var nxt := Db.next_room(room_id)
 	var first: Button = null
 	if GameState.all_completed():
-		first = _nav_button("Go home", func() -> void: go_home.emit(), true)
+		first = _nav_button("Pulang", func() -> void: go_home.emit(), true)
 	for id: String in Db.room_order:
 		if id == room_id:
 			continue
@@ -583,9 +583,9 @@ func show_nav() -> void:
 		if not done and id != nxt:
 			continue
 		var r := Db.room(id)
-		var text := String(r["short"]) if done else "Next: %s" % r["short"]
+		var text := String(r["short"]) if done else "Lanjut: %s" % r["short"]
 		var b := _nav_button(text, func() -> void: go_room.emit(id), not done)
-		b.tooltip_text = ("Revisit the %s" if done else "Go to the %s") % r["name"]
+		b.tooltip_text = ("Kunjungi lagi %s" if done else "Pergi ke %s") % r["name"]
 		if not done:
 			first = b
 	# The main action sits first in the row.

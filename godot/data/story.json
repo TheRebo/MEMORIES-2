@@ -95,52 +95,52 @@
  ],
  "start_tutorial": [
   {
-   "title": "Broom",
+   "title": "Sapu",
    "image": "item_sapu",
-   "text": "Hold 1 (or hold the Broom slot) to pick up the Broom. Rub the mouse over the floor dust until it is gone. Let go of the key to put the tool down."
+   "text": "Tahan 1 (atau tahan slot Sapu) untuk memegang sapu. Gosokkan mouse di atas debu lantai sampai bersih, lalu lepas tombolnya untuk menaruh sapu."
   },
   {
-   "title": "Mop",
+   "title": "Pel",
    "image": "item_pel",
-   "text": "Hold 2 to pick up the Mop. Scrub stains, sticky spots and puddles until they disappear."
+   "text": "Tahan 2 untuk memegang pel. Gosok noda, lantai yang lengket, dan genangan air sampai hilang."
   },
   {
-   "title": "Cloth",
+   "title": "Kain Lap",
    "image": "item_kain_lap",
-   "text": "Hold 3 to pick up the Cloth. Wipe furniture, windows, mirrors and anything else that is dusty."
+   "text": "Tahan 3 untuk memegang kain lap. Lap perabot, jendela, cermin, dan benda lain yang berdebu."
   },
   {
-   "title": "Duster",
+   "title": "Kemoceng",
    "image": "kemoceng_daus",
-   "text": "Hold 4 to pick up the Duster. Clear cobwebs and dust in high places such as the top corners and the tops of cabinets."
+   "text": "Tahan 4 untuk memegang kemoceng. Bersihkan sarang laba-laba dan debu di tempat tinggi, seperti sudut atas ruangan dan atas lemari."
   },
   {
-   "title": "Tidy up",
+   "title": "Merapikan barang",
    "image": "buku_biru",
-   "text": "Drag small things from the floor to a shelf, cabinet, sink or trash bin. Things marked \"double-click\" (wilted vase, pillow, bolster, blanket) need two quick clicks."
+   "text": "Seret barang kecil di lantai ke rak, lemari, wastafel, atau tempat sampah. Benda bertanda \"klik 2x\" (vas layu, bantal, guling, selimut) cukup diklik dua kali dengan cepat."
   }
  ],
  "credits": {
   "title": "MEMORIES",
   "roles": [
    {
-    "role": "Game Design & Programming",
+    "role": "Desain Game & Pemrograman",
     "name": "[NAMA]"
    },
    {
-    "role": "Art",
+    "role": "Seni",
     "name": "[NAMA]"
    },
    {
-    "role": "Music & SFX",
+    "role": "Musik & Efek Suara",
     "name": "[NAMA]"
    }
   ],
   "thirdParty": [
-   "\"Yoster Island\" font by codeman38 (zone38.net)",
-   "\"Cairopixel\" font by GGBotNet, SIL Open Font License 1.1"
+   "Font \"Yoster Island\" oleh codeman38 (zone38.net)",
+   "Font \"Cairopixel\" oleh GGBotNet, SIL Open Font License 1.1"
   ],
-  "thanks": "Thank you for playing."
+  "thanks": "Terima kasih sudah bermain."
  },
  "mcName": "aku"
 }

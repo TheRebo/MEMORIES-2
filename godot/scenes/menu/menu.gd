@@ -51,7 +51,7 @@ func _refresh() -> void:
 	GameState.load_save()
 	var can_continue := GameState.has_progress()
 	_continue.visible = can_continue
-	_continue.tooltip_text = "Revisit" if GameState.all_completed() else "Continue"
+	_continue.tooltip_text = "Kunjungi lagi" if GameState.all_completed() else "Lanjutkan"
 	_new_game.visible = can_continue
 	_play.visible = not can_continue
 	_save_note.visible = can_continue
@@ -78,7 +78,7 @@ func _fill_note() -> void:
 		var n := UI.label(("> " if id == next else "") + String(Db.room(id)["name"]), "PaperLabel", 20)
 		n.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		line.add_child(n)
-		var state := "clean" if done else ("next" if id == next else "not yet")
+		var state := "bersih" if done else ("berikutnya" if id == next else "belum")
 		var s := UI.label(state, "PaperDisplayLabel", 17)
 		s.add_theme_color_override("font_color", UI.PAPER_DONE if done else UI.PAPER_INK_SOFT)
 		line.add_child(s)
@@ -91,7 +91,7 @@ func _on_continue() -> void:
 
 
 func _confirm_new() -> void:
-	add_child(ConfirmDialog.make("Start over?", "Your finished rooms will be cleared.", "Clear & start", _start_new_game))
+	add_child(ConfirmDialog.make("Mulai dari awal?", "Semua ruangan yang sudah bersih akan diulang dari nol.", "Mulai baru", _start_new_game))
 
 
 func _start_new_game() -> void:

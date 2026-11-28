@@ -4,7 +4,7 @@ extends RoomEvent
 
 const DEFAULTS := {
 	"puddleCount": 4,
-	"puddleTaskGroup": "Mop the rain puddles",
+	"puddleTaskGroup": "Pel genangan air hujan",
 	"puddleSize": {"x": 30, "y": 14},
 	"puddleEffort": 220.0,
 	"spawnArea": {"x": 50, "y": 110, "w": 340, "h": 190},
