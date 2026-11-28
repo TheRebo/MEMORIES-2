@@ -191,6 +191,9 @@ func eligible_items(types: Array) -> Array:
 
 ## Throw `n` tidied items back on the floor. Returns how many moved.
 func scatter(n: int, types: Array, area: Rect2) -> int:
+	# A finished room stays finished.
+	if room.finished:
+		return 0
 	var cands := eligible_items(types)
 	cands.shuffle()
 	var count := 0

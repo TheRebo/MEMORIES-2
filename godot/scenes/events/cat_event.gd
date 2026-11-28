@@ -15,6 +15,8 @@ const DEFAULTS := {
 }
 const SCATTER_TYPES := ["book", "pajangan", "trash"]
 
+var _abort := false
+
 @onready var _cat: AnimatedSprite2D = %Cat
 
 
@@ -27,6 +29,7 @@ func on_start() -> void:
 
 
 func _run() -> void:
+	_abort = false
 	Sfx.play("meow", 1.0, 120)
 	room.ctx.shake.emit(float(cfg["shakeStrength"]), float(cfg["shakeDuration"]))
 	await get_tree().create_timer(0.9, false).timeout
@@ -40,6 +43,8 @@ func _run() -> void:
 	var floor_area := rect("floorArea")
 	for i in 3:
 		await _run_to(random_in(floor_area))
+		if _abort:
+			return
 		var n := ceili(float(left) / (3 - i))
 		var moved := scatter(n, SCATTER_TYPES, floor_area)
 		left -= moved
@@ -49,6 +54,8 @@ func _run() -> void:
 		Sfx.play("meow", 0.8, 200)
 		room.ctx.shake.emit(float(cfg["shakeStrength"]) * 0.6, 0.35)
 	await _run_to(point("catExit"))
+	if _abort:
+		return
 	clear_point("cat")
 	_cat.stop()
 	_cat.hide()
@@ -69,3 +76,14 @@ func _run_to(to: Vector2) -> void:
 func _process(_dt: float) -> void:
 	if _cat.visible:
 		_cat.z_index = 1000 + int(_cat.position.y)
+
+
+## Tests: the cat leaves at once and touches nothing more.
+func debug_end() -> void:
+	if not running:
+		return
+	_abort = true
+	clear_point("cat")
+	_cat.stop()
+	_cat.hide()
+	finish()

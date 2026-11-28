@@ -9,4 +9,3 @@ coverage/
 
 # Godot
 godot/.godot/
-godot/*.import

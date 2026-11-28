@@ -1,26 +1,49 @@
 # MEMORIES - versi Godot 4.7
 
-Port dari versi web (Phaser) ke Godot 4.7 dengan GDScript. Isi game, aturan main dan tata letak
-ruangan sama persis karena datanya diekspor langsung dari kode web.
+Port dari versi web (Phaser) ke Godot 4.7 dengan GDScript, disusun seperti proyek yang dibuat
+di editor: setiap layar, objek, kejadian, dialog dan bagian HUD adalah scene (`.tscn`) dengan
+skrip di sebelahnya, dan tampilannya diatur oleh satu Theme.
 
 ## Menjalankan
 
 1. Buka Godot 4.7 (renderer Compatibility sudah diatur di proyek).
 2. Pilih **Import**, arahkan ke folder `godot/` ini, lalu buka proyeknya.
 3. Pembukaan pertama mengimpor semua gambar dan suara (beberapa detik).
-4. Tekan **F5**.
+4. Tekan **F5**. Scene utama: `scenes/main/main.tscn`.
 
 ## Struktur
 
 | Folder | Isi |
 |---|---|
-| `data/` | `rooms.json`, `sprites.json`, `story.json`, `game.json` hasil ekspor dari web |
-| `assets/` | sprite, cutscene, UI, font, sfx (wav) dan musik (ogg) |
-| `scripts/autoload/` | `Db` (data), `GameState` (save), `Settings`, `Sfx` |
-| `scripts/screens/` | menu, cerita (prolog/ending), ruangan, kartu judul |
-| `scripts/room/` | objek dunia (Thing, Dirt, Item, Zone, Interactable, Actor), kamera, cahaya, efek, alat, tangan, lilin, cutscene, HUD |
-| `scripts/events/` | kejadian ruangan: kucing, hujan, mati lampu, angin, kecoa |
-| `scripts/ui/` | gaya UI, dialog (pengaturan, kredit, tutorial, jeda), efek ketik |
+| `autoload/` | `Db` (data), `GameState` (simpanan), `Settings`, `Sfx` |
+| `scenes/main/` | `main.tscn`: pengganti layar dengan transisi iris |
+| `scenes/menu/`, `scenes/story/`, `scenes/title_card/` | menu utama, prolog/ending, kartu penutup |
+| `scenes/room/` | `room.tscn` (dunia, kamera, cahaya, efek, HUD, kejadian) dan sistem ruangan: alat, tangan, lilin, cutscene |
+| `scenes/room/hud/` | `hud.tscn` dan bagiannya: slot alat, baris tugas, kartu kejadian, kartu hasil, panah penunjuk |
+| `scenes/world/` | objek ruangan: perabot, kotoran, barang, tempat simpan, benda klik 2x, aktor, lilin, kecoa |
+| `scenes/events/` | kejadian: kucing, hujan, mati lampu, angin, kecoa (nilai bawaan di `DEFAULTS` tiap skrip) |
+| `scenes/ui/` | `modal.gd`, tombol, efek ketik, bintang; `dialogs/`: konfirmasi, pengaturan, kredit, tutorial, jeda |
+| `resources/theme/main_theme.tres` | font, warna label, tombol papan kayu, panel kayu dan kertas (variasi tema) |
+| `resources/shaders/` | iris transisi dan efek film saat kenangan |
+| `data/` | `rooms.json`, `sprites.json`, `story.json`, `game.json` hasil ekspor dari versi web |
+| `assets/` | sprite, cutscene, UI (termasuk bingkai 9-slice di `ui/frames`), font, sfx, musik |
+| `tests/` | pemeriksaan otomatis (lihat di bawah) |
+
+Gaya panel diatur lewat `theme_type_variation`, misalnya `WoodFrame`, `PaperNote`, `ToastFrame`,
+`AlertFrame`, `ToolSlotActive`, `PrimarySmallButton`. Ubah di Theme, semua layar ikut berubah.
+
+## Pemeriksaan otomatis (CI)
+
+Workflow `.github/workflows/godot.yml` memasang Godot 4.7.2 di GitHub dan, di setiap push:
+
+1. mengimpor aset,
+2. mengompilasi setiap skrip (`tests/check_scripts.gd`),
+3. memuat setiap scene (`tests/check_scenes.gd`),
+4. memainkan game tanpa layar (`tests/smoke.gd`): menu, prolog, ketiga ruangan dengan semua
+   kejadiannya, flashback, ending,
+5. merender layar-layar utama di xvfb (`tests/screenshots.gd`).
+
+Gagal jika ada error skrip atau langkah yang tidak tercapai.
 
 ## Memperbarui data dari versi web
 
