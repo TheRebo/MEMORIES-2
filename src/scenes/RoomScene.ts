@@ -48,7 +48,8 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
   /** Play time in this visit (scene clock: stops while paused, in dialogs and cutscenes). */
   private elapsed = 0;
   private driftTimer = 0;
-  private drifts = 0
+  private drifts = 0;
+  private beams: ((s: number) => void)[] = []
   finished = false;
 
   private interacts: Interactable[] = [];
@@ -101,6 +102,8 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     this.lighting = new Lighting(this, def.size.w, def.size.h);
     this.fx = new Fx(this, def.size.w, def.size.h);
     this.camera = new CameraRig(this, def.size);
+    // Every window throws a beam of daylight that brightens as the room gets clean.
+    this.beams = def.props.filter((pr) => pr.id.startsWith('Jendela') && pr.tex).map((pr) => this.fx.windowLight(pr.x, pr.y, pr.w));
     this.layer = App.layer('room');
     this.hud = new Hud(this.layer, def.id, {
       onMenu: () => this.openPause(),
@@ -322,6 +325,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
     const t = pct / 100;
     this.lighting.setCleanliness(t);
     this.fx.setMotes(0.55 - 0.45 * t, 0xd9d0c0);
+    for (const b of this.beams) b(t);
     this.hud.setVignette(0.6 - 0.45 * t);
     this.ctx.bus.emit('progress', pct);
     if (this.tracker.allDone() && !this.ctx.eventsActive) {
@@ -399,7 +403,9 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
       typing: () => this.hud.typing,
       finishTyping: () => this.hud.finishTyping(),
       fade: (b, ms) => this.hud.fade(b, ms),
+      memory: (on) => this.hud.setMemory(on),
     }).play(this.def.flashback);
+    this.hud.setMemory(false);
     Audio.playMusic('present', 1.6);
     this.hud.showNav();
     this.hud.toast(GameState.allCompleted() ? 'Semua ruangan bersih. Saatnya pulang.' : 'Ruangan selesai! Pilih ruangan berikutnya di bar bawah.');
@@ -412,6 +418,7 @@ export class RoomScene extends Phaser.Scene implements RoomApi {
       this.fx.celebrate(this.def.size.w, this.def.size.h);
     }
     this.lighting.setWarm(instant);
+    for (const b of this.beams) b(1.2);
     this.fx.setMotes(0.6, 0xf2c46a);
     this.hud.setVignette(0.2);
     this.hud.setGlow(true, instant);

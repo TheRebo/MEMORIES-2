@@ -72,6 +72,16 @@ export class MenuScene extends Phaser.Scene {
 
     // The logo hangs over the roof of the house in the painting.
     const logo = h('img', { class: 'menu-logo', src: 'assets/ui/title_logo_trim.png', alt: '', width: 307, height: 79, fetchpriority: 'high' });
+    // Leaves from the apple tree and smoke from the chimney keep the painting alive.
+    if (!reducedMotion()) {
+      const amb = h('div', { class: 'menu-ambient', 'aria-hidden': 'true' });
+      const colours = ['#c9852f', '#8fae4a', '#d9a441', '#6f8f3a', '#b5532e'];
+      for (let i = 0; i < 14; i++) {
+        amb.append(h('span', { class: 'leaf', style: `left:${180 + ((i * 97) % 520)}px;--c:${colours[i % colours.length]};--t:${8 + (i % 5) * 1.7}s;--d:${-(i * 1.3)}s` }));
+      }
+      for (let i = 0; i < 4; i++) amb.append(h('span', { class: 'smoke', style: `--d:${i * 1.25}s` }));
+      this.layer.append(amb);
+    }
     this.layer.append(h('h1', { class: 'menu-title' }, h('span', { class: 'sr-only' }, 'Memories'), logo), nav);
     if (canContinue) this.layer.append(this.saveNote());
     queueMicrotask(() => nav.querySelector('button')?.focus());

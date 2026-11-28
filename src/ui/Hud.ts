@@ -218,9 +218,10 @@ export class Hud {
     this.cursorEl = h('img', { class: 'tool-cursor', alt: '', width: 64, height: 64, hidden: true, draggable: 'false' });
     this.fadeEl = h('div', { class: 'hud-fade', 'aria-hidden': 'true' });
     this.live = h('div', { class: 'sr-only', 'aria-live': 'assertive' });
+    const grain = h('div', { class: 'hud-grain', 'aria-hidden': 'true' });
 
     // The fade sits under the dialog: a cutscene line shown over black must stay readable.
-    this.root.append(this.vignette, this.glow, this.pointerLayer, top, this.todo, bottom, this.fadeEl, this.letterbox,
+    this.root.append(this.vignette, this.glow, grain, this.pointerLayer, top, this.todo, bottom, this.fadeEl, this.letterbox,
       this.msgs, this.alertsEl, this.dialogEl, this.bannerEl, this.hintEl, this.cursorEl, this.live);
     this.todo.classList.toggle('closed', !this.todoOpen);
     this.todoBtn.setAttribute('aria-expanded', String(this.todoOpen));
@@ -666,6 +667,11 @@ export class Hud {
   setCinematic(on: boolean): void {
     this.root.classList.toggle('cinematic', on);
     this.applyInset();
+  }
+
+  /** Flashback look (grain, flicker) while a memory plays. */
+  setMemory(on: boolean): void {
+    this.root.classList.toggle('memory', on);
   }
 
   fade(toBlack: boolean, ms: number): void {

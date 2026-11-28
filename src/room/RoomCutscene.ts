@@ -37,7 +37,9 @@ export class RoomCutscene {
   constructor(
     private readonly room: RoomApi,
     private readonly actors: readonly Actor[],
-    private readonly ui: { dialog: (s: string, t: string) => void; hideDialog: () => void; hint: (on: boolean) => void; typing: () => boolean; finishTyping: () => void; fade: (black: boolean, ms: number) => void },
+    private readonly ui: { dialog: (s: string, t: string) => void; hideDialog: () => void; hint: (on: boolean) => void; typing: () => boolean; finishTyping: () => void; fade: (black: boolean, ms: number) => void;
+      /** Old-film look on while a remembered (tinted) line plays. */
+      memory?: (on: boolean) => void },
   ) {}
 
   async play(lines: readonly CutsceneLine[]): Promise<void> {
@@ -78,7 +80,10 @@ export class RoomCutscene {
       this.ui.fade(true, 900);
       await this.wait(1000);
     }
-    if (line.tint) lighting.addTint('cutscene', line.tint);
+    if (line.tint) {
+      lighting.addTint('cutscene', line.tint);
+      this.ui.memory?.(line.tint.some((c, i) => i < 3 && c < 0.99));
+    }
     for (const id of line.hide ?? []) this.actor(id)?.vanish();
     for (const id of line.show ?? []) this.actor(id)?.appear();
     for (const m of line.moves ?? []) void this.actor(m.actor)?.walkTo(m.x, m.y);
