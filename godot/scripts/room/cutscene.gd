@@ -107,7 +107,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_skip = true
 		_finish_wait()
 		return
-	var click := event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+	var click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
 	if event.is_action_pressed("ui_accept") or click:
 		get_viewport().set_input_as_handled()
 		_press()
