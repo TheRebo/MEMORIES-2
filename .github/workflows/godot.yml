@@ -52,6 +52,15 @@ jobs:
           timeout 600 godot --headless --path . --script res://tests/smoke.gd 2>&1 | tee smoke.log
           ! grep -nE "SCRIPT ERROR|^ERROR:|FAIL " smoke.log | grep -v "still in use at exit"
 
+      - name: Screenshots (xvfb, GL Compatibility)
+        if: always()
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq xvfb mesa-utils > /dev/null
+          timeout 300 xvfb-run -s "-screen 0 1280x720x24" godot --path . --rendering-driver opengl3 \
+            --resolution 1280x720 --script res://tests/screenshots.gd > shots.log 2>&1 || true
+          grep -E "^SHOT" shots.log || true
+          grep -nE "SCRIPT ERROR|^ERROR:" shots.log | grep -v "still in use at exit" | head -40 || true
+
       - name: Upload logs
         if: always()
         uses: actions/upload-artifact@v4
